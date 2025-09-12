@@ -92,6 +92,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Optional: RSS helper popover
+  document.body.addEventListener('click', (event) => {
+    const link = event.target.closest('a.rss-link');
+    if (!link) return;
+    // Build a small popover with subscription options
+    event.preventDefault();
+    const existing = document.getElementById('rss-popover');
+    if (existing) existing.remove();
+    const pop = document.createElement('div');
+    pop.id = 'rss-popover';
+    pop.style.position = 'absolute';
+    pop.style.zIndex = '1000';
+    pop.style.background = '#fff';
+    pop.style.border = '1px solid #e5e7eb';
+    pop.style.boxShadow = '0 4px 12px rgba(0,0,0,.12)';
+    pop.style.borderRadius = '8px';
+    pop.style.padding = '8px 10px';
+    pop.style.fontSize = '14px';
+    pop.innerHTML = `
+      <strong style="display:block;margin-bottom:6px">Subscribe to RSS</strong>
+      <ul style="list-style:none;margin:0;padding:0;min-width:240px">
+        <li style="margin:.25rem 0"><a href="/feed.xml">Open /feed.xml</a></li>
+        <li style="margin:.25rem 0"><a href="https://feedly.com/i/discover/sources/search/feed/https%3A%2F%2Fbetterbritain.org.uk%2Ffeed.xml" target="_blank" rel="noopener">Add in Feedly</a></li>
+        <li style="margin:.25rem 0"><a href="https://www.inoreader.com/?add_feed=https%3A%2F%2Fbetterbritain.org.uk%2Ffeed.xml" target="_blank" rel="noopener">Add in Inoreader</a></li>
+        <li style="margin:.25rem 0"><a href="netnewswire://subscribe?url=https%3A%2F%2Fbetterbritain.org.uk%2Ffeed.xml">Add in NetNewsWire (macOS/iOS)</a></li>
+        <li style="margin:.25rem 0"><a href="#" data-copy-feed="https://betterbritain.org.uk/feed.xml">Copy feed URL</a></li>
+        <li style="margin:.25rem 0"><a href="mailto:?subject=Better%20Britain%20RSS&body=https%3A%2F%2Fbetterbritain.org.uk%2Ffeed.xml">Email me the link</a></li>
+      </ul>
+    `;
+    document.body.appendChild(pop);
+    const rect = link.getBoundingClientRect();
+    pop.style.left = `${Math.round(rect.left + window.scrollX)}px`;
+    pop.style.top = `${Math.round(rect.bottom + window.scrollY + 6)}px`;
+    const dismiss = (e) => {
+      if (!pop.contains(e.target) && !link.contains(e.target)) {
+        pop.remove();
+        document.removeEventListener('click', dismiss, true);
+      }
+    };
+    document.addEventListener('click', dismiss, true);
+
+    // Copy handler inside the popover
+    pop.addEventListener('click', async (e) => {
+      const copyEl = e.target.closest('[data-copy-feed]');
+      if (!copyEl) return;
+      e.preventDefault();
+      const url = copyEl.getAttribute('data-copy-feed');
+      try {
+        await navigator.clipboard.writeText(url);
+        copyEl.textContent = 'Copied ✓';
+        setTimeout(() => { copyEl.textContent = 'Copy feed URL'; }, 1500);
+      } catch {
+        // Fallback: open the feed so user can copy manually
+        window.open(url, '_blank');
+      }
+    });
+  });
+
   // Back to top button logic
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {

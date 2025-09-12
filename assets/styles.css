@@ -383,6 +383,10 @@ header.site-header a,
   /* padding: .05rem .1rem; */
   border-radius: .2rem;
 }
+
+/* RSS link alignment */
+.rss-link { display: inline-flex; align-items: center; gap: .35rem; }
+.rss-icon { height: 18px; width: 18px; display: inline-block; vertical-align: middle; }
 header.site-header a:visited,
 .site-footer a:visited,
 #content a:visited,
