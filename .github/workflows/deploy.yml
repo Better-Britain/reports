@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - run: npm ci
-      - run: BBB_COMING_SOON=1 npm run build
+      - run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

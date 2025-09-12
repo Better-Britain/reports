@@ -183,9 +183,13 @@ async function writePostsIndex(config, outDir) {
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
 }
 
+
 async function buildHomepage(config) {
-	const isCiComingSoon = Boolean(process.env.GITHUB_ACTIONS || process.env.BBB_COMING_SOON);
-	if (config.comingSoon && config.comingSoonPath && isCiComingSoon) {
+	const isCi = Boolean(process.env.GITHUB_ACTIONS);
+	const forceComingSoon = String(process.env.BBB_COMING_SOON || '').toLowerCase() === 'true' || String(process.env.BBB_COMING_SOON || '') === '1';
+	const isLive = config.live === true; // only go live when explicitly true
+	const useComingSoon = (!isLive && isCi) || forceComingSoon;
+	if (config.comingSoonPath && useComingSoon) {
 		await fs.mkdir(OUTPUT_DIR, { recursive: true });
 		const comingSoonSrc = path.resolve(config.comingSoonPath);
 		await fs.copyFile(comingSoonSrc, path.join(OUTPUT_DIR, 'index.html'));
