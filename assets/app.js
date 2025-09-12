@@ -74,9 +74,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (toggle) {
+      const stateEl = document.getElementById('sidebar-state');
+      const refreshStateText = () => {
+        const hidden = sidebar.getAttribute('aria-hidden') === 'true';
+        if (stateEl) stateEl.textContent = hidden ? 'Menu collapsed' : 'Menu expanded';
+        toggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      };
+      refreshStateText();
       toggle.addEventListener('click', () => {
         const hidden = sidebar.getAttribute('aria-hidden') === 'true';
-        sidebar.setAttribute('aria-hidden', hidden ? 'false' : 'true');
+        const next = hidden ? 'false' : 'true';
+        sidebar.setAttribute('aria-hidden', next);
+        refreshStateText();
       });
     }
 
