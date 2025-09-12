@@ -10,7 +10,7 @@
 /* Base layout */
 body {
   margin: 0;
-  background: #fff;
+  background: linear-gradient(180deg, #f4ece4 0, #f4ece4 160px, #ffffff 240px);
   color: #111;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
@@ -193,6 +193,11 @@ details .details-body {
   min-width: 0;
 }
 
+.report-title {
+  font-size: 1.75rem;
+  margin: 0 0 .5rem 0;
+}
+
 /* Back to top button */
 .back-to-top {
   position: fixed;
@@ -249,6 +254,7 @@ details .details-body {
   justify-content: space-between;
   gap: .5rem;
 }
+.sidebar-controls { display: inline-flex; align-items: center; gap: .5rem; margin-left: auto; }
 .sidebar-toggle {
   margin-left: auto;
 }
