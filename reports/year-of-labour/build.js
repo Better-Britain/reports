@@ -130,7 +130,8 @@ function transformCitationsInline(markdown, citationMap, docTitle) {
 			const anchors = ids.map((id) => {
 				const entry = citationMap.get(id);
 				if (entry && entry.url) {
-					return `<a class="citation" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(entry.title || id)}">↗</a>`;
+					const titleText = escapeHtml(entry.title || id);
+					return `<a class="citation" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer" title="${titleText}"><span class="citation-arrow" aria-hidden="true">↗</span><span class="citation-text" aria-hidden="true">${titleText}</span></a>`;
 				}
 				const query = encodeURIComponent(`${contextTitle} ${id} ${line.trim()}`.trim());
 				return `<a class="citation citation-error" href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener noreferrer" title="Search for [^${escapeHtml(id)}]">Missing 🔎</a>`;
