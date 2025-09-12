@@ -105,6 +105,20 @@ function rewriteMarkdownMdLinksToHtml(markdown) {
 	return out;
 }
 
+function ensureTrailingSlash(s) {
+	if (!s) return '/';
+	return s.endsWith('/') ? s : s + '/';
+}
+
+// Rewrite root-relative URLs (e.g. /assets/...) to include a configurable basePath (e.g. /reports/)
+function applyBasePath(html, basePath) {
+	const base = ensureTrailingSlash(basePath || '/');
+	// Only rewrite URLs that start with a single slash, not // (protocol-relative) or http(s)
+	return html
+		.replace(/(href|src)="\/(?!\/)/g, `$1="${base}`)
+		.replace(/content="\/(?!\/)/g, `content="${base}`);
+}
+
 function parseFrontMatter(raw) {
 	// Minimal front-matter parser for ---\nkey: value\n--- blocks
 	const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -145,7 +159,8 @@ async function compilePages(dir, outDir, config) {
 			image: fm.data.image,
 			type: 'article'
 		});
-		const html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+		let html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+		html = applyBasePath(html, config.basePath);
 		await fs.writeFile(outPath, html, 'utf8');
 	}
 }
@@ -179,7 +194,8 @@ async function writePostsIndex(config, outDir) {
 		url: absoluteUrl(config.siteUrl, pagePath),
 		type: 'website'
 	});
-	const html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+	let html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+	html = applyBasePath(html, config.basePath);
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
 }
 
@@ -214,7 +230,8 @@ async function buildHomepage(config) {
 		image: brand.image || undefined,
 		type: 'website'
 	});
-	const html = injectHeadMeta(template.replace('{{content}}', content), meta);
+	let html = injectHeadMeta(template.replace('{{content}}', content), meta);
+	html = applyBasePath(html, config.basePath);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 	await fs.writeFile(path.join(OUTPUT_DIR, 'index.html'), html, 'utf8');
 }

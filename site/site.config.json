@@ -1,11 +1,10 @@
 {
   "brand": {
     "siteTitle": "Better Britain Bureau",
-    "rootHeading": "Broken Britain Briefing",
-    "image": "/assets/og/site-default.jpg"
+    "rootHeading": "Broken Britain Briefing"
   },
   "siteUrl": "https://betterbritain.org.uk",
-  "comingSoon": true,
+  "live": false,
   "comingSoonPath": "site/assets/coming-soon/index.html",
   "reports": {
     "national": [
