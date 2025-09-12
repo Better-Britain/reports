@@ -194,10 +194,27 @@ details .details-body {
 }
 
 .report-title {
-  font-size: 1.75rem;
-  margin: 0 0 .5rem 0;
+  font-size: 2.25rem;
+  margin: 0 0 .25rem 0;
 }
 .report-subtitle { margin: 0 0 1rem 0; color: #6b7280; font-size: 1rem; }
+.report-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: 0 1rem; }
+.report-heading { max-width: 80ch; }
+.title-controls { white-space: nowrap; }
+.font-switch { display: inline-flex; align-items: center; gap: .4rem; }
+.font-icon { font-weight: 700; }
+
+/* Font themes */
+.font-theme-default { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+.font-theme-serif { font-family: Georgia, "Times New Roman", Times, serif; }
+.font-theme-opendyslexic { font-family: 'OpenDyslexic', system-ui, -apple-system, sans-serif; }
+.font-theme-sans { font-family: Arial, Helvetica, sans-serif; }
+
+/* Apply theme to main content */
+body.font-theme-default #content,
+body.font-theme-serif #content,
+body.font-theme-opendyslexic #content,
+body.font-theme-sans #content { font: inherit; }
 
 /* Back to top button */
 .back-to-top {
