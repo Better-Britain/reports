@@ -22,7 +22,7 @@
         "builder": "reports/osa-explainer/build.js",
         "output": "docs/osa-explainer.html",
         "disabled": false,
-        "placeholder": true,
+        "placeholder": true
       },
       {
         "id": "gaming-and-radicalisation",
