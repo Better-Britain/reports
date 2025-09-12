@@ -253,6 +253,11 @@ details .details-body {
   margin-left: auto;
 }
 
+#sidebar-state { display: none; }
+@media (max-width: 900px) {
+  #sidebar-state { display: inline-block; margin-left: .5rem; }
+}
+
 /* Sidebar controls visibility */
 .report-sidebar[aria-hidden="true"] .sidebar-global-controls {
   display: none;

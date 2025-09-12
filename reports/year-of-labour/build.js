@@ -277,7 +277,7 @@ function buildSidebar(navMeta) {
 			inserted = true;
 		}
 	});
-	return `<aside id="sidebar" class="report-sidebar"><div class="sidebar-header"><h3>A Year of Labour - Policy Review</h3><button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button></div><div class="sidebar-global-controls"><button type="button" data-sidebar-toggle="expand-all">Expand all</button><button type="button" data-sidebar-toggle="collapse-all">Collapse all</button></div><ul>${parts.join('\n')}</ul></aside>`;
+	return `<aside id=\"sidebar\" class=\"report-sidebar\"><div class=\"sidebar-header\"><h3>A Year of Labour - Policy Review</h3><button class=\"sidebar-toggle btn\" type=\"button\" aria-label=\"Toggle sidebar\" aria-expanded=\"true\"><span aria-hidden=\"true\">☰</span> Menu</button><span id=\"sidebar-state\" class=\"muted\">Menu expanded</span></div><div class=\"sidebar-global-controls\"><button type=\"button\" data-sidebar-toggle=\"expand-all\">Expand all</button><button type=\"button\" data-sidebar-toggle=\"collapse-all\">Collapse all</button></div><ul>${parts.join('\\n')}</ul></aside>`;
 }
 
 async function listMarkdownFiles() {
