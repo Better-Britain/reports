@@ -13,8 +13,8 @@
         "title": "A Year of Labour",
         "builder": "reports/year-of-labour/build.js",
         "output": "docs/year-of-labour.html",
-        "pubDate": "2025-09-07T09:00:00Z",
-        "image": "/assets/og/year-of-labour.jpg"
+        "pubDate": "2025-15-07T09:00:00Z",
+        "image": "/assets/year-of-labour.jpg"
       },
       {
         "id": "osa-explainer",
@@ -23,7 +23,6 @@
         "output": "docs/osa-explainer.html",
         "disabled": false,
         "placeholder": true,
-        "image": "/assets/og/osa-explainer.jpg"
       },
       {
         "id": "gaming-and-radicalisation",
@@ -32,7 +31,6 @@
         "output": "docs/gaming-and-radicalisation.html",
         "disabled": false,
         "placeholder": true,
-        "image": "/assets/og/gaming-and-radicalisation.jpg",
         "description": "How gaming platforms fuel radicalisation; gaps in moderation; recommendations."
       },
       {
@@ -41,8 +39,7 @@
         "builder": "reports/opening-all-the-windows-prison-reform/build.js",
         "output": "docs/opening-all-the-windows-prison-reform.html",
         "disabled": false,
-        "placeholder": true,
-        "image": "/assets/og/prison-reform.jpg"
+        "placeholder": true
       }
     ],
     "local": [
