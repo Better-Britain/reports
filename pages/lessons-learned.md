@@ -28,3 +28,4 @@ We keep a running log of what worked, what didn’t, and what changed as a resul
 - Research from ChatGPT can only be considered 'mostly' reliable if it comes from 'thinking' or 'deep research' modes.
 - Most models are great with markdown as input and output
 - Server load is a MASSIVE influence on LLM response quality. Do NOT use a service under heavy load, or at heavy load times. The results at peak demand times are unusable and cannot be trusted. This applies to all platforms.
+- AI responses have a tendency to rabbit-hole just to have something to say, so you can chase your tail forever if you want. Try to focus on the objective, small issues matter, but eyes-on can tell you what really matters more than ChatGPT or Grok can.
