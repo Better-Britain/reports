@@ -481,8 +481,13 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	const sidebar = buildSidebar(navMeta);
 	const layout = [
 		`<header class="report-header">`,
-		`  <h1 class="report-title">A Year of Labour</h1>`,
-		`  <p class="report-subtitle">Policy review and early outcomes</p>`,
+		`  <div class="report-heading">`,
+		`    <h1 class="report-title">A Year of Labour</h1>`,
+		`    <p class="report-subtitle">An evidence‑led look at what changed, what's working or what isn't, and what comes next.</p>`,
+		`  </div>`,
+		`  <div class="title-controls">`,
+		`    <button id="font-switcher" class="btn font-switch" type="button" aria-label="Switch reading font"><span class="font-icon" aria-hidden="true">𝐅</span><span id="font-label">Font</span></button>`,
+		`  </div>`,
 		`</header>`,
 		`<div class="report-layout">`,
 		sidebar,

@@ -52,6 +52,32 @@ document.addEventListener('DOMContentLoaded', () => {
     try { localStorage.setItem('citations-visible', nowVisible ? '1' : '0'); } catch {}
   });
 
+  // Font switcher (cycles through themes)
+  const fontOrder = ['font-theme-default', 'font-theme-serif', 'font-theme-opendyslexic', 'font-theme-sans'];
+  const fontLabel = document.getElementById('font-label');
+  const fontBtn = document.getElementById('font-switcher');
+  const applyFontTheme = (cls) => {
+    const body = document.body;
+    fontOrder.forEach(c => body.classList.remove(c));
+    body.classList.add(cls);
+    if (fontLabel) {
+      const name = cls.replace('font-theme-', '');
+      fontLabel.style.fontFamily = window.getComputedStyle(body).fontFamily;
+      fontLabel.textContent = 'Font';
+    }
+    try { localStorage.setItem('font-theme', cls); } catch {}
+  };
+  const storedTheme = localStorage.getItem('font-theme') || 'font-theme-default';
+  applyFontTheme(storedTheme);
+  if (fontBtn) {
+    fontBtn.addEventListener('click', () => {
+      const current = localStorage.getItem('font-theme') || 'font-theme-default';
+      const idx = fontOrder.indexOf(current);
+      const next = fontOrder[(idx + 1) % fontOrder.length];
+      applyFontTheme(next);
+    });
+  }
+
   // Sidebar toggle for small screens
   const sidebar = document.getElementById('sidebar');
   const toggle = sidebar ? sidebar.querySelector('.sidebar-toggle') : null;
