@@ -484,6 +484,31 @@ header.site-header a:visited,
   .overall-badge-wrapper { background: #0f1318; border-color: #2a2f39; }
   .citations-table th, .citations-table td { border-color: #2a2f39; }
   .back-to-top { background: #0f1318; color: #e6e6ea; border-color: #2a2f39; }
+  .overall-explainer { color: #cbd5e1; }
+  .score-help { color: #464a4f; }
+  /* Citation chips */
+  .citation { color: #e6e6ea; border-color: #2a2f39; background: transparent; }
+  .citation:hover { background: #0f1318; }
+  .citation-text { color: #9aa3ad; }
+  /* Buttons */
+  .btn,
+  .sidebar-global-controls button,
+  .citations-controls button {
+    background: transparent;
+    color: #e6e6ea;
+    border-color: #2a2f39;
+  }
+  .btn:hover,
+  .sidebar-global-controls button:hover,
+  .citations-controls button:hover {
+    background: #0f1318;
+  }
+  .btn:focus-visible,
+  .sidebar-global-controls button:focus-visible,
+  .citations-controls button:focus-visible {
+    outline: 2px solid #7db9ff;
+    outline-offset: 2px;
+  }
 }
 
 /* Reduced motion */
