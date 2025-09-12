@@ -243,7 +243,15 @@ function extractDocMetaFromSrc(src, filePath) {
 }
 
 function buildSidebar(navMeta) {
-	const items = navMeta.map((doc) => {
+	const scoreSummaryItem = `<li><a href="#score-summary">Scores Summary</a></li>`;
+	const parts = [];
+	let inserted = false;
+	navMeta.forEach((doc) => {
+		// If we haven't inserted yet and this is the Methodology doc, insert before it
+		if (!inserted && /methodology/i.test(doc.docTitle)) {
+			parts.push(scoreSummaryItem);
+			inserted = true;
+		}
 		const groupAnchorId = slugify(doc.docTitle);
 		const isPolicy = /^2\./.test(doc.sectionId);
 		const policyItems = doc.headings.map((h) => {
@@ -257,12 +265,18 @@ function buildSidebar(navMeta) {
 		const scopeItem = isPolicy ? `<li><a href="#${escapeHtml(groupAnchorId)}">Scope</a></li>` : '';
 		const hasExpandable = Boolean(scopeItem || policyItems);
 		if (hasExpandable) {
-			return `<li><details open><summary>${escapeHtml(doc.docTitle)}</summary><ul>${scopeItem}${policyItems}</ul></details></li>`;
+			parts.push(`<li><details open><summary>${escapeHtml(doc.docTitle)}</summary><ul>${scopeItem}${policyItems}</ul></details></li>`);
+		} else {
+			// No scope and no subheadings: render as a simple link to the group title
+			parts.push(`<li><a href="#${escapeHtml(groupAnchorId)}">${escapeHtml(doc.docTitle)}</a></li>`);
 		}
-		// No scope and no subheadings: render as a simple link to the group title
-		return `<li><a href="#${escapeHtml(groupAnchorId)}">${escapeHtml(doc.docTitle)}</a></li>`;
-	}).join('\n');
-	return `<aside id="sidebar" class="report-sidebar"><div class="sidebar-header"><h3>A Year of Labour - Policy Review</h3><button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button></div><div class="sidebar-global-controls"><button type="button" data-sidebar-toggle="expand-all">Expand all</button><button type="button" data-sidebar-toggle="collapse-all">Collapse all</button></div><ul>${items}</ul></aside>`;
+		// If we haven't inserted yet and this is the Introduction doc, insert after it
+		if (!inserted && /introduction/i.test(doc.docTitle)) {
+			parts.push(scoreSummaryItem);
+			inserted = true;
+		}
+	});
+	return `<aside id="sidebar" class="report-sidebar"><div class="sidebar-header"><h3>A Year of Labour - Policy Review</h3><button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button></div><div class="sidebar-global-controls"><button type="button" data-sidebar-toggle="expand-all">Expand all</button><button type="button" data-sidebar-toggle="collapse-all">Collapse all</button></div><ul>${parts.join('\n')}</ul></aside>`;
 }
 
 async function listMarkdownFiles() {
