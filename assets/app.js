@@ -53,17 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Font switcher (cycles through themes)
-  const fontOrder = ['font-theme-default', 'font-theme-serif', 'font-theme-opendyslexic', 'font-theme-sans'];
+  const fontOrder = ['font-theme-default', 'font-theme-serif', 'font-theme-accessible', 'font-theme-sans'];
   const fontLabel = document.getElementById('font-label');
   const fontBtn = document.getElementById('font-switcher');
+  const prettyFontName = (cls) => {
+    switch (cls) {
+      case 'font-theme-serif': return 'Serif';
+      case 'font-theme-accessible': return 'Assist';
+      case 'font-theme-sans': return 'Sans';
+      default: return 'Default';
+    }
+  };
   const applyFontTheme = (cls) => {
     const body = document.body;
     fontOrder.forEach(c => body.classList.remove(c));
     body.classList.add(cls);
     if (fontLabel) {
-      const name = cls.replace('font-theme-', '');
       fontLabel.style.fontFamily = window.getComputedStyle(body).fontFamily;
-      fontLabel.textContent = 'Font';
+      fontLabel.textContent = `Font: ${prettyFontName(cls)}`;
     }
     try { localStorage.setItem('font-theme', cls); } catch {}
   };

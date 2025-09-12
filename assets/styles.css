@@ -207,14 +207,20 @@ details .details-body {
 /* Font themes */
 .font-theme-default { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 .font-theme-serif { font-family: Georgia, "Times New Roman", Times, serif; }
-.font-theme-opendyslexic { font-family: 'OpenDyslexic', system-ui, -apple-system, sans-serif; }
+.font-theme-accessible { font-family: 'OpenDyslexic', system-ui, -apple-system, sans-serif; }
 .font-theme-sans { font-family: Arial, Helvetica, sans-serif; }
 
 /* Apply theme to main content */
 body.font-theme-default #content,
 body.font-theme-serif #content,
-body.font-theme-opendyslexic #content,
+body.font-theme-accessible #content,
 body.font-theme-sans #content { font: inherit; }
+
+/* Stack title and controls on small screens */
+@media (max-width: 720px) {
+  .report-header { flex-direction: column; align-items: stretch; gap: .5rem; }
+  .title-controls { align-self: stretch; width: 100%; display: flex; justify-content: flex-end; }
+}
 
 /* Back to top button */
 .back-to-top {
