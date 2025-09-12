@@ -16,6 +16,26 @@ const OUTPUT_DIR = path.resolve('docs');
 const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 
+async function copyDirRecursive(srcDir, destDir) {
+	await fs.mkdir(destDir, { recursive: true });
+	let entries = [];
+	try {
+		entries = await fs.readdir(srcDir, { withFileTypes: true });
+	} catch {
+		return; // nothing to copy
+	}
+	for (const entry of entries) {
+		const srcPath = path.join(srcDir, entry.name);
+		const destPath = path.join(destDir, entry.name);
+		if (entry.isDirectory()) {
+			await copyDirRecursive(srcPath, destPath);
+		} else if (entry.isFile()) {
+			await fs.mkdir(path.dirname(destPath), { recursive: true });
+			await fs.copyFile(srcPath, destPath);
+		}
+	}
+}
+
 function slugify(input) {
 	return input
 		.toLowerCase()
@@ -50,11 +70,8 @@ async function ensureAssets() {
 	const appJs = path.join(assetsDir, 'app.js');
 	try { await fs.access(stylesFile); } catch { await fs.writeFile(stylesFile, `:root{--bg:#0b1020;--fg:#f7f7fb;--muted:#c7c9d1;--accent:#ffd24d}body{margin:0;background:#fff;color:#111;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"}header.site-header{position:sticky;top:0;background:#111;color:#fff;padding:.5rem 1rem}header .nav{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}header .brand{font-weight:700;color:#fff;text-decoration:none}main{max-width:900px;margin:2rem auto;padding:0 1rem}section{margin:2.5rem 0}section > h1, section > h2{scroll-margin-top:4rem}.footnotes{font-size:.9em;color:#374151;border-top:1px solid #e5e7eb;margin-top:2rem;padding-top:1rem}footer.site-footer{border-top:1px solid #e5e7eb;margin-top:3rem;padding:1rem;color:#374151;font-size:.9em;text-align:center}`, 'utf8'); }
 	try { await fs.access(appJs); } catch { await fs.writeFile(appJs, `document.addEventListener('DOMContentLoaded',()=>{const links=document.querySelectorAll('a[href^="#"]');links.forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}}));});`, 'utf8'); }
-	// copy to docs/assets
-	await fs.mkdir(path.join(OUTPUT_DIR, 'assets'), { recursive: true });
-	await fs.copyFile(path.resolve('site/assets/styles.css'), path.join(OUTPUT_DIR, 'assets/styles.css'));
-	try { await fs.copyFile(path.resolve('site/assets/print.css'), path.join(OUTPUT_DIR, 'assets/print.css')); } catch {}
-	await fs.copyFile(path.resolve('site/assets/app.js'), path.join(OUTPUT_DIR, 'assets/app.js'));
+	// Copy entire assets directory (including images, SVGs, subfolders) to docs/assets
+	await copyDirRecursive(assetsDir, path.join(OUTPUT_DIR, 'assets'));
 }
 
 function renderMarkdownString(markdown) {
