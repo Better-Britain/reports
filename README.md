@@ -1,6 +1,6 @@
 # Better Britain Bureau — Planning Repo
 
-This is the planning/staging repo for WIP reports before they’re published on the homepage repo. It uses markdown-it and a small build orchestrator so each report can have its own features, while the whole site is built by a GitHub Action and deployed to GitHub Pages.
+The homepage and reports site for the Better Britain Bureau reports, starting with the Broken Britain Briefing uses markdown-it and a small build orchestrator so each report can have its own features, while the whole site is built by a GitHub Action and deployed to GitHub Pages.
 
 ## How to run
 
@@ -18,7 +18,5 @@ This is the planning/staging repo for WIP reports before they’re published on 
 
 - Reports are written in Markdown, each with a small build script.
 - Content is intended to be inspectable and reviewable.
-- Scores are subjective, I don't know everything.
-- If you disagree with choices, please fork and open a PR for substantial changes, or open an issue for tweaks with rationale. 
-- Method details will be added soon.
-- The site will be promoted to its own repo when I've filled out the main report text Placeholders.
+- Scores are subjective.
+- Please fork and open a PR for substantial changes, or open an issue for tweaks with rationale. Contributions welcome.
