@@ -33,22 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Global citation title visibility toggle (with localStorage)
   const applyCitationVisibility = (visible) => {
     const root = document.documentElement;
-    if (visible) {
-      root.classList.add('citations-visible');
-    } else {
-      root.classList.remove('citations-visible');
-    }
+    // Default is expanded; collapse by adding a class
+    if (!visible) root.classList.add('citations-collapsed');
+    else root.classList.remove('citations-collapsed');
     const btn = document.getElementById('toggle-citations');
     if (btn) btn.textContent = visible ? 'Hide citation titles' : 'Show citation titles';
     const state = document.getElementById('citations-state');
     if (state) state.textContent = visible ? 'Citations are expanded inline' : 'Citations are collapsed';
   };
   const storedPref = localStorage.getItem('citations-visible');
-  applyCitationVisibility(storedPref === '1');
+  // Default to visible (expanded) when no preference
+  applyCitationVisibility(storedPref !== '0');
   document.body.addEventListener('click', (e) => {
     const btn = e.target.closest('#toggle-citations');
     if (!btn) return;
-    const nowVisible = !document.documentElement.classList.contains('citations-visible');
+    const nowVisible = document.documentElement.classList.contains('citations-collapsed');
     applyCitationVisibility(nowVisible);
     try { localStorage.setItem('citations-visible', nowVisible ? '1' : '0'); } catch {}
   });
