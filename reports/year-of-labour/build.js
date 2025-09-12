@@ -485,7 +485,7 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	const layout = [
 		`<header class="report-header">`,
 		`  <div class="report-heading">`,
-		`    <h1 class="report-title">A Year of Labour</h1>`,
+		`    <h1 class="report-title">A Year of <span class="report-title-highlight">Labour</span></h1>`,
 		`    <p class="report-subtitle">An evidence‑led look at what changed, what's working or what isn't, and what comes next.</p>`,
 		`  </div>`,
 		`  <div class="title-controls">`,

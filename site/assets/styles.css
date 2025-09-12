@@ -5,6 +5,7 @@
   --muted: #c7c9d1;
   --accent: #ffd24d;
   --error: #b91c1c;
+  --uk-labour-red: #d7263d;
 }
 
 /* Base layout */
@@ -467,6 +468,10 @@ header.site-header a:visited,
   color: #fff;
   background: var(--error);
   border-color: var(--error);
+}
+
+.report-title-highlight {
+  color: var(--uk-labour-red);
 }
 
 /* Skip link */
