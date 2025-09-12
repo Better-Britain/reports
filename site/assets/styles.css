@@ -11,7 +11,7 @@
 /* Base layout */
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f4ece4 0, #f4ece4 160px, #ffffff 240px);
+  background: linear-gradient(180deg, #f4ece4 0, #f4ece4 180px, #ffffff 260px);
   color: #111;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
