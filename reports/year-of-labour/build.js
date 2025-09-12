@@ -63,6 +63,9 @@ function transformTags(markdown) {
 		.replace(/\[(horizon:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
 		.replace(/\[(risk:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
 		.replace(/\[(dist:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
+		.replace(/\[(status:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
+		.replace(/\[(lead:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
+		.replace(/\[(start:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
 		.replace(/\[(unknown|opinion)\]/g, '<span class="tag" data-tag="$1">[$1]</span>');
 
 	// Restore inline code and code blocks
