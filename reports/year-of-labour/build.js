@@ -277,7 +277,7 @@ function buildSidebar(navMeta) {
 			inserted = true;
 		}
 	});
-	return `<aside id=\"sidebar\" class=\"report-sidebar\"><div class=\"sidebar-header\"><h3>A Year of Labour - Policy Review</h3><button class=\"sidebar-toggle btn\" type=\"button\" aria-label=\"Toggle sidebar\" aria-expanded=\"true\"><span aria-hidden=\"true\">☰</span> Menu</button><span id=\"sidebar-state\" class=\"muted\">Menu expanded</span></div><div class=\"sidebar-global-controls\"><button type=\"button\" data-sidebar-toggle=\"expand-all\">Expand all</button><button type=\"button\" data-sidebar-toggle=\"collapse-all\">Collapse all</button></div><ul>${parts.join('\\n')}</ul></aside>`;
+	return `<aside id=\"sidebar\" class=\"report-sidebar\"><div class=\"sidebar-header\"><h3>Main Menu</h3><span id=\"sidebar-state\" class=\"muted\">Menu expanded</span><button class=\"sidebar-toggle btn\" type=\"button\" aria-label=\"Toggle sidebar\" aria-expanded=\"true\"><span aria-hidden=\"true\">☰</span> Menu</button></div><div class=\"sidebar-global-controls\"><button type=\"button\" data-sidebar-toggle=\"expand-all\">Expand all</button><button type=\"button\" data-sidebar-toggle=\"collapse-all\">Collapse all</button></div><ul>${parts.join('\n')}</ul></aside>`;
 }
 
 async function listMarkdownFiles() {
@@ -462,7 +462,7 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	const contentHtml = injected ? assembled.join('\n') : `${summaryHtml}${sections.join('\n')}`;
 	const template = await fs.readFile(TEMPLATE_FILE, 'utf8');
 	const sidebar = buildSidebar(navMeta);
-	const layout = `<div class="report-layout">${sidebar}<div class="report-content">${contentHtml}</div></div><button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">↑ Top</button>`;
+	const layout = `<div class="report-layout">${sidebar}<div class="report-content"><header class="report-header"><h1 class="report-title">A Year of Labour</h1></header>${contentHtml}</div></div><button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">↑ Top</button>`;
 	const html = template.replace('{{content}}', layout);
 	await fs.mkdir(path.dirname(outFile), { recursive: true });
 	await fs.writeFile(outFile, html, 'utf8');
