@@ -33,7 +33,7 @@ BBB is Founded by [Bob Davies](https://bsky.app/profile/bobbigmac.bsky.social) w
 
 I’ve worked in corporate problem‑solving/workflow and software engineering around the UK and in Manchester, and spent much of my time the last decade or so as a tech contractor working mainly on productivity and automation tools, usually through agencies working on infrastructure or civics projects.
 
-I've been somewhat on the left and the right over the years, but don't think a single spectrum captures any person or issue. I have no connections to any political party. I think most people are decent and want things to work out for everyone, despite often not sharing priorities or perspectives. 
+I've been somewhat on the left and the right over the years, but don't think a simple spectrum captures any person or issue. I have no connections to any political party. I think most people are decent and want things to work out for everyone, despite often not sharing priorities or perspectives. 
 
 When outcomes are bad, it’s _usually_ the incentives and outcomes of bad systems at fault, rather than individuals. The aim is simple: cut through noise, learn about how new tools can help us, de‑radicalise with a focus on identifying the truth, and show where change can happen by sifting the noise to find the nuggets of data that can reasonably inform decisions, big and small.
 
