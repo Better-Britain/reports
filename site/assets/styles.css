@@ -100,8 +100,8 @@ footer.site-footer {
   line-height: 1;
 }
 .citation-arrow { margin-right: .25rem; }
-.citation-text { display: none; color: #374151; font-size: .9em; }
-.citations-visible .citation-text { display: inline; }
+.citation-text { display: inline; color: #374151; font-size: .9em; }
+.citations-collapsed .citation-text { display: none; }
 
 /* Button & helper UI */
 .btn { padding: .25rem .5rem; border-radius: .25rem; border: 1px solid #e5e7eb; background: transparent; color: #111; cursor: pointer; font-size: .9em; }
