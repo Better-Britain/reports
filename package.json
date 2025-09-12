@@ -1,0 +1,25 @@
+{
+  "name": "better-britain-report",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node site/build-orchestrator.js",
+    "preview": "vite preview --port 5173 --strictPort --host",
+    "dev": "vite --open --port 5173 --strictPort --host",
+    "coming-soon": "BBB_COMING_SOON=1 node site/build-orchestrator.js",
+    "build:report:year": "node reports/year-of-labour/build.js --out docs/year-of-labour.html"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "glob": "11.0.3",
+    "markdown-it": "14.1.0",
+    "markdown-it-anchor": "9.2.0",
+    "markdown-it-footnote": "4.0.0"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "devDependencies": {
+    "vite": "7.1.4"
+  }
+}

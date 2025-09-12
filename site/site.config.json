@@ -1,0 +1,75 @@
+{
+  "brand": {
+    "siteTitle": "Better Britain Bureau",
+    "rootHeading": "Broken Britain Briefing",
+    "image": "/assets/og/site-default.jpg"
+  },
+  "siteUrl": "https://betterbritain.org.uk",
+  "comingSoon": true,
+  "comingSoonPath": "site/assets/coming-soon/index.html",
+  "reports": {
+    "national": [
+      {
+        "id": "year-of-labour",
+        "title": "A Year of Labour",
+        "builder": "reports/year-of-labour/build.js",
+        "output": "docs/year-of-labour.html",
+        "pubDate": "2025-09-07T09:00:00Z",
+        "image": "/assets/og/year-of-labour.jpg"
+      },
+      {
+        "id": "osa-explainer",
+        "title": "Online Safety Act — Explainer, Timeline & Responsible Actors",
+        "builder": "reports/osa-explainer/build.js",
+        "output": "docs/osa-explainer.html",
+        "disabled": false,
+        "placeholder": true,
+        "image": "/assets/og/osa-explainer.jpg"
+      },
+      {
+        "id": "gaming-and-radicalisation",
+        "title": "Gaming and Radicalisation, from the Inside",
+        "builder": "reports/gaming-and-radicalisation/build.js",
+        "output": "docs/gaming-and-radicalisation.html",
+        "disabled": false,
+        "placeholder": true,
+        "image": "/assets/og/gaming-and-radicalisation.jpg",
+        "description": "How gaming platforms fuel radicalisation; gaps in moderation; recommendations."
+      },
+      {
+        "id": "opening-all-the-windows-prison-reform",
+        "title": "Opening All The Windows on Prison Reform",
+        "builder": "reports/opening-all-the-windows-prison-reform/build.js",
+        "output": "docs/opening-all-the-windows-prison-reform.html",
+        "disabled": false,
+        "placeholder": true,
+        "image": "/assets/og/prison-reform.jpg"
+      }
+    ],
+    "local": [
+      {
+        "id": "manchester-fly-tipping",
+        "title": "Manchester Fly Tipping Causes",
+        "builder": "reports/manchester-fly-tipping/build.js",
+        "output": "docs/manchester-fly-tipping.html",
+        "disabled": false,
+        "placeholder": true,
+        "image": "/assets/og/manchester-fly-tipping.jpg"
+      },
+      {
+        "id": "manchester-gp-practices-reviews",
+        "title": "Manchester GP Practices — Review Scores",
+        "builder": "reports/manchester-gp-practices-reviews/build.js",
+        "output": "docs/manchester-gp-practices-reviews.html",
+        "disabled": false,
+        "placeholder": true,
+        "image": "/assets/og/manchester-gp-practices.jpg"
+      }
+    ]
+  },
+  "pagesDir": "pages",
+  "postsDir": "posts",
+  "postsOut": "docs/posts"
+}
+
+

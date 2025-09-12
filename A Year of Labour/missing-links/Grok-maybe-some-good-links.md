@@ -1,0 +1,366 @@
+## Most of these are not useful
+
+- [^gbe-plan-2025]: Great British Energy plan 2025. https://www.gov.uk/government/news/clean-energy-projects-prioritised-for-grid-connections
+- [^budget-2025]: Great British Energy budget 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^ukib-deals-2025]: National Wealth Fund energy-relevant ukib deals 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^budget-2025]: National Wealth Fund energy-relevant budget 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^beis-supply-2025]: National Wealth Fund energy-relevant beis supply 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^iea-wind-2025]: Contracts for Difference AR6 AR7 iea wind 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^lccc-2025]: Contracts for Difference AR6 AR7 lccc 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^owic-2025]: Contracts for Difference AR6 AR7 owic 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^renew-uk-2025]: Contracts for Difference AR6 AR7 renew uk 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^repower-2025]: Onshore Wind Solar Planning Reset repower 2025. https://www.gov.uk/government/news/boost-for-offshore-wind-as-government-raises-maximum-prices-in-renewable-energy-auction
+- [^planning-cases-2025]: Onshore Wind Solar Planning Reset planning cases 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^dluhc-fees-2025]: Onshore Wind Solar Planning Reset dluhc fees 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^desnz-community-2025]: Onshore Wind Solar Planning Reset desnz community 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^solar-guidance-2025]: Solar Deployment Fast Track solar guidance 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^clean-power-plan-2025]: Solar Deployment Fast Track clean power plan 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^eso-curtail-2025]: Solar Deployment Fast Track eso curtail 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^desnz-solar-ia-2025]: Solar Deployment Fast Track desnz solar ia 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^laa-estate-2025]: Solar Deployment Fast Track laa estate 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^bpv-2025]: Solar Deployment Fast Track bpv 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^eso-queue-2025]: Grid Connections Reform eso queue 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^eso-plan-2025]: Grid Connections Reform eso plan 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^warm-homes-2024]: Warm Homes Plan Retrofit Schemes warm homes 2024. https://www.neso.energy/news/aligning-grid-connections-great-britains-future-requirements
+- [^psds-2025]: Warm Homes Plan Retrofit Schemes psds 2025. https://www.ofgem.gov.uk/press-release/empowering-great-britain-clean-and-flexible-energy-future-next-generation-interconnectors
+- [^desnz-ps-2025]: Warm Homes Plan Retrofit Schemes desnz ps 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^budget-2025]: Warm Homes Plan Retrofit Schemes budget 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^trustmark-2025]: Warm Homes Plan Retrofit Schemes trustmark 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^budget-2025]: Warm Homes Plan Retrofit Schemes budget 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^rf-retrofit-2025]: Warm Homes Plan Retrofit Schemes rf retrofit 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^warm-homes-2024]: Warm Homes Plan Retrofit Schemes warm homes 2024. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^clean-power-plan-2025]: Clean Power by 2030 Action Plan clean power plan 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^clean-power-plan-2025]: Clean Power by 2030 Action Plan clean power plan 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^clean-power-plan-2025]: Clean Power by 2030 Action Plan clean power plan 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^eso-fes-2025]: Clean Power by 2030 Action Plan eso fes 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^lccc-2025]: Clean Power by 2030 Action Plan lccc 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^cbi-netzero-2025]: Clean Power by 2030 Action Plan cbi netzero 2025. https://www.nationalwealthfund.org.uk/news
+- [^clean-power-plan-2025]: Clean Power by 2030 Action Plan clean power plan 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^desnz-nuclear-2025]: Nuclear Programme Fleet desnz nuclear 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^rab-2025]: Nuclear Programme Fleet rab 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^sizewell-fid-2024]: Nuclear Programme Fleet sizewell fid 2024. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^gben-smr-2025]: Nuclear Programme Fleet gben smr 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^nao-nuclear-2025]: Nuclear Programme Fleet nao nuclear 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^rab-2025]: Nuclear Programme Fleet rab 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^nuclear-supply-2025]: Nuclear Programme Fleet nuclear supply 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^nao-nuclear-2025]: Nuclear Programme Fleet nao nuclear 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^desnz-nuclear-2025]: Nuclear Programme Fleet desnz nuclear 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^gben-smr-2025]: SMR Programme Rolls Royce SMR gben smr 2025. https://en.wikipedia.org/wiki/Sovereign_wealth_fund
+- [^onr-gda-2025]: SMR Programme Rolls Royce SMR onr gda 2025. https://www.iea.org/reports/solar-pv-global-supply-chains/executive-summary
+- [^gben-smr-2025]: SMR Programme Rolls Royce SMR gben smr 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^nuclear-supply-2025]: SMR Programme Rolls Royce SMR nuclear supply 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^onr-gda-2025]: SMR Programme Rolls Royce SMR onr gda 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^budget-2025]: SMR Programme Rolls Royce SMR budget 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^skills-nuclear-2025]: SMR Programme Rolls Royce SMR skills nuclear 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^nao-nuclear-2025]: SMR Programme Rolls Royce SMR nao nuclear 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^gben-smr-2025]: SMR Programme Rolls Royce SMR gben smr 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^edf-hpc-2025]: Large Reactors Hinkley Point C Sizewell C edf hpc 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^rab-2025]: Large Reactors Hinkley Point C Sizewell C rab 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^edf-hpc-2025]: Large Reactors Hinkley Point C Sizewell C edf hpc 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^nao-nuclear-2025]: Large Reactors Hinkley Point C Sizewell C nao nuclear 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^rab-2025]: Large Reactors Hinkley Point C Sizewell C rab 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^nuclear-supply-2025]: Large Reactors Hinkley Point C Sizewell C nuclear supply 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^nao-nuclear-2025]: Large Reactors Hinkley Point C Sizewell C nao nuclear 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^edf-hpc-2025]: Large Reactors Hinkley Point C Sizewell C edf hpc 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^ets-link-2025]: UK ETS EU ETS Linkage Talks ets link 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^ets-link-2025]: UK ETS EU ETS Linkage Talks ets link 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^ccc-ets-2025]: UK ETS EU ETS Linkage Talks ccc ets 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^eu-uk-2025]: UK ETS EU ETS Linkage Talks eu uk 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^hmt-ets-2025]: UK ETS EU ETS Linkage Talks hmt ets 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^ccc-ets-2025]: UK ETS EU ETS Linkage Talks ccc ets 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^eu-uk-2025]: UK ETS EU ETS Linkage Talks eu uk 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^ets-link-2025]: UK ETS EU ETS Linkage Talks ets link 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.nationalwealthfund.org.uk/news
+- [^owic-2025]: Crown Estate Act energy relevant enabling owic 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^crown-2025]: Crown Estate Act energy relevant enabling crown 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^prm-2025]: Product Regulation Metrology Act energy relevant prm 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^opss-2025]: Product Regulation Metrology Act energy relevant opss 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^opss-2025]: Product Regulation Metrology Act energy relevant opss 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^bfi-stats-2025]: bfi stats 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^bill-clauses-2025]: bill clauses 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^bill-overview-2025]: bill overview 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^bill-timeline-2025]: bill timeline 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^bpv-2025]: bpv 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^breakfast-2025]: breakfast 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^breakfast-report-2025]: breakfast report 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^budget-2024]: budget 2024. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^budget-2025]: budget 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^caboffice-guidance-2025]: caboffice guidance 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^cabsec-2025]: cabsec 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^cato-notice-2025]: cato notice 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^cbi-netzero-2025]: cbi netzero 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^ccc-ets-2025]: ccc ets 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^chatham-2025]: chatham 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^clean-power-plan-2025]: clean power plan 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^cma-competition-2025]: cma competition 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^cma-housebuilding-2025]: cma housebuilding 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^college-policing-2025]: college policing 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^cpag-2025]: cpag 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^cps-charges-2025]: cps charges 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^cps-policy-2025]: cps policy 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^crown-2025]: crown 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^curriculum-plan-2025]: curriculum plan 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^dbt-ia-prm-2025]: dbt ia prm 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^dbt-impact-2025]: dbt impact 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^dbt-smallbiz-2025]: dbt smallbiz 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^dcms-creative-2025]: dcms creative 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^dcms-ifr-guide-2025]: dcms ifr guide 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^dcms-ifr-timeline-2025]: dcms ifr timeline 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^dcms-impact-ifr-2025]: dcms impact ifr 2025. https://www.nationalwealthfund.org.uk/news
+- [^deal-details-2025]: deal details 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^deal-safeguards-2025]: deal safeguards 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^deal-timeline-2025]: deal timeline 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^defra-enforcement-funding-2025]: defra enforcement funding 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^defra-nutrient-2025]: defra nutrient 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^defra-unified-regulator-2025]: defra unified regulator 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^desnz-community-2025]: desnz community 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^desnz-grid-2025]: desnz grid 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^desnz-nuclear-2025]: desnz nuclear 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^desnz-ps-2025]: desnz ps 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^desnz-solar-ia-2025]: desnz solar ia 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^desnz-whd-2025]: desnz whd 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^dfe-comm-2025]: dfe comm 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^dfe-fsm-2024]: dfe fsm 2024. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^dfe-levy-2025]: dfe levy 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^breakfast-2025]: breakfast 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^breakfast-report-2025]: breakfast report 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^dfe-skills-2025]: dfe skills 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^dfe-workforce-2025]: dfe workforce 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^dfit-rail-2025]: dfit rail 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^dhsc-impact-2024]: dhsc impact 2024. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^dhsc-tobacco-bill-2024]: dhsc tobacco bill 2024. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^dluhc-deals-2025]: dluhc deals 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^dluhc-fees-2025]: dluhc fees 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^dluhc-growthfund-2025]: dluhc growthfund 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^dluhc-ia-2025]: dluhc ia 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^dluhc-impact-2025]: dluhc impact 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^dluhc-impacts-2024]: dluhc impacts 2024. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^dluhc-nutrients-2025]: dluhc nutrients 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^dluhc-permissions-2025]: dluhc permissions 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^dluhc-trailblazer-2025]: dluhc trailblazer 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^dsit-inclusion-2025]: dsit inclusion 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^dsit-smartdata-2025]: dsit smartdata 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^dvf-guidance-2025]: dvf guidance 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^dwp-equality-2025]: dwp equality 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^dwp-labour-2025]: dwp labour 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^dwp-moj-work-2025]: dwp moj work 2025. https://www.nationalwealthfund.org.uk/news
+- [^dwp-pip-review-2025]: dwp pip review 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^dwp-uc-adjust-2025]: dwp uc adjust 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^ea-nutrients-2025]: ea nutrients 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^edf-hpc-2025]: edf hpc 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^eef-earlyyears-2024]: eef earlyyears 2024. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^eef-fsm-2020]: eef fsm 2020. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^eef-meta-2023]: eef meta 2023. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^eef-programmes-2025]: eef programmes 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^ehrc-enforcement-2025]: ehrc enforcement 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^energy-pilot-stats-2025]: energy pilot stats 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^enforcement-ops-2025]: enforcement ops 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^equality-impact-2025]: equality impact 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^eso-curtail-2025]: eso curtail 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^eso-fes-2025]: eso fes 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^eso-plan-2025]: eso plan 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^eso-queue-2025]: eso queue 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^eu-uk-2025]: eu uk 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^family-reunion-2025]: family reunion 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^first-returns-2025]: first returns 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^fno-brief-2025]: fno brief 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^france-portal-2025]: france portal 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^fsm-policy-2024]: fsm policy 2024. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^geo-gra-2024]: geo gra 2024. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^hbf-viability-2025]: hbf viability 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^student-visas-2025]: student visas 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^health-act-bonus-2025]: health act bonus 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^hepi-2025]: hepi 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^hm-treasury-2024]: hm treasury 2024. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^hmicfrs-2025]: hmicfrs 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^hmip-annual-2025]: hmip annual 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^hmpps-inspectorate-2025]: hmpps inspectorate 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^hmrc-nlw-2025]: hmrc nlw 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^ho-backlog-plan-2024]: ho backlog plan 2024. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^ho-costs-2025]: ho costs 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^ho-ct-2025]: ho ct 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^ho-expl-memo-2025]: ho expl memo 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^ho-funding-note-2025]: ho funding note 2025. https://www.nationalwealthfund.org.uk/news
+- [^ho-operating-model-2024]: ho operating model 2024. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^ho-rules-2025]: ho rules 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^ho-settlement-2024]: ho settlement 2024. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^ho-sr-2024]: ho sr 2024. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^homeoffice-bill-2025]: homeoffice bill 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^homeoffice-ethics-2025]: homeoffice ethics 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^homeoffice-ia-2025]: homeoffice ia 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^homeoffice-ops-2025]: homeoffice ops 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^homeoffice-outcomes-2025]: homeoffice outcomes 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^homeoffice-workforce-2025]: homeoffice workforce 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^ico-complaints-2025]: ico complaints 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^iea-wind-2025]: iea wind 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^ifa-policy-2025]: ifa policy 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^ifg-rail-2025]: ifg rail 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^impact-assess-2025]: impact assess 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^impact-note-2025]: impact note 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^aisi-mou-2025]: aisi mou 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^integration-outcomes-2025]: integration outcomes 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^jr-trends-2025]: jr trends 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^judicial-notes-2025]: judicial notes 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^lga-skills-2025]: lga skills 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^ltp-guidance-2025]: ltp guidance 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^mayor-skills-2025]: mayor skills 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^media-gifts-2025]: media gifts 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^met-protest-2025]: met protest 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^met-stats-2025]: met stats 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^mod-annc-2025]: mod annc 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^mod-budget-2025]: mod budget 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^mod-manpower-2025]: mod manpower 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^mod-people-2025]: mod people 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^mod-proc-2025]: mod proc 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^mod-ukr-2025]: mod ukr 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^moj-capacity-2025]: moj capacity 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^hmpps-guidance-2025]: hmpps guidance 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^moj-courts-data-2025]: moj courts data 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^moj-ia-2025]: moj ia 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^moj-minister-2024]: moj minister 2024. https://www.nationalwealthfund.org.uk/news
+- [^moj-reform-2025]: moj reform 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^moj-stats-2025]: moj stats 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^moj-tribunals-2025]: moj tribunals 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^ms-guidance-2025]: ms guidance 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^nasuwt-brief-2025]: nasuwt brief 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^ncc-consumer-2025]: ncc consumer 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^ncc-tech-2025]: ncc tech 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^ngo-monitor-2025]: ngo monitor 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^npcc-guidance-2025]: npcc guidance 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^npcc-ops-2025]: npcc ops 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^npcc-productivity-2025]: npcc productivity 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^npcc-protest-2025]: npcc protest 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^repower-2025]: repower 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^solar-guidance-2025]: solar guidance 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^npsa-2025]: npsa 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^nuclear-supply-2025]: nuclear supply 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^ohid-youthvape-2024]: ohid youthvape 2024. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^onr-gda-2025]: onr gda 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^opss-2025]: opss 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^opss-electrical-2026]: opss electrical 2026. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^owic-2025]: owic 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^pasc-oversight-2025]: pasc oversight 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^perseus-pilot-2025]: perseus pilot 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^smartdata-group-2025]: smartdata group 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^phea-modelling-2024]: phea modelling 2024. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^planning-cases-2025]: planning cases 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^polling-note-2025]: polling note 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^prm-2025]: prm 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^psds-2025]: psds 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^public-health-water-2025]: public health water 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^rab-2025]: rab 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^refugee-route-brief-2025]: refugee route brief 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^registers-2025]: registers 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^renew-uk-2025]: renew uk 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^returns-roadmap-2025]: returns roadmap 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^rf-retrofit-2025]: rf retrofit 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^rrb-bill-2025]: rrb bill 2025. https://www.nationalwealthfund.org.uk/news
+- [^rrb-expl-memo-2025]: rrb expl memo 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^rshe-ia-2025]: rshe ia 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^rshe-qa-2025]: rshe qa 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^sanctions-first-wave-2025]: sanctions first wave 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^sanctions-guidance-2025]: sanctions guidance 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^sanctions-regime-2025]: sanctions regime 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^sanctions-timeline-2025]: sanctions timeline 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^sizewell-fid-2024]: sizewell fid 2024. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^skills-bill-2025]: skills bill 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^skills-england-2025]: skills england 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^skills-ia-2025]: skills ia 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^strb-2025]: strb 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^student-visas-2025]: student visas 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^trustmark-2025]: trustmark 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^ucu-brief-2025]: ucu brief 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^uk-fr-deal-2025]: uk fr deal 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^uk-fr-police-2025]: uk fr police 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^ukib-deals-2025]: ukib deals 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^vat-legal-2025]: vat legal 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^vat-policy-2025]: vat policy 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^victims-bill-2025]: victims bill 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^victims-commissioner-2025]: victims commissioner 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^warm-homes-2024]: warm homes 2024. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^fsm-policy-2024]: fsm policy 2024. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^breakfast-2025]: breakfast 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^gbe-plan-2025]: gbe plan 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^gben-smr-2025]: gben smr 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^geo-gra-2024]: geo gra 2024. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^hbf-viability-2025]: hbf viability 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^student-visas-2025]: student visas 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^health-act-bonus-2025]: health act bonus 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^hepi-2025]: hepi 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^hm-treasury-2024]: hm treasury 2024. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^hmicfrs-2025]: hmicfrs 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^hmip-annual-2025]: hmip annual 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^hmpps-guidance-2025]: hmpps guidance 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^hmrc-nlw-2025]: hmrc nlw 2025. https://www.nationalwealthfund.org.uk/news
+- [^ho-backlog-plan-2024]: ho backlog plan 2024. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^ho-costs-2025]: ho costs 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^ho-ct-2025]: ho ct 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^ho-expl-memo-2025]: ho expl memo 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^ho-funding-note-2025]: ho funding note 2025. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^ho-operating-model-2024]: ho operating model 2024. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^ho-rules-2025]: ho rules 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^ho-settlement-2024]: ho settlement 2024. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^ho-sr-2024]: ho sr 2024. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^homeoffice-bill-2025]: homeoffice bill 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^homeoffice-ethics-2025]: homeoffice ethics 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^homeoffice-ia-2025]: homeoffice ia 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^homeoffice-ops-2025]: homeoffice ops 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^homeoffice-outcomes-2025]: homeoffice outcomes 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^homeoffice-workforce-2025]: homeoffice workforce 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^ico-complaints-2025]: ico complaints 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^iea-wind-2025]: iea wind 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^ifa-policy-2025]: ifa policy 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^ifg-rail-2025]: ifg rail 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^impact-assess-2025]: impact assess 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^impact-note-2025]: impact note 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^aisi-mou-2025]: aisi mou 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^integration-outcomes-2025]: integration outcomes 2025. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^jr-trends-2025]: jr trends 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^judicial-notes-2025]: judicial notes 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^lga-skills-2025]: lga skills 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^ltp-guidance-2025]: ltp guidance 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^mayor-skills-2025]: mayor skills 2025. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^media-gifts-2025]: media gifts 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^met-protest-2025]: met protest 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^met-stats-2025]: met stats 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great-british-energy
+- [^mod-annc-2025]: mod annc 2025. https://www.instituteforgovernment.org.uk/comment/gb-energy-manifesto-results
+- [^mod-budget-2025]: mod budget 2025. https://www.energycouncil.com.au/analysis/great-british-energy-the-uk-s-new-state-owned-energy-company/
+- [^mod-manpower-2025]: mod manpower 2025. https://www.theguardian.com/environment/2024/oct/17/will-great-british-energy-herald-uk-green-revolution-labour-ed-miliband
+- [^mod-people-2025]: mod people 2025. https://www.energylivenews.com/2024/07/26/great-british-energy-launched-with-8-3bn-funding/
+- [^mod-proc-2025]: mod proc 2025. https://www.slaughterandmay.com/insights/horizon-scanning/uk-energy-and-infrastructure-what-s-to-come-in-2025/
+- [^mod-ukr-2025]: mod ukr 2025. https://www.nationalwealthfund.org.uk/news
+- [^moj-capacity-2025]: moj capacity 2025. https://www.gov.uk/government/news/clean-energy-future-to-be-built-in-britain
+- [^hmpps-guidance-2025]: hmpps guidance 2025. https://www.iea.org/reports/world-energy-investment-2025/executive-summary
+- [^moj-courts-data-2025]: moj courts data 2025. https://www.ukfinance.org.uk/news-and-insight/blogs/national-wealth-fund-financing-the-net-zero-transition
+- [^moj-ia-2025]: moj ia 2025. https://www.instituteforgovernment.org.uk/explainer/national-wealth-fund
+- [^moj-minister-2024]: moj minister 2024. https://www.icaew.com/insights/viewpoints-on-the-news/2024/jul-2024/national-wealth-fund-to-unlock-green-and-growth-investment
+- [^moj-reform-2025]: moj reform 2025. https://www.americanprogress.org/article/investing-in-the-nations-future-why-congress-should-emulate-energy-states-sovereign-wealth-funds/
+- [^moj-stats-2025]: moj stats 2025. https://www.weforum.org/publications/fostering-effective-energy-transition-2025/in-full/redefining-global-energy-systems/
+- [^moj-tribunals-2025]: moj tribunals 2025. https://www.deloitte.com/uk/en/Industries/financial-services/blogs/financing-the-uk-net-zero-transition.html
+- [^ms-guidance-2025]: ms guidance 2025. https://www.gov.uk/government/publications/national-wealth-fund-mobilising-private-investment/national-wealth-fund-mobilising-private-investment-accessible
+- [^nasuwt-brief-2025]: nasuwt brief 2025. https://www.gov.uk/government/news/boost-for-new-national-wealth-fund-to-unlock-private-investment
+- [^ncc-consumer-2025]: ncc consumer 2025. https://www.gov.uk/government/publications/contracts-for-difference-and-capacity-market-scheme-update-2024/contracts-for-difference-and-capacity-market-scheme-update-2024
+- [^ncc-tech-2025]: ncc tech 2025. https://energyadvicehub.org/contracts-for-difference-a-look-at-the-forecast/
+- [^ngo-monitor-2025]: ngo monitor 2025. https://watt-logic.com/2025/07/27/asps-for-ar7-prove-renewables-are-not-cheap/
+- [^npcc-guidance-2025]: npcc guidance 2025. https://www.offshorewind.biz/2023/11/16/uk-increases-offshore-wind-strike-price-ahead-of-next-auction/
+- [^npcc-ops-2025]: npcc ops 2025. https://www.twobirds.com/en/insights/2025/uk/contracts-for-difference-get-ready-for-ar7
+- [^npcc-productivity-2025]: npcc productivity 2025. https://www.gov.uk/government/collections/contracts-for-difference-cfd-allocation-round-6
+- [^npcc-protest-2025]: npcc protest 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results/contracts-for-difference-cfd-allocation-round-6-results-accessible-webpage
+- [^npsa-2025]: npsa 2025. https://www.brodies.com/insights/renewable-energy/what-do-the-contracts-for-difference-ar6-results-mean/
+- [^nuclear-supply-2025]: nuclear supply 2025. https://www.regen.co.uk/insights/cfd-ar6-analysis-offshore-energy
+- [^ohid-youthvape-2024]: ohid youthvape 2024. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-6-results
+- [^onr-gda-2025]: onr gda 2025. https://academic.oup.com/ce/article/8/5/218/7750070
+- [^opss-2025]: opss 2025. https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-and-future-rounds
+- [^opss-electrical-2026]: opss electrical 2026. https://www.gov.uk/government/publications/aligning-grid-connections-with-strategic-plans/open-letter-from-desnz-and-ofgem-aligning-grid-connections-with-strategic-plans-5-november-2024
+- [^owic-2025]: owic 2025. https://www.gov.uk/government/news/planning-revolution-to-fuel-growth-and-make-britain-energy-secure
+- [^pasc-oversight-2025]: pasc oversight 2025. https://committees.parliament.uk/committee/517/industry-and-regulators-committee/news/204714/call-for-evidence-published-on-the-energy-grid-and-grid-connections/
+- [^perseus-pilot-2025]: perseus pilot 2025. https://energysavingtrust.org.uk/great-british-energy
+- [^smartdata-group-2025]: smartdata group 2025. https://commonslibrary.parliament.uk/research-briefings/cbp-10088/
+- [^phea-modelling-2024]: phea modelling 2024. https://www.gov.uk/government/publications/great-british-energy-bill-factsheets/great-british-energy-bill-overarching-factsheet
+- [^planning-cases-2025]: planning cases 2025. https://en.wikipedia.org/wiki/Great_British_Energy
+- [^polling-note-2025]: polling note 2025. https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+- [^prm-2025]: prm 2025. https://www.dbsne.com/post/understanding-labours-plan-for-great
