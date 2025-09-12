@@ -37,6 +37,6 @@ I've been somewhat on the left and the right over the years, but don't think a s
 
 Better Britain Bureau is my way of turning my strengths into plain, useful reporting: clear facts, human impact, and accountability. I’m pro‑evidence, and open about using AI as a co‑editor/tool to improve clarity and increase throughput, not to replace judgement. The aim is simple: cut through noise, learn about how new tools can help us, de‑radicalise by identifying the truth as clearly as possible, and show where change can happen by identifying the limitations and opportunities of the complex systems that rule our lives.
 
-I welcome feedback and contributors, either on the (Better Britain github repo](https://github.com/Better-Britain) or via email to [admin@betterbritain.org.uk](admin@betterbritain.org.uk).
+I welcome feedback and contributors, either on the [Better Britain github repo](https://github.com/Better-Britain) or via email to [admin@betterbritain.org.uk](admin@betterbritain.org.uk).
 
 - [Legal &amp; Disclaimer](./legal.md)
