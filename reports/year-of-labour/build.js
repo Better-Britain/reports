@@ -486,7 +486,7 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 		`<header class="report-header">`,
 		`  <div class="report-heading">`,
 		`    <h1 class="report-title">A Year of <span class="report-title-highlight">Labour</span></h1>`,
-		`    <p class="report-subtitle">An evidence‑led look at what changed, what's working or what isn't, and what comes next.</p>`,
+		`    <p class="report-subtitle">Better Britain's look at what changed, what's working or what isn't, and what comes next.</p>`,
 		`  </div>`,
 		`  <div class="title-controls">`,
 		`    <button id="font-switcher" class="btn font-switch" type="button" aria-label="Switch reading font"><span class="font-icon" aria-hidden="true">𝐅</span><span id="font-label">Font</span></button>`,

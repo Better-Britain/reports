@@ -2,6 +2,12 @@
 
 The homepage and reports site for the Better Britain Bureau reports, starting with the Broken Britain Briefing uses markdown-it and a small build orchestrator so each report can have its own features, while the whole site is built by a GitHub Action and deployed to GitHub Pages.
 
+## TODO:
+
+- Still some missing citations
+- Citations to be properly organised by group.
+- Citations table styling needs improvement.
+
 ## How to run
 
 1) Install deps: `npm i` or `yarn`
