@@ -154,7 +154,7 @@ details .details-body {
 
 .report-sidebar {
   position: sticky;
-  top: 64px;
+  /* top: 64px; */
   border-right: 1px solid #e5e7eb;
   padding-right: 1rem;
 }
