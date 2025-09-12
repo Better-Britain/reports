@@ -262,7 +262,7 @@ function buildSidebar(navMeta) {
 		// No scope and no subheadings: render as a simple link to the group title
 		return `<li><a href="#${escapeHtml(groupAnchorId)}">${escapeHtml(doc.docTitle)}</a></li>`;
 	}).join('\n');
-	return `<aside id="sidebar" class="report-sidebar"><div class="sidebar-header"><h3>A Year of Labour</h3><button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button></div><div class="sidebar-global-controls"><button type="button" data-sidebar-toggle="expand-all">Expand all</button><button type="button" data-sidebar-toggle="collapse-all">Collapse all</button></div><ul>${items}</ul></aside>`;
+	return `<aside id="sidebar" class="report-sidebar"><div class="sidebar-header"><h3>A Year of Labour - Policy Review</h3><button class="sidebar-toggle" type="button" aria-label="Toggle sidebar">☰</button></div><div class="sidebar-global-controls"><button type="button" data-sidebar-toggle="expand-all">Expand all</button><button type="button" data-sidebar-toggle="collapse-all">Collapse all</button></div><ul>${items}</ul></aside>`;
 }
 
 async function listMarkdownFiles() {
