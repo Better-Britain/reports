@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Better Britain Bureau</title>
+<link rel="alternate" type="application/rss+xml" title="Better Britain Bureau RSS" href="/feed.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/print.css" media="print">
+<link rel="canonical" href="https://betterbritain.org.uk/lessons-learned.html">
+<meta property="og:url" content="https://betterbritain.org.uk/lessons-learned.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav">
+    <a href="/" class="brand"><img src="/assets/bbb-logo.svg" alt="BBB" style="height:24px;vertical-align:middle;margin-right:.5rem;">Better Britain</a>
+    <a href="/">Reports</a>
+    <span style="flex:1"></span>
+    <a href="/posts/index.html">Posts</a>
+    <a href="/about.html">About BBB</a>
+  </nav>
+</header>
+<main id="content">
+<h1 id="lessons-learned-living-log" tabindex="-1">Lessons Learned (Living Log)</h1>
+<p>We keep a running log of what worked, what didn’t, and what changed as a result.</p>
+<h2 id="entries" tabindex="-1">Entries</h2>
+<h3 id="ai-summarisation-fidelity" tabindex="-1">AI summarisation fidelity</h3>
+<ul>
+<li>Short, plain sections produce better reader‑side AI summaries</li>
+<li>Keep paragraphs tight</li>
+<li>Use explicit headings</li>
+<li>State reading ease level by school style boundary 'high-school senior'</li>
+<li>Context is limited, summarising a single short document gives better results than a a massive PDF.
+<ul>
+<li>Limit below 200 lines of text (perhaps 4000 words max) for best chance of usable output</li>
+</ul>
+</li>
+</ul>
+<h3 id="evidence-placement" tabindex="-1">Evidence placement</h3>
+<ul>
+<li>Reduce waffle in main flow.</li>
+<li>Keep main text focused</li>
+<li>Link to context/citations
+<ul>
+<li>OpenAI markdown parser added</li>
+<li>Ensure research reports are exported in json, then converted to fully annotated markdown</li>
+</ul>
+</li>
+<li>Citations from 'deep research' tools often keep the point, but lose the connection to the underlying source.
+<ul>
+<li>Labour report has mostly reliable claims, but is missing some citations, to be resolved</li>
+</ul>
+</li>
+</ul>
+<h3 id="quality-drivers" tabindex="-1">Quality drivers</h3>
+<ul>
+<li>Exploration in drafts/chats, clarity in print</li>
+<li>ChatGPT and Claude respond well to direct instruction, as it encourages more careful output, and in the case of GPT-5, to engage thinking mode, where it produces much better quality outputs.</li>
+<li>This is most likely because GPT-5 marshalls requests to older models, which have vastly different capabilities.</li>
+<li>Research from ChatGPT can only be considered 'mostly' reliable if it comes from 'thinking' or 'deep research' modes.</li>
+<li>Most models are great with markdown as input and output</li>
+<li>Server load is a MASSIVE influence on LLM response quality. Do NOT use a service under heavy load, or at heavy load times. The results at peak demand times are unusable and cannot be trusted. This applies to all platforms.</li>
+</ul>
+
+</main>
+<footer class="site-footer">
+  <p>Built from Markdown. <a href="https://github.com/Better-Britain/" target="_blank" rel="noopener">Get Involved</a></p>
+</footer>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

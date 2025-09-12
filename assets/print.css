@@ -1,0 +1,124 @@
+/* Print layout overrides */
+
+/* Base: use readable fonts, black on white */
+body {
+  color: #000;
+  background: #fff !important;
+  font: 12pt/1.4 Georgia, "Times New Roman", Times, serif;
+}
+
+/* Hide interactive chrome */
+header.site-header,
+.sidebar-toggle,
+.sidebar-global-controls,
+.back-to-top,
+.citations-controls {
+  display: none !important;
+}
+
+.site-header {
+    position: fixed !important;
+    top: 0 !important;
+    width: 100% !important;
+    z-index: 2 !important;
+}
+
+/* Stack layout: sidebar first, then content */
+.report-layout {
+  display: block !important;
+}
+
+.report-sidebar {
+  position: static !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 0 12pt 0 !important;
+}
+
+/* Preserve reader-chosen expansion state; only tweak breaks */
+details {
+  page-break-inside: avoid;
+}
+
+details > summary {
+  font-weight: 700;
+  margin: 6pt 0 4pt 0;
+}
+
+.report-sidebar ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.report-sidebar li {
+  margin: 2pt 0;
+}
+
+.report-content {
+  display: block !important;
+}
+
+/* Avoid breaking headings from following content */
+h1, h2, h3 {
+  page-break-after: avoid;
+}
+
+/* Tables should not overflow */
+table {
+  width: 100% !important;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 4pt 6pt;
+}
+
+/* Score chip: ensure visible and aligned in print */
+.score-chip {
+  display: inline-block;
+  width: 1.75rem;
+  margin-right: .35rem;
+  text-align: right;
+  color: #000;
+}
+
+/* Page breaks before each policy card (subsequent H1s within a section) */
+section h1:not(:first-of-type) {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* Policy card print breaks */
+.policy-card {
+    padding-top: 0;
+    page-break-before: always;
+    page-break-after: always;
+    break-before: page;
+    break-after: page;
+    -webkit-region-break-inside: avoid;
+}
+
+/* Improve page-break reliability in Chromium */
+.report-layout,
+.report-sidebar,
+.report-content,
+.policy-card {
+  position: relative;
+}
+
+.policy-card {
+  page-break-before: always;
+  break-before: page;
+  -webkit-region-break-inside: avoid;
+}
+
+/* Also discourage breaking inside tables */
+table { -webkit-region-break-inside: avoid; }
+
+/* Group link styling for print */
+.group-link {
+  color: #000 !important;
+  text-decoration: underline !important;
+  border: 0 !important;
+}
