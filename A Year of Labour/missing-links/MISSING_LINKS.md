@@ -5,22 +5,6 @@ This file lists citation ids referenced in sections 2.1–2.15 that are not defi
 
 
 
-- [^homeoffice-ops-2025]: Police response to the 2024 summer disorder. https://committees.parliament.uk/publications/47476/documents/246718/default/
-- [^mod-manpower-2025]: Strategic Defence Review 2025: Armed Forces Personnel. https://commonslibrary.parliament.uk/strategic-defence-review-2025-armed-forces-personnel/
-- [^dcms-creative-2025]: Creative Industries Sector Plan. https://www.gov.uk/government/publications/creative-industries-sector-plan
-- [^dfe-skills-2025]: DfE funded adult skills fund: funding rates and formula 2025 to 2026. https://www.gov.uk/government/publications/adult-skills-fund-funding-rates-and-formula/dfe-funded-adult-skills-fund-funding-rates-and-formula-2025-to-2026
-- [^dwp-uc-adjust-2025]: Welfare bill will protect the most vulnerable and help households with income boost. https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost
-- [^ea-nutrients-2025]: Nutrient neutrality and housing development. https://researchbriefings.files.parliament.uk/documents/CBP-9850/CBP-9850.pdf
-- [^hmicfrs-2025]: State of Policing 2024 to 2025. https://www.gov.uk/government/publications/state-of-policing-2024-to-2025
-- [^hmpps-inspectorate-2025]: National Inspection – April 2025. https://hmiprobation.justiceinspectorates.gov.uk/document/national-inspection-april-2025/
-- [^impact-assess-2025]: The Data Use and Access Act 2025 (DUAA) - what does it mean for organisations? https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/
-- [^mod-proc-2025]: Defence Industrial Strategy 2025: Making Defence an Engine for Growth. https://www.gov.uk/government/publications/defence-industrial-strategy-2025-making-defence-an-engine-for-growth
-- [^moj-stats-2025]: Statistics at MOJ. https://www.gov.uk/government/organisations/ministry-of-justice/about/statistics
-- [^npcc-guidance-2025]: National protest operational advice. https://assets.college.police.uk/s3fs-public/2023-06/National-protest-operational-advice.pdf
-- [^cato-notice-2025]: Making Tax Digital for Income Tax and penalty reform. https://www.gov.uk/government/publications/making-tax-digital-for-income-tax-and-penalty-reform
-- [^college-policing-2025]: Crime and Policing Bill 2025: factsheets. https://www.gov.uk/government/publications/crime-and-policing-bill-2025-factsheets
-- [^dcms-ifr-guide-2025]: Fact sheet: Football Governance Bill - licensing regime. https://www.gov.uk/government/publications/football-governance-bill-2024-supporting-documents/fact-sheet-licensing-regime
-- [^dhsc-tobacco-bill-2024]: HOC - Tobacco and Vapes Bill. https://bills.parliament.uk/bills/3879
 
 
 
@@ -33,45 +17,9 @@ This file lists citation ids referenced in sections 2.1–2.15 that are not defi
 
 
 
-- [^dwp-equality-2025]: 2 occurrences
-  - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L36: **Mechanism(s):** Primary legislation; commencement from April 2026 for new health‑related claims; transitional protections for existing claimants with severe or lifelong conditions. [^dwp-equality-2025]
-  - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L45: **Distributional effects:** Many without disabilities gain from higher base rate; future new disabled claimants with moderate needs receive less than before; those with the highest needs protected. [^dwp-equality-2025]
 
-- [^eef-fsm-2020]: 2 occurrences
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L111: - [impact-likely] [area: welfare] [horizon: medium] Improves attendance and concentration; saves families ~£500 per child per year. [^eef-fsm-2020]
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L112: - [unknown] Long‑run attainment impacts for cohorts newly eligible. [^eef-fsm-2020]
 
-- [^geo-gra-2024]: 2 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Gender Recognition Act (GRA) — Reform Status — L138: **Mechanism(s):** No bill introduced; existing GRA process continues (medical diagnosis, evidential requirements). [^geo-gra-2024]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Gender Recognition Act (GRA) — Reform Status — L142: - [unknown] Whether consultation or a narrower reform will follow later in the Parliament. [^geo-gra-2024]
 
-- [^hmip-annual-2025]: 2 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — Prisons Leadership & Rehabilitation Drive — L52: - [impact-proven] [area: justice] [horizon: short] Violence/self‑harm remain pressured in overcrowded sites. [^hmip-annual-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Prisons Leadership & Rehabilitation Drive — L57: **Distributional effects:** Supports short‑sentence cohorts and young adults who drive reoffending; regional focus where employers are engaged. [^hmip-annual-2025]
-
-- [^hmt-wfp-2025]: 2 occurrences
-  - 2.5-Welfare-and-Inequality.md — Winter Fuel Payment — Cut, Backlash and Targeted Reversal — L155: **Mechanism(s):** Means‑testing decision (2024) reduced eligible pensioners; 2025 change raised the income threshold to around £35,000 so about 9 million receive it again. [^hmt-wfp-2025]
-  - 2.5-Welfare-and-Inequality.md — Winter Fuel Payment — Cut, Backlash and Targeted Reversal — L162: **Costs & funding:** Reversal costs roughly £1.25bn per year (England/Wales), funded within tight budgets. [^hmt-wfp-2025]
-
-- [^hoclib-renters-2025]: 2 occurrences
-  - 2.3-Housing-and-Planning-System.md — Renters’ Rights Bill (Private Rented Sector reform) — L181: - [impact-likely] [area: housing] Greater security reduces involuntary moves and homelessness risk. [^hoclib-renters-2025]
-  - 2.3-Housing-and-Planning-System.md — Renters’ Rights Bill (Private Rented Sector reform) — L186: **Distributional effects:** Benefits low‑income and family renters; predictable rules for responsible landlords. [^hoclib-renters-2025]
-
-- [^homeoffice-workforce-2025]: 2 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — Police Workforce Uplift & Productivity — L118: **Intent (plain language):** Recruit around 13,000 additional officers and community support staff, and improve charge rates through better deployment and technology. (NPCC is the National Police Chiefs’ Council.) [^homeoffice-workforce-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Police Workforce Uplift & Productivity — L133: **Timeline & milestones:** Annual recruitment targets through 2027; quarterly outcome reporting; mid‑programme review. [^homeoffice-workforce-2025]
-
-- [^ifa-policy-2025]: 2 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L23: - [unknown] Interaction with league self-regulation and European competition rules. [^ifa-policy-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L29: **Risks & constraints:** [risk: legal][risk: political] Appeals by clubs; ensuring proportional rules for different league tiers. [^ifa-policy-2025]
-
-- [^mod-annc-2025]: 2 occurrences
-  - 2.12-Foreign-Defence-and-Security.md — Procurement and the defence industrial base (buying faster and building at home) — L92: - [impact-proven] [area: defence] [horizon: short] Extra funding for GCAP and additional Type 26 frigates; SSN‑AUKUS design phase funded. [^mod-annc-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Procurement and the defence industrial base (buying faster and building at home) — L102: **Timeline & milestones:** 2025–2027 contract let; mid‑2030s in‑service dates for major platforms; near‑term deliveries for drones/AD. [^mod-annc-2025]
-
-- [^mod-people-2025]: 2 occurrences
-  - 2.12-Foreign-Defence-and-Security.md — Forces people: recruitment, readiness and accommodation — L160: **Mechanism(s):** Pay and bonuses for critical trades; streamlined recruiting; modernised accommodation programme; expanded training days. [^mod-people-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Forces people: recruitment, readiness and accommodation — L168: **Distributional effects:** Better living standards for service families; improved retention. [^mod-people-2025]
 
 - [^moj-courts-data-2025]: 2 occurrences
   - 2.11-Justice-Policing-and-Prisons.md — 2.11 — Justice, Policing and Prisons — L11: - Court and prison backlogs are core drivers of pressure; cutting listing delays reduces inflow and length of stay. [^moj-courts-data-2025]
