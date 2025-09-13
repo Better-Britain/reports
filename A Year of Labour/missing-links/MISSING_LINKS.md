@@ -4,14 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
 - [^bea-ops-2025]: 1 occurrence
   - 2.12-Foreign-Defence-and-Security.md — Cyber defence and national resilience (protecting critical infrastructure) — L145: **Distributional effects:** Benefits households and businesses via fewer outages and faster recovery. [^bea-ops-2025]
 
