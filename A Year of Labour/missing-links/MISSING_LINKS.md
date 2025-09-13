@@ -2,49 +2,12 @@
 
 This file lists citation ids referenced in sections 2.1–2.15 that are not defined in `5.0-Source-Citations.md`, ordered by frequency.
 
-- [^desnz-whd-2025]: 6 occurrences
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L177: **Intent (plain language):** Provide a one‑off bill credit to low‑income households’ electricity accounts during winter. [^desnz-whd-2025]
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L179: **Mechanism(s):** Supplier‑delivered discount for eligible customers, with data‑matching to identify low‑income, high‑cost homes. [^desnz-whd-2025]
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L182: - [impact-proven] [area: welfare] [horizon: short] Millions receive a £150 bill credit each winter. [^desnz-whd-2025]
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L184: - [unknown] Targeting precision under new data rules; overlap with local schemes. [^desnz-whd-2025]
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L186: **Costs & funding:** Scheme costs recovered via supplier obligations and set‑aside budgets. [^desnz-whd-2025]
-  - 2.5-Welfare-and-Inequality.md — Warm Home Discount — Continuation and Targeting — L192: **Timeline & milestones:** Annual winter cycles; rules refreshed periodically. [^desnz-whd-2025]
 
-- [^cma-housebuilding-2025]: 4 occurrences
-  - 2.15-Missed-Opportunities-Errors-and-Governance.md — Housing Delivery Sequencing — Slow Starts despite Planning Reset — L23: - [unknown] Net effect of developer consolidation on build‑out speed. [^cma-housebuilding-2025]
-  - 2.3-Housing-and-Planning-System.md — Developer Market Structure & Mergers (e.g., Barratt–Redrow) — L199: **Intent (plain language):** Assess how mergers among large housebuilders affect competition, build‑out speed and consumer outcomes; tailor policy so smaller builders can compete. [^cma-housebuilding-2025]
-  - 2.3-Housing-and-Planning-System.md — Developer Market Structure & Mergers (e.g., Barratt–Redrow) — L204: - [impact-hypothetical] [area: housing] More balanced market structure may raise output and customer service. [^cma-housebuilding-2025]
-  - 2.3-Housing-and-Planning-System.md — Developer Market Structure & Mergers (e.g., Barratt–Redrow) — L213: **Timeline & milestones:** Casework 2025; policy responses folded into planning/land release measures. [^cma-housebuilding-2025]
 
-- [^desnz-grid-2025]: 4 occurrences
-  - 2.15-Missed-Opportunities-Errors-and-Governance.md — Housing Delivery Sequencing — Slow Starts despite Planning Reset — L22: - [impact-likely] Faster utilities and grid approvals would unlock constrained sites earlier. [^desnz-grid-2025]
-  - 2.3-Housing-and-Planning-System.md — Housing‑Adjacent Infrastructure Fast‑Track (grid, water, transport) — L153: **Intent (plain language):** Connect new homes faster by speeding up approvals for electricity grid upgrades, water treatment and local transport links that hold back building. [^desnz-grid-2025]
-  - 2.3-Housing-and-Planning-System.md — Housing‑Adjacent Infrastructure Fast‑Track (grid, water, transport) — L165: **Risks & constraints:** [risk: delivery][risk: finance] Supply chain capacity; consenting complexity. [^desnz-grid-2025]
-  - 2.3-Housing-and-Planning-System.md — Housing‑Adjacent Infrastructure Fast‑Track (grid, water, transport) — L167: **Timeline & milestones:** NSIP reforms live 2025; DNO/ water company delivery plans aligned 2025–30. [^desnz-grid-2025]
+- [^dwp-pip-review-2025]: Further details on welfare reforms published ahead of Second Reading. https://www.gov.uk/government/news/further-details-on-welfare-reforms-published-ahead-of-second-reading
 
-- [^dfe-fsm-2024]: 4 occurrences
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L105: **Intent (plain language):** Give every child in a family receiving Universal Credit a free school lunch, to reduce hunger and help with the cost of living. [^dfe-fsm-2024]
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L110: - [impact-proven] [area: education] [horizon: short] Hundreds of thousands more children now receive a meal each school day. [^dfe-fsm-2024]
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L116: **Distributional effects:** Benefits lowest‑income families most; helps areas with high deprivation. [^dfe-fsm-2024]
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L120: **Timeline & milestones:** Implemented from September 2024; monitoring reports from 2025. [^dfe-fsm-2024]
 
-- [^dsit-inclusion-2025]: 4 occurrences
-  - 2.8-Digital-Data-and-AI.md — 2.8 — Digital, Data and AI — L9: - Data portability should avoid jargon (“download your data” vs “API access”) and give easy routes for people with lower digital confidence. [^dsit-inclusion-2025]
-  - 2.8-Digital-Data-and-AI.md — Data (Use & Access) Act 2025 — Smart Data and Digital Identity — L28: **Distributional effects:** Benefits everyday users and small businesses by putting them in control of their data; risk of excluding people without smartphones or formal ID unless inclusion measures are built in. [^dsit-inclusion-2025]
-  - 2.8-Digital-Data-and-AI.md — Smart Data Schemes — Energy, Telecoms and Finance roll-out — L52: **Distributional effects:** Strong upside for bill-payers and small firms; ensure accessible design for people with low digital confidence. [^dsit-inclusion-2025]
-  - 2.8-Digital-Data-and-AI.md — Public-Sector Digital Identity — trusted checks for everyday life — L100: **Distributional effects:** Convenience gains for most users; ensure offline routes remain for those without smartphones or formal documents. [^dsit-inclusion-2025]
-
-- [^dwp-pip-review-2025]: 4 occurrences
-  - 2.5-Welfare-and-Inequality.md — Personal Independence Payment (PIP) — Reform Paused and Independent Review — L56: **Intent (plain language):** Pause proposed changes to PIP after late‑stage concessions to avoid defeat, and commission an independent review to improve assessments and support for disabled people. [^guardian-pip-2025; ^dwp-pip-review-2025]
-  - 2.5-Welfare-and-Inequality.md — Personal Independence Payment (PIP) — Reform Paused and Independent Review — L61: - [impact-proven] [area: welfare] [horizon: short] Concessions secured passage; existing PIP claimants are protected from immediate changes. [^guardian-pip-2025; ^dwp-pip-review-2025]
-  - 2.5-Welfare-and-Inequality.md — Personal Independence Payment (PIP) — Reform Paused and Independent Review — L67: **Distributional effects:** Certainty for current claimants; uncertainty for prospective/new claimants until the review concludes and the government responds. [^dwp-pip-review-2025]
-  - 2.5-Welfare-and-Inequality.md — Personal Independence Payment (PIP) — Reform Paused and Independent Review — L71: **Timeline & milestones:** July 2025 concessions; review commissioned in 2025; government response due in 2026. [^guardian-pip-2025; ^dwp-pip-review-2025]
-
-- [^ehrc-enforcement-2025]: 4 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — EHRC Single‑Sex Spaces Enforcement Drive — L88: **Intent:** Ensure public bodies apply the law correctly on single‑sex services (e.g., hospital wards, changing rooms) after the Court ruling. [^ehrc-enforcement-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — EHRC Single‑Sex Spaces Enforcement Drive — L90: **Mechanism(s):** Code updates, compliance letters, and enforcement where policies misstate the law; advice to sectors (health, policing, councils). [^ehrc-enforcement-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — EHRC Single‑Sex Spaces Enforcement Drive — L101: **Risks & constraints:** [risk: political] Public controversy; uneven adoption across England, Scotland, Wales. [^ehrc-enforcement-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — EHRC Single‑Sex Spaces Enforcement Drive — L103: **Timeline & milestones:** 2025-06 letters sent; code finalisation; progress reviews within 6–12 months. [^ehrc-enforcement-2025]
+- [^ehrc-enforcement-2025]: An interim update on the practical implications of the UK Supreme Court judgment. https://www.equalityhumanrights.com/media-centre/interim-update-practical-implications-uk-supreme-court-judgment
 
 - [^homeoffice-ops-2025]: 4 occurrences
   - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L144: **Mechanism(s):** Mutual aid deployments; evidence‑led arrests; use of public order powers; community engagement to calm tensions; post‑incident support. [^homeoffice-ops-2025]
