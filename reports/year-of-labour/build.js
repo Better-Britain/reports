@@ -14,7 +14,12 @@ import mdAnchor from 'markdown-it-anchor';
 const ROOT_DIR = path.resolve('A Year of Labour');
 const TEMPLATE_FILE = path.resolve('site/template.html');
 
+// Performance optimization: skip citations in HTML for now, they're available inline and in the markdown
+const SKIP_CITATIONS_IN_HTML = true;
+
 //TODO: May want to support filtering policies by tag, area of effect, time horizon, etc.
+//			Tried this, but hard to make it easy to use, and the complex tagging limits readability
+
 //TODO: May rename this report to "Labour Progress Report", as we're late for "1 year"
 
 function slugify(input) {
@@ -336,6 +341,7 @@ async function readAndRender(filePath, citationMap) {
 	let src = await fs.readFile(filePath, 'utf8');
 	const base = path.basename(filePath);
 	if (base === '5.0-Source-Citations.md') {
+		if(SKIP_CITATIONS_IN_HTML) return '';
 		let norm = normalizeFootnoteDefs(src);
 		// Use the document H1 to derive a stable slug id that matches the sidebar
 		const h1m = norm.match(/^#\s+(.+)$/m);
