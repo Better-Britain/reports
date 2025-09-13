@@ -5,83 +5,33 @@ This file lists citation ids referenced in sections 2.1–2.15 that are not defi
 
 
 
-- [^homeoffice-ops-2025]: 4 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L144: **Mechanism(s):** Mutual aid deployments; evidence‑led arrests; use of public order powers; community engagement to calm tensions; post‑incident support. [^homeoffice-ops-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L151: **Costs & funding:** Overtime and mutual aid costs; damage recovery and community support grants. [^homeoffice-ops-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Protest Policing — Large Demonstrations — L175: **Costs & funding:** Significant policing costs for repeated large events; opportunity costs to local policing. [^homeoffice-ops-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Aggressive Policing of Palestine Action‑Related Free‑Speech Protests — L223: **Costs & funding:** Significant policing and processing costs (overtime, custody, file preparation) and court throughput; opportunity costs for local policing. [^homeoffice-ops-2025]
+- [^homeoffice-ops-2025]: Police response to the 2024 summer disorder. https://committees.parliament.uk/publications/47476/documents/246718/default/
+- [^mod-manpower-2025]: Strategic Defence Review 2025: Armed Forces Personnel. https://commonslibrary.parliament.uk/strategic-defence-review-2025-armed-forces-personnel/
+- [^dcms-creative-2025]: Creative Industries Sector Plan. https://www.gov.uk/government/publications/creative-industries-sector-plan
+- [^dfe-skills-2025]: DfE funded adult skills fund: funding rates and formula 2025 to 2026. https://www.gov.uk/government/publications/adult-skills-fund-funding-rates-and-formula/dfe-funded-adult-skills-fund-funding-rates-and-formula-2025-to-2026
+- [^dwp-uc-adjust-2025]: Welfare bill will protect the most vulnerable and help households with income boost. https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost
+- [^ea-nutrients-2025]: Nutrient neutrality and housing development. https://researchbriefings.files.parliament.uk/documents/CBP-9850/CBP-9850.pdf
+- [^hmicfrs-2025]: State of Policing 2024 to 2025. https://www.gov.uk/government/publications/state-of-policing-2024-to-2025
+- [^hmpps-inspectorate-2025]: National Inspection – April 2025. https://hmiprobation.justiceinspectorates.gov.uk/document/national-inspection-april-2025/
+- [^impact-assess-2025]: The Data Use and Access Act 2025 (DUAA) - what does it mean for organisations? https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/
+- [^mod-proc-2025]: Defence Industrial Strategy 2025: Making Defence an Engine for Growth. https://www.gov.uk/government/publications/defence-industrial-strategy-2025-making-defence-an-engine-for-growth
+- [^moj-stats-2025]: Statistics at MOJ. https://www.gov.uk/government/organisations/ministry-of-justice/about/statistics
+- [^npcc-guidance-2025]: National protest operational advice. https://assets.college.police.uk/s3fs-public/2023-06/National-protest-operational-advice.pdf
+- [^cato-notice-2025]: Making Tax Digital for Income Tax and penalty reform. https://www.gov.uk/government/publications/making-tax-digital-for-income-tax-and-penalty-reform
+- [^college-policing-2025]: Crime and Policing Bill 2025: factsheets. https://www.gov.uk/government/publications/crime-and-policing-bill-2025-factsheets
+- [^dcms-ifr-guide-2025]: Fact sheet: Football Governance Bill - licensing regime. https://www.gov.uk/government/publications/football-governance-bill-2024-supporting-documents/fact-sheet-licensing-regime
+- [^dhsc-tobacco-bill-2024]: HOC - Tobacco and Vapes Bill. https://bills.parliament.uk/bills/3879
 
-- [^mod-manpower-2025]: 4 occurrences
-  - 2.12-Foreign-Defence-and-Security.md — Strategic Defence Review 2025 (posture and force design) — L68: - [impact-proven] [area: defence] [horizon: short] Halt to planned Army manpower reductions; recruitment incentives introduced. [^mod-manpower-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Forces people: recruitment, readiness and accommodation — L158: **Intent:** Reverse recruiting shortfalls, improve family housing, and lift unit readiness. [^mod-manpower-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Forces people: recruitment, readiness and accommodation — L163: - [impact-proven] [area: defence] [horizon: short] Recruiting up year‑on‑year after incentives; early estate upgrades underway. [^mod-manpower-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Forces people: recruitment, readiness and accommodation — L172: **Timeline & milestones:** Annual recruiting targets; phased estate refurbishments; quarterly readiness checks. [^mod-manpower-2025]
 
-- [^dcms-creative-2025]: 3 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Creative Industries and Public Service Broadcasting — Support Measures — L228: **Intent:** Support film, TV, music, and games through targeted funds and skills programmes; maintain strong public service broadcasting. [^dcms-creative-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Creative Industries and Public Service Broadcasting — Support Measures — L230: **Mechanism(s):** Grants and tax reliefs; skills bootcamps; export support; PSB policy statements. [^dcms-creative-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Creative Industries and Public Service Broadcasting — Support Measures — L242: **Timeline & milestones:** Annual schemes refreshed; PSB review points through the Parliament. [^dcms-creative-2025]
 
-- [^dfe-skills-2025]: 3 occurrences
-  - 2.9-Devolution-Local-Growth-and-Transport.md — Local Skills Compacts (with Skills England) — L111: **Mechanism(s):** Devolved or pooled skills budgets; regional skills plans co‑signed by mayors, employers and providers; outcome‑based funding pilots. [^dfe-skills-2025]
-  - 2.9-Devolution-Local-Growth-and-Transport.md — Local Skills Compacts (with Skills England) — L118: **Costs & funding:** Within existing skills envelopes; potential top‑ups via growth funds and employer contributions. [^dfe-skills-2025]
-  - 2.9-Devolution-Local-Growth-and-Transport.md — Local Skills Compacts (with Skills England) — L124: **Timeline & milestones:** 2025 compacts signed in first wave; evaluation and next‑wave rollout 2026. [^dfe-skills-2025]
 
-- [^dwp-uc-adjust-2025]: 3 occurrences
-  - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L34: **Intent (plain language):** Raise the basic Universal Credit amount for everyone, while changing the extra disability‑related top‑up for new claims to focus higher support on those with the most severe, long‑term conditions. [^dwp-uc-adjust-2025]
-  - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L40: - [impact-likely] [area: welfare] [horizon: medium] New health element around half the previous rate for most new claims, with protections for the severest cases. [^dwp-uc-adjust-2025]
-  - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L49: **Timeline & milestones:** Royal Assent 2025; April 2026 start for new health‑related claims; independent PIP review to inform future alignment. [^dwp-uc-adjust-2025]
 
-- [^ea-nutrients-2025]: 3 occurrences
-  - 2.3-Housing-and-Planning-System.md — Environmental Constraints — Nutrient Neutrality and Water Availability — L227: - [impact-likely] [area: environment] Treatment upgrades and wetlands reduce nutrient loads over time. [^ea-nutrients-2025]
-  - 2.3-Housing-and-Planning-System.md — Environmental Constraints — Nutrient Neutrality and Water Availability — L232: **Distributional effects:** Unlocks sites while protecting rivers; bill impacts should be monitored. [^ea-nutrients-2025]
-  - 2.3-Housing-and-Planning-System.md — Environmental Constraints — Nutrient Neutrality and Water Availability — L234: **Risks & constraints:** [risk: delivery][risk: legal] Habitats assessment risk; delivery schedule of water firms. [^ea-nutrients-2025]
 
-- [^hmicfrs-2025]: 3 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — 2.11 — Justice, Policing and Prisons — L14: - Public trust is sensitive to fairness and proportionality; publish arrest/charge/disposal rates and independent reviews. [^hmicfrs-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Crime & Policing Bill / Public Safety Powers — L100: - [impact-proven] [area: policing] [horizon: short] Variability persists between forces; training gaps identified. [^hmicfrs-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L148: - [impact-proven] [area: policing] [horizon: short] Concerns over force proportionality and tactics in some locations; independent scrutiny engaged. [^hmicfrs-2025]
 
-- [^hmpps-inspectorate-2025]: 3 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — 2.11 — Justice, Policing and Prisons — L12: - Probation capacity and quality are the hinge for early release safety and rehabilitation success. [^hmpps-inspectorate-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Prison Capacity & Early Release Framework — L35: **Risks & constraints:** [risk: public-safety][risk: delivery] Probation capacity, data quality for risk assessment, court backlogs feeding inflow. [^hmpps-inspectorate-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Prisons Leadership & Rehabilitation Drive — L59: **Risks & constraints:** [risk: delivery] Staff shortages, estate constraints, coordination with probation and local councils. [^hmpps-inspectorate-2025]
 
-- [^impact-assess-2025]: 3 occurrences
-  - 2.8-Digital-Data-and-AI.md — Data (Use & Access) Act 2025 — Smart Data and Digital Identity — L26: **Costs & funding:** Setup and oversight costs for government and regulators; compliance costs for firms; expected net savings for households/SMEs from easier switching and lower fraud. [^impact-assess-2025]
-  - 2.8-Digital-Data-and-AI.md — Smart Data Schemes — Energy, Telecoms and Finance roll-out — L50: **Costs & funding:** Integration and compliance costs for providers; expected net benefits through reduced search costs, fewer errors, and better credit decisions. [^impact-assess-2025]
-  - 2.8-Digital-Data-and-AI.md — Public-Sector Digital Identity — trusted checks for everyday life — L98: **Costs & funding:** Certification and compliance costs for providers; net savings from reduced document checks and fraud for employers, landlords and users. [^impact-assess-2025]
 
-- [^mod-proc-2025]: 3 occurrences
-  - 2.12-Foreign-Defence-and-Security.md — Procurement and the defence industrial base (buying faster and building at home) — L87: **Intent:** Speed up buying, expand UK production, and anchor key programmes: next‑gen fighter (Global Combat Air Programme), new submarines (AUKUS design), more frigates, drones and air defence. [^mod-proc-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Procurement and the defence industrial base (buying faster and building at home) — L89: **Mechanism(s):** Procurement reform (shorter competitions, spiral upgrades); long‑term partnering with industry; multi‑year contracts; export strategy. [^mod-proc-2025]
-  - 2.12-Foreign-Defence-and-Security.md — Procurement and the defence industrial base (buying faster and building at home) — L93: - [impact-likely] [area: defence] [horizon: medium] Drone and air defence buys to fill immediate gaps. [^mod-proc-2025]
 
-- [^moj-stats-2025]: 3 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — Prison Capacity & Early Release Framework — L27: - [impact-proven] [area: justice] [horizon: short] Thousands released weeks early under strict criteria, easing crowding pressures. [^moj-stats-2025]
-  - 2.3-Housing-and-Planning-System.md — Renters’ Rights Bill (Private Rented Sector reform) — L182: - [unknown] Possession court capacity remains a bottleneck without investment. [^moj-stats-2025]
-  - 2.3-Housing-and-Planning-System.md — Renters’ Rights Bill (Private Rented Sector reform) — L188: **Risks & constraints:** [risk: delivery][risk: legal] Case backlogs; transition for student lets and supported housing. [^moj-stats-2025]
 
-- [^npcc-guidance-2025]: 3 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — 2.11 — Justice, Policing and Prisons — L13: - Protest policing consistency relies on clear national guidance, officer training, and transparent post‑event data. [^npcc-guidance-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Crime & Policing Bill / Public Safety Powers — L99: - [impact-likely] [area: policing] [horizon: medium] Clearer guidance improves consistency of protest policing across forces. [^npcc-guidance-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Protest Policing — Large Demonstrations — L172: - [impact-likely] [area: policing] [horizon: short] Clearer conditions reduce confusion for participants and officers. [^npcc-guidance-2025]
-
-- [^cato-notice-2025]: 2 occurrences
-  - 2.10-Business-Environment-and-Labour-Market.md — Companies House & HMRC Filing Changes (Software‑only, CATO closure, MTD expansion) — L68: **Mechanism(s):** Mandated software filing at Companies House; closure of HMRC’s free Company Accounts and Tax Online (CATO) service from April 2026; “Making Tax Digital” (MTD) for Income Tax extended to more sole traders/landlords in phases (thresholds stepping down to ~£20k by 2028); tougher late‑filing penalties; stronger HMRC enforcement. [^cato-notice-2025] [^hmrc-mtd-2025]
-  - 2.10-Business-Environment-and-Labour-Market.md — Companies House & HMRC Filing Changes (Software‑only, CATO closure, MTD expansion) — L81: **Timeline & milestones:** 2025 guidance; CATO closes 2026‑04; MTD phases in 2026/27/28; penalty regime already tightened. [^cato-notice-2025]
-
-- [^college-policing-2025]: 2 occurrences
-  - 2.11-Justice-Policing-and-Prisons.md — Crime & Policing Bill / Public Safety Powers — L109: **Timeline & milestones:** Bill passage 2025; College of Policing training packages; post‑implementation review at 12 months. [^college-policing-2025]
-  - 2.11-Justice-Policing-and-Prisons.md — Police Workforce Uplift & Productivity — L125: - [unknown] Recruitment/retention in high‑cost areas; training pipeline capacity. [^college-policing-2025]
-
-- [^dcms-ifr-guide-2025]: 2 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L18: **Mechanism(s):** Primary legislation; licensing of clubs; financial sustainability tests; strengthened Owners’ and Directors’ checks; backstop powers to intervene. [^dcms-ifr-guide-2025]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L21: - [impact-proven] [area: sport] [horizon: short] Regulator legally established; transition team and chair appointed. [^dcms-ifr-guide-2025]
-
-- [^dhsc-tobacco-bill-2024]: 2 occurrences
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Tobacco and Vapes (Smoke‑free Generation) — L40: **Intent:** Phase out tobacco sales to the next generation and curb youth vaping, including a ban on disposable vapes. [^dhsc-tobacco-bill-2024]
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Tobacco and Vapes (Smoke‑free Generation) — L55: **Timeline & milestones:** Bill passage this session; disposable ban via regulations within 6–12 months of RA. [^dhsc-tobacco-bill-2024]
 
 - [^dwp-equality-2025]: 2 occurrences
   - 2.5-Welfare-and-Inequality.md — Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced — L36: **Mechanism(s):** Primary legislation; commencement from April 2026 for new health‑related claims; transitional protections for existing claimants with severe or lifelong conditions. [^dwp-equality-2025]
