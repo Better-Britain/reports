@@ -4,50 +4,23 @@
 
 
 
-- [^bea-ops-2025]: 1 occurrence
-  - 2.12-Foreign-Defence-and-Security.md — Cyber defence and national resilience (protecting critical infrastructure) — L145: **Distributional effects:** Benefits households and businesses via fewer outages and faster recovery. [^bea-ops-2025]
 
-- [^bfi-stats-2025]: 1 occurrence
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Creative Industries and Public Service Broadcasting — Support Measures — L233: - [impact-likely] [area: culture] [horizon: medium] Skills and tax reliefs sustain production and jobs. [^bfi-stats-2025]
 
-- [^budget-2024]: 1 occurrence
-  - 2.5-Welfare-and-Inequality.md — Free School Meals — Expansion to All Families on Universal Credit — L114: **Costs & funding:** Additional central funding; partly covered by revenue from VAT on private school fees. [^budget-2024]
 
-- [^cabsec-2025]: 1 occurrence
-  - 2.12-Foreign-Defence-and-Security.md — “5% security envelope” by 2035 (defence and wider national resilience) — L52: **Risks & constraints:** [risk: finance] Affordability over a decade; [risk: delivery] cross‑government coordination. [^cabsec-2025]
 
-- [^chatham-2025]: 1 occurrence
-  - 2.12-Foreign-Defence-and-Security.md — Middle East signalling: recognition of Palestine (conditional) and export controls (context) — L211: - [unknown] Whether recognition proceeds; impact on regional dynamics and bilateral relations. [^chatham-2025]
 
-- [^cma-competition-2025]: 1 occurrence
-  - 2.8-Digital-Data-and-AI.md — Smart Data Schemes — Energy, Telecoms and Finance roll-out — L48: - [unknown] Real savings depend on consumer uptake, app quality, and regulator enforcement of standards. [^cma-competition-2025]
 
-- [^cpag-2025]: 1 occurrence
-  - 2.5-Welfare-and-Inequality.md — Two-Child Limit in Family Benefits (retained) — L23: **Risks & constraints:** [risk: political] Sustained criticism from anti‑poverty groups; [risk: data-gap] need for up‑to‑date cohort impact estimates. [^cpag-2025]
 
-- [^cps-charges-2025]: 1 occurrence
-  - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L147: - [impact-proven] [area: policing] [horizon: short] Hundreds of arrests and charges following coordinated operations. [^cps-charges-2025]
 
-- [^cps-policy-2025]: 1 occurrence
-  - 2.11-Justice-Policing-and-Prisons.md — Victims & Courts Bill — L75: - [impact-likely] [area: justice] [horizon: medium] More consistent victim information and updates across police and CPS. [^cps-policy-2025]
 
-- [^dbt-impact-2025]: 1 occurrence
-  - 2.8-Digital-Data-and-AI.md — Product Safety for the Online Age — new powers and duties — L122: **Costs & funding:** Compliance investment for platforms/sellers; regulator resourcing for investigations; benefits from fewer injuries and recalls. [^dbt-impact-2025]
 
-- [^dcms-ifr-timeline-2025]: 1 occurrence
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L31: **Timeline & milestones:** 2025-06 shadow operation; 2026–27 full licensing in phases. [^dcms-ifr-timeline-2025]
 
-- [^dcms-impact-ifr-2025]: 1 occurrence
-  - 2.13-Culture-Sport-and-Other-Sectors.md — Independent Football Regulator (IFR) — L25: **Costs & funding:** Regulator funded by a levy on clubs; limited Exchequer impact. [^dcms-impact-ifr-2025]
 
-- [^deal-details-2025]: 1 occurrence
-  - 2.7-Migration-Borders-and-Asylum.md — UK–France “one in, one out” Returns Pilot — L91: **Mechanism(s):** Bilateral administrative agreement; fast‑track processing at arrival sites; French reception and UK family‑reunion pathway. [^deal-details-2025]
 
-- [^deal-safeguards-2025]: 1 occurrence
-  - 2.7-Migration-Borders-and-Asylum.md — UK–France “one in, one out” Returns Pilot — L102: **Risks & constraints:** [risk: delivery] Capacity limits (initially dozens per week); [risk: legal] individual challenges; [risk: political] French and UK domestic pressures. [^deal-safeguards-2025]
 
-- [^deal-timeline-2025]: 1 occurrence
-  - 2.7-Migration-Borders-and-Asylum.md — UK–France “one in, one out” Returns Pilot — L104: **Timeline & milestones:** Pilot launch (2025 Q3); review point after first months; decision on expansion with EU partners in 2026. [^deal-timeline-2025]
+
+
+
 
 - [^dfit-rail-2025]: 1 occurrence
   - 2.9-Devolution-Local-Growth-and-Transport.md — Great British Railways (Regional Partnerships & Rail Integration) — L141: **Costs & funding:** Reorganisation costs within DfT/GBR; capital from existing rail budgets; city‑region complements for stations and interchanges. [^dfit-rail-2025]
@@ -216,9 +189,6 @@
 
 - [^refugee-route-brief-2025]: 1 occurrence
   - 2.7-Migration-Borders-and-Asylum.md — UK–France “one in, one out” Returns Pilot — L100: **Distributional effects:** Reduces incentives for dangerous crossings for some; creates a controlled route for people with family in the UK. [^refugee-route-brief-2025]
-
-- [^rrb-expl-memo-2025]: 1 occurrence
-  - 2.3-Housing-and-Planning-System.md — Renters’ Rights Bill (Private Rented Sector reform) — L178: **Mechanism(s):** Abolish Section 21; move to periodic tenancies; national landlord/ property portal and ombudsman; notice and rent rise rules. [^rrb-expl-memo-2025]
 
 - [^rshe-ia-2025]: 1 occurrence
   - 2.6-Education-and-Skills.md — RSHE (Relationships, Sex and Health Education) Statutory Guidance 2025 — L43: **Costs & funding:** Low direct cost; time for staff training and curriculum planning. [^rshe-ia-2025]
