@@ -6,7 +6,6 @@ The homepage and reports site for the Better Britain Bureau reports, starting wi
 
 - Still some missing citations
 - Citations to be properly organised by group.
-- Citations table styling needs improvement.
 
 ## How to run
 

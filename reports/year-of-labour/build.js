@@ -16,6 +16,8 @@ const TEMPLATE_FILE = path.resolve('site/template.html');
 
 // Performance optimization: skip citations in HTML for now, they're available inline and in the markdown
 const SKIP_CITATIONS_IN_HTML = true;
+// Developer toggle: show citation diversity badge per policy in sidebar
+const SHOW_CITATION_DIVERSITY = false;
 
 //TODO: May want to support filtering policies by tag, area of effect, time horizon, etc.
 //			Tried this, but hard to make it easy to use, and the complex tagging limits readability
@@ -206,7 +208,7 @@ function renderCitationsCollapsibleTables(markdown, citationMap) {
 	return out.join('\n');
 }
 
-function extractDocMetaFromSrc(src, filePath) {
+function extractDocMetaFromSrc(src, filePath, citationMap) {
 	const sectionId = path.basename(filePath, '.md');
 	const lines = src.split(/\r?\n/);
 	let docTitle = sectionId;
@@ -241,12 +243,27 @@ function extractDocMetaFromSrc(src, filePath) {
 		return score;
 	}
 
+	function countUniqueCitationSources(sectionText) {
+		// Extract [^id] occurrences in this section and map to URLs; if undefined, treat as unique by id
+		const sourceSet = new Set();
+		sectionText.replace(/\[\^([^\]]+)\]/g, (_m, inner) => {
+			inner.split(';').map((s) => s.trim()).filter(Boolean).forEach((part) => {
+				const id = part.replace(/^\^/, '').trim();
+				const url = citationMap && citationMap.get ? (citationMap.get(id)?.url || '') : '';
+				sourceSet.add(url ? url.trim() : `missing:${id}`);
+			});
+			return _m;
+		});
+		return sourceSet.size;
+	}
+
 	const headings = rawHeadings.map((h, idx) => {
 		const start = h.line + 1;
 		const end = idx + 1 < rawHeadings.length ? rawHeadings[idx + 1].line : lines.length;
 		const section = lines.slice(start, end).join('\n');
 		const score = findOutcomeScore(section);
-		return { title: h.title, id: h.id, score };
+		const diversity = countUniqueCitationSources(section);
+		return { title: h.title, id: h.id, score, diversity };
 	});
 	return { sectionId, docTitle, headings };
 }
@@ -269,7 +286,12 @@ function buildSidebar(navMeta) {
 			const scoreText = hasScore ? (h.score > 0 ? `+${h.score}` : `${h.score}`) : '';
 			const chip = hasScore ? `<span class="score-chip" aria-hidden="true">${escapeHtml(scoreText)}</span>` : '';
 			const targetId = `${h.id}-card`;
-			return `<li class="policy${scoreClass}">${chip}<a href="#${escapeHtml(targetId)}">${escapeHtml(h.title)}</a></li>`;
+			let diversityBadge = '';
+			if (SHOW_CITATION_DIVERSITY && typeof h.diversity === 'number') {
+				const label = h.diversity <= 1 ? 'low' : (h.diversity <= 3 ? 'med' : 'high');
+				diversityBadge = ` <span class="score-help" title="Unique citation sources in this card">(${h.diversity} sources: ${label})</span>`;
+			}
+			return `<li class="policy${scoreClass}">${chip}<a href="#${escapeHtml(targetId)}">${escapeHtml(h.title)}</a>${diversityBadge}</li>`;
 		}).join('');
 		const scopeItem = isPolicy ? `<li><a href="#${escapeHtml(groupAnchorId)}">Scope</a></li>` : '';
 		const hasExpandable = Boolean(scopeItem || policyItems);
@@ -392,7 +414,7 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	// Build nav meta from source markdown (group title + policy headings)
 	const sources = await Promise.all(files.map(async (file) => ({ file, src: await fs.readFile(file, 'utf8') })));
 	const navMeta = sources
-		.map(({ file, src }) => extractDocMetaFromSrc(src, file))
+		.map(({ file, src }) => extractDocMetaFromSrc(src, file, citationMap))
 		.filter(x => x.sectionId !== '5.0-Source-Citations');
 		
 	// Helper to strip numeric prefix like "2.8 — " or "2.8 - "
