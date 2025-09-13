@@ -71,7 +71,7 @@ function transformTags(markdown) {
 		.replace(/\[(status:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
 		.replace(/\[(lead:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
 		.replace(/\[(start:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(unknown|opinion)\]/g, '<span class="tag" data-tag="$1">[$1]</span>');
+		.replace(/\[(unknown|opinion|question)\]/g, '<span class="tag" data-tag="$1">[$1]</span>');
 
 	// Restore inline code and code blocks
 	tmp = tmp.replace(/__CODE_INLINE_(\d+)__/g, (_m, idx) => inlineCodes[Number(idx)]);
