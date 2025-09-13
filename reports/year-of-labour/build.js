@@ -392,8 +392,9 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	// Build nav meta from source markdown (group title + policy headings)
 	const sources = await Promise.all(files.map(async (file) => ({ file, src: await fs.readFile(file, 'utf8') })));
 	const navMeta = sources
-		.map(({ file, src }) => extractDocMetaFromSrc(src, file));
-
+		.map(({ file, src }) => extractDocMetaFromSrc(src, file))
+		.filter(x => x.sectionId !== '5.0-Source-Citations');
+		
 	// Helper to strip numeric prefix like "2.8 — " or "2.8 - "
 	function prettyTitle(title) {
 		return title.replace(/^\s*\d+\.\d+\s*[—-]\s*/u, '').trim();
