@@ -4,10 +4,6 @@ This file lists citation ids referenced in sections 2.1–2.15 that are not defi
 
 
 
-- [^dwp-pip-review-2025]: Further details on welfare reforms published ahead of Second Reading. https://www.gov.uk/government/news/further-details-on-welfare-reforms-published-ahead-of-second-reading
-
-
-- [^ehrc-enforcement-2025]: An interim update on the practical implications of the UK Supreme Court judgment. https://www.equalityhumanrights.com/media-centre/interim-update-practical-implications-uk-supreme-court-judgment
 
 - [^homeoffice-ops-2025]: 4 occurrences
   - 2.11-Justice-Policing-and-Prisons.md — Public Order Response — Summer 2024 Disturbances — L144: **Mechanism(s):** Mutual aid deployments; evidence‑led arrests; use of public order powers; community engagement to calm tensions; post‑incident support. [^homeoffice-ops-2025]
