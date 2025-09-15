@@ -2,7 +2,7 @@
 title: Introducing “A Year of Labour”
 date: 2025-09-15T09:01:00Z
 description: A quick tour of the report’s goals, scoring, and how to read it.
-image: /assets/year-of-labour.jpg
+image: /assets/a-year-of-labour-landing-image.jpg
 ---
 
 We’re publishing the first edition of our report, “A Year of Labour”. It looks at what the Labour government has done since the July 2024 election and what it means for Britain.
