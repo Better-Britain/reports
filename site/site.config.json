@@ -1,7 +1,8 @@
 {
   "brand": {
     "siteTitle": "Better Britain Bureau",
-    "rootHeading": "Broken Britain Briefing"
+    "rootHeading": "Broken Britain Briefing",
+    "intro": "Many people feel Britain is struggling, caught between headlines of crisis and waves of outrage. The Broken Britain Briefing sets out to move beyond that cycle, examining the evidence with clarity and perspective. Our papers assess the country’s real condition and the policies intended to improve it, aiming to ground debate in facts and thoughtful scrutiny rather than despair or division."
   },
   "siteUrl": "https://betterbritain.org.uk",
   "live": false,
@@ -14,32 +15,35 @@
         "builder": "reports/year-of-labour/build.js",
         "output": "docs/year-of-labour.html",
         "pubDate": "2025-15-07T09:00:00Z",
-        "image": "/assets/year-of-labour.jpg"
+        "image": "/assets/year-of-labour.jpg",
+        "description": "Assessing Labour’s first year in office: actions, outcomes, misses.\n\nWe focus on policies and outcomes, not drama and headlines, to learn what the government is doing and what it could do better."
       },
       {
         "id": "osa-explainer",
         "title": "Online Safety Act — Explainer, Timeline & Responsible Actors",
         "builder": "reports/osa-explainer/build.js",
         "output": "docs/osa-explainer.html",
-        "disabled": false,
-        "placeholder": true
+        "disabled": true,
+        "placeholder": true,
+        "description": "What the OSA actually does, who made it, how platforms are supposed to protect kids, and how some are already pushing that responsibility onto users."
       },
       {
         "id": "gaming-and-radicalisation",
         "title": "Gaming and Radicalisation, from the Inside",
         "builder": "reports/gaming-and-radicalisation/build.js",
         "output": "docs/gaming-and-radicalisation.html",
-        "disabled": false,
+        "disabled": true,
         "placeholder": true,
-        "description": "How gaming platforms fuel radicalisation; gaps in moderation; recommendations."
+        "description": "How gaming platforms fuel radicalisation; moderation gaps and potential fixes.\n\nA report on how and why gamers have long been an appealing target for agitators."
       },
       {
         "id": "opening-all-the-windows-prison-reform",
         "title": "Opening All The Windows on Prison Reform",
         "builder": "reports/opening-all-the-windows-prison-reform/build.js",
         "output": "docs/opening-all-the-windows-prison-reform.html",
-        "disabled": false,
-        "placeholder": true
+        "disabled": true,
+        "placeholder": true,
+        "description": "An exploration of public opinion on prisons reform, and the costs and benefits of the ECHR (and other regulations) for prisoners and citizens."
       }
     ],
     "local": [
@@ -48,18 +52,20 @@
         "title": "Manchester Fly Tipping Causes",
         "builder": "reports/manchester-fly-tipping/build.js",
         "output": "docs/manchester-fly-tipping.html",
-        "disabled": false,
+        "disabled": true,
         "placeholder": true,
-        "image": "/assets/og/manchester-fly-tipping.jpg"
+        "image": "/assets/og/manchester-fly-tipping.jpg",
+        "description": "Why dumping happens, why it's become such a problem, and the difference between simply punishing hard to catch offenders and addressing the root causes."
       },
       {
         "id": "manchester-gp-practices-reviews",
         "title": "Manchester GP Practices — Review Scores",
         "builder": "reports/manchester-gp-practices-reviews/build.js",
         "output": "docs/manchester-gp-practices-reviews.html",
-        "disabled": false,
+        "disabled": true,
         "placeholder": true,
-        "image": "/assets/og/manchester-gp-practices.jpg"
+        "image": "/assets/og/manchester-gp-practices.jpg",
+        "description": "Patient feedback mapped against outcomes and deprivation. Looking at why so many practices are failing their patients, but don't seem able to realise it."
       }
     ]
   },

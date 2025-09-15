@@ -57,7 +57,7 @@ async function ensureTemplate() {
 		await fs.access(TEMPLATE_FILE);
 	} catch {
 		await fs.mkdir(path.dirname(TEMPLATE_FILE), { recursive: true });
-		const minimal = `<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Site</title>\n<link rel="stylesheet" href="assets/styles.css">\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built from markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
+		const minimal = `<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Site</title>\n<link rel="stylesheet" href="assets/styles.css">\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built with markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
 		await fs.writeFile(TEMPLATE_FILE, minimal, 'utf8');
 	}
 }
@@ -159,7 +159,7 @@ async function compilePages(dir, outDir, config) {
 			image: fm.data.image,
 			type: 'article'
 		});
-		let html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+		let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-generic'), meta);
 		html = applyBasePath(html, config.basePath);
 		await fs.writeFile(outPath, html, 'utf8');
 	}
@@ -194,7 +194,7 @@ async function writePostsIndex(config, outDir) {
 		url: absoluteUrl(config.siteUrl, pagePath),
 		type: 'website'
 	});
-	let html = injectHeadMeta(template.replace('{{content}}', htmlBody), meta);
+	let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-posts-index'), meta);
 	html = applyBasePath(html, config.basePath);
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
 }
@@ -234,36 +234,41 @@ async function buildHomepage(config) {
 		.replace(/"/g, '&quot;')
 		.replace(/'/g, '&#39;');
 
-	const list = (arr) => arr
-		.filter(r => !r.disabled)
-		.map(r => `<li><a href="${path.basename(r.output)}">${escapeHtml(r.title)}${r.placeholder ? ' (placeholder)' : ''}</a></li>`)
-		.join('\n');
+	const list = (arr) => {
+		const items = arr.map(r => {
+			const title = escapeHtml(r.title);
+			const href = path.basename(r.output);
+			const placeholder = r.placeholder ? ' placeholder' : '';
+			const disabled = r.disabled ? ' is-disabled' : '';
+			return `\n<div class="report-card${placeholder}${disabled}">\n  <a href="${href}">\n    <div class="card-title">${title}</div>\n    ${r.description ? `<div class=\"card-meta\">${escapeHtml(r.description)}</div>` : ''}\n  </a>\n</div>`;
+		});
+		return items.join('');
+	};
 
-	const intro = brand.intro || `After decades of neglect, many people feel Britain is broken. We often slip into cycles of outrage and reaction, and some fear we have moved from Broken Britain to an unfixable Britain. We want to test that claim against evidence and scrutiny. The Broken Britain Briefing is a collection of papers examining the real state of the country and what is being done to fix it, aiming to reduce radical responses with cool, calm, structured and clear reports on the problems facing Britain today.`;
+	const intro = brand.intro || `Studying Britain's problems and showing what could/should change.`;
 
 	const content = `
-<section class="home-hero" style="text-align:center;margin:1rem 0 2rem 0">
-${logoExists ? `\t<img src="${logoRel}" alt="Better Britain bee logo" width="320" height="320" style="max-width:min(60vw,360px);width:320px;height:auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.15));margin:0 auto .5rem auto;display:block" />\n` : ''}
-	<h1 style="margin:.5rem 0 0 0">${escapeHtml(brand.siteTitle)}</h1>
-	<p class="subtitle" style="margin:.15rem 0 0 0;color:#6b7280;font-weight:600">${escapeHtml(brand.rootHeading)}</p>
-</section>
-
-<section class="home-intro" style="max-width:80ch;margin:0 auto 1.5rem auto">
-	<p>${escapeHtml(intro)}</p>
+<section class="home-hero">
+${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"Better Britain bee logo\" width=\"360\" height=\"360\" /></div>\n` : ''}
+  <div class="home-hero-copy">
+    <h1 class="title brand-display">${escapeHtml(brand.siteTitle)}</h1>
+    <p class="subtitle">${escapeHtml(brand.rootHeading)}</p>
+    <p class="lead">${escapeHtml(intro)}</p>
+  </div>
 </section>
 
 <section aria-labelledby="national-reports">
 	<h3 id="national-reports">National Reports</h3>
-	<ul>
-		${list(national) || '<li>Coming soon.</li>'}
-	</ul>
+	<div class="reports-grid">
+		${list(national) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
+	</div>
 </section>
 
 <section aria-labelledby="local-reports">
 	<h3 id="local-reports">Local Reports</h3>
-	<ul>
-		${list(local) || '<li>Coming soon.</li>'}
-	</ul>
+	<div class="reports-grid">
+		${list(local) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
+	</div>
 </section>
 `;
 
@@ -276,7 +281,7 @@ ${logoExists ? `\t<img src="${logoRel}" alt="Better Britain bee logo" width="320
 		image: brand.image || (logoExists ? logoRel : undefined),
 		type: 'website'
 	});
-	let html = injectHeadMeta(template.replace('{{content}}', content), meta);
+	let html = injectHeadMeta(template.replace('{{content}}', content).replace('{{bodyClass}}', 'page-home'), meta);
 	html = applyBasePath(html, config.basePath);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 	await fs.writeFile(path.join(OUTPUT_DIR, 'index.html'), html, 'utf8');
@@ -303,7 +308,7 @@ async function build() {
 					image: rpt.image || config.brand?.image,
 					type: 'article'
 				});
-				pageHtml = injectHeadMeta(pageHtml, meta);
+				pageHtml = injectHeadMeta(pageHtml.replace('{{bodyClass}}', 'page-report'), meta);
 				await fs.writeFile(outPath, pageHtml, 'utf8');
 			} catch {}
 		}
