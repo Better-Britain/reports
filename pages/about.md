@@ -37,6 +37,6 @@ I've been somewhat on the left and the right over the years, but don't think a s
 
 When outcomes are bad, it’s _usually_ the incentives and outcomes of bad systems at fault, rather than individuals. The aim is simple: cut through noise, learn about how new tools can help us, de‑radicalise with a focus on identifying the truth, and show where change can happen by sifting the noise to find the nuggets of data that can reasonably inform decisions, big and small.
 
-I welcome feedback and contributors, either on the [Better Britain github repo](https://github.com/Better-Britain) or via email to [admin@betterbritain.org.uk](admin@betterbritain.org.uk).
+I welcome feedback and contributors, either on the [Better Britain github repo](https://github.com/Better-Britain) or via email to [admin@betterbritain.org.uk](mailto:admin@betterbritain.org.uk).
 
 - [Legal &amp; Disclaimer](./legal.md)

@@ -219,15 +219,61 @@ async function buildHomepage(config) {
 	const national = config.reports?.national || [];
 	const local = config.reports?.local || [];
 	const brand = config.brand || { siteTitle: 'Better Britain Bureau', rootHeading: 'Broken Britain Briefing' };
-	const list = (arr) => arr.filter(r => !r.disabled).map(r => `<li><a href="${path.basename(r.output)}">${r.title}${r.placeholder ? ' (placeholder)' : ''}</a></li>`).join('\n');
-	const content = `\n<h1>${brand.siteTitle}</h1>\n<h2>${brand.rootHeading}</h2>\n<h3>National Reports</h3>\n<ul>${list(national)}</ul>\n<h3>Local Reports</h3>\n<ul>${list(local)}</ul>\n`;
+
+	// Detect optional large logo asset
+	const logoRel = '/assets/better-britain-bee.png';
+	const logoAbs = path.resolve('site' + logoRel);
+	let logoExists = false;
+	try { await fs.access(logoAbs); logoExists = true; } catch {}
+
+	// Simple HTML escaper for dynamic text
+	const escapeHtml = (s) => String(s ?? '')
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+
+	const list = (arr) => arr
+		.filter(r => !r.disabled)
+		.map(r => `<li><a href="${path.basename(r.output)}">${escapeHtml(r.title)}${r.placeholder ? ' (placeholder)' : ''}</a></li>`)
+		.join('\n');
+
+	const intro = brand.intro || `After decades of neglect, many people feel Britain is broken. We often slip into cycles of outrage and reaction, and some fear we have moved from Broken Britain to an unfixable Britain. We want to test that claim against evidence and scrutiny. The Broken Britain Briefing is a collection of papers examining the real state of the country and what is being done to fix it, aiming to reduce radical responses with cool, calm, structured and clear reports on the problems facing Britain today.`;
+
+	const content = `
+<section class="home-hero" style="text-align:center;margin:1rem 0 2rem 0">
+${logoExists ? `\t<img src="${logoRel}" alt="Better Britain bee logo" width="320" height="320" style="max-width:min(60vw,360px);width:320px;height:auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.15));margin:0 auto .5rem auto;display:block" />\n` : ''}
+	<h1 style="margin:.5rem 0 0 0">${escapeHtml(brand.siteTitle)}</h1>
+	<p class="subtitle" style="margin:.15rem 0 0 0;color:#6b7280;font-weight:600">${escapeHtml(brand.rootHeading)}</p>
+</section>
+
+<section class="home-intro" style="max-width:80ch;margin:0 auto 1.5rem auto">
+	<p>${escapeHtml(intro)}</p>
+</section>
+
+<section aria-labelledby="national-reports">
+	<h3 id="national-reports">National Reports</h3>
+	<ul>
+		${list(national) || '<li>Coming soon.</li>'}
+	</ul>
+</section>
+
+<section aria-labelledby="local-reports">
+	<h3 id="local-reports">Local Reports</h3>
+	<ul>
+		${list(local) || '<li>Coming soon.</li>'}
+	</ul>
+</section>
+`;
+
 	const template = await fs.readFile(TEMPLATE_FILE, 'utf8');
 	const pagePath = '/index.html';
 	const meta = buildMetaTags({
 		title: brand.siteTitle,
 		description: brand.rootHeading,
 		url: absoluteUrl(config.siteUrl, pagePath),
-		image: brand.image || undefined,
+		image: brand.image || (logoExists ? logoRel : undefined),
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', content), meta);
