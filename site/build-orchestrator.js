@@ -16,6 +16,7 @@ import { absoluteUrl, buildMetaTags, injectHeadMeta } from './build-seo.js';
 const OUTPUT_DIR = path.resolve('docs');
 const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
+const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 
 async function copyDirRecursive(srcDir, destDir) {
 	await fs.mkdir(destDir, { recursive: true });
@@ -157,7 +158,7 @@ async function compilePages(dir, outDir, config) {
 			title: fm.data.title,
 			description: fm.data.description,
 			url: absoluteUrl(config.siteUrl, pagePath),
-			image: fm.data.image ? absoluteUrl(config.siteUrl, fm.data.image) : undefined,
+			image: absoluteUrl(config.siteUrl, fm.data.image ? fm.data.image : DEFAULT_OG_IMAGE),
 			siteName: config.brand?.siteTitle,
 			logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
 			type: 'article'
@@ -197,6 +198,7 @@ async function writePostsIndex(config, outDir) {
 		url: absoluteUrl(config.siteUrl, pagePath),
 		siteName: config.brand?.siteTitle,
 		logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
+		image: absoluteUrl(config.siteUrl, DEFAULT_OG_IMAGE),
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-posts-index'), meta);
@@ -292,7 +294,7 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 		title: brand.siteTitle,
 		description: brand.rootHeading,
 		url: absoluteUrl(config.siteUrl, pagePath),
-		image: brand.image ? absoluteUrl(config.siteUrl, brand.image) : (logoExists ? absoluteUrl(config.siteUrl, logoRel) : undefined),
+		image: absoluteUrl(config.siteUrl, brand.image ? brand.image : DEFAULT_OG_IMAGE),
 		siteName: brand.siteTitle,
 		logo: logoExists ? absoluteUrl(config.siteUrl, logoRel) : undefined,
 		type: 'website'
@@ -322,7 +324,7 @@ async function build() {
 					title: rpt.title,
 					description: rpt.description || config.brand?.rootHeading,
 					url: absoluteUrl(config.siteUrl, pagePath),
-					image: rpt.image ? absoluteUrl(config.siteUrl, rpt.image) : (config.brand?.image ? absoluteUrl(config.siteUrl, config.brand.image) : undefined),
+					image: absoluteUrl(config.siteUrl, rpt.image ? rpt.image : (config.brand?.image ? config.brand.image : DEFAULT_OG_IMAGE)),
 					siteName: config.brand?.siteTitle,
 					logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
 					type: 'article'

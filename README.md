@@ -1,6 +1,6 @@
 # Better Britain Bureau — Project overview
 
-This repo powers the Better Britain Bureau site and the Broken Britain Briefing. Content is mostly Markdown rendered with `markdown-it`, coordinated by a small site orchestrator. GitHub Actions build and deploy to GitHub Pages.
+This repo powers the [Better Britain Bureau site](https://betterbritain.org.uk/) and the Broken Britain Briefing starting with the [Year of Labour Report](https://betterbritain.org.uk/year-of-labour.html). Content is mostly Markdown rendered with `markdown-it`, coordinated by a small site orchestrator. GitHub Actions build and deploy to GitHub Pages.
 
 ## Run locally
 
