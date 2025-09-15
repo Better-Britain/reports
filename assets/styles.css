@@ -11,9 +11,13 @@
 /* Base layout */
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f4ece4 0, #f4ece4 180px, #ffffff 260px);
+  background: linear-gradient(180deg, #f4ece4 0, #f4ece4 180px, #ffffff 210px);
   color: #111;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 header.site-header {
@@ -24,7 +28,23 @@ header.site-header {
   padding: .5rem 1rem;
   z-index: 2;
 }
+header.site-header {
+  /* Oxford Blue */
+  background: linear-gradient(180deg, #002147 0%, #0d1b2a 100%);
+  color: #f4ece4;
 
+  /* Brick */
+  background: linear-gradient(180deg, #7f1d1d 0%, #b91c1c 100%);
+  color: #f4ece4;
+
+  /* Racing Green */
+  background: linear-gradient(180deg, #0b3d2e 0%, #145c3f 100%);
+  color: #f4ece4;
+
+  /* Deep Navy Blue */
+  background: linear-gradient(180deg, #2b3a67 0%, #1b2432 100%);
+  color: #f4ece4;
+}
 header .nav {
   display: flex;
   gap: 1rem;
@@ -42,6 +62,7 @@ main {
   max-width: unset;
   margin: 2rem 0;
   padding: 0 1rem;
+  flex: 1 0 auto;
 }
 
 section {
@@ -519,4 +540,20 @@ header.site-header a:visited,
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
+}
+
+header.site-header a:visited,
+header.site-header a {
+  /* border-bottom: none; */
+  color: #f6eee2;
+}
+header.site-header a:hover {
+  color: #fff9ea;
+  border-bottom-color: rgba(10,102,194,.35);
+  background-color: rgba(10,102,194,.08);
+}
+header.site-header a:focus-visible {
+  outline: 2px solid #7db9ff;
+  outline-offset: 2px;
+  text-decoration: none;
 }

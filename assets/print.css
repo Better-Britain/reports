@@ -5,6 +5,7 @@ body {
   color: #000;
   background: #fff !important;
   font: 12pt/1.4 Georgia, "Times New Roman", Times, serif;
+  display: block !important; /* override flex layout for print */
 }
 
 /* Hide interactive chrome */
