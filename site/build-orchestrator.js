@@ -185,8 +185,8 @@ async function writePostsIndex(config, outDir) {
 		}
 	} catch {}
 	items.sort((a, b) => b.date - a.date);
-	const listHtml = items.map(it => `<li><a href="${it.link}">${it.title}</a>${it.dateStr ? ` <span class="post-date">(${it.dateStr})</span>` : ''}</li>`).join('\n');
-	const htmlBody = `<h1>Posts</h1><ul>${listHtml || '<li>No posts yet.</li>'}</ul>`;
+	const listHtml = items.map(it => `<li><a href="${it.link}">${it.title}</a>${it.dateStr ? ` <span class=\"post-date\">(${it.dateStr})</span>` : ''}</li>`).join('\n');
+	const htmlBody = `<h1>Posts</h1><p class=\"muted\">Our posts will announce reports as they go live, and occasionally cover simpler topics or calls for contributors. Subscribe or follow to keep up to date.</p><ul>${listHtml || '<li>No posts yet.</li>'}</ul><section class=\"subscribe\" aria-labelledby=\"stay-up-to-date\"><h3 id=\"stay-up-to-date\">Stay up to date</h3><p><a class=\"rss-link\" href=\"/feed.xml\"><img class=\"rss-icon\" src=\"/assets/rss.png\" alt=\"RSS\">Subscribe via RSS</a> &nbsp;·&nbsp; <a href=\"https://bsky.app/profile/betterbritain.bsky.social\" target=\"_blank\" rel=\"noopener\">Better Britain on Bluesky</a></p></section>`;
 	const pagePath = '/' + path.relative(OUTPUT_DIR, path.join(outDir, 'index.html')).replace(/\\/g, '/');
 	const meta = buildMetaTags({
 		title: 'Posts',
@@ -245,7 +245,7 @@ async function buildHomepage(config) {
 		return items.join('');
 	};
 
-	const intro = brand.intro || `Studying Britain's problems and showing what could/should change.`;
+	const intro = brand.intro || `Many people feel Britain is struggling, caught between headlines of crisis and waves of outrage. The Broken Britain Briefing sets out to move beyond that cycle, examining the evidence with clarity and perspective. Our papers assess the country’s real condition and the policies intended to improve it, aiming to ground debate in facts and thoughtful scrutiny rather than despair or division.`;
 
 	const content = `
 <section class="home-hero">
@@ -269,6 +269,15 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 	<div class="reports-grid">
 		${list(local) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
 	</div>
+</section>
+
+<section class="subscribe" aria-labelledby="stay-up-to-date">
+	<h3 id="stay-up-to-date">Stay up to date</h3>
+	<p class="muted">Our reports and posts will be added to our RSS feed as they go live, and occasionally cover simpler topics or calls for contributors. Subscribe or follow to keep up to date.</p>
+	<p>
+		<a class="rss-link" href="/feed.xml"><img class="rss-icon" src="/assets/rss.png" alt="RSS">Subscribe via RSS</a>
+		 &nbsp;·&nbsp; <a href="https://bsky.app/profile/betterbritain.bsky.social" target="_blank" rel="noopener">Better Britain on Bluesky</a>
+	</p>
 </section>
 `;
 

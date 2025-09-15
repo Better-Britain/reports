@@ -5,7 +5,7 @@
     "intro": "Many people feel Britain is struggling, caught between headlines of crisis and waves of outrage. The Broken Britain Briefing sets out to move beyond that cycle, examining the evidence with clarity and perspective. Our papers assess the country’s real condition and the policies intended to improve it, aiming to ground debate in facts and thoughtful scrutiny rather than despair or division."
   },
   "siteUrl": "https://betterbritain.org.uk",
-  "live": false,
+  "live": true,
   "comingSoonPath": "site/assets/coming-soon/index.html",
   "reports": {
     "national": [
@@ -14,7 +14,7 @@
         "title": "A Year of Labour",
         "builder": "reports/year-of-labour/build.js",
         "output": "docs/year-of-labour.html",
-        "pubDate": "2025-15-07T09:00:00Z",
+        "pubDate": "2025-09-15T09:00:00Z",
         "image": "/assets/year-of-labour.jpg",
         "description": "Assessing Labour’s first year in office: actions, outcomes, misses.\n\nWe focus on policies and outcomes, not drama and headlines, to learn what the government is doing and what it could do better."
       },
