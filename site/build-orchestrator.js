@@ -6,6 +6,7 @@
 
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import MarkdownIt from 'markdown-it';
 import mdAnchor from 'markdown-it-anchor';
@@ -308,7 +309,8 @@ async function build() {
 	const config = await loadConfig();
 	const allReports = [...(config.reports?.national || []), ...(config.reports?.local || [])].filter(r => !r.disabled);
 	for (const rpt of allReports) {
-		const mod = await import(path.resolve(rpt.builder));
+		const builderPath = path.resolve(rpt.builder);
+		const mod = await import('file://' + builderPath.replace(/\\/g, '/'));
 		if (typeof mod.buildReport === 'function') {
 			await mod.buildReport(path.resolve(rpt.output));
 			// Inject SEO tags into the built report page
