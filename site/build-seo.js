@@ -7,14 +7,17 @@ export function absoluteUrl(siteUrl, pagePath) {
   return pagePath.startsWith('http') ? pagePath : `${base}${pagePath.startsWith('/') ? '' : '/'}${pagePath}`;
 }
 
-export function buildMetaTags({ title, description, url, image, type = 'article' }) {
+export function buildMetaTags({ title, description, url, image, type = 'article', siteName, logo }) {
   const tags = [];
   if (url) tags.push(`<link rel="canonical" href="${escapeHtml(url)}">`);
+  if (description) tags.push(`<meta name="description" content="${escapeHtml(description)}">`);
   if (title) tags.push(`<meta property="og:title" content="${escapeHtml(title)}">`);
   if (description) tags.push(`<meta property="og:description" content="${escapeHtml(description)}">`);
   if (url) tags.push(`<meta property="og:url" content="${escapeHtml(url)}">`);
   tags.push(`<meta property="og:type" content="${escapeHtml(type)}">`);
+  if (siteName) tags.push(`<meta property="og:site_name" content="${escapeHtml(siteName)}">`);
   if (image) tags.push(`<meta property="og:image" content="${escapeHtml(image)}">`);
+  if (logo) tags.push(`<meta property="og:logo" content="${escapeHtml(logo)}">`);
   tags.push(`<meta name="twitter:card" content="summary_large_image">`);
   if (title) tags.push(`<meta name="twitter:title" content="${escapeHtml(title)}">`);
   if (description) tags.push(`<meta name="twitter:description" content="${escapeHtml(description)}">`);

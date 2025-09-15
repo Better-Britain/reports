@@ -156,7 +156,9 @@ async function compilePages(dir, outDir, config) {
 			title: fm.data.title,
 			description: fm.data.description,
 			url: absoluteUrl(config.siteUrl, pagePath),
-			image: fm.data.image,
+			image: fm.data.image ? absoluteUrl(config.siteUrl, fm.data.image) : undefined,
+			siteName: config.brand?.siteTitle,
+			logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
 			type: 'article'
 		});
 		let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-generic'), meta);
@@ -192,6 +194,8 @@ async function writePostsIndex(config, outDir) {
 		title: 'Posts',
 		description: 'Latest posts from Better Britain',
 		url: absoluteUrl(config.siteUrl, pagePath),
+		siteName: config.brand?.siteTitle,
+		logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-posts-index'), meta);
@@ -287,7 +291,9 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 		title: brand.siteTitle,
 		description: brand.rootHeading,
 		url: absoluteUrl(config.siteUrl, pagePath),
-		image: brand.image || (logoExists ? logoRel : undefined),
+		image: brand.image ? absoluteUrl(config.siteUrl, brand.image) : (logoExists ? absoluteUrl(config.siteUrl, logoRel) : undefined),
+		siteName: brand.siteTitle,
+		logo: logoExists ? absoluteUrl(config.siteUrl, logoRel) : undefined,
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', content).replace('{{bodyClass}}', 'page-home'), meta);
@@ -314,7 +320,9 @@ async function build() {
 					title: rpt.title,
 					description: rpt.description || config.brand?.rootHeading,
 					url: absoluteUrl(config.siteUrl, pagePath),
-					image: rpt.image || config.brand?.image,
+					image: rpt.image ? absoluteUrl(config.siteUrl, rpt.image) : (config.brand?.image ? absoluteUrl(config.siteUrl, config.brand.image) : undefined),
+					siteName: config.brand?.siteTitle,
+					logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
 					type: 'article'
 				});
 				pageHtml = injectHeadMeta(pageHtml.replace('{{bodyClass}}', 'page-report'), meta);
