@@ -420,8 +420,7 @@ async function readAndRender(filePath, citationMap) {
 	}
 
 	const sectionId = path.basename(filePath, '.md');
-	const defaultOpen = sectionId !== '1.0-Introduction';
-	return `<section id="${sectionId}">\n<details class="section-collapsible" data-section-id="${sectionId}"${defaultOpen ? ' open' : ''}>\n\t<summary class="section-summary"><h1 id="${docSlug}">${escapeHtml(docTitle)}</h1></summary>\n\t<div class="section-body">\n${html}\n\t</div>\n</details>\n</section>`;
+	return `<section id="${sectionId}">\n<details class="section-collapsible" data-section-id="${sectionId}" open>\n\t<summary class="section-summary"><h1 id="${docSlug}">${escapeHtml(docTitle)}</h1></summary>\n\t<div class="section-body">\n${html}\n\t</div>\n</details>\n</section>`;
 }
 
 export async function buildReport(outFile = path.resolve('docs/year-of-labour.html')) {

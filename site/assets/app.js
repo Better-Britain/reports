@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Lazy mode: collapse sections by default except Scores Summary and Conclusions
   const params = new URLSearchParams(location.search);
-  const isLazyMode = params.has('lazymode');
+  const isLazyMode = params.has('lazymode') || params.has('shortmode');
   const keepOpenSectionIds = new Set(['2.0-Conclusions']);
   if (isLazyMode) {
     const allSections = document.querySelectorAll('details.section-collapsible');
@@ -173,6 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
         d.removeAttribute('open');
       }
     });
+    // Also collapse the sidebar menu on mobile widths by default
+    const sb = document.getElementById('sidebar');
+    if (sb) {
+      const mq = window.matchMedia('(max-width: 900px)');
+      if (mq.matches) {
+        sb.setAttribute('aria-hidden', 'true');
+        const stateEl = document.getElementById('sidebar-state');
+        if (stateEl) stateEl.textContent = 'Menu collapsed';
+        const tgl = sb.querySelector('.sidebar-toggle');
+        if (tgl) tgl.setAttribute('aria-expanded', 'false');
+      }
+    }
   }
 
   // Expand target section if hash points inside a collapsed one
