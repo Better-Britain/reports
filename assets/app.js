@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.getElementById(id);
       if (!target) return;
       event.preventDefault();
+      // Ensure any ancestor collapsible section is expanded before scrolling
+      const details = target.closest('details.section-collapsible');
+      if (details && !details.hasAttribute('open')) {
+        details.setAttribute('open', '');
+      }
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
@@ -155,6 +160,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Lazy mode: collapse sections by default except Scores Summary and Conclusions
+  const params = new URLSearchParams(location.search);
+  const isLazyMode = params.has('lazymode');
+  const keepOpenSectionIds = new Set(['2.0-Conclusions']);
+  if (isLazyMode) {
+    const allSections = document.querySelectorAll('details.section-collapsible');
+    allSections.forEach((d) => {
+      const sectionId = d.getAttribute('data-section-id') || '';
+      if (!keepOpenSectionIds.has(sectionId)) {
+        d.removeAttribute('open');
+      }
+    });
+  }
+
+  // Expand target section if hash points inside a collapsed one
+  const expandHashTarget = () => {
+    const hash = location.hash.replace(/^#/, '');
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (!target) return;
+    const details = target.closest('details.section-collapsible');
+    if (details && !details.hasAttribute('open')) {
+      details.setAttribute('open', '');
+      // After opening, ensure the target is in view
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  // On initial load
+  expandHashTarget();
+  // On manual hash changes (e.g., back/forward)
+  window.addEventListener('hashchange', expandHashTarget);
 
   // Optional: RSS helper popover
   document.body.addEventListener('click', (event) => {
