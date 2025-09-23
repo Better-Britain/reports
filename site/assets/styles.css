@@ -225,6 +225,13 @@ details[class^="citations-level-"] > summary {
   font-weight: 600;
 }
 
+summary.section-summary > h1 {
+  display: inline-block;
+  margin: 0;
+  margin-left: 1rem;
+  padding: 0;
+}
+
 details .details-body {
   padding: .5rem 0 0 0;
 }

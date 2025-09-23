@@ -378,26 +378,50 @@ async function readAndRender(filePath, citationMap) {
 	const docTitle = h1m ? h1m[1].trim() : path.basename(filePath, '.md');
 	src = transformCitationsInline(src, citationMap, docTitle);
 	let html = md.render(src);
-	// Group policies by splitting from the second H1 onward using <hr> separators
-	const h1Matches = Array.from(html.matchAll(/<h1\b[^>]*>/g)).map((m) => m.index || 0);
-	if (h1Matches.length >= 2) {
-		const secondH1 = h1Matches[1];
-		const head = html.slice(0, secondH1);
-		const body = html.slice(secondH1);
-		const parts = body.split(/<hr\b[^>]*>/i);
-		const wrapped = parts.map((part) => {
+
+	// Build collapsible wrapper around the top-level section (first H1 only)
+	const docSlug = slugify(docTitle);
+	const h1Indices = Array.from(html.matchAll(/<h1\b[^>]*>/g)).map((m) => m.index || 0);
+	let preambleHtml = '';
+	let introHtml = '';
+	let afterTitleHtml = '';
+	if (h1Indices.length >= 1) {
+		const firstH1Start = h1Indices[0];
+		const firstH1End = html.indexOf('</h1>', firstH1Start);
+		if (firstH1End !== -1) {
+			const afterFirstH1 = firstH1End + 5;
+			preambleHtml = html.slice(0, firstH1Start);
+			if (h1Indices.length >= 2) {
+				const secondH1Start = h1Indices[1];
+				introHtml = html.slice(afterFirstH1, secondH1Start);
+				afterTitleHtml = html.slice(secondH1Start);
+			} else {
+				introHtml = html.slice(afterFirstH1);
+				afterTitleHtml = '';
+			}
+		}
+	}
+
+	// Group policies within afterTitleHtml by splitting from the second H1 onward using <hr> separators
+	if (afterTitleHtml) {
+		const parts = afterTitleHtml.split(/<hr\b[^>]*>/i);
+		const wrappedPolicies = parts.map((part) => {
 			if (!/<h1\b[^>]*>/.test(part)) return part;
-			// Extract the H1 id to build a stable container anchor
 			const idMatch = part.match(/<h1[^>]*\bid\s*=\s*"([^"]+)"/i);
 			const h1Id = idMatch ? idMatch[1] : '';
 			const containerId = h1Id ? `${h1Id}-card` : '';
 			const idAttr = containerId ? ` id="${containerId}"` : '';
 			return `<div class="policy-card"${idAttr}>${part}</div>`;
 		}).join('');
-		html = head + wrapped;
+			html = preambleHtml + introHtml + wrappedPolicies;
+	} else {
+		// No subsequent H1s; combine any preamble and intro/body without the doc title
+		html = (preambleHtml + introHtml) || html;
 	}
+
 	const sectionId = path.basename(filePath, '.md');
-	return `<section id="${sectionId}">\n${html}\n</section>`;
+	const defaultOpen = sectionId !== '1.0-Introduction';
+	return `<section id="${sectionId}">\n<details class="section-collapsible" data-section-id="${sectionId}"${defaultOpen ? ' open' : ''}>\n\t<summary class="section-summary"><h1 id="${docSlug}">${escapeHtml(docTitle)}</h1></summary>\n\t<div class="section-body">\n${html}\n\t</div>\n</details>\n</section>`;
 }
 
 export async function buildReport(outFile = path.resolve('docs/year-of-labour.html')) {
