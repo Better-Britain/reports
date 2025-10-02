@@ -11,6 +11,11 @@ See Ofcom’s phased [roadmap](https://www.ofcom.org.uk/online-safety/illegal-an
 </details>
 
 <details>
+<summary><strong>What are the penalty caps and disruption tools, exactly?</strong></summary>
+Ofcom can fine up to <strong>£18m or 10% of qualifying worldwide revenue</strong> (whichever is greater) and, in severe cases, seek <strong>court‑ordered business disruption</strong> measures (e.g., payment/ads withdrawal or ISP access restrictions). See Ofcom’s enforcement guidance and the government explainer: [Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925), [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
+</details>
+
+<details>
 <summary><strong>How does a case usually progress?</strong></summary>
 Informal engagement → information notices/audits → improvement steps → penalties if refusal or repeated failure. Most cases end with fixes, not fines, but credible penalties focus minds.
 </details>
@@ -19,6 +24,8 @@ Informal engagement → information notices/audits → improvement steps → pen
 <summary><strong>Early wins vs misfires to track</strong></summary>
 - Wins: faster removal of clearly illegal material; safer teen defaults; multiple age‑assurance routes shipped by large platforms.
 - Misfires: one‑route gates (e.g., credit‑card only), poor appeals, slow deletion practices, or policies that shift the burden onto users.
+
+Ofcom provides periodic bulletins and statements tracking progress—use these as primary sources when citing trends and outcomes (see Ofcom’s [online safety industry bulletins](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/online-safety-industry-bulletins/online-safety-industry-bulletin-september-2025)).
 </details>
 
 <details>

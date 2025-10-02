@@ -20,13 +20,15 @@ Self‑declaration (“I’m over 18”) does <em>not</em> meet the standard. Se
 Short answer: no. Estimation infers an age band from an image and should delete the image immediately; it does not match you to a known identity.
 
 Where confidence is low (e.g., near 18; poor lighting; atypical features), services should offer stronger fallbacks such as ID+liveness or bank‑sourced age. That’s how platforms meet Ofcom’s robustness and fairness aims without hoarding images (see Ofcom’s [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
+
+Accuracy varies by age band and conditions. Independent assessments and regulator materials indicate high accuracy for clear under‑/over‑18 distinctions, with lower confidence near thresholds—hence the need for buffers and fallbacks. (See Ofcom’s design expectations in the codes above.)
 </details>
 
 <details>
 <summary><strong>How good is it, and for whom?</strong></summary>
 Short answer: good enough for an 18+ gate when used with sensible buffers and fallbacks; performance varies by age band and conditions.
 
-Good practice (reflected in Ofcom’s intent) is to publish error behaviour around threshold ages, be conservative near 18, and <em>always</em> provide a non‑face alternative (ID, PASS, open banking) so people aren’t excluded if estimation struggles. See Ofcom’s design expectations in the [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online).
+Good practice (reflected in Ofcom’s intent) is to publish error behaviour around threshold ages, be conservative near 18, test for and remediate bias, and <em>always</em> provide a non‑face alternative (ID, PASS, open banking) so people aren’t excluded if estimation struggles. See Ofcom’s design expectations in the [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online).
 </details>
 
 <details>
@@ -53,5 +55,6 @@ A typical layered flow: begin with facial estimation or email‑based estimation
 - <strong>Do they keep my face?</strong> No—certified flows should explain that images are used transiently to compute an age and then deleted (check the provider’s notice).
 - <strong>What if I’m mis‑aged?</strong> You should be able to retry (better lighting/camera) or switch to a fallback (ID, PASS, bank) without being locked out unfairly (Ofcom’s [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
 - <strong>Can I avoid biometrics entirely?</strong> Yes—choose a non‑face method (open banking, ID+live, PASS, MNO). Services should present options (see Ofcom’s accepted methods in the [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
+- <strong>Is this fair for everyone?</strong> Ofcom expects services to test for bias and either remediate or provide alternatives where performance differs across demographics. That’s part of the “fairness” lens in the codes linked above.
 </details>
 

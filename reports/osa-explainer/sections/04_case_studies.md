@@ -12,6 +12,8 @@ A strong flow offers a low‑friction method first (e.g., facial estimation) and
 Short answer: one route for everyone, weak binding, data kept longer than needed, and no memory of a valid check.
 
 A common anti‑pattern is “credit‑card only” gating. It’s easy to ship but weak against parent‑card misuse and exclusionary for users without credit cards. Ofcom treats card checks as acceptable only when they bind to the <em>user</em>, not just “a card exists” (children’s codes). Another anti‑pattern is claiming “no third party” while avoiding equivalent in‑house methods (e.g., ephemeral IDV) that achieve the same privacy outcome.
+
+Coverage in 2025 highlighted these trade‑offs. For example, “[You now need a credit card to access mature content on Steam in the UK]”(https://www.gamedeveloper.com/business/you-now-need-a-credit-card-to-access-mature-content-on-steam-in-the-uk) summarised friction and exclusion risks, while Ofcom’s bulletins emphasised offering alternatives and deleting data promptly (see Ofcom’s online safety hub and industry bulletins).
 </details>
 
 <details>
@@ -48,6 +50,6 @@ A mis‑ageing event shouldn’t strand an adult user. Provide a rapid retry pat
 <summary><strong>Follow‑question: what evidence should services publish?</strong></summary>
 Short answer: method choices, deletion/retention, fallback ladder, and appeal stats.
 
-Plain‑English notices should explain which methods are offered, whether images are deleted, what fallbacks exist, and how appeals work. Transparency reports should include high‑level metrics on verification success/failure and complaint outcomes. The OSA’s transparency expectations and Ofcom’s audit powers support this (see gov.uk OSA explainer; Ofcom roadmap).
+Plain‑English notices should explain which methods are offered, whether images are deleted, what fallbacks exist, and how appeals work. Transparency reports should include high‑level metrics on verification success/failure and complaint outcomes. The OSA’s transparency expectations and Ofcom’s audit powers support this (see the government’s [OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer) and Ofcom’s [roadmap to regulation](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation)).
 </details>
 

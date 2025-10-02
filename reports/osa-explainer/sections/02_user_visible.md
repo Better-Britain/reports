@@ -5,6 +5,8 @@
 You’re seeing more checks because children’s protections and enforcement timelines came into force through 2025, so services had to show “highly effective” age assurance around adult or harmful categories.
 
 Under the OSA, services used by or likely to be accessed by children must assess risks and put systems in place that are proportionate and effective. Ofcom’s phased roadmap pushed illegal‑harms duties first, then children’s codes in mid‑2025, which is why many platforms shipped gated access at the same time. See the government explainer and Ofcom’s roadmap for dates and scope: [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer), [Ofcom roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation).
+
+Key dates to anchor what you’re seeing: <strong>17 March 2025</strong> (illegal‑content duties enforceable) and <strong>25 July 2025</strong> (children’s codes and age‑assurance expectations in force). See Ofcom’s children’s codes hub for what services had to implement: [Ofcom—Protecting children online](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/protecting-children-online).
 </details>
 
 <details>
@@ -18,7 +20,7 @@ Ofcom lists several methods that can be “highly effective,” including facial
 <summary><strong>Why does Reddit ask for a selfie but Steam wants a card?</strong></summary>
 Different choices and trade‑offs. Reddit uses a verifier offering selfie age estimation (fast; non‑identifying) with ID as a fallback. Steam marks you “verified” if a valid credit card is on file.
 
-Reddit’s approach can be quick and privacy‑respecting when deletion is enforced by the verifier (see TechCrunch on the UK rollout: [Reddit rolls out age verification](https://techcrunch.com/2025/07/15/reddit-rolls-out-age-verification-in-the-uk-to-comply-with-new-rules/)). Steam’s UK policy is simple but weaker against misuse (e.g., parent cards) and exclusionary for people without credit cards (Steam Help: [“Your UK Steam account is considered age verified…”](https://help.steampowered.com/en/faqs/view/292B-3DA3-CFC8-97F6)). Ofcom’s criteria treat card checks as acceptable only when they meaningfully bind to the <em>user</em> ([Ofcom—children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
+Reddit’s approach can be quick and privacy‑respecting when deletion is enforced by the verifier (see TechCrunch on the UK rollout: [Reddit rolls out age verification](https://techcrunch.com/2025/07/15/reddit-rolls-out-age-verification-in-the-uk-to-comply-with-new-rules/)). Steam’s UK policy is simple but weaker against misuse (e.g., parent cards) and exclusionary for people without credit cards (Steam Help: [“Your UK Steam account is considered age verified…”](https://help.steampowered.com/en/faqs/view/292B-3DA3-CFC8-97F6)). Media coverage and developer trade press noted the drawbacks (e.g., “[You now need a credit card to access mature content on Steam in the UK]”(https://www.gamedeveloper.com/business/you-now-need-a-credit-card-to-access-mature-content-on-steam-in-the-uk)). Ofcom’s criteria treat card checks as acceptable only when they meaningfully bind to the <em>user</em> ([Ofcom—children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
 </details>
 
 <details>
@@ -26,6 +28,8 @@ Reddit’s approach can be quick and privacy‑respecting when deletion is enfor
 You can route around some gates, but a shady VPN may see far more of your traffic than a certified verifier sees of your face/ID (which should be deleted on the spot).
 
 Think of it as a trade‑off: a one‑time, auditable “age OK” token versus ongoing exposure of all your browsing to an unknown network. If you use a VPN, pick a reputable provider and understand the risks; the law expects services to consider circumvention but doesn’t mandate universal ID or breaking encryption (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+
+Reports in mid‑ to late‑2025 show some users discussing workarounds, but the safer path is usually to choose a privacy‑preserving on‑platform method and ensure deletion is real (see Ofcom’s children’s codes, linked above).
 </details>
 
 <details>

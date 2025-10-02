@@ -9,7 +9,7 @@ That’s why children’s duties focus on safer defaults, reduced unsolicited co
 
 <details>
 <summary><strong>Does the OSA censor legal speech?</strong></summary>
-The adult “legal but harmful” takedown duty was dropped. Adults get tools to <em>avoid</em> content, not bans. Real chilling risks mostly come from platform choices (over‑zealous filters, vague rules). The OSA requires clearer terms, appeals, and transparency to keep that in check (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+The adult “legal but harmful” takedown duty was <strong>dropped</strong> during the Bill’s passage. Adults get tools to <em>avoid</em> content, not new Act‑level bans on legal speech. Real chilling risks mostly come from platform choices (over‑zealous filters, vague rules). The OSA requires clearer terms, appeals, and transparency to keep that in check (see the government’s [OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
 
 In short: platforms remain responsible for enforcing their own terms <em>consistently</em>. Users should get appeals and explanations when content is actioned. Regulators look at the quality of those systems rather than dictating adult speech bans.
 </details>
@@ -21,7 +21,7 @@ Freedom without safety isn’t meaningful for many people. The OSA pushes platfo
 
 <details>
 <summary><strong>What about encrypted chats (E2EE)?</strong></summary>
-The law includes a power that could be aimed at scanning—but only “if technically feasible.” Government has said it won’t be used until there’s a workable, privacy‑preserving solution. Today, the focus is elsewhere: platform systems, not breaking E2EE (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+The law includes a power that could be aimed at scanning—but only <strong>if technically feasible</strong>. Government statements in 2025 reiterated that this won’t be used until there’s a workable, privacy‑preserving solution. Today, the focus is elsewhere: platform systems, not breaking E2EE (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
 </details>
 
 <details>

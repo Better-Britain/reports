@@ -23,9 +23,9 @@ That’s why Ofcom’s codes are method‑agnostic but outcome‑focused (robust
 
 <details>
 <summary><strong>How does this compare internationally?</strong></summary>
-The EU’s DSA pushes platforms to assess and mitigate risks, adding data access for vetted researchers and stronger transparency; US debates (e.g., KOSA) revolve around age‑assurance and design duties but vary state‑to‑state.
+The EU’s <strong>Digital Services Act (DSA)</strong> pushes platforms to assess and mitigate risks, adds data access for vetted researchers, and strengthens transparency (fully enforced across 2024). The US debate around the <strong>Kids Online Safety Act (KOSA)</strong> emphasises design duties and age‑assurance but faces constitutional challenges and a patchwork of state approaches.
 
-The direction is similar: less banner friction, more systemic obligations. The UK’s OSA is part of that shift—child safety and illegal harms up front, transparency and audits on the back end. (See EU DSA materials and UK [Ofcom roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation) for parallel themes.)
+The direction is similar: less banner friction, more systemic obligations. The UK’s OSA is part of that shift—child safety and illegal harms up front, transparency and audits on the back end. See comparisons that outline differences and overlaps: [Slaughter and May—EU DSA vs UK OSA](https://www.slaughterandmay.com/insights/new-insights/the-eu-s-digital-services-act-and-uk-online-safety-act-where-are-we-now/), [Bristows—OSA vs DSA](https://inquisitiveminds.bristows.com/post/102k72j/uk-osa-vs-eu-dsa-whats-the-difference), and Ofcom’s [roadmap to regulation](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation).
 </details>
 
 <details>

@@ -4,14 +4,14 @@
 <summary><strong>What happens to my photo/ID? Can I make them delete it?</strong></summary>
 Certified providers should delete images immediately after the check and keep only what’s needed (e.g., an “18+ OK” token tied to your account). Under UK data protection law (UK GDPR), you have rights to access, correction, and erasure where applicable.
 
-In practice: good providers state deletion clearly and explain retention for audit tokens. If a service claims deletion, they should be able to show it. You can exercise your rights with the provider (data access/erasure) and, if needed, complain to the ICO. See the [UK GDPR overview (ICO)](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/) and Ofcom’s [online safety hub](https://www.ofcom.org.uk/online-safety) for how these regimes interact.
+In practice: good providers state deletion clearly and explain retention for audit tokens. If a service claims deletion, they should be able to show it. You can exercise your rights with the provider (data access/erasure) and, if needed, complain to the ICO. See the [UK GDPR overview (ICO)](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/) and Ofcom’s [online safety hub](https://www.ofcom.org.uk/online-safety) for how these regimes interact. ICO materials updated in 2025 emphasise immediate deletion for age‑assurance images and minimal data handling.
 </details>
 
 <details>
 <summary><strong>How do I complain about a bad implementation?</strong></summary>
 Start with the platform’s complaints route (required by the OSA). If ignored or the design is unfair (e.g., “credit‑card only”), escalate to the regulator.
 
-Routes: (1) platform complaint/appeal, (2) Ofcom complaint about online safety issues (especially systemic ones), (3) ICO complaint if the issue is data protection (e.g., retention). We recommend Ofcom adopt a simpler user‑first intake that aggregates patterns so people don’t have to write long dossiers—but for now, use the current [Ofcom complaints](https://www.ofcom.org.uk/complaints) page and keep your evidence.
+Routes: (1) platform complaint/appeal, (2) Ofcom complaint about online safety issues (especially systemic ones), (3) ICO complaint if the issue is data protection (e.g., retention). We recommend Ofcom adopt a simpler user‑first intake that aggregates patterns so people don’t have to write long dossiers—but for now, use the current [Ofcom complaints](https://www.ofcom.org.uk/complaints) page and keep your evidence. For transparency duties that apply to larger/categorised services, Ofcom has final guidance on what reports must include (see [Transparency reporting—final guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/consultations/category-1-10-weeks/consultation-draft-transparency-reporting-guidance/main-docs/final-transparency-guidance.pdf)).
 </details>
 
 <details>
