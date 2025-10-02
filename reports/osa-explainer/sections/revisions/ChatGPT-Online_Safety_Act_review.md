@@ -3,25 +3,6 @@
 #### You:
 Review our Online Safety Act explainer in detail. Suggest corrections and enhancements, with supporting research/citations where available. Provide recommendations for each file, one at a time, in order, starting with 01_basics. These should all form a single report when compiled as per STRUCTURE.md, but I need a detailed breakdown of revisions to make to bring this up to a readable and understandable explainer for the typical high-school senior level reader, with the objective of informing the reader, and slightly cooling the temperature, understanding 'both sides', and providing context, especially on complex issues where people are currently actively enraged/disengaged, to improve overrall understanding of the actual act, rather than just informing about the outrage online.
 
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Great brief. Here’s a focused, line-by-line upgrade plan for your first file.
