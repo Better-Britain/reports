@@ -1,0 +1,89 @@
+/* OSA Presenter overlay styles */
+#osa-presenter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.88);
+  color: #fff;
+  z-index: 9999;
+  display: none;
+}
+#osa-presenter-overlay[aria-hidden="false"] { display: block; }
+
+.osa-presenter-chrome {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  z-index: 2;
+}
+.osa-presenter-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.osa-presenter-btn {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  border-radius: .5rem;
+  padding: .35rem .6rem;
+  cursor: pointer;
+}
+.osa-presenter-btn:hover {
+  background: rgba(255,255,255,.2);
+}
+.osa-presenter-close {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+.osa-presenter-shell {
+  position: absolute;
+  inset: 0;
+  padding: 56px 10px 10px 10px;
+}
+
+/* Panels are absolutely positioned via JS layout algorithm */
+.osa-panel { position: absolute; }
+
+/* Panels */
+.osa-panel {
+  background: #0f1318;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: .75rem;
+  padding: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .4s ease, transform .4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.osa-panel.show { opacity: 1; transform: translateY(0); }
+.osa-panel h1, .osa-panel h2, .osa-panel h3 { margin: 0 0 .25rem 0; line-height: 1.2; overflow: visible; }
+.osa-panel p { margin: .25rem 0; line-height: 1.5; }
+.osa-panel .osa-progress { font-size: .85rem; color: #cbd5e1; margin-top: auto; display: flex; align-items: center; gap: .5rem; }
+.osa-progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,.15); border-radius: 999px; position: relative; }
+.osa-progress-bar > span { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: #7db9ff; border-radius: 999px; }
+
+/* Size classes to adapt content density without clipping headings */
+.osa-panel.size-s { font-size: 1rem; }
+.osa-panel.size-m { font-size: .95rem; }
+.osa-panel.size-l { font-size: .9rem; }
+.osa-panel .clamp-para { display: -webkit-box; -webkit-line-clamp: 7; line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (max-width: 900px) { /* panels will stack in one column via JS */ }
+
+@media (prefers-color-scheme: light) {
+  #osa-presenter-overlay { background: rgba(10,10,12,.92); }
+}
+

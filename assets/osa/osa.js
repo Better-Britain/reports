@@ -12,6 +12,7 @@
   toolbar.innerHTML = `
     <button id="osa-expand-all" aria-label="Expand all">Expand all</button>
     <button id="osa-collapse-all" aria-label="Collapse all">Collapse all</button>
+    <button id="osa-play" aria-label="Play presenter">Play</button>
     <input id="osa-search" type="search" placeholder="Search questions and answers…" aria-label="Search" />
     <span class="osa-count" id="osa-count"></span>
   `;
@@ -28,6 +29,24 @@
   collapseBtn.addEventListener('click', () => {
     bySelAll('details', root).forEach(d => d.open = false);
   });
+
+  // Lazy-load presenter on Play
+  // const playBtn = bySel('#osa-play');
+  // playBtn.addEventListener('click', async () => {
+  //   try {
+  //     if (!document.getElementById('osa-presenter-overlay')) {
+  //       const css = document.createElement('link');
+  //       css.rel = 'stylesheet';
+  //       css.href = '/assets/osa/osa-present.css';
+  //       document.head.appendChild(css);
+  //       await new Promise(r => setTimeout(r, 0));
+  //     }
+  //     await import('/assets/osa/osa-present.js');
+  //     // The module wires itself and opens overlay via its own toolbar button; trigger its launch if provided
+  //     const launch = document.getElementById('osa-presenter-launch');
+  //     if (launch) launch.click();
+  //   } catch {}
+  // });
 
   // Highlight helper
   function escapeReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
