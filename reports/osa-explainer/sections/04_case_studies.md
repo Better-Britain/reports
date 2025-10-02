@@ -1,5 +1,7 @@
 # D) Over‑/under‑compliance & case studies
 
+Real safety lives in the details. Some platforms take the hint—offer choices, delete data, keep the door open but sensible. Others reach for the bluntest tool and call it a day. These snapshots show what “good” feels like, what “lazy” looks like, and why users react the way they do.
+
 <details>
 <summary><strong>What does “good” look like in practice?</strong></summary>
 Short answer: multiple routes, privacy‑by‑default, clear appeals, and minimal exclusion.

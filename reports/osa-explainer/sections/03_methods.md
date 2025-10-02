@@ -1,5 +1,7 @@
 # C) How age assurance/verification works
 
+Age checks don’t have to mean handing over your passport everywhere. There’s a toolkit: quick estimation, stronger fallbacks, and options that don’t turn your life into a paperwork quest. The good versions feel light and respectful; the bad ones feel like a wall. Here’s the landscape so you can tell the difference.
+
 <details>
 <summary><strong>What counts as “highly effective” (HEAA)?</strong></summary>
 “Highly effective” means the method reliably keeps under‑18s out of adult content while being robust, fair, and proportionate. Ofcom lists a basket of acceptable approaches rather than a single tool: [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online).

@@ -1,5 +1,7 @@
 # B) What changes you actually see (user‑visible)
 
+This is the part you can feel. Age checks at the door. Cleaner reporting routes. Safer defaults for teens without turning the internet into school detention. Some choices are clumsy, some are thoughtful—this chapter is a tour of what’s landing on your screen and why.
+
 <details>
 <summary><strong>Why am I hitting age walls now?</strong></summary>
 You’re seeing more checks because children’s protections and enforcement timelines came into force through 2025, so services had to show “highly effective” age assurance around adult or harmful categories.

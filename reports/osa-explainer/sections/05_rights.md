@@ -1,5 +1,7 @@
 # E) Your rights & routes
 
+You shouldn’t have to surrender your privacy to be an adult online. Good systems prove your age, then let the data go. And if a platform makes bad choices, you have ways to push back. This chapter is your pocket guide to deletion, alternatives, and where to complain when something’s off.
+
 <details>
 <summary><strong>What happens to my photo/ID? Can I make them delete it?</strong></summary>
 Certified providers should delete images immediately after the check and keep only what’s needed (e.g., an “18+ OK” token tied to your account). Under UK data protection law (UK GDPR), you have rights to access, correction, and erasure where applicable.

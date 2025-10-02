@@ -1,5 +1,9 @@
 # A) Basics & origin
 
+The Online Safety Act is the UK trying to move safety work off your shoulders and onto the systems that shape what you see. Instead of more pop‑ups and finger‑wagging, it asks the big services to do the boring but important plumbing: know their risks, design safer defaults, and fix things when they break.
+
+It wasn’t born overnight or by one party. The idea rolled through years of debate, election cycles and rewrites, and ended up as a cross‑party push with Ofcom holding the clipboard. Think of this section as the quick map: what the law actually is, who it touches, and where its edges are.
+
 <details>
 <summary><strong>What is the Online Safety Act (OSA)?</strong></summary>
 A UK law that puts duties on online services (not on users) to reduce illegal harms and protect children. Separate parts of the law create or update offences for individuals (e.g., cyberflashing), but the core of the OSA is about what <em>services</em> must do.

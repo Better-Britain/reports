@@ -1,5 +1,7 @@
 # F) Context: cookie law → GDPR → OSA
 
+We’ve tried “make the user click more buttons.” It didn’t fix much. GDPR moved some of the work backstage, where it belongs. The Online Safety Act keeps pushing in that direction: less banner theatre, more responsibility on the people who design the systems we use every day.
+
 <details>
 <summary><strong>Why did cookie law feel rubbish?</strong></summary>
 It pushed the burden onto users: endless banners and dark patterns to click through, while many sites kept tracking. It delivered lots of friction and little systemic change.

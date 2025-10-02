@@ -1,5 +1,7 @@
 # H) Politics & perception
 
+Policy meets people through headlines and hot takes. Age checks are the visible tip, so they soak up the attention; the quieter plumbing barely gets a mention. This section helps separate outrage at clumsy rollouts from bigger questions about how we want platforms—and rules—to work.
+
 <details>
 <summary><strong>Why did age verification become the story?</strong></summary>
 It’s visible and deadline‑driven: ordinary adults meet it at point‑of‑use. The harder work (risk assessments, safer defaults, audits) happens out of sight. Media and creators naturally amplify what people can feel right now (see Ofcom’s phased [roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation)).
