@@ -11,6 +11,7 @@ That’s why children’s duties focus on safer defaults, reduced unsolicited co
 
 <details>
 <summary><strong>Platform X blocked my DMs — is that required?</strong></summary>
+
 Not necessarily. The Act doesn’t force blanket DM blocks for anyone. Duties are risk‑based and should be proportionate.
 
 - What’s covered: user‑to‑user services are in scope, and private messaging can be in scope when content one person sends can be encountered by another. But the law targets <em>system risks</em>, not auto‑gating every conversation by default.
@@ -37,19 +38,35 @@ There is a sense of 'moralising', and it walks a fuzzy line between access and h
 
 <details>
 <summary><strong>Does the OSA censor legal speech?</strong></summary>
-The adult “legal but harmful” takedown duty was <strong>dropped</strong> during the Bill’s passage. Adults get tools to <em>avoid</em> content, not new Act‑level bans on legal speech. Real chilling risks mostly come from platform choices (over‑zealous filters, vague rules). The OSA requires clearer terms, appeals, and transparency to keep that in check (see the government’s [OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+
+The adult “legal but harmful” takedown duty was <strong>dropped</strong> during the Bill’s passage. 
+
+Adults get tools to <em>avoid</em> content, not new Act‑level bans on legal speech. Real chilling risks mostly come from platform choices (over‑zealous filters, vague rules). The OSA requires clearer terms, appeals, and transparency to keep that in check (see the government’s [OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
 
 In short: platforms remain responsible for enforcing their own terms <em>consistently</em>. Users should get appeals and explanations when content is actioned. Regulators look at the quality of those systems rather than dictating adult speech bans.
 </details>
 
 <details>
 <summary><strong>What about harassment, hate and pile‑ons?</strong></summary>
+
 Freedom without safety isn’t meaningful for many people. The OSA pushes platforms to enforce their own rules consistently and provide better reporting and user controls (filters, blocks), so adult speech can thrive without making targets unsafe. That includes tools for blocking unsolicited contact and limiting recommendations around sensitive content (children’s codes).
 </details>
 
 <details>
 <summary><strong>What about encrypted chats (E2EE)?</strong></summary>
-The law includes a power that could be aimed at scanning—but only <strong>if technically feasible</strong>. Government statements in 2025 reiterated that this won’t be used until there’s a workable, privacy‑preserving solution. Today, the focus is elsewhere: platform systems, not breaking E2EE . See [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
+
+ E2EE isn’t banned. A power exists to require “accredited technology” to detect illegal material, but only <strong>if technically feasible</strong> and with safeguards. 
+ 
+ Ministers have said they won’t use that power until a workable, privacy‑preserving approach exists. For now, the practical focus is on platform systems (risk assessments, safer defaults, reporting) rather than breaking encryption. 
+ 
+ Best we could tell, this hypothetical 'safe but sometimes open'-E2EE-workaround doesn't seem like something that would make sense to exist. Nobody seems to be suggesting a 'skeleton key' or back-door solution (for many very good reasons), but it seems unlikely to be deployed even if it did magically become available (through 'AI' or 'Quantum' perhaps). 
+
+ What this means in practice:
+ - Your encrypted apps (e.g., Signal, WhatsApp) continue to offer end‑to‑end encryption.
+ - There is an unresolved debate about whether scanning inside encrypted apps can ever be done safely; several providers say they would not weaken E2EE to do so.
+ - If technology emerges that meets strict tests, the regulator could consider it; until then, attention is on non‑encryption measures.
+
+ Note: this area is contested and evolving. The law sets the option; the current stance is “not until feasible,” and many companies strongly oppose any weakening of E2EE.
 </details>
 
 <details>
