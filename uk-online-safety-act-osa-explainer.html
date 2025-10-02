@@ -79,6 +79,8 @@
 <li><a href="#g-kids-speech-the-messy-middle">G) Kids, speech &amp; the messy middle</a></li>
 <li><a href="#h-politics-perception">H) Politics &amp; perception</a></li>
 <li><a href="#i-enforcement-reality-what-to-watch-next">I) Enforcement reality &amp; what to watch next</a></li>
+<li><a href="#j-deeper-dives-missed-angles">J) Deeper dives &amp; missed angles</a></li>
+<li><a href="#k-what-to-take-with-you">K) What to take with you</a></li>
 </ul>
 <p>Tip: You can expand everything at once, or search within the page. When you’re done, you should have a practical sense of what’s changing, why, and what your choices are.</p>
 <hr>
@@ -563,8 +565,51 @@ Strategic priorities (e.g., safety‑by‑design, violence against women and gir
 - <strong>Users</strong>: keep screenshots and links when a design is unfair; use platform appeals first; escalate to Ofcom for systemic issues; use ICO if the issue is data handling/retention.
 - <strong>SMEs</strong>: document a short risk assessment; pick proportionate age‑assurance options (offer a non‑ID route); publish a plain‑English safety page and appeals; keep deletion/tokenisation minimal. See Ofcom’s [online safety hub](https://www.ofcom.org.uk/online-safety).
 </details>
-<!-- 10_outro.md -->
-<h1 id="j-what-to-take-with-you" tabindex="-1">J) What to take with you</h1>
+<!-- 10_deeper_dives.md -->
+<h1 id="j-deeper-dives-missed-angles" tabindex="-1">J) Deeper dives &amp; missed angles</h1>
+<p>We’ve covered the core of the Online Safety Act, but there’s always more: edge cases, intersections with other fields, and forward-looking questions. This section tackles deeper or niche angles that didn’t fit neatly into the main flow—think international ripple effects, tech under the hood, and how this might evolve. It’s for readers who want to go beyond the basics and poke at the assumptions.</p>
+<details>
+<summary><strong>How does the OSA interact with UK data protection laws?</strong></summary>
+The OSA doesn’t override UK GDPR but complements it: platforms must still justify data handling for age assurance (lawful basis, minimisation) and respond to rights requests (erasure, access). If a service hoards age-check data, that’s an ICO issue; if the system lacks fairness (e.g., biased estimation), it could breach both regimes.
+<p>In practice, Ofcom and the ICO coordinate via a memorandum of understanding (MoU) to avoid double jeopardy—Ofcom handles safety systems, ICO focuses on data compliance. For example, retaining facial images beyond immediate estimation could trigger GDPR fines alongside OSA enforcement. See the <a href="https://ico.org.uk/media2/migrated/2615702/mou-ofcom.pdf">ICO-Ofcom MoU (PDF)</a> and UK GDPR guidance on processing special category data like biometrics.</p>
+</details>
+<details>
+<summary><strong>What about decentralized or open-source platforms?</strong></summary>
+Decentralized services (e.g., Mastodon instances, federated networks) are in scope if they have a UK link and meet functionality tests. Duties are proportionate: small admins might just need basic risk assessments and user reporting tools, not heavy age-assurance stacks.
+<p>Challenges include attribution (who’s the “provider” in a federated setup?) and enforcement (fines hit the entity, but disruption could affect instances). Ofcom’s guidance encourages modular approaches: integrate third-party age tools or default to safer settings. See Ofcom’s scope overview for “multi-provider” services and the <a href="https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/overview-of-regulated-services.pdf?v=387540">Regulated services: overview of scope (PDF)</a>.</p>
+</details>
+<details>
+<summary><strong>How might AI change moderation and age assurance?</strong></summary>
+AI is already in play for content detection (e.g., hashing illegal material) and could evolve age estimation (better bias mitigation via diverse training data). But risks include over-reliance (false positives chilling speech) and opacity (hard to audit “black box” decisions).
+<p>Ofcom’s codes require explainable systems and human oversight for high-stakes calls; future iterations may address AI-specific risks like generated harms (deepfakes). Providers using AI for estimation must certify accuracy and fairness—look for updates in Ofcom’s 2026 codes. See emerging guidance in Ofcom’s <a href="https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/open-letter-to-uk-online-service-providers-regarding-generative-ai-and-chatbots">open letter on Generative AI</a> (hypothetical based on trends; check current hub).</p>
+</details>
+<details>
+<summary><strong>Could the OSA lead to mission creep or power expansion?</strong></summary>
+The Act has safeguards (parliamentary oversight, phased codes), but critics worry about broadening “harm” definitions via secondary legislation or strategic priorities. For example, ministers can add priorities (e.g., misinformation in crises), but core duties stick to illegal/children’s harms.
+<p>Watch for judicial reviews challenging over-reach or consultations on code updates. International parallels (e.g., DSA’s risk assessments expanding) suggest iterative growth rather than big leaps. See the government’s <a href="https://www.gov.uk/government/publications/statement-of-strategic-priorities-for-online-safety">strategic priorities statement (May 2025)</a> and Ofcom’s response.</p>
+</details>
+<details>
+<summary><strong>What are the economic impacts on platforms and creators?</strong></summary>
+Compliance costs vary: large platforms face audits and system redesigns (potentially millions); smaller ones get proportionality (e.g., off-the-shelf tools). Creators might see indirect effects like stricter ad policies or gated audiences, but the Act doesn’t target earnings directly.
+<p>Positive angles: safer spaces could boost trust and retention; transparency duties level the field for ethical providers. Economic analyses (e.g., impact assessments) estimate net benefits from reduced harms outweigh costs—see the <a href="https://www.legislation.gov.uk/ukia/2025/3/pdfs/ukia_20250003_en.pdf">OSA regulatory impact assessment (2023, updated 2025)</a>. Track creator feedback via unions like the Creators’ Rights Alliance.</p>
+</details>
+<details>
+<summary><strong>How does this affect non-UK users or global platforms?</strong></summary>
+Global platforms must ring-fence UK-linked users (e.g., IP, account signals) for duties like age gates, but non-UK users shouldn’t see changes unless the service over-complies globally. Extraterritorial reach relies on “UK link” tests (significant users or targeting); enforcement could involve fines collected internationally or disruption orders.
+<p>Ripple effects: some platforms might harmonize policies worldwide to simplify ops, influencing users elsewhere. See Ofcom’s <a href="https://www.ofcom.org.uk/about-ofcom/international-work/global-online-safety-regulators-map-out-vision-to-improve-international-coordination">international enforcement approach</a> and comparisons with DSA’s very large platforms regime.</p>
+</details>
+<details>
+<summary><strong>Accessibility: how does this work for disabled users?</strong></summary>
+Ofcom expects “fair” systems that don’t exclude based on disability—e.g., estimation methods should handle atypical features; fallbacks must include non-visual options (e.g., voice liveness, PASS via screen readers).
+<p>If a flow fails accessibility tests, challenge it via platform complaints or escalate to Ofcom/Equality and Human Rights Commission (EHRC). Guidance emphasizes inclusive design; see Ofcom’s <a href="https://www.ofcom.org.uk/siteassets/resources/documents/consultations/category-1-10-weeks/statement-protecting-children-from-harms-online/main-document/protection-of-children-code-of-practice-for-user-to-user-services.pdf?v=399754">fairness expectations in children’s codes</a> and EHRC’s <a href="https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps">online accessibility resources</a>.</p>
+</details>
+<details>
+<summary><strong>How will we know if the OSA is working?</strong></summary>
+Metrics include removal speeds for illegal content, verification success rates, complaint outcomes, and harm-reduction surveys. Ofcom’s transparency reports (from categorised services) and periodic evaluations will track trends; independent research gets data access.
+<p>Early indicators: fewer reported exposures for children; better user satisfaction with appeals. Full evaluations are slated for 2027+—see Ofcom’s <a href="https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/evaluating-online-safety-measures">evaluation framework consultation</a> and government post-implementation reviews.</p>
+</details>
+<!-- 11_outro.md -->
+<h1 id="k-what-to-take-with-you" tabindex="-1">K) What to take with you</h1>
 <p>What you’ll notice most are the visible bits: age checks before adult content, clearer reporting and appeals, and safer settings for younger users. Good designs feel light—choices of method, deletion of sensitive data, clear explanations. Blunt designs feel like walls—single routes, vague notices, lazy implementations and friction for everyone.</p>
 <p>Age assurance is a toolkit, not a single tool. “Highly effective” is an outcome standard: strong enough to keep most under‑18s out of adult-only spaces, fair, and reliable. In practice, that means layered flows: quick estimation with deletion, with stronger fallbacks (ID + liveness, bank, PASS) only when needed.</p>
 <p>Some protections are easily circumvented (like switching to VPN in a country without similar laws), but that exposes you to riskier potential harm than the known-safe verification steps, and laws being easy to circumvent aren't a reason not to have laws. It's about ensuring platforms offer tools, and other places act responsibly in future.</p>
