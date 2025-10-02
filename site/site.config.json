@@ -23,8 +23,7 @@
         "title": "Online Safety Act — Explainer, Timeline & Responsible Actors",
         "builder": "reports/osa-explainer/build.js",
         "output": "docs/uk-online-safety-act-osa-explainer.html",
-        "disabled": true,
-        "placeholder": true,
+        "image": "/assets/osa/osa-explainer-image.jpg",
         "description": "What the OSA actually does, who made it, how platforms are supposed to protect kids, and how some are already pushing that responsibility onto users."
       },
       {
