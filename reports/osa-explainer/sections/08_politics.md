@@ -1,4 +1,4 @@
-# H) Politics & perception
+# Politics & perception
 
 Policy meets people through headlines and hot takes. Age checks are the visible tip, so they soak up the attention; the quieter plumbing barely gets a mention. This section helps separate outrage at clumsy rollouts from bigger questions about how we want platforms—and rules—to work.
 

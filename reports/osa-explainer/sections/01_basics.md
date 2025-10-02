@@ -1,4 +1,4 @@
-# A) Basics & origin
+# Basics & origin
 
 The Online Safety Act is the UK trying to move safety work off your shoulders and onto the systems that shape what you see. Instead of more pop‑ups and finger‑wagging, it asks the big services to do the boring but important plumbing: know their risks, design safer defaults, and fix things when they break.
 

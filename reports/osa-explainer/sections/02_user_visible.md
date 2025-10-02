@@ -1,4 +1,4 @@
-# B) What changes you actually see
+# What changes you actually see
 
 This is the part you can feel. Age checks at the door. Cleaner reporting routes. Safer defaults for teens without turning the internet into school detention. Some choices are clumsy, some are thoughtful—this chapter is a tour of what’s landing on your screen and why.
 

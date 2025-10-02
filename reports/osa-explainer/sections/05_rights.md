@@ -1,4 +1,4 @@
-# E) Your rights & routes
+# Your rights & routes
 
 You shouldn’t have to surrender your privacy to be an adult online. Good systems prove your age, then let the data go. And if a platform makes bad choices, you have ways to push back. This chapter is your pocket guide to deletion, alternatives, and where to complain when something’s off.
 

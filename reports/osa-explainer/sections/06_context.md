@@ -1,4 +1,4 @@
-# F) Context: cookie law → GDPR → OSA
+# Context: cookie law → GDPR → OSA
 
 We’ve tried “make the user click more buttons.” It didn’t fix much. GDPR moved some of the work backstage, where it belongs. The Online Safety Act keeps pushing in that direction: less banner theatre, more responsibility on the people who design the systems we use every day.
 

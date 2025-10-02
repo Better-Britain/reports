@@ -1,4 +1,4 @@
-# J) Deeper dives & missed angles
+# Deeper dives & missed angles
 
 We’ve covered the core of the Online Safety Act, but there’s always more: edge cases, intersections with other fields, and forward-looking questions. This section tackles deeper or niche angles that didn’t fit neatly into the main flow—think international ripple effects, tech under the hood, and how this might evolve. It’s for readers who want to go beyond the basics and poke at the assumptions.
 

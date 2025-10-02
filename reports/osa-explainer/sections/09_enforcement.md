@@ -1,4 +1,4 @@
-# I) Enforcement reality & what to watch next
+# Enforcement reality & what to watch next
 
 Rules only matter if they change what services do. Enforcement is the unglamorous engine: audits, questions, fixes—and fines when needed. It won’t make the internet perfect, but it can push platforms toward safer, clearer designs. Here’s what action looks like in practice and how to track progress.
 

@@ -1,4 +1,4 @@
-# G) Kids, speech & the messy middle
+# Kids, speech & the messy middle
 
 Keeping people safe and keeping the internet open can pull in different directions. The trick is balance: give teens room to grow without dumping them in the deep end, and let adults speak freely without making targets unsafe. This chapter sits in that tension and looks for practical ways through.
 

@@ -1,4 +1,4 @@
-# C) How age assurance/verification works
+# How age assurance/verification works
 
 Age checks don’t have to mean handing over your passport everywhere. There’s a toolkit: quick estimation, stronger fallbacks, and options that don’t turn your life into a paperwork quest. The good versions feel light and respectful; the bad ones feel like a wall. Here’s the landscape so you can tell the difference.
 
