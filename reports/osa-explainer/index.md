@@ -2,19 +2,19 @@
 
 This guide explains, in plain English, what the UK’s Online Safety Act is, why it exists, and what it means for you. It’s written for curious readers, not lawyers or policy insiders. If you’ve heard about “age checks” or seen new prompts on apps and websites and want a clear, calm walkthrough, you’re in the right place.
 
-## What the Act is (in one minute)
-- It sets rules for online services to reduce clearly illegal content and to keep children safer.
+- The OSA sets rules for online services to reduce access to clearly illegal content and to keep children safer.
 - It focuses on how platforms are designed and run (systems and safeguards), not on punishing ordinary users for everyday posts.
 - Ofcom, the UK communications regulator, oversees the rules and can require fixes when platforms fall short.
 
 ## Why it exists
-- People worry about harms online, especially to children. Past laws pushed the burden onto users (think: endless cookie banners) instead of fixing systems.
-- The aim here is more responsibility on platforms: safer defaults for teens, better reporting and appeals, and adult tools you can choose to use.
+- People worry about harms online, especially to children. Past digital-first laws often pushed the burden onto users (think: endless cookie banners) instead of fixing systems.
+- The aim here is more responsibility on platforms: better protection for kids, safer defaults for teens, better reporting and appeals, and adult tools you can choose to use.
 
 ## What you might notice
 - Some services now ask for your age before showing adult content.
 - You should see clearer reporting routes and safer settings for younger users.
 - Good services give you a choice of privacy‑respecting ways to prove age (not just “upload your ID”).
+- People are not thrilled about verfication-related privacy concerns and over-reach risk, especially for access to known 'adult' content.
 
 ## How to use this guide
 - Each section is a set of short, expandable questions. Start broad, then go deeper if you want methods, edge cases, and sources.

@@ -10,6 +10,32 @@ That’s why children’s duties focus on safer defaults, reduced unsolicited co
 </details>
 
 <details>
+<summary><strong>Platform X blocked my DMs — is that required?</strong></summary>
+Not necessarily. The Act doesn’t force blanket DM blocks for anyone. Duties are risk‑based and should be proportionate.
+
+- What’s covered: user‑to‑user services are in scope, and private messaging can be in scope when content one person sends can be encountered by another. But the law targets <em>system risks</em>, not auto‑gating every conversation by default.
+- Over‑compliance: one‑size‑fits‑all DM blocks or “prove you’re 18 to message anyone” can be a blunt shortcut. If both accounts are clearly adult, long‑standing, and show low‑risk patterns, heavy gates usually aren’t needed.
+- Proportionate options (legal‑team friendly): limit unsolicited contact, add friction for unknown/teen accounts, rate‑limit spammy behaviour, provide strong blocking/reporting, and keep safer defaults for young users. Let normal DMs proceed where risk is low (e.g., verified‑adult pairs; established mutuals).
+- Good faith: the law is specific about what qualifies. A legal team that engages with the guidance can find workable routes that protect teens without breaking everyday use.
+
+If your DMs were blocked across the board, that may be a design choice rather than a legal requirement. Use the platform complaints route and point to proportionate alternatives.
+</details>
+
+<details>
+<summary><strong>Adult legal content: accounts vs anonymity, and “pay for your porn”?</strong></summary>
+Gates around porn and other 18+ but legal material can nudge people toward signing in or creating accounts instead of browsing anonymously. That increases the amount of data tied to a person (email, device signals, payment history) and, on shady sites, can raise the risk of misuse or leaks.
+
+There is a flipside. Buying from reputable providers changes incentives: workers are paid, terms are clearer, and businesses have more to lose if they mishandle data. If you choose to access adult content:
+
+- Prefer well‑known providers with clear privacy policies and support for deletion/portability.
+- Use the most privacy‑preserving age‑assurance route offered (e.g., estimation with deletion rather than ID requirements).
+- Keep accounts minimal, throwaway (separate email; no unnecessary personal details).
+- Avoid “free” sites with a history of scraping or poor moderation: the data and safety risks are higher.
+
+There is a sense of 'moralising', and it walks a fuzzy line between access and harm‑reduction. The law aims to gate 18+ areas; your choices can reduce exposure to sketchy actors while supporting creators and safer practices who do act responsibly.
+</details>
+
+<details>
 <summary><strong>Does the OSA censor legal speech?</strong></summary>
 The adult “legal but harmful” takedown duty was <strong>dropped</strong> during the Bill’s passage. Adults get tools to <em>avoid</em> content, not new Act‑level bans on legal speech. Real chilling risks mostly come from platform choices (over‑zealous filters, vague rules). The OSA requires clearer terms, appeals, and transparency to keep that in check (see the government’s [OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
 

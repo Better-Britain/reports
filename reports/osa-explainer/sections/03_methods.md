@@ -54,9 +54,13 @@ A typical layered flow: begin with facial estimation or email‑based estimation
 
 <details>
 <summary><strong>Mini‑FAQ</strong></summary>
+
 - <strong>Do they keep my face?</strong> No—certified flows should explain that images are used transiently to compute an age and then deleted (check the provider’s notice).
+
 - <strong>What if I’m mis‑aged?</strong> You should be able to retry (better lighting/camera) or switch to a fallback (ID, PASS, bank) without being locked out unfairly (Ofcom’s [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
+
 - <strong>Can I avoid biometrics entirely?</strong> Yes—choose a non‑face method (open banking, ID+live, PASS, MNO). Services should present options (see Ofcom’s accepted methods in the [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
+
 - <strong>Is this fair for everyone?</strong> Ofcom expects services to test for bias and either remediate or provide alternatives where performance differs across demographics. That’s part of the “fairness” lens in the codes linked above.
 </details>
 
@@ -65,7 +69,9 @@ A typical layered flow: begin with facial estimation or email‑based estimation
 Independent certification helps validate deletion, security and accuracy claims.
 
 - <strong>ACCS</strong>: The UK’s Age Check Certification Scheme audits age‑assurance providers and solutions against recognised standards (including privacy, security and performance). Look for an ACCS certificate for assurance over claims like “images are deleted immediately.” ([ACCS—Age Check Certification Scheme](https://accscheme.com/))
+
 - <strong>DIATF</strong>: The UK Digital Identity and Attributes Trust Framework recognises certified identity/attribute providers and includes requirements relevant to age attributes. Providers operating under DIATF publish which schemes and roles they’re certified for. ([GOV.UK—Digital identity and attributes trust framework](https://www.gov.uk/government/collections/digital-identity-and-attributes-trust-framework))
+
 - <strong>PASS</strong>: The Proof of Age Standards Scheme certifies physical and digital proofs of age accepted across the UK (e.g., Yoti PASS card; Post Office PASS). PASS‑certified credentials can be used as a non‑biometric route. ([PASS—Proof of Age Standards Scheme](https://www.pass-scheme.org.uk/))
 
 Example: providers such as <strong>Yoti</strong> detail independent audits and certifications for their facial age estimation and ID verification flows, including deletion and accuracy statements; services should link to those attestations in‑product. (See your selected provider’s certification pages and audit summaries.)

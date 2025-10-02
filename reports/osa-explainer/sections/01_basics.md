@@ -60,29 +60,41 @@ Details live in <strong>Schedule 1</strong> and <strong>Schedule 2</strong> of t
 
 <details>
 <summary><strong>What the OSA <em>doesn’t</em> do</strong></summary>
-- It doesn’t impose a general “ID for everyone.” The law is risk‑based and method‑agnostic; self‑declaration doesn’t count, but several privacy‑preserving methods do. ([Ofcom—Protecting children online (codes)](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
-- It doesn’t ban end‑to‑end encryption (E2EE). Ofcom could, in theory, issue <strong>Technology Notices</strong> requiring <strong>accredited</strong> detection technology <strong>only where technically feasible</strong>; both government and Ofcom have framed this as a high bar and consulted on minimum accuracy standards. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer), [Ofcom—Illegal harms statement hub](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-people-from-illegal-harms-online))
-- It doesn’t create blanket bans on legal speech for adults. Instead, services must apply their own terms consistently and offer tools/appeals. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer))
+
+It doesn’t impose a general “ID for everyone.” The law is risk‑based and method‑agnostic; self‑declaration doesn’t count, but several privacy‑preserving methods do. ([Ofcom: Protecting children online - codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
+
+It doesn’t ban end‑to‑end encryption (E2EE). Ofcom could, in theory, issue <strong>Technology Notices</strong> requiring <strong>accredited</strong> detection technology <strong>only where technically feasible</strong>; both government and Ofcom have framed this as a high bar and consulted on minimum accuracy standards. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer), [Ofcom—Illegal harms statement hub](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-people-from-illegal-harms-online))
+
+It doesn’t create blanket bans on legal speech for adults. Instead, services must apply their own terms consistently and offer tools/appeals. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer))
 </details>
 
 <details>
 <summary><strong>What the OSA <em>does</em> require from services</strong></summary>
-- <strong>Assess risks</strong> (illegal content; and for kids, content likely to harm) and keep assessments up to date. (Part 3 duties; Ofcom guidance and templates in its online safety hub.) ([Ofcom—hub](https://www.ofcom.org.uk/online-safety))
-- <strong>Design and operate systems</strong> that reduce those risks (moderation, reporting, user controls, safer defaults for children). ([Ofcom—codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
-- <strong>Use “highly effective” age assurance</strong> where needed (several methods are acceptable; self‑declaration is not). ([Ofcom—codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
-- <strong>Be transparent</strong> (clear terms, complaints/appeals) and cooperate with Ofcom audits and information requests. (Part 7 powers; see Ofcom roadmap.) ([Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
-- <strong>Face penalties</strong> if they won’t fix issues: Ofcom can fine up to <strong>£18m or 10% of qualifying worldwide revenue</strong> (whichever is greater) and, in severe cases, seek <strong>court‑ordered business disruption</strong> measures (e.g., payment/ads withdrawal or ISP access restrictions). ([Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925), [gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer))
+
+<strong>Assess risks</strong> (illegal content; and for kids, content likely to harm) and keep assessments up to date. (Part 3 duties; Ofcom guidance and templates in its online safety hub.) ([Ofcom—hub](https://www.ofcom.org.uk/online-safety))
+
+<strong>Design and operate systems</strong> that reduce those risks (moderation, reporting, user controls, safer defaults for children). ([Ofcom—codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
+
+<strong>Use “highly effective” age assurance</strong> where needed (several methods are acceptable; self‑declaration is not). ([Ofcom—codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online))
+
+<strong>Be transparent</strong> (clear terms, complaints/appeals) and cooperate with Ofcom audits and information requests. (Part 7 powers; see Ofcom roadmap.) ([Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
+
+<strong>Face penalties</strong> if they won’t fix issues: Ofcom can fine up to <strong>£18m or 10% of qualifying worldwide revenue</strong> (whichever is greater) and, in severe cases, seek <strong>court‑ordered business disruption</strong> measures (e.g., payment/ads withdrawal or ISP access restrictions). ([Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925), [gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer))
 </details>
 
 <details>
 <summary><strong>Key dates (high level)</strong></summary>
-- <strong>17 March 2025</strong>: Illegal‑content duties enforceable; risk assessments due. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer), [Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
-- <strong>25 July 2025</strong>: Child‑safety codes and age‑assurance expectations in force for services likely to be accessed by children (after a 3‑month risk‑assessment window to <strong>24 July 2025</strong>). ([Ofcom—Protecting children online](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/protecting-children-online))
-- <strong>Through 2026</strong>: Further codes (e.g., for categorised services) and transparency reporting phases roll out. ([Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
+
+<strong>17 March 2025</strong>: Illegal‑content duties enforceable; risk assessments due. ([gov.uk—OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer), [Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
+
+<strong>25 July 2025</strong>: Child‑safety codes and age‑assurance expectations in force for services likely to be accessed by children (after a 3‑month risk‑assessment window to <strong>24 July 2025</strong>). ([Ofcom—Protecting children online](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/protecting-children-online))
+
+<strong>Through 2026</strong>: Further codes (e.g., for categorised services) and transparency reporting phases roll out. ([Ofcom—roadmap](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/roadmap-to-regulation))
 </details>
 
 <details>
 <summary><strong>Categorised services (extra duties)</strong></summary>
+
 Some services face <strong>additional transparency and user‑empowerment duties</strong> based on thresholds set by secondary legislation in 2025. Broadly:
 
 - <strong>Category 1</strong>: very large user‑to‑user services (size + functionality thresholds).
@@ -95,9 +107,12 @@ Thresholds were set by the <em>Online Safety Act 2023 (Category 1, Category 2A a
 
 <details>
 <summary><strong>Online Safety Act at a glance</strong></summary>
-- Sets <em>system-level duties</em> for services with a UK link; it is not a tool for policing individual posts.
-- Core focus: <strong>illegal content</strong> and <strong>children’s safety</strong>; adults get more control tools, not new bans on legal speech.
-- Enforced by <strong>Ofcom</strong>, with fines up to <strong>£18m or 10% of qualifying worldwide revenue</strong> and, in serious cases, <strong>court-ordered business disruption</strong> measures. 
+
+Sets <em>system-level duties</em> for services with a UK link; it is not a tool for policing individual posts.
+
+Core focus: <strong>illegal content</strong> and <strong>children’s safety</strong>; adults get more control tools, not new bans on legal speech.
+
+Enforced by <strong>Ofcom</strong>, with fines up to <strong>£18m or 10% of qualifying worldwide revenue</strong> and, in serious cases, <strong>court-ordered business disruption</strong> measures. 
 
 See Ofcom’s enforcement approach and the government explainer: [Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925) or the [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
 </details>
