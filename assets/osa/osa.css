@@ -65,13 +65,13 @@ details mark {
   background: #fff59d;
 }
 
-/* Search mode: show only matching blocks in matching details */
-.osa-search-active details[ data-search-match="1" ] .osa-hide-when-searching {
+/* Search mode: hide everything except toolbar and matched blocks */
+#osa-explainer.osa-search-active > :not(.osa-toolbar):not([data-search-match="1"]) {
   display: none !important;
 }
-.osa-search-active details[ data-search-match="1" ] .osa-search-hit {
-  display: block;
-}
+/* Within matched details, optionally hide filler when searching and show explicit hits */
+.osa-search-active details[ data-search-match="1" ] .osa-hide-when-searching { display: none !important; }
+.osa-search-active details[ data-search-match="1" ] .osa-search-hit { display: block; }
 
 /* Snippet hint */
 .osa-snippet {
