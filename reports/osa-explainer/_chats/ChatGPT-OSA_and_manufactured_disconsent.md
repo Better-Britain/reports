@@ -1033,57 +1033,6 @@ Would you like me to **pull Bannon’s own quotes/interviews** (e.g. from *Devil
 #### You:
 no, that was an aside. Can you use thinking mode to get a report on what age verifiers the UK has certified, what technical options each of them offers, and a general overview of uncertified or alternative approaches (i.e. like Steam's "require a credit card" lazy/stupid option) have been seen in the wild so far, and if they're any more or less effective than the known certified approaches?
 
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Got it — here’s a dense, receipts-first briefing you can build on. I’ve split it into (A) who’s actually certified in the UK (and by whom), (B) what technical options they offer, and (C) what “uncertified/alternative” approaches we’re seeing in the wild, plus notes on effectiveness from primary regulator docs.
@@ -1184,5 +1133,3 @@ Got it — here’s a dense, receipts-first briefing you can build on. I’ve sp
 - **Email-based age estimation** – **Very low friction**; now **recognised by Ofcom** and **ACCS-certified** implementations exist; rely on **signal coverage** and need **fallback** for sparse/new emails. citeturn6view0turn8search22
 
 ---
-
-If you want, I can turn this into a living spreadsheet (providers × certs × methods × live deployments × known weaknesses) so you can keep dropping in new receipts as Ofcom enforces through 2025.

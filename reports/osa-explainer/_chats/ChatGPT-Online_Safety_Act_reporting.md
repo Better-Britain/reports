@@ -3,53 +3,6 @@
 #### You:
 Can you pull transcripts and comments from videos on youtube about the Online Safety Act, you could probably start with Bellular News, but there are many many others.
 
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Absolutely—here’s a quick starter pull focused on Bellular News (plus one other highly-shared explainer) so you’ve got something you can work with right now. If you want me to expand this to a bigger batch, just say “keep going”.
@@ -121,25 +74,6 @@ Or, if you’d rather keep it to Bellular News only, say **“Bellular only”**
 I want a general overview of who said what about OSA, from various places not already covered, with a primary focus on the most popular, most read/viewed/listened, and most influential people talking about it... I'd rather a LOT of sources with a general impression, rather than a deep dive. 
 Comment sections also matter, especially for like highly upvoted or engaged material, from anywhere, not just youtube
 
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Got it—here’s a broad, fast “who said what” map of the Online Safety Act (OSA) conversation, leaning on high-reach voices and heavily engaged comment hubs. Skims only; tons of sources so you can decide what to deep-dive later.
@@ -204,29 +138,6 @@ If you want, I can turn this into a spreadsheet with columns like: *source → s
 
 #### You:
 what else? look in deeper places, things that haven't surfaced so far, especially places with quiet reach.
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
 
 
 #### ChatGPT:
@@ -366,38 +277,6 @@ If you're compiling this into a report, I'd recommend structuring additions as a
 | Academic | Surveys/studies | LSE reports, YouGov polls | Evidence-based insights |
 
 If any of these resonate (or if I'm off-base on what's "missing"), say "expand on [theme]" or "pull sources for [specific gap]," and I'll dive in. Otherwise, the chat already feels thorough for a starter overview!
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Awesome audit — here’s how to actually fill those gaps, fast. I’ve pulled high-signal sources (incl. “quiet reach”) you can drop straight into your report. Skims only; each bullet = 1-2 lines + a linkable citation.

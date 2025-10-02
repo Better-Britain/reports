@@ -88,41 +88,6 @@ Let me know if you'd like the timeline enriched with perspectives from specific 
 #### You:
 Can you dig deeper and do some thinking to find why Labour implemented it after winning in 2024, when it's such an obviously Tory overreach and poorly thought out policy
 
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
-
-#### ChatGPT:
-\[Unsupported Content]
-
 
 #### ChatGPT:
 Short answer: Labour didn’t “adopt a Tory bill” so much as inherit a law that was already on the statute book and then decide it was politically safer—and practically easier—to press ahead and shape it than to reopen it.
