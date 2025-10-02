@@ -5,6 +5,8 @@
 Certified providers should delete images immediately after the check and keep only what’s needed (e.g., an “18+ OK” token tied to your account). Under UK data protection law (UK GDPR), you have rights to access, correction, and erasure where applicable.
 
 In practice: good providers state deletion clearly and explain retention for audit tokens. If a service claims deletion, they should be able to show it. You can exercise your rights with the provider (data access/erasure) and, if needed, complain to the ICO. See the [UK GDPR overview (ICO)](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/) and Ofcom’s [online safety hub](https://www.ofcom.org.uk/online-safety) for how these regimes interact. ICO materials updated in 2025 emphasise immediate deletion for age‑assurance images and minimal data handling.
+
+Tip: look for independent certification and audits. For example, the <strong>Age Check Certification Scheme (ACCS)</strong> audits age‑assurance providers ([ACCS](https://accscheme.com/)), the <strong>Digital Identity and Attributes Trust Framework (DIATF)</strong> recognises certified identity/attribute providers ([GOV.UK—DIATF](https://www.gov.uk/government/collections/digital-identity-and-attributes-trust-framework)), and the <strong>PASS</strong> scheme certifies proofs of age ([PASS](https://www.pass-scheme.org.uk/)). Providers such as <em>Yoti</em> publish certifications and audit summaries covering deletion and accuracy.
 </details>
 
 <details>

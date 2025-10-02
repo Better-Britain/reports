@@ -58,3 +58,14 @@ A typical layered flow: begin with facial estimation or email‑based estimation
 - <strong>Is this fair for everyone?</strong> Ofcom expects services to test for bias and either remediate or provide alternatives where performance differs across demographics. That’s part of the “fairness” lens in the codes linked above.
 </details>
 
+<details>
+<summary><strong>Who certifies these methods/providers?</strong></summary>
+Independent certification helps validate deletion, security and accuracy claims.
+
+- <strong>ACCS</strong>: The UK’s Age Check Certification Scheme audits age‑assurance providers and solutions against recognised standards (including privacy, security and performance). Look for an ACCS certificate for assurance over claims like “images are deleted immediately.” ([ACCS—Age Check Certification Scheme](https://accscheme.com/))
+- <strong>DIATF</strong>: The UK Digital Identity and Attributes Trust Framework recognises certified identity/attribute providers and includes requirements relevant to age attributes. Providers operating under DIATF publish which schemes and roles they’re certified for. ([GOV.UK—Digital identity and attributes trust framework](https://www.gov.uk/government/collections/digital-identity-and-attributes-trust-framework))
+- <strong>PASS</strong>: The Proof of Age Standards Scheme certifies physical and digital proofs of age accepted across the UK (e.g., Yoti PASS card; Post Office PASS). PASS‑certified credentials can be used as a non‑biometric route. ([PASS—Proof of Age Standards Scheme](https://www.pass-scheme.org.uk/))
+
+Example: providers such as <strong>Yoti</strong> detail independent audits and certifications for their facial age estimation and ID verification flows, including deletion and accuracy statements; services should link to those attestations in‑product. (See your selected provider’s certification pages and audit summaries.)
+</details>
+
