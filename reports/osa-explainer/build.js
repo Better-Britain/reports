@@ -53,89 +53,10 @@ function extractFirstH1(markdown) {
 }
 
 function accordionEnhancements(html) {
-  const style = `
-<style>
-  :root {
-    --bg: #ffffff;
-    --fg: #111;
-    --muted: #666;
-    --border: #e5e7eb;
-    --accent: #0a7;
-  }
-  body { background: var(--bg); color: var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-  #osa-explainer { max-width: 980px; margin: 2rem auto; padding: 0 1rem; }
-  .page-header { margin-bottom: 1rem; }
-  .toolbar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: .5rem; background: #fafafa; position: sticky; top: 0; z-index: 1; }
-  .toolbar button { border: 1px solid var(--border); background: #fff; padding: .4rem .6rem; border-radius: 6px; cursor: pointer; }
-  .toolbar input[type="search"] { flex: 1 1 260px; border: 1px solid var(--border); border-radius: 6px; padding: .4rem .6rem; }
-  .toc { border-left: 3px solid var(--border); padding-left: .75rem; margin: 1rem 0; color: var(--muted); }
-  details { border: 1px solid var(--border); border-radius: 6px; padding: .5rem .75rem; margin: .5rem 0; }
-  details[open] { background: #fbfbfb; }
-  details > summary { cursor: pointer; font-weight: 600; }
-  details mark { background: #fff59d; }
-  a { color: #0a66c2; }
-  hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
-</style>`;
-  const script = `
-<script>
-  (function() {
-    const root = document.getElementById('osa-explainer');
-    if (!root) return;
-
-    function $(sel, ctx=document) { return ctx.querySelector(sel); }
-    function $all(sel, ctx=document) { return Array.from(ctx.querySelectorAll(sel)); }
-
-    // Toolbar
-    const toolbar = document.createElement('div');
-    toolbar.className = 'toolbar';
-    toolbar.innerHTML = ` + "`" + `
-      <button id="expand-all" aria-label="Expand all">Expand all</button>
-      <button id="collapse-all" aria-label="Collapse all">Collapse all</button>
-      <input id="qa-filter" type="search" placeholder="Filter questions…" aria-label="Filter questions" />
-      <span id="match-count" style="color: var(--muted);"></span>
-    ` + "`" + `;
-    root.prepend(toolbar);
-
-    const expandBtn = $('#expand-all');
-    const collapseBtn = $('#collapse-all');
-    const filterInput = $('#qa-filter');
-    const matchCount = $('#match-count');
-
-    expandBtn.addEventListener('click', () => {
-      $all('details').forEach(d => d.open = true);
-    });
-    collapseBtn.addEventListener('click', () => {
-      $all('details').forEach(d => d.open = false);
-    });
-
-    function highlight(text, term) {
-      if (!term) return text;
-      const safe = term.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&');
-      return text.replace(new RegExp('(' + safe + ')', 'ig'), '<mark>$1</mark>');
-    }
-
-    function applyFilter(term) {
-      let matches = 0;
-      $all('details').forEach(d => {
-        const sum = d.querySelector('summary');
-        const bodyText = d.textContent || '';
-        const hit = !term || bodyText.toLowerCase().includes(term.toLowerCase());
-        d.style.display = hit ? '' : 'none';
-        // summary highlight
-        if (sum) {
-          const raw = sum.getAttribute('data-raw') || sum.innerHTML;
-          if (!sum.getAttribute('data-raw')) sum.setAttribute('data-raw', raw);
-          sum.innerHTML = hit ? highlight(raw, term) : raw;
-        }
-        if (hit) matches++;
-      });
-      matchCount.textContent = term ? (matches + ' matches') : '';
-    }
-
-    filterInput.addEventListener('input', (e) => applyFilter(e.target.value.trim()));
-  })();
-</script>`;
-  return style + html + script;
+  // Externalize CSS/JS for OSA explainer
+  const links = `\n<link rel="stylesheet" href="/assets/osa/osa.css">\n`;
+  const scripts = `\n<script src="/assets/osa/osa.js" defer></script>\n`;
+  return links + html + scripts;
 }
 
 export async function buildReport(outFile = path.resolve('docs/uk-online-safety-act-osa-explainer.html')) {
