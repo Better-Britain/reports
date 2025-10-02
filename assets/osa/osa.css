@@ -1,0 +1,87 @@
+/* OSA Explainer styles */
+:root {
+  --bg: #ffffff;
+  --fg: #111;
+  --muted: #666;
+  --border: #e5e7eb;
+  --accent: #0a7;
+}
+
+/* Page shell */
+#osa-explainer {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: var(--fg);
+}
+
+/* Toolbar */
+.osa-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .5rem;
+  background: #fafafa;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.osa-toolbar button {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: .4rem .6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.osa-toolbar input[type="search"] {
+  flex: 1 1 260px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .4rem .6rem;
+}
+.osa-toolbar .osa-count {
+  color: var(--muted);
+}
+
+/* Details/Q&A */
+details {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .5rem .75rem;
+  margin: .5rem 0;
+  background: #fff;
+}
+details[open] {
+  background: #fbfbfb;
+}
+details > summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+details mark {
+  background: #fff59d;
+}
+
+/* Search mode: show only matching blocks in matching details */
+.osa-search-active details[ data-search-match="1" ] .osa-hide-when-searching {
+  display: none !important;
+}
+.osa-search-active details[ data-search-match="1" ] .osa-search-hit {
+  display: block;
+}
+
+/* Snippet hint */
+.osa-snippet {
+  border-left: 3px solid var(--border);
+  padding-left: .75rem;
+  margin: .25rem 0 .5rem;
+}
+
+/* Links */
+a { color: #0a66c2; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+
