@@ -1,13 +1,6 @@
 # A) Basics & origin
 
 <details>
-<summary><strong>At a glance</strong></summary>
-- Sets <em>system-level duties</em> for services with a UK link; it is not a tool for policing individual posts.
-- Core focus: <strong>illegal content</strong> and <strong>children’s safety</strong>; adults get more control tools, not new bans on legal speech.
-- Enforced by <strong>Ofcom</strong>, with fines up to <strong>£18m or 10% of qualifying worldwide revenue</strong> and, in serious cases, <strong>court-ordered business disruption</strong> measures. See Ofcom’s enforcement approach and the government explainer: ([Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925), [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
-</details>
-
-<details>
 <summary><strong>What is the Online Safety Act (OSA)?</strong></summary>
 A UK law that puts duties on online services (not on users) to reduce illegal harms and protect children. Separate parts of the law create or update offences for individuals (e.g., cyberflashing), but the core of the OSA is about what <em>services</em> must do.
 
@@ -93,5 +86,15 @@ Some services face <strong>additional transparency and user‑empowerment duties
 - <strong>Category 2B</strong>: sizable user‑to‑user services below Cat 1 but with risky features (e.g., DMs).
 
 Thresholds were set by the <em>Online Safety Act 2023 (Category 1, Category 2A and Category 2B Threshold Conditions) Regulations 2025</em>. ([UK SI 2025/226—Threshold Conditions (PDF)](https://upload.wikimedia.org/wikipedia/commons/7/77/The_Online_Safety_Act_2023_%28Category_1%2C_Category_2A_and_Category_2B_Threshold_Conditions%29_Regulations_2025_%28UKSI_2025-226_kp%29.pdf))
+</details>
+
+
+<details>
+<summary><strong>Online Safety Act at a glance</strong></summary>
+- Sets <em>system-level duties</em> for services with a UK link; it is not a tool for policing individual posts.
+- Core focus: <strong>illegal content</strong> and <strong>children’s safety</strong>; adults get more control tools, not new bans on legal speech.
+- Enforced by <strong>Ofcom</strong>, with fines up to <strong>£18m or 10% of qualifying worldwide revenue</strong> and, in serious cases, <strong>court-ordered business disruption</strong> measures. 
+
+See Ofcom’s enforcement approach and the government explainer: [Ofcom—Enforcement guidance (PDF)](https://www.ofcom.org.uk/siteassets/resources/documents/online-safety/information-for-industry/illegal-harms/online-safety-enforcement-guidance.pdf?v=391925) or the [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
 </details>
 

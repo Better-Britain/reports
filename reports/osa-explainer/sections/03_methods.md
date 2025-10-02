@@ -1,4 +1,4 @@
-# C) How age assurance works (no waffle)
+# C) How age assurance/verification works
 
 <details>
 <summary><strong>What counts as “highly effective” (HEAA)?</strong></summary>
@@ -17,7 +17,7 @@ Self‑declaration (“I’m over 18”) does <em>not</em> meet the standard. Se
 
 <details>
 <summary><strong>Is facial estimation “biometric ID”?</strong></summary>
-Short answer: no. Estimation infers an age band from an image and should delete the image immediately; it does not match you to a known identity.
+No. Estimation infers an age band from an image and should delete the image immediately; it does not match you to a known identity.
 
 Where confidence is low (e.g., near 18; poor lighting; atypical features), services should offer stronger fallbacks such as ID+liveness or bank‑sourced age. That’s how platforms meet Ofcom’s robustness and fairness aims without hoarding images (see Ofcom’s [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online)).
 
@@ -26,14 +26,14 @@ Accuracy varies by age band and conditions. Independent assessments and regulato
 
 <details>
 <summary><strong>How good is it, and for whom?</strong></summary>
-Short answer: good enough for an 18+ gate when used with sensible buffers and fallbacks; performance varies by age band and conditions.
+Generally good enough for an 18+ gate when used with sensible buffers and fallbacks; performance varies by age band and conditions.
 
 Good practice (reflected in Ofcom’s intent) is to publish error behaviour around threshold ages, be conservative near 18, test for and remediate bias, and <em>always</em> provide a non‑face alternative (ID, PASS, open banking) so people aren’t excluded if estimation struggles. See Ofcom’s design expectations in the [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online).
 </details>
 
 <details>
 <summary><strong>Which methods are strong vs weak?</strong></summary>
-Short answer: strong methods bind to the user and resist easy workarounds; weak ones don’t.
+There are various technologies and approaches used by different companies and platforms, usually for technical considerations, focusing on low-impact changes when done well. Strong methods generally bind to the user and resist easy workarounds; weak ones don’t.
 
 - <strong>ID + liveness</strong>: strongest binding; higher friction; needs solid anti‑fraud.
 - <strong>Open banking</strong>: strong and privacy‑preserving; binds to the person controlling the bank app.
@@ -45,7 +45,7 @@ Short answer: strong methods bind to the user and resist easy workarounds; weak 
 
 <details>
 <summary><strong>How should a decent verification/response process work?</strong></summary>
-Short answer: start light, escalate only when needed, and delete images.
+Start light, escalate only when needed, and delete images.
 
 A typical layered flow: begin with facial estimation or email‑based estimation; if confidence is low, offer ID+liveness, open banking, MNO or PASS. On success, issue a short‑lived “age OK” token and delete any images immediately. This meets Ofcom’s robustness/reliability/fairness objectives while keeping friction low (see [children’s codes](https://www.ofcom.org.uk/online-safety/illegal-and-harmful-content/statement-protecting-children-from-harms-online) and the [gov.uk explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
 </details>

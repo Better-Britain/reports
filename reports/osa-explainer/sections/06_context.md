@@ -37,6 +37,6 @@ That framing helps: you shouldn’t have to do all the work to be safe online. T
 
 <details>
 <summary><strong>Practical takeaway</strong></summary>
-If a platform makes you jump through hoops, that’s usually an implementation choice. Ask for privacy‑preserving options (deletion, non‑ID routes). The law doesn’t require making your life harder; it requires the service to take responsibility (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+If a platform makes you jump through hoops, that’s usually an implementation choice. Ask for privacy‑preserving options (deletion, non‑ID routes). The law doesn’t require making your life harder; it requires the service to take responsibility . See [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
 </details>
 

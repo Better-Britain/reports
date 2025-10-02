@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node site/build-orchestrator.js",
+    "build": "BBB_INCLUDE_DRAFTS=1 node site/build-orchestrator.js",
     "preview": "vite preview --port 5173 --strictPort --host",
     "dev": "vite --open --port 5173 --strictPort --host",
     "coming-soon": "BBB_COMING_SOON=1 node site/build-orchestrator.js",

@@ -21,7 +21,7 @@ Freedom without safety isn’t meaningful for many people. The OSA pushes platfo
 
 <details>
 <summary><strong>What about encrypted chats (E2EE)?</strong></summary>
-The law includes a power that could be aimed at scanning—but only <strong>if technically feasible</strong>. Government statements in 2025 reiterated that this won’t be used until there’s a workable, privacy‑preserving solution. Today, the focus is elsewhere: platform systems, not breaking E2EE (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+The law includes a power that could be aimed at scanning—but only <strong>if technically feasible</strong>. Government statements in 2025 reiterated that this won’t be used until there’s a workable, privacy‑preserving solution. Today, the focus is elsewhere: platform systems, not breaking E2EE . See [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
 </details>
 
 <details>

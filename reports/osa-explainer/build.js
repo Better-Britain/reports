@@ -6,15 +6,16 @@ const TEMPLATE_FILE = path.resolve('site/template.html');
 const ROOT_INDEX = path.resolve('reports/osa-explainer/index.md');
 const SECTIONS_DIR = path.resolve('reports/osa-explainer/sections');
 
+function slugify(s) {
+  return s.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-');
+}
+
 async function renderMarkdown(markdown) {
   const { default: MarkdownIt } = await import('markdown-it');
   const { default: mdAnchor } = await import('markdown-it-anchor');
-  const { default: mdTocDoneRight } = await import('markdown-it-toc-done-right');
   const md = new MarkdownIt({ html: true, linkify: true })
-    .use(mdAnchor, {
-      slugify: (s) => s.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s-]+/g, '-')
-    })
-    .use(mdTocDoneRight, { containerClass: 'toc', listType: 'ul' });
+    .use(mdAnchor, { slugify })
+    ;
   return md.render(markdown);
 }
 
@@ -34,6 +35,21 @@ async function readSections() {
   } catch {
     return '';
   }
+}
+
+function rewriteIndexTocLinks(markdown, sectionTitleMap) {
+  // Replace bullets of the form "- <text> → `sections/x.md`" with "- [<Section H1>](#<slug>)"
+  return markdown.replace(/^(\s*-\s*)(?:.+?)\s*→\s*`sections\/([^`]+?)`.*$/gm, (_full, lead, file) => {
+    const base = String(file).replace(/\.(md|markdown)$/i, '');
+    const title = sectionTitleMap.get(base) || base;
+    const anchor = slugify(title);
+    return `${lead}[${title}](#${anchor})`;
+  });
+}
+
+function extractFirstH1(markdown) {
+  const m = markdown.match(/^#\s+(.+)$/m);
+  return m ? m[1].trim() : '';
 }
 
 function accordionEnhancements(html) {
@@ -94,7 +110,7 @@ function accordionEnhancements(html) {
 
     function highlight(text, term) {
       if (!term) return text;
-      const safe = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const safe = term.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&');
       return text.replace(new RegExp('(' + safe + ')', 'ig'), '<mark>$1</mark>');
     }
 
@@ -122,8 +138,21 @@ function accordionEnhancements(html) {
   return style + html + script;
 }
 
-export async function buildReport(outFile = path.resolve('docs/osa-explainer.html')) {
-  const indexSrc = await fs.readFile(ROOT_INDEX, 'utf8');
+export async function buildReport(outFile = path.resolve('docs/uk-online-safety-act-osa-explainer.html')) {
+  const indexSrcRaw = await fs.readFile(ROOT_INDEX, 'utf8');
+  // Build map of section filename (without extension) → first H1 title
+  let sectionTitleMap = new Map();
+  try {
+    const entries = await fs.readdir(SECTIONS_DIR, { withFileTypes: true });
+    for (const e of entries) {
+      if (!e.isFile() || !/\.(md|markdown)$/i.test(e.name)) continue;
+      const src = await fs.readFile(path.join(SECTIONS_DIR, e.name), 'utf8');
+      const title = extractFirstH1(src);
+      sectionTitleMap.set(e.name.replace(/\.(md|markdown)$/i, ''), title || e.name);
+    }
+  } catch {}
+
+  const indexSrc = rewriteIndexTocLinks(indexSrcRaw, sectionTitleMap);
   const sectionsSrc = await readSections();
   const combined = indexSrc + (sectionsSrc ? `\n\n---\n\n` + sectionsSrc : '');
   const htmlBody = await renderMarkdown(combined);
@@ -137,6 +166,6 @@ export async function buildReport(outFile = path.resolve('docs/osa-explainer.htm
 // CLI usage: node reports/osa-explainer/build.js --out docs/osa-explainer.html
 if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
   const outIdx = process.argv.indexOf('--out');
-  const outPath = outIdx !== -1 ? path.resolve(process.argv[outIdx + 1]) : path.resolve('docs/osa-explainer.html');
+  const outPath = outIdx !== -1 ? path.resolve(process.argv[outIdx + 1]) : path.resolve('docs/uk-online-safety-act-osa-explainer.html');
   buildReport(outPath).catch((err) => { console.error(err); process.exit(1); });
 }

@@ -27,7 +27,7 @@ Reddit’s approach can be quick and privacy‑respecting when deletion is enfor
 <summary><strong>Can I avoid checks with a VPN? Is that safer?</strong></summary>
 You can route around some gates, but a shady VPN may see far more of your traffic than a certified verifier sees of your face/ID (which should be deleted on the spot).
 
-Think of it as a trade‑off: a one‑time, auditable “age OK” token versus ongoing exposure of all your browsing to an unknown network. If you use a VPN, pick a reputable provider and understand the risks; the law expects services to consider circumvention but doesn’t mandate universal ID or breaking encryption (see [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer)).
+Think of it as a trade‑off: a one‑time, auditable “age OK” token versus ongoing exposure of all your browsing to an unknown network. If you use a VPN, pick a reputable provider and understand the risks; the law expects services to consider circumvention but doesn’t mandate universal ID or breaking encryption . See [gov.uk OSA explainer](https://www.gov.uk/government/publications/online-safety-act-explainer/online-safety-act-explainer).
 
 Reports in mid‑ to late‑2025 show some users discussing workarounds, but the safer path is usually to choose a privacy‑preserving on‑platform method and ensure deletion is real (see Ofcom’s children’s codes, linked above).
 </details>
