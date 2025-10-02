@@ -30,5 +30,7 @@ This guide explains, in plain English, what the UK’s Online Safety Act is, why
 - G) kids, speech & the messy middle → `sections/07_messy_middle.md`
 - H) politics & perception → `sections/08_politics.md`
 - I) enforcement reality & what to watch next → `sections/09_enforcement.md`
+- J) deeper dives → `sections/10_deeper_dives.md`
+- K) what to take with you → `sections/11_outro.md`
 
 Tip: You can expand everything at once, or search within the page. When you’re done, you should have a practical sense of what’s changing, why, and what your choices are.

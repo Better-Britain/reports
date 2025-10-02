@@ -1,4 +1,4 @@
-# J) What to take with you
+# K) What to take with you
 
 What you’ll notice most are the visible bits: age checks before adult content, clearer reporting and appeals, and safer settings for younger users. Good designs feel light—choices of method, deletion of sensitive data, clear explanations. Blunt designs feel like walls—single routes, vague notices, lazy implementations and friction for everyone.
 
