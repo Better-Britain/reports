@@ -309,7 +309,10 @@ async function build() {
 	await ensureTemplate();
 	await ensureAssets();
 	const config = await loadConfig();
-	const allReports = [...(config.reports?.national || []), ...(config.reports?.local || [])].filter(r => !r.disabled);
+	const isCi = Boolean(process.env.GITHUB_ACTIONS);
+	const includeDrafts = !isCi && (String(process.env.BBB_INCLUDE_DRAFTS || '').toLowerCase() === 'true' || String(process.env.BBB_INCLUDE_DRAFTS || '') === '1');
+	const allReports = [...(config.reports?.national || []), ...(config.reports?.local || [])]
+		.filter(r => includeDrafts ? true : !r.disabled);
 	for (const rpt of allReports) {
 		const builderPath = path.resolve(rpt.builder);
 		const mod = await import('file://' + builderPath.replace(/\\/g, '/'));
