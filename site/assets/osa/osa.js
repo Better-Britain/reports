@@ -88,7 +88,13 @@
         highlightText(d, trimmed);
       } else {
         d.open = false;
+        d.removeAttribute('data-search-match');
       }
+    });
+
+    // Hide non-structured blocks while searching (don’t attempt to match them)
+    bySelAll('#osa-explainer > *:not(.osa-toolbar):not(details)', root).forEach(el => {
+      el.removeAttribute('data-search-match');
     });
 
     setSearchMode(true);

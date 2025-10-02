@@ -92,9 +92,9 @@ Sources: Ofcom online safety hub and children’s codes; provider certification 
 
 <details>
 <summary><strong>What is it protecting children <em>from</em>, specifically?</strong></summary>
-Two buckets:
+Two main buckets:
 
-- <strong>Clearly illegal harms</strong>: e.g., CSAM/abuse material, terrorism content, fraud. Platforms must assess risks and design systems to detect and remove these more effectively (codes and guidance specify measures and processes).
+- <strong>Clearly illegal harms</strong>: e.g., Abuse material, terrorism content, fraud. Platforms must assess risks of this content, and design systems to detect and remove these more effectively (codes and guidance specify measures and processes), reacting with timeliness and responsibility.
 - <strong>Likely‑to‑harm content for children</strong>: e.g., pornographic content; encouragement of self‑harm or eating disorders; abusive contact. Duties include safer defaults, gated access, and tools that reduce exposure and unwanted contact.
 
 Effectiveness depends on <em>proportionate</em> implementation: age gates that actually keep most under‑18s out of adult areas; recommendations that don’t push younger users toward harmful spirals; and appeals that quickly fix mistakes. Ofcom’s outcome tests (robustness, reliability, fairness) are the yardstick for judging if a chosen method works in practice.
