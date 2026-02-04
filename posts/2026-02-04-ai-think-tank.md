@@ -3,7 +3,7 @@ title: What is an 'AI think tank'?
 date: 2026-02-04T09:30:00Z
 ---
 
-An "AI think tank" is untrustworthy in a different way from a normal think tank because you can't trace responsibility. Let's have some waffle considering AI think tanks, and how they differ from the real thing, and how government might/should react to their increasing popularity.
+An "AI think tank" is untrustworthy in a different way from a normal think tank because you can't trace responsibility. How do AI think tanks differ from the real thing? and how might/should government react to their increasing popularity?
 
 ## What is think tank, really?
 
