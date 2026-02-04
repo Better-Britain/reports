@@ -5,6 +5,8 @@ date: 2026-02-04T09:30:00Z
 
 An "AI think tank" is untrustworthy in a different way from a normal think tank because you can't trace responsibility. How do AI think tanks differ from the real thing? and how might/should government react to their increasing popularity?
 
+> Part of the reason I started this project was because I kept seeing mentions in the press of AI-activism and AI-disruption and AI-governance, so I want to know how disruptive is it? How much time does it take? What can AI do with typical think tank goals? and is it a goldmine for activism? (lol, no). There's a lot to be said for putting a complex argument into the right words, but the right words are still as elusive as ever. If anything, the right words might be further away than ever, as more people switch to consuming their web via AI-summarisation, it's conceivable many/most people never see what was really written anyway.
+
 ## What is a think tank, really?
 
 A think tank isn't just a list of reports that turn facts into information, but it's a network of people working towards shared goals. Usually (ideally) with some widely understood idea of:
