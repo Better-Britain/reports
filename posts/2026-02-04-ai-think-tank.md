@@ -29,7 +29,7 @@ It's easy to believe you can make an AI give whatever outputs you like, and that
 
 Bias always emerges where this boundary meets the real world, even for the most insignicant information, because a butterfly's wing-flap single word selection can colour the entire output of the model for every user, often invisibly until thousands of outputs have been actioned before anyone even thinks to check for some tiny mistake (thinking of the Post Office Horizon scandal) that nobody thought to check was doing what it was supposed to. 
 
-The bias isn't just "left/right" or "optimistic/pessimistic", it's much more diffuse. Layers of interpretation mean you can't tell whether you're reading the model, the product choices around the model, or the operator's editorial hand. It feels slippery than a 'real' think tank, where at least you can understand some of the bias.
+The bias isn't just "left/right" or "optimistic/pessimistic", it's much more diffuse. Layers of interpretation mean you can't tell whether you're reading the model, the product choices around the model, or the operator's editorial hand. It feels more slippery than a 'real' think tank, where at least you can understand some of the bias and use experience to infer a lot of the rest.
 
 ## AI and Judgement
 
@@ -49,7 +49,7 @@ As the model produces more and more outputs, a pattern usually emerges of it fol
 
 Earlier GPT models/engines would tell you if they avoided a complex subject or if your question/prompt touched a sensitive topic, but the last few major models, the rules get followed more quietly. You can often ask for rationale (something like "in your previous output, where might you have dodged sensitive subjects?") but you can phrase that even slightly differently and get a completely different (and equally soupy) answer.
 
-Useful internal tools like system messages, and even geofencing, severely restricted the capabilities of chatgpt especially, with its very mainstream-focus 'safe' default config, and limited access to customise in consumer tools.
+Useful internal tools like system messages, and even geofencing, severely lmit the capabilities of chatgpt especially, with its relatively mainstream-focus and 'safe' default config, and limited access to customise settings in consumer tools.
 
 It can do deep research, and bring together disparate/complex information to produce analyses and reports, but it can't earn legitimacy because legitimacy comes from being a party in the world: having a track record, relationships, being questioned, being embarrassed, being forced to explain yourself, having something on the line, and coming back to a point you care about.
 
@@ -63,7 +63,7 @@ What does it look like when the market matures, when full-penetration AI governa
 
 ## The SKU outcome
 
-A pretty likely market shape is companies selling "unbiased policy analysis" the way they sell "secure" or "ethical" tech products to government today. A nice clean shippable solution where the decision-maker just plugs in every spreadsheet they have, and the system gives them whatever actionable intel they want.
+A pretty likely market shape is companies selling "unbiased policy analysis" the way they sell "secure" or "ethical" tech products to government today. A nice clean shippable solution where the decision-maker just plugs in every spreadsheet they have, along with their demographic interests, and the system gives them whatever actionable intel they want.
 
 There are already lots of AI products for that in business, but a deep dive on what the big platforms are offering to leadership/governments might make an interesting future report.
 
@@ -81,11 +81,12 @@ AI can help with research and drafting. But credibility requires named humans to
 - Log methods and constraints
 - Show working and sources
 - Real people own conclusions
+- Every warning needs to be fully investigated
 
 ## Bottom line
 
-An "AI think tank" isn't credible unless named humans take ownership. Otherwise it's anonymous authority.... the worst kind. Legislating transparency into AI tells you what _some_ of the tuning knobs are doing, but does very little to eliminate or control real biases. 
+An "AI think tank" isn't credible unless named humans take ownership. Otherwise it's just another anonymous authority. Legislating transparency into AI tells you what _some_ of the tuning knobs are doing, but does very little to eliminate or control real biases. 
 
-We expect to see much more from 'AI governance solutions', especially as the current government seem eager to leverage AI to promote growth, and are friendly enough with the big providers that there's likely a lot to come. 
+We expect to see much more from 'AI governance solutions', especially as the current government seem eager to leverage AI to promote growth, and are friendly enough with big-tech that there's likely a lot still to come. 
 
-Government should probably stop pretending the maths hold up on AI-generated 'thought process explainers' (model transparency and technical data as a supposed solution), and instead (or at least also) be taking some pretty strong positions on how decisions that involved AI get extra review responsibilities. Essentially, if any system gets touched by an AI decision, anyone within that system should be able to raise a red flag and expect it to get very serious attention, pretty quickly.
+Government should probably stop pretending the maths hold up on AI-generated 'thought process explainers' (model transparency and technical data as a supposed solution), and instead (or at least also) be taking some pretty strong positions on how decisions that involved AI (at any step) get extra review responsibilities. If any system gets touched by any AI decision, even ones made outside of government, like those that inform decision making, anyone within that system should be able to raise a red flag and expect it to get very serious attention, pretty quickly.
