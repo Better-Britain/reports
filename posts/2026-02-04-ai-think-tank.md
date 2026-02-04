@@ -20,16 +20,16 @@ Because these things are generally knowable (even if not known), you can read th
 
 ## Why AI bias is harder to locate
 
-With an AI "think tank", the mechanism is more foggy. Output is shaped almost at random, by even very small decisions in:
+With an AI "think tank", the mechanism is more foggy. Output is shaped not strictly by reason or sense, but by small random or near-random selections of words, and by even very small decisions in:
 
 - Training data selection and omissions
 - Filtering, reward tuning, safety layers
 - Performance and budget, context and supporting docs
 - Operator/editor choices: what to ask, what to omit, what to regenerate until it "sounds right", what to publish and what to use as quiet support
 
-It's easy to believe you can make an AI give whatever outputs you like, and that's kinda true, but the more you need it to be 'right' (vs dogmatic), the more work you have to do to build a case within your current context window (a massive limiter for codex models, becoming more apparent in text models). 
+It's easy to believe you can make an AI give whatever outputs you like, and that's kinda true, but the more you need it to be 'right' (vs dogmatic), the more work you have to do to build a case within your current context window (a massive limiter for code/codex models, becoming more apparent in text models). 
 
-Bias always emerges where this boundary meets the real world, even for the most insignicant information, because a butterfly's wing-flap single word selection can colour the entire output of the model for every user, often invisibly until thousands of outputs have been actioned before anyone even thinks to check for some tiny mistake (thinking of the Post Office Horizon scandal) that nobody thought to check was doing what it was supposed to. 
+Bias always emerges where this boundary meets the real world, even for the most insignificant information, because a butterfly's wing-flap single word selection can colour the entire output of the model for every user, often invisibly until thousands of outputs have been actioned before anyone even thinks to check for some tiny mistake (thinking of the Post Office Horizon scandal) that nobody thought to check was doing what it was supposed to. 
 
 The bias isn't just "left/right" or "optimistic/pessimistic", it's much more diffuse. Layers of interpretation mean you can't tell whether you're reading the model, the product choices around the model, or the operator's editorial hand. It feels more slippery than a 'real' think tank, where at least you can understand some of the bias and use experience to infer a lot of the rest.
 
@@ -41,7 +41,7 @@ AI can generate text that looks like judgement, but it doesn't have commitments 
 
 It is however pretty good at parsing an argument/issue into components, and constructing logical counter-arguments, with or even without additional information. If you want to make an argument stronger, a few cycles through different models can help stress test a position and look at issues from diverse/distinct perspectives. 
 
-The main caveat is that you have to know to ask for them, and how to do it properly... if you just ask for 'diverse opionions', you're going to get back only what Mara and Elena (they're the first two 'statistical average' chatgpt names atm) have to say about it. The 'average person' doesn't exist, and while many MPs have their own minds-eye fantasy constituent, large LLMs have to try and find (statistically) the position of a real person averaged from all of humanity.
+The main caveat is that you have to know to ask for them, and how to do it properly... if you just ask for 'diverse opinions', you're going to get back only what Mara and Elena (they're the first two 'statistical average' chatgpt names atm) have to say about it. The 'average person' doesn't exist, and while many MPs have their own minds-eye fantasy constituent, large LLMs have to try and find (statistically) the position of a real person averaged from all of humanity.
 
 ## Legitimacy comes from being in the world
 
@@ -51,7 +51,7 @@ As the model produces more and more outputs, a pattern usually emerges of it fol
 
 Earlier GPT models/engines would tell you if they avoided a complex subject or if your question/prompt touched a sensitive topic, but the last few major models, the rules get followed more quietly. You can often ask for rationale (something like "in your previous output, where might you have dodged sensitive subjects?") but you can phrase that even slightly differently and get a completely different (and equally soupy) answer.
 
-Useful internal tools like system messages, and even geofencing, severely lmit the capabilities of chatgpt especially, with its relatively mainstream-focus and 'safe' default config, and limited access to customise settings in consumer tools.
+Useful internal tools like system messages, and even geofencing, severely limit the capabilities of chatgpt especially, with its relatively mainstream-focus and 'safe' default config, and limited access to customise settings in consumer tools.
 
 It can do deep research, and bring together disparate/complex information to produce analyses and reports, but it can't earn legitimacy because legitimacy comes from being a party in the world: having a track record, relationships, being questioned, being embarrassed, being forced to explain yourself, having something on the line, and coming back to a point you care about.
 
@@ -83,7 +83,7 @@ AI can help with research and drafting. But credibility requires named humans to
 - Log methods and constraints
 - Show working and sources
 - Real people own conclusions
-- Every warning needs to be fully investigated
+- Every red flag needs investigation and sensible fallbacks to circumvent blockers
 
 ## Bottom line
 
