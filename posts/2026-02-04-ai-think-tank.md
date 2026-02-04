@@ -92,3 +92,24 @@ An "AI think tank" isn't credible unless named humans take ownership. Otherwise 
 We expect to see much more from 'AI governance solutions', especially as the current government seem eager to leverage AI to promote growth, and are friendly enough with big-tech that there's likely a lot still to come. 
 
 Government should probably stop pretending the maths hold up on AI-generated 'thought process explainers' (model transparency and technical data as a supposed solution), and instead (or at least also) be taking some pretty strong positions on how decisions that involved AI (at any step) get extra review responsibilities. If any system gets touched by any AI decision, even ones made outside of government, like those that inform decision making, anyone within that system should be able to raise a red flag and expect it to get very serious attention, pretty quickly.
+
+### Resources: organisations using AI to do “think tank work”
+
+These are policy / legislative intelligence outfits (and a few institutional research orgs) that openly market AI-assisted briefings, report-building, drafting, comparison, monitoring, and internal knowledge tools.
+
+- [POLITICO Pro — Policy Intelligence Assistant](https://www.politicopro.com/pro-features/policy-intelligence-assistant/)
+- [Bloomberg Government — Innovation Studio / AI tools](https://about.bgov.com/insights/company-news/bloomberg-government-launches-new-ai-tool-with-innovation-studio-approach-to-development/)
+- [FiscalNote — PolicyNote (AI policy workflows)](https://fiscalnote.com/products/policynote)
+- [Quorum — Quincy (AI assistant for public affairs)](https://www.quorum.us/products/quincy-ai/)
+- [USLege — AI legislative tracking](https://www.uslege.ai/)
+- [Plural Policy — AI-powered policy intelligence](https://pluralpolicy.com/)
+
+AI report builders explicitly positioned as generating policy reports from a curated corpus and institutional “internal knowledge / analysis” tools (closer to an in-house AI analyst than a vendor):
+
+- [Capitol AI (POLITICO partnership context)](https://www.niemanlab.org/2025/03/politico-pro-wants-subscribers-doing-deep-research-on-its-site-not-on-chatgpt/)
+- [WBG Institute — AVA (AI + Verified Analysis)](https://www.wbginstitute.org/ava-ai-verified-analysis)
+- [Nesta — Policy Atlas](https://www.nesta.org.uk/project/policy-atlas-harnessing-ai-to-improve-policy-design/)
+
+A think-tank + AI-analytics hybrid product line (explicitly sold as AI-powered assessment):
+
+- [New Lines Institute + Mantis Analytics (AI geopolitical risk assessment solution)](https://newlinesinstitute.org/tech-econ-sov-sec/ai-start-up-partners-with-policy-think-tank-to-launch-customizable-geopolitical-risk-assessment-solution/)
