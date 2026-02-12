@@ -18,7 +18,7 @@ const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 
-async function copyDirRecursive(srcDir, destDir) {
+async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0) {
 	await fs.mkdir(destDir, { recursive: true });
 	let entries = [];
 	try {
@@ -27,10 +27,13 @@ async function copyDirRecursive(srcDir, destDir) {
 		return; // nothing to copy
 	}
 	for (const entry of entries) {
+		if (entry.isDirectory() && depth === 0 && options.excludeTopLevelDirs?.has(entry.name)) {
+			continue;
+		}
 		const srcPath = path.join(srcDir, entry.name);
 		const destPath = path.join(destDir, entry.name);
 		if (entry.isDirectory()) {
-			await copyDirRecursive(srcPath, destPath);
+			await copyDirRecursive(srcPath, destPath, options, depth + 1);
 		} else if (entry.isFile()) {
 			await fs.mkdir(path.dirname(destPath), { recursive: true });
 			await fs.copyFile(srcPath, destPath);
@@ -72,8 +75,10 @@ async function ensureAssets() {
 	const appJs = path.join(assetsDir, 'app.js');
 	try { await fs.access(stylesFile); } catch { await fs.writeFile(stylesFile, `:root{--bg:#0b1020;--fg:#f7f7fb;--muted:#c7c9d1;--accent:#ffd24d}body{margin:0;background:#fff;color:#111;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"}header.site-header{position:sticky;top:0;background:#111;color:#fff;padding:.5rem 1rem}header .nav{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}header .brand{font-weight:700;color:#fff;text-decoration:none}main{max-width:900px;margin:2rem auto;padding:0 1rem}section{margin:2.5rem 0}section > h1, section > h2{scroll-margin-top:4rem}.footnotes{font-size:.9em;color:#374151;border-top:1px solid #e5e7eb;margin-top:2rem;padding-top:1rem}footer.site-footer{border-top:1px solid #e5e7eb;margin-top:3rem;padding:1rem;color:#374151;font-size:.9em;text-align:center}`, 'utf8'); }
 	try { await fs.access(appJs); } catch { await fs.writeFile(appJs, `document.addEventListener('DOMContentLoaded',()=>{const links=document.querySelectorAll('a[href^="#"]');links.forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}}));});`, 'utf8'); }
-	// Copy entire assets directory (including images, SVGs, subfolders) to docs/assets
-	await copyDirRecursive(assetsDir, path.join(OUTPUT_DIR, 'assets'));
+	// Copy site assets to docs/assets, excluding microsite sources (published separately).
+	await copyDirRecursive(assetsDir, path.join(OUTPUT_DIR, 'assets'), {
+		excludeTopLevelDirs: new Set(['microsites'])
+	});
 }
 
 function renderMarkdownString(markdown) {
@@ -204,6 +209,37 @@ async function writePostsIndex(config, outDir) {
 	let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-posts-index'), meta);
 	html = applyBasePath(html, config.basePath);
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
+}
+
+async function buildMicrosites(config, includeDrafts) {
+	const microsites = config.microsites || [];
+	const allMicrosites = microsites.filter(ms => includeDrafts ? true : !ms.disabled);
+	for (const ms of allMicrosites) {
+		const slug = String(ms.slug || '').trim();
+		if (!slug) continue;
+		const sourceDir = path.resolve(ms.sourceDir || `site/assets/microsites/${slug}`);
+		const publicPath = ensureTrailingSlash(ms.publicPath || `/${slug}/`);
+		const destDir = path.join(OUTPUT_DIR, publicPath.replace(/^\/+|\/+$/g, ''));
+		await copyDirRecursive(sourceDir, destDir);
+
+		const indexPath = path.join(destDir, 'index.html');
+		try {
+			let html = await fs.readFile(indexPath, 'utf8');
+			const canonicalPath = publicPath;
+			const meta = buildMetaTags({
+				title: ms.title || slug,
+				description: ms.description || config.brand?.rootHeading,
+				url: absoluteUrl(config.siteUrl, canonicalPath),
+				image: absoluteUrl(config.siteUrl, ms.image ? ms.image : DEFAULT_OG_IMAGE),
+				siteName: config.brand?.siteTitle,
+				logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
+				type: 'website'
+			});
+			html = injectHeadMeta(html, meta);
+			html = applyBasePath(html, config.basePath);
+			await fs.writeFile(indexPath, html, 'utf8');
+		} catch {}
+	}
 }
 
 
@@ -342,6 +378,7 @@ async function build() {
 	await compilePages(config.postsDir || 'posts', postsOut, config);
 	await writePostsIndex(config, postsOut);
 	await buildHomepage(config);
+	await buildMicrosites(config, includeDrafts);
 	await generateRss(config);
 }
 
@@ -349,5 +386,3 @@ build().catch((err) => {
 	console.error(err);
 	process.exit(1);
 });
-
-

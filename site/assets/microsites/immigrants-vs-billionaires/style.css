@@ -68,32 +68,76 @@
       margin: 42px auto 60px;
       padding: 0 18px;
     }
-    .brand{
+    .brandPanel{
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(244,236,228,.16);
+      background:
+        radial-gradient(520px 140px at 6% 0%, rgba(26,92,64,.42), transparent 72%),
+        linear-gradient(160deg, rgba(12,46,38,.9), rgba(16,30,49,.9));
+      box-shadow: 0 10px 24px rgba(0,0,0,.26), inset 0 0 0 1px rgba(255,255,255,.04);
+      max-width: 760px;
+    }
+    .brandMark{
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin: 0 0 14px;
-      color: #f1f7ff;
-      font-weight: 900;
-      letter-spacing: .01em;
+      gap: 11px;
+      color: #f4ece4;
       text-decoration: none;
-    }
-    .brand:hover{
-      text-decoration: none;
-      opacity: .95;
-    }
-    .brand img{
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.20);
-      background: rgba(255,255,255,.04);
-      box-shadow: 0 6px 14px rgba(0,0,0,.28);
-      object-fit: cover;
-    }
-    .brand span{
-      font-size: 17px;
       line-height: 1;
+    }
+    .brandMark:hover{
+      text-decoration: none;
+      color: #fff7ed;
+    }
+    .brandMark img{
+      width: 46px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.3));
+    }
+    .brandWordmark{
+      font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .brandTagline{
+      margin: 8px 0 0;
+      color: rgba(238,244,250,.86);
+      font-size: 13px;
+      line-height: 1.4;
+      max-width: 64ch;
+    }
+    .brandLinks{
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .brandLinks a{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,236,228,.22);
+      background: rgba(8,16,27,.32);
+      color: rgba(244,236,228,.95);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .brandLinks a:hover{
+      background: rgba(244,236,228,.1);
+      color: #fff7ed;
+      text-decoration: none;
     }
 
     header{
@@ -517,33 +561,168 @@
     .kpi .k{font-size:12px; color: rgba(255,255,255,.72); font-weight:800}
     .kpi .v{margin-top:6px; font-size:18px; font-weight:950; font-variant-numeric: tabular-nums}
 
-    .foot{
-      margin-top: 12px;
-      color: rgba(255,255,255,.70);
-      font-size: 12px;
-      line-height:1.45;
-    }
-    .disclaimerWrap{
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 46%);
-      align-items: center;
-      gap: 16px;
-    }
-    .disclaimerWrap .foot{
-      margin-top: 0;
-    }
-    .disclaimerImage{
-      display: block;
-      width: 100%;
-      max-width: 420px;
-      justify-self: end;
-      border-radius: 14px;
+    .finalCta{
+      position: relative;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,.16);
-      box-shadow: 0 12px 28px rgba(0,0,0,.32);
+      background:
+        radial-gradient(620px 260px at -8% -12%, rgba(76,175,122,.2), transparent 64%),
+        radial-gradient(760px 280px at 118% 108%, rgba(217,91,91,.12), transparent 72%),
+        linear-gradient(145deg, rgba(15,24,37,.94), rgba(12,19,30,.96));
+      box-shadow: 0 16px 40px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.05);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 34%);
+      gap: 14px;
+      align-items: stretch;
+      padding: 16px;
+    }
+    .finalCtaCopy{
+      position: relative;
+      z-index: 2;
+      max-width: 72ch;
+    }
+    .finalEyebrow{
+      margin: 0 0 8px;
+      color: rgba(183,223,199,.96);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .finalCta h3{
+      margin: 0;
+      font-size: clamp(26px, 3vw, 36px);
+      line-height: 1.03;
+      letter-spacing: -.02em;
+      color: #f8fbff;
+    }
+    .finalLead{
+      margin: 12px 0 0;
+      color: rgba(232,241,250,.84);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .finalPunch{
+      margin: 11px 0 0;
+      color: #fefefe;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 900;
+      max-width: 34ch;
+    }
+    .finalBody{
+      margin: 13px 0 0;
+      color: rgba(230,240,249,.86);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+    .finalBody a{
+      color: #d6edff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .finalActions{
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .finalBtn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease;
+      white-space: nowrap;
+    }
+    .finalBtn:hover{
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+    .finalBtnPrimary{
+      color: #082d1f;
+      background: linear-gradient(180deg, #98e2ba, #61be8f);
+      border-color: rgba(104,194,147,.95);
+      box-shadow: 0 7px 18px rgba(29,126,82,.34);
+    }
+    .finalBtnGhost{
+      color: #edf7ff;
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.26);
+    }
+    .finalTextLink{
+      margin-left: 4px;
+      color: rgba(214,237,255,.84);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+    .finalCtaArt{
+      position: relative;
+      z-index: 3;
+      display: block;
+      align-self: start;
+      width: 100%;
+      aspect-ratio: 1200 / 630;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.2);
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
       line-height: 0;
     }
-    .disclaimerImage img{
+    .finalCtaArt img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .35s ease;
+    }
+    .finalCtaArt:hover img{
+      transform: scale(1.03);
+    }
+    .finalCtaArt span{
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 4;
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(8,18,28,.78);
+      border: 1px solid rgba(255,255,255,.24);
+      color: rgba(236,245,252,.95);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .finalEasterEgg{
+      display: block;
+      width: 46px;
+      margin: 6px 10px 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.2);
+      box-shadow: 0 6px 14px rgba(0,0,0,.3);
+      line-height: 0;
+      text-decoration: none;
+    }
+    .finalEasterEgg img{
       display: block;
       width: 100%;
       height: auto;
@@ -630,11 +809,22 @@
         margin: 22px auto 36px;
         padding: 0 12px;
       }
-      .brand{
-        margin-bottom: 10px;
+      .brandPanel{
+        padding: 11px 10px 10px;
+        margin-bottom: 12px;
       }
-      .brand span{
+      .brandMark img{
+        width: 38px;
+        height: 32px;
+      }
+      .brandWordmark{
         font-size: 16px;
+      }
+      .brandTagline{
+        font-size: 12px;
+      }
+      .brandLinks{
+        gap: 6px;
       }
       .title h1{
         font-size: 30px;
@@ -668,20 +858,50 @@
       .sources ol{
         font-size: 13px;
       }
-      .disclaimerWrap{
+      .finalCta{
         grid-template-columns: 1fr;
+        padding: 14px 12px;
         gap: 12px;
       }
-      .disclaimerImage{
-        max-width: 300px;
-        width: min(62vw, 300px);
-        justify-self: center;
+      .finalCta h3{
+        font-size: clamp(24px, 8vw, 30px);
+      }
+      .finalLead{
+        font-size: 15px;
+      }
+      .finalPunch{
+        font-size: 20px;
+      }
+      .finalActions{
+        gap: 7px;
+      }
+      .finalBtn{
+        height: 38px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
+      .finalTextLink{
+        margin-left: 0;
+      }
+      .finalCtaArt{
+        order: 3;
+      }
+      .finalEasterEgg{
+        width: 42px;
       }
     }
     @media (max-width: 560px){
       :root{
         --barH: 92px;
         --barInset: 4px;
+      }
+      .brandWordmark{
+        font-size: 14px;
+      }
+      .brandLinks a{
+        min-height: 28px;
+        padding: 0 8px;
+        font-size: 11px;
       }
       .labelBox .amt{
         font-size: 23px;
@@ -692,7 +912,10 @@
       .primaryValue{
         font-size: 22px;
       }
-      .disclaimerImage{
-        width: min(54vw, 220px);
+      .finalLead{
+        font-size: 14px;
+      }
+      .finalPunch{
+        font-size: 18px;
       }
     }

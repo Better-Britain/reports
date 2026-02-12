@@ -70,7 +70,16 @@
   },
   "pagesDir": "pages",
   "postsDir": "posts",
-  "postsOut": "docs/posts"
+  "postsOut": "docs/posts",
+  "microsites": [
+    {
+      "id": "immigrants-vs-billionaires",
+      "slug": "immigrants-vs-billionaires",
+      "publicPath": "/immigrants-vs-billionaires/",
+      "sourceDir": "site/assets/microsites/immigrants-vs-billionaires",
+      "title": "Immigrants vs Billionaires",
+      "description": "Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.",
+      "image": "/immigrants-vs-billionaires/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
+    }
+  ]
 }
-
-

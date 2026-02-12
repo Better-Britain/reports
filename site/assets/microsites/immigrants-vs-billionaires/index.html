@@ -23,14 +23,23 @@
   <meta name="twitter:description" content="Interactive UK proxy chart with source-backed assumptions: immigration returns vs billionaire-linked extraction." />
   <meta name="twitter:image" content="https://betterbritain.org.uk/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" />
 
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <div class="wrap">
-    <a class="brand" href="https://betterbritain.org.uk" target="_blank" rel="noopener">
-      <img src="/logo-placeholder.svg" alt="Better Britain logo placeholder" />
-      <span>Better Britain</span>
-    </a>
+    <section class="brandPanel" aria-label="Better Britain Bureau">
+      <a class="brandMark" href="/" aria-label="Better Britain homepage">
+        <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+        <span class="brandWordmark">Better Britain Bureau</span>
+      </a>
+      <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+      <nav class="brandLinks" aria-label="Better Britain links">
+        <a href="/">Homepage</a>
+        <a href="/year-of-labour.html">Flagship Report</a>
+        <a href="/posts/index.html">Posts</a>
+        <a href="/about.html">About BBB</a>
+      </nav>
+    </section>
 
     <header>
       <div class="title">
@@ -305,31 +314,48 @@
       </div>
     </section>
 
-    <section class="fine fineSingle" aria-label="Disclaimer">
-      <div class="panel panelWide">
-        <div class="disclaimerWrap">
-          <p class="foot">
-            Of course this is a false dichotomy, but the media likes to pretend this is how it works, so here we are. 
-            <br/><br/>
+    <section class="fine fineSingle" aria-label="Final call to action">
+      <div class="panel panelWide finalCta">
+        <div class="finalCtaCopy">
+          <p class="finalEyebrow">Final note from Better Britain Bureau</p>
+          <h3>Blame less. Check the balance sheet.</h3>
+          <p class="finalLead">
+            Of course this is a false dichotomy, but the media likes to pretend this is how it works, so here we are.
+          </p>
+          <p class="finalPunch">
             Every time a billionaire complains about immigrants, they're talking bollocks.
           </p>
-          <a
-            class="disclaimerImage"
-            href="/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
-            target="_blank"
-            rel="noopener"
-            aria-label="Open disclaimer image full size"
-          >
-            <img
-              src="/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
-              alt="Campaign image: is that billionaire weighing you down? get an immigrant."
-            />
-          </a>
+          <p class="finalBody">
+            This microsite is a side quest from <strong>Better Britain Bureau</strong>. For the full deep-dive, read
+            <a href="/year-of-labour.html">A Year of Labour</a>:
+            what happened, what worked, what failed, and what got quietly buried in headlines.
+          </p>
+          <div class="finalActions">
+            <a class="finalBtn finalBtnPrimary" href="/year-of-labour.html">Read A Year of Labour</a>
+            <a class="finalBtn finalBtnGhost" href="/">Visit BBB Homepage</a>
+            <a class="finalTextLink" href="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" target="_blank" rel="noopener">Open campaign artwork</a>
+          </div>
         </div>
+        <a class="finalCtaArt" href="/year-of-labour.html" aria-label="Open A Year of Labour report">
+          <img src="/assets/a-year-of-labour-landing-image.jpg" alt="A Year of Labour report cover artwork" />
+          <span>Flagship report</span>
+        </a>
       </div>
+      <a
+        class="finalEasterEgg"
+        href="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open campaign image full size"
+      >
+        <img
+          src="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
+          alt="Campaign image: is that billionaire weighing you down? get an immigrant."
+        />
+      </a>
     </section>
   </div>
 
-  <script type="module" src="/main.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>

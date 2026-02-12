@@ -95,6 +95,19 @@ export async function generateRss(config) {
     }
   } catch {}
 
+  // Microsites
+  for (const ms of (config.microsites || [])) {
+    if (ms.disabled) continue;
+    if (!ms.slug || !ms.pubDate) continue;
+    const pub = toRssDate(ms.pubDate);
+    if (!pub) continue;
+    const title = ms.title || ms.slug;
+    const page = ms.publicPath || `/${ms.slug}/`;
+    const link = siteUrl ? siteUrl + page : page;
+    const image = ms.image ? (siteUrl ? siteUrl + ms.image : ms.image) : null;
+    items.push({ title, link, guid: link, pubDate: pub, image });
+  }
+
   items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
   const atomSelf = (siteUrl ? siteUrl : '') + '/feed.xml';
