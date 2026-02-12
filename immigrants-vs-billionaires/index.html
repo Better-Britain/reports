@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Immigration vs Billionaires — costs vs benefits (UK proxy)</title>
+  <meta name="description" content="Interactive UK proxy chart comparing immigration costs/benefits with billionaire-linked extraction costs. Toggle assumptions, inspect sources, and test scenarios in plain English." />
+  <meta name="keywords" content="UK migration, immigration economics, billionaire wealth extraction, tax gap, consumer detriment, OBR migration, public finances, Better Britain" />
+  <meta name="author" content="Better Britain" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://betterbritain.org.uk/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Better Britain" />
+  <meta property="og:title" content="Immigrants vs Billionaires: UK Costs vs Benefits" />
+  <meta property="og:description" content="A plain-English interactive chart comparing immigration costs/benefits with billionaire-linked extraction costs, with sources and scenario toggles." />
+  <meta property="og:url" content="https://betterbritain.org.uk/" />
+  <meta property="og:image" content="https://betterbritain.org.uk/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" />
+  <meta property="og:image:alt" content="Campaign image: Is that billionaire weighing you down? Get an immigrant." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Immigrants vs Billionaires: UK Costs vs Benefits" />
+  <meta name="twitter:description" content="Interactive UK proxy chart with source-backed assumptions: immigration returns vs billionaire-linked extraction." />
+  <meta name="twitter:image" content="https://betterbritain.org.uk/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" />
+
+  <link rel="stylesheet" href="./style.css" />
+<link rel="canonical" href="https://betterbritain.org.uk/immigrants-vs-billionaires/">
+<meta name="description" content="Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.">
+<meta property="og:title" content="Immigrants vs Billionaires - Better Britain">
+<meta property="og:description" content="Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.">
+<meta property="og:url" content="https://betterbritain.org.uk/immigrants-vs-billionaires/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Better Britain Bureau">
+<meta property="og:image" content="https://betterbritain.org.uk/immigrants-vs-billionaires/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png">
+<meta property="og:logo" content="https://betterbritain.org.uk/assets/better-britain-bee.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Immigrants vs Billionaires - Better Britain">
+<meta name="twitter:description" content="Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.">
+<meta name="twitter:image" content="https://betterbritain.org.uk/immigrants-vs-billionaires/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png">
+</head>
+<body>
+  <div class="wrap">
+    <section class="brandPanel" aria-label="Better Britain Bureau">
+      <a class="brandMark" href="/" aria-label="Better Britain homepage">
+        <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+        <span class="brandWordmark">Better Britain Bureau</span>
+      </a>
+      <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+      <nav class="brandLinks" aria-label="Better Britain links">
+        <a href="/">Homepage</a>
+        <a href="/year-of-labour.html">Flagship Report</a>
+        <a href="/posts/index.html">Posts</a>
+        <a href="/about.html">About BBB</a>
+      </nav>
+    </section>
+
+    <header>
+      <div class="title">
+        <h1>Immigrants vs Billionaires</h1>
+        <p>
+          Okay, balance sheet for Britain: costs on the left, gains on the right.
+          One line is migrants (jobs, fees, growth), the other is wealth extraction (and tax gap).
+        </p>
+      </div>
+
+      <div class="controls controlsPrimary">
+        <p class="controlsTitle">How many do we let in?</p>
+        <p class="controlsLead">
+          Default is a medium-run reference level (~700k), not last year’s provisional low point; that gives a steadier baseline for testing hypothetical yearly intake.
+        </p>
+        <div class="primaryValue" id="immPeopleReadout">~700,000 people / year</div>
+        <div class="row">
+          <div class="label">Against current baseline</div>
+          <div class="value" id="scaleReadout">100%</div>
+        </div>
+        <input id="immScale" type="range" min="30" max="220" step="1" value="100" />
+        <div class="rangeMeta">
+          <span>30%</span>
+          <span id="immBaselineReadout">Current ~700,000</span>
+          <span>220%</span>
+        </div>
+        <p class="touchHint">Drag the handle to test scenarios.</p>
+      </div>
+    </header>
+
+    <section class="chartCard" aria-label="Costs vs benefits chart">
+      <div class="chartHead">
+        <div>
+          <p class="h">Estimated annual costs vs benefits (UK as proxy)</p>
+          <p class="sub">£ billions</p>
+        </div>
+        <div class="sub" id="axisMaxReadout"></div>
+      </div>
+
+      <div class="plot" id="plot">
+        <div class="grid" id="grid"></div>
+        <div class="zeroLine"></div>
+
+        <div class="rows">
+          <!-- Billionaires row -->
+          <div class="rowBlock">
+            <div class="rowTitle" id="bRowTitle">Billionaires (~55 People)</div>
+            <div class="barRow">
+              <div class="half left" id="b_cost_half">
+                <div class="bar cost" id="b_cost_bar"></div>
+                <div class="labelBox" id="b_cost_label">
+                  <div class="amt" id="b_cost_amt">~£80Bn</div>
+                  <div class="desc" id="b_cost_desc">Billionaires (Wealth extraction, consumer detriment, tax gap)</div>
+                </div>
+              </div>
+              <div class="half right" id="b_ben_half">
+                <div class="bar benefit" id="b_ben_bar"></div>
+                <div class="labelBox" id="b_ben_label">
+                  <div class="amt" id="b_ben_amt">~£8Bn</div>
+                  <div class="desc" id="b_ben_desc">Billionaires (Mostly philanthropy)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Immigration row -->
+          <div class="rowBlock">
+            <div class="rowTitle" id="iRowTitle">Immigrant People (~700,000/yr)</div>
+            <div class="barRow">
+              <div class="half left" id="i_cost_half">
+                <div class="bar cost" id="i_cost_bar"></div>
+                <div class="labelBox" id="i_cost_label">
+                  <div class="amt" id="i_cost_amt">~£12Bn</div>
+                  <div class="desc" id="i_cost_desc">Immigration (Regular + irregular support and service costs)</div>
+                </div>
+              </div>
+              <div class="half right" id="i_ben_half">
+                <div class="bar benefit" id="i_ben_bar"></div>
+                <div class="labelBox" id="i_ben_label">
+                  <div class="amt" id="i_ben_amt">£47.5Bn</div>
+                  <div class="desc" id="i_ben_desc">Immigration (+GDP, fees, real economy)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="axisLabels">
+          <div class="left">Costs</div>
+          <div class="right">Benefits</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fine">
+      <div class="panel">
+        <h3>Billionaire assumptions</h3>
+        <div class="switchSet">
+          <p class="switchHeading">Harms</p>
+          <p class="switchHelp">
+            Consumer detriment categories below are an illustrative split of the NatCen total (£71.2Bn), so you can test assumptions.
+          </p>
+          <label class="switchRow switchSub" for="b_harm_consumer_energy">
+            <input id="b_harm_consumer_energy" type="checkbox" checked />
+            <span>Energy &amp; utilities overcharging (£20.0Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="b_harm_consumer_finance">
+            <input id="b_harm_consumer_finance" type="checkbox" checked />
+            <span>Banking &amp; insurance detriment (£18.0Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="b_harm_consumer_telecoms">
+            <input id="b_harm_consumer_telecoms" type="checkbox" checked />
+            <span>Telecoms &amp; media contracts (£12.0Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="b_harm_consumer_retail">
+            <input id="b_harm_consumer_retail" type="checkbox" checked />
+            <span>Retail/platform junk fees &amp; pricing (£21.2Bn)</span>
+          </label>
+          <label class="switchRow" for="b_harm_tax">
+            <input id="b_harm_tax" type="checkbox" checked />
+            <span>Tax gap share (£8.0Bn)</span>
+          </label>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Gains</p>
+          <p class="switchHelp">
+            CAF's £7.96Bn estimate is for the wealthiest 1% (millionaires), not billionaires specifically.
+            This model uses a generous billionaire-attributed estimate of 50%: ~£4.0Bn.
+          </p>
+          <label class="switchRow" for="b_gain_philanthropy">
+            <input id="b_gain_philanthropy" type="checkbox" checked />
+            <span>Philanthropy (billionaire-attributed heuristic £4.0Bn)</span>
+          </label>
+          <label class="switchRow" for="b_gain_tax_contribution">
+            <input id="b_gain_tax_contribution" type="checkbox" />
+            <span>Tax contribution scenario (illustrative +£1.6Bn)</span>
+          </label>
+          <label class="switchRow" for="b_gain_innovation">
+            <input id="b_gain_innovation" type="checkbox" />
+            <span>Innovation (optimistic heuristic +£6.0Bn)</span>
+          </label>
+        </div>
+
+        <p class="innovationNote" id="innovationNote" hidden>
+          Innovation is included here only as an explicit scenario toggle. The attribution problem is severe:
+          it is hard to isolate innovation caused by billionaire ownership versus public R&amp;D, workers, and wider ecosystem effects.
+          The £6.0Bn figure is an optimistic heuristic from UK business R&amp;D spend:
+          ONS reports £55.6Bn in 2024, and this model assumes roughly 10.8% as a speculative attributable share (55.6 × 0.108 ≈ 6.0).
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Immigration assumptions</h3>
+        <p>
+          Selected costs also reduce selected benefits proportionally in this model to represent underinvestment drag. 
+          This includes both regular and irregular migration costs.
+        </p>
+
+        <div class="switchSet">
+          <p class="switchHeading">Costs</p>
+          <label class="switchRow" for="i_cost_boats_rescue">
+            <input id="i_cost_boats_rescue" type="checkbox" checked />
+            <span>Small-boats safety/rescue response (irregular route) (£1.2Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="i_cost_asylum_housing">
+            <input id="i_cost_asylum_housing" type="checkbox" checked />
+            <span>Asylum accommodation + case handling (irregular route) (£2.8Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="i_cost_regular_services">
+            <input id="i_cost_regular_services" type="checkbox" checked />
+            <span>Regular migration admin/support services (£3.1Bn)</span>
+          </label>
+          <label class="switchRow switchSub" for="i_cost_population_pressure">
+            <input id="i_cost_population_pressure" type="checkbox" checked />
+            <span>Wider public service pressure / DEL adjustment (£5.0Bn)</span>
+          </label>
+        </div>
+        <p class="innovationNote">
+          Why the lower end is around a quarter-million: ONS’s latest provisional estimate puts UK long-term net migration at
+          <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/latest" target="_blank" rel="noopener">204,000 in YE June 2025</a>,
+          down from 649,000 a year earlier. That drop is huge. The estimates are provisional and revised over time, so yes, there can be a bit of numberwangery in the first pass, but it is still a very sharp fall.
+        </p>
+      </div>
+      
+      <div class="panel">
+        <h3>Immigrants aren't expensive, they're a great deal</h3>
+        <p>
+          If you’re blaming immigrants because you think they’re “expensive”, you’ve been sold the wrong villain.
+          On official-style forecasting, immigration mostly looks like a return. The big, boring drain is extraction and leakage at the top.
+        </p>
+        <div class="kpiRow">
+          <div class="kpi">
+            <div class="k">Immigration net (benefit − cost)</div>
+            <div class="v" id="immNetKpi">£35.4Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">“Billionaires” net (benefit − cost)</div>
+            <div class="v" id="bilNetKpi">−£71.2Bn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panelWide">
+        <h3>Numbers</h3>
+        <p>
+          This is a rough “what’s the order of magnitude?” model, not a perfect economic forecast.
+          Each line below says what number we used, why we used it, and where it came from.
+        </p>
+        <ul>
+          <li>
+            <strong>“Billionaires” cost (~£80Bn):</strong>
+            NatCen’s estimate of UK
+            <a href="https://natcen.ac.uk/publications/consumer-detriment-uk-2024" target="_blank" rel="noopener">consumer detriment (£71.2Bn; money people lose from bad markets/products)</a>
+            plus a selected slice of HMRC’s
+            <a href="https://www.gov.uk/government/statistics/measuring-tax-gaps/1-tax-gaps-summary" target="_blank" rel="noopener">tax gap (£46.8Bn total; using the large business + wealthy shares)</a>
+            to give about £8.0Bn on top. The consumer split in the toggle panel is for scenario testing only.
+          </li>
+          <li>
+            <strong>Immigration cost (~£12Bn):</strong>
+            parliamentary evidence on
+            <a href="https://publications.parliament.uk/pa/cm5901/cmselect/cmhaff/580/report.html" target="_blank" rel="noopener">asylum accommodation/support spend (~£4Bn in 2024–25)</a>
+            plus OBR’s estimate of extra departmental spend needed to keep per-person services steady:
+            <a href="https://obr.uk/box/the-impact-of-migration-on-the-fiscal-forecast/" target="_blank" rel="noopener">~£8.1Bn DEL adjustment by 2028–29</a>.
+          </li>
+          <li>
+            <strong>Immigration benefit (~£47.5Bn):</strong>
+            OBR says GDP is
+            <a href="https://obr.uk/box/net-migration-forecast-and-its-impact-on-the-economy/" target="_blank" rel="noopener">about +1.5% higher by 2028–29 in the higher-migration scenario</a>.
+            Applying that to
+            <a href="https://commonslibrary.parliament.uk/research-briefings/sn02783/" target="_blank" rel="noopener">UK cash GDP (£2,891Bn in 2024)</a>
+            gives ~£43.4Bn, then we add
+            <a href="https://obr.uk/box/the-impact-of-migration-on-the-fiscal-forecast/" target="_blank" rel="noopener">~£4.1Bn/year migration fees/charges</a>.
+            In the immigration assumptions panel, selected costs reduce selected benefits by the same proportion as a demonstrative underinvestment drag assumption.
+          </li>
+          <li>
+            <strong>“Billionaires” philanthropy estimate (~£4.0Bn)</strong>:
+            CAF/Altrata reports
+            <a href="https://www.cafonline.org/insights/research/high-value-giving" target="_blank" rel="noopener">high-value giving of £7.96Bn in 2023 (for the wealthiest 1%)</a>
+            for the wealthiest 1% (millionaires, not billionaires only). This model applies a generous 50% billionaire-attributed share as a heuristic.
+          </li>
+          <li>
+            <strong>Tax contribution scenario (+£1.6Bn, optional toggle)</strong>:
+            PwC reports the UK 100 Group paid
+            <a href="https://www.pwc.co.uk/press-room/press-releases/100-group-continues-to-provide-crucial-support-to-the-uk-economy-despite-rising-cost-pressures.html" target="_blank" rel="noopener">£31Bn in taxes borne (big-company contribution estimate)</a>.
+            This model uses a conservative 5% attributable share for billionaire-led firms (31 × 0.05 ≈ 1.6) as an arguable upside line.
+          </li>
+          <li>
+            <strong>Innovation scenario (+£6Bn, optional toggle)</strong> = optimistic heuristic:
+            10.8% of UK business R&amp;D spend
+            <a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/researchanddevelopmentexpenditure/bulletins/businessenterpriseresearchanddevelopment/2024" target="_blank" rel="noopener">£55.6Bn UK business R&amp;D spend (ONS, 2024)</a>
+            ≈ £6.0Bn. This is a scenario assumption, not a measured “billionaire-caused” estimate.
+          </li>
+        </ul>
+
+        <div class="sources">
+          <h3 style="margin:0 0 8px; font-size:15px;">Sources</h3>
+          <ol>
+            <li><a href="https://natcen.ac.uk/publications/consumer-detriment-uk-2024" target="_blank" rel="noopener">NatCen on consumer harm: what bad markets cost UK households (£71.2Bn estimate)</a></li>
+            <li><a href="https://www.gov.uk/government/statistics/measuring-tax-gaps/1-tax-gaps-summary" target="_blank" rel="noopener">HMRC tax gap summary: missing tax and where HMRC says it sits</a></li>
+            <li><a href="https://publications.parliament.uk/pa/cm5901/cmselect/cmhaff/580/report.html" target="_blank" rel="noopener">Parliament committee report: asylum accommodation and support spending</a></li>
+            <li><a href="https://obr.uk/box/the-impact-of-migration-on-the-fiscal-forecast/" target="_blank" rel="noopener">OBR fiscal effects of migration: fee income and service-spend pressure assumptions</a></li>
+            <li><a href="https://obr.uk/box/net-migration-forecast-and-its-impact-on-the-economy/" target="_blank" rel="noopener">OBR migration scenario box: higher migration and GDP level impact</a></li>
+            <li><a href="https://commonslibrary.parliament.uk/research-briefings/sn02783/" target="_blank" rel="noopener">House of Commons Library GDP series: cash GDP reference used for conversion</a></li>
+            <li><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/latest" target="_blank" rel="noopener">ONS latest provisional migration bulletin: net migration 204,000 in YE June 2025 (down from 649,000)</a></li>
+            <li><a href="https://www.cafonline.org/insights/research/high-value-giving" target="_blank" rel="noopener">CAF/Altrata high-value giving: £7.96Bn from the wealthiest 1% (not billionaires only)</a></li>
+            <li><a href="https://www.forbes.com/sites/forbespr/2025/04/01/forbes-39th-annual-worlds-billionaires-list-the-world-is-richer-than-ever/" target="_blank" rel="noopener">Forbes billionaire count context: UK has 55 billionaires on the 2025 list</a></li>
+            <li><a href="https://www.pwc.co.uk/press-room/press-releases/100-group-continues-to-provide-crucial-support-to-the-uk-economy-despite-rising-cost-pressures.html" target="_blank" rel="noopener">PwC 100 Group release: large-firm taxes borne in the UK (£31Bn)</a></li>
+            <li><a href="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/researchanddevelopmentexpenditure/bulletins/businessenterpriseresearchanddevelopment/2024" target="_blank" rel="noopener">ONS BERD release: UK business R&amp;D spending (£55.6Bn)</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="fine fineSingle" aria-label="Final call to action">
+      <div class="panel panelWide finalCta">
+        <div class="finalCtaCopy">
+          <p class="finalEyebrow">Final note from Better Britain Bureau</p>
+          <h3>Blame less. Check the balance sheet.</h3>
+          <p class="finalLead">
+            Of course this is a false dichotomy, but the media likes to pretend this is how it works, so here we are.
+          </p>
+          <p class="finalPunch">
+            Every time a billionaire complains about immigrants, they're talking bollocks.
+          </p>
+          <p class="finalBody">
+            This microsite is a side quest from <strong>Better Britain Bureau</strong>. For the full deep-dive, read
+            <a href="/year-of-labour.html">A Year of Labour</a>:
+            what happened, what worked, what failed, and what got quietly buried in headlines.
+          </p>
+          <div class="finalActions">
+            <a class="finalBtn finalBtnPrimary" href="/year-of-labour.html">Read A Year of Labour</a>
+            <a class="finalBtn finalBtnGhost" href="/">Visit BBB Homepage</a>
+            <a class="finalTextLink" href="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" target="_blank" rel="noopener">Open campaign artwork</a>
+          </div>
+        </div>
+        <a class="finalCtaArt" href="/year-of-labour.html" aria-label="Open A Year of Labour report">
+          <img src="/assets/a-year-of-labour-landing-image.jpg" alt="A Year of Labour report cover artwork" />
+          <span>Flagship report</span>
+        </a>
+      </div>
+      <a
+        class="finalEasterEgg"
+        href="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open campaign image full size"
+      >
+        <img
+          src="./images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png"
+          alt="Campaign image: is that billionaire weighing you down? get an immigrant."
+        />
+      </a>
+    </section>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
