@@ -293,7 +293,7 @@ function render() {
   immPeopleReadout.textContent = fmtPeople(scenarioPeople) + " people / year";
   immBaselineReadout.textContent = "Current ~" + CURRENT_NET_MIGRATION.toLocaleString("en-GB");
   bRowTitle.textContent = "Billionaires (~" + UK_BILLIONAIRES_COUNT + " People)";
-  iRowTitle.textContent = "Immigrant People (" + fmtPeople(scenarioPeople) + "/yr)";
+  iRowTitle.textContent = "Immigrants (" + fmtPeople(scenarioPeople) + " People / year)";
   updateRangeFill();
 
   innovationNote.hidden = !billionaireToggles.gainInnovation.checked;
