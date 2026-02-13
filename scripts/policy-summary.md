@@ -528,13 +528,9 @@
 
 # 2.5 — Welfare and Inequality
 
-## Two-Child Limit in Family Benefits (retained)
-[status: administrative] [lead: DWP] [start: 2017; continued 2024–25] [horizon: short]
-**Outcome score:** −2 — Significant poverty effects on larger families with no offsetting targeted support.
-
-## Universal Credit (Removal of Two Child Limit) Bill (introduced)
-[status: bill-in-train] [lead: DWP/HMT] [start: 2026-01] [horizon: medium]
-**Outcome score:** +2 — Large anti‑poverty impact if enacted; fiscal cost is the binding constraint.
+## Two-Child Limit in Family Benefits — retained, with repeal bill introduced
+[status: administrative+bill-in-train] [lead: DWP/HMT] [start: 2017; update 2026-01] [horizon: medium]
+**Outcome score:** 1 — Two‑child limit repeal is at least on a legislative track.
 
 ## Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced
 [status: enacted] [lead: HMT/DWP] [start: 2025-03] [horizon: medium]

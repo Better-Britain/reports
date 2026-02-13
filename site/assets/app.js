@@ -161,10 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Lazy mode: collapse sections by default except Scores Summary and Conclusions
+  // Lazy mode: collapse sections by default except (a) the Introduction (now contains Scores Summary) and (b) Conclusions
   const params = new URLSearchParams(location.search);
   const isLazyMode = params.has('lazymode') || params.has('shortmode');
-  const keepOpenSectionIds = new Set(['2.0-Conclusions']);
+  const keepOpenSectionIds = new Set(['1.0-Introduction', '2.0-Conclusions']);
   if (isLazyMode) {
     const allSections = document.querySelectorAll('details.section-collapsible');
     allSections.forEach((d) => {

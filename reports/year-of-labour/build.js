@@ -516,26 +516,36 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	</div>
 </div>`;
 
-	const sections = [];
-	for (const file of files) {
-		sections.push(await readAndRender(file, citationMap));
-	}
-	// Try to inject summary before the Methodology, Scoring & Taxonomy panel
-	const methodologyPattern = /<h1[^>]*>[^<]*Methodology[^<]*Scoring[^<]*Taxonomy[^<]*<\/h1>/i;
-	let injected = false;
-	const assembled = sections.map((secHtml) => {
-		if (!injected && methodologyPattern.test(secHtml)) {
-			injected = true;
-			return `${summaryHtml}\n${secHtml}`;
+		const sections = [];
+		for (const file of files) {
+			sections.push(await readAndRender(file, citationMap));
 		}
-		return secHtml;
-	});
-	// Fallback: if not found, place summary at the top as before
-	const contentHtml = injected ? assembled.join('\n') : `${summaryHtml}${sections.join('\n')}`;
-	const template = await fs.readFile(TEMPLATE_FILE, 'utf8');
-	const sidebar = buildSidebar(navMeta);
-	const layout = [
-		`<header class="report-header">`,
+
+		// Preferred approach: explicit placeholder in markdown (no header-text matching)
+		const SCORE_SUMMARY_PLACEHOLDER = '<!-- SCORE_SUMMARY -->';
+		let injected = false;
+		let contentHtml = sections.join('\n');
+		if (contentHtml.includes(SCORE_SUMMARY_PLACEHOLDER)) {
+			injected = true;
+			contentHtml = contentHtml.replace(SCORE_SUMMARY_PLACEHOLDER, summaryHtml);
+		}
+
+		// Fallback: inject summary before the Methodology, Scoring & Taxonomy panel
+		if (!injected) {
+			const methodologyPattern = /<h1[^>]*>[^<]*Methodology[^<]*Scoring[^<]*Taxonomy[^<]*<\/h1>/i;
+			const assembled = sections.map((secHtml) => {
+				if (!injected && methodologyPattern.test(secHtml)) {
+					injected = true;
+					return `${summaryHtml}\n${secHtml}`;
+				}
+				return secHtml;
+			});
+			contentHtml = injected ? assembled.join('\n') : `${summaryHtml}${sections.join('\n')}`;
+		}
+		const template = await fs.readFile(TEMPLATE_FILE, 'utf8');
+		const sidebar = buildSidebar(navMeta);
+		const layout = [
+			`<header class="report-header">`,
 		`  <div class="report-heading">`,
 		`    <h1 class="report-title">A Year of <span class="report-title-highlight">Labour</span></h1>`,
 		`    <p class="report-subtitle">Better Britain's look at what changed, what's working or what isn't, and what comes next.</p>`,
@@ -563,5 +573,3 @@ if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) 
 	const outPath = outIdx !== -1 ? path.resolve(process.argv[outIdx + 1]) : path.resolve('docs/year-of-labour.html');
 	buildReport(outPath).catch((err) => { console.error(err); process.exit(1); });
 }
-
-
