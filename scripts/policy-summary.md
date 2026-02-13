@@ -4,6 +4,10 @@
 [status: enacted] [lead: DESNZ/GBE] [start: 2025-05] [horizon: long]
 **Outcome score:** +2 — Structural enabler with early delivery steps.
 
+## Local Power Plan (Local/Community‑Owned Clean Energy)
+[status: programme] [lead: DESNZ/GBE] [start: 2026-02] [horizon: medium]
+**Outcome score:** +1 — High‑potential local enabler if simplified and properly supported; impact depends on execution and grid access.
+
 ## National Wealth Fund (energy-relevant)
 [status: programme] [lead: HMT/UKIB/NWF] [start: 2024-11] [horizon: long]
 **Outcome score:** +1 — Helpful capital lever; success depends on pipeline quality.
@@ -74,9 +78,13 @@
 [status: administrative/secondary] [lead: Companies House / HMRC / HMT] [start: 2025-03 (notice); 2026-04 (effective for CATO closure)] [horizon: short]
 **Outcome score:** −1 — Modernisation has benefits, but raises costs and admin for the smallest firms unless mitigations land well. Postponed for businesses under £10m
 
-## Employment Rights Bill (Day‑one rights, zero‑hours curbs, fire‑and‑rehire)
-[status: bill-in-train] [lead: DBT / Department for Work and Pensions (DWP)] [start: 2025-02] [horizon: medium]
+## Employment Rights Act 2025 (Day‑one rights, zero‑hours curbs, fire‑and‑rehire)
+[status: enacted] [lead: DBT / Department for Work and Pensions (DWP)] [start: 2025-12] [horizon: medium]
 **Outcome score:** +1 — Sensible protections if phased well; watch administrative load on micro‑employers.
+
+## Fair Work Agency — enforcement architecture (planned launch)
+[status: scheduled] [lead: DBT] [start: 2026-02] [horizon: short]
+**Outcome score:** +1 — High leverage if properly powered and staffed; otherwise risks becoming mostly a helpline.
 
 ## National Living Wage (NLW) Uplift and Small‑Employer Offsets
 [status: enacted] [lead: HMT / DBT] [start: 2025-04] [horizon: short]
@@ -90,6 +98,14 @@
 [status: programme] [lead: Cabinet Office / DBT / DSIT] [start: 2024-11] [horizon: medium]
 **Outcome score:** +1 — Helpful if kept focused on genuine overheads; avoid cutting protections by accident.
 
+## Industry and Exports (Financial Assistance) Bill — modernising support powers (introduced)
+[status: bill] [lead: DBT/HMT] [start: 2025-11] [horizon: medium]
+**Outcome score:** +1 — Potentially useful lever, but quality depends on guardrails and programme design.
+
+## Space Industry (Indemnities) Act 2025 — liability and indemnities for UK launches
+[status: enacted] [lead: DSIT / UK Space Agency] [start: 2025-12] [horizon: medium]
+**Outcome score:** +1 — Helpful regulatory enabling move for a niche sector; outcomes depend on market delivery.
+
 ## UK–India Free Trade Agreement (FTA)
 [status: enacted] [lead: DBT/FCDO] [start: 2025-05 (negotiations concluded); signed 2025-07] [horizon: long]
 **Outcome score:** +2 — Significant strategic and economic step; uneven sectoral gains.
@@ -99,6 +115,14 @@
 ## Prison Capacity & Early Release Framework
 [status: programme] [lead: Ministry of Justice / His Majesty’s Prison and Probation Service] [start: 2024-11] [horizon: short]
 **Outcome score:** −1 — Necessary emergency measure with real safety and trust risks until backlogs ease.
+
+## Sentencing Act 2026 — tightening release/sanctions and shifting pressure onto probation
+[status: enacted] [lead: Ministry of Justice] [start: 2026-01] [horizon: medium]
+**Outcome score:** 0 — Directionally popular, but capacity constraints determine whether outcomes improve or pressures worsen.
+
+## Dogs (Protection of Livestock) (Amendment) Act 2025 — stronger penalties for livestock attacks
+[status: enacted] [lead: Defra / Ministry of Justice] [start: 2025-12] [horizon: short]
+**Outcome score:** +1 — A sensible deterrence and enforcement upgrade for a real rural harm.
 
 ## Prisons Leadership & Rehabilitation Drive
 [status: programme] [lead: Ministry of Justice] [start: 2024-07] [horizon: medium]
@@ -166,6 +190,10 @@
 [status: programme] [lead: MOD] [start: 2025-01] [horizon: medium]
 **Outcome score:** +2 — Tangible quality‑of‑life and readiness gains if sustained.
 
+## Armed Forces Bill — defence governance and service justice (introduced)
+[status: bill] [lead: MOD] [start: 2026-01] [horizon: medium]
+**Outcome score:** +1 — Governance “plumbing” that can matter, but effects depend on details and implementation.
+
 ## Aid Budget Cut for Defence & Ministerial Resignation
 [status: enacted] [lead: HMT/FCDO] [start: 2025-03] [horizon: medium]
 **Outcome score:** −2 — Raises defence funding but damages soft power and unity; high optics cost.
@@ -173,6 +201,14 @@
 ## Middle East signalling: recognition of Palestine (conditional) and export controls (context)
 [status: administrative] [lead: FCDO/DBT] [start: 2025-07] [horizon: short]
 **Outcome score:** 0 — Important signalling; outcomes depend on events outside UK control.
+
+## China reset — renewed engagement and contested trade-offs
+[status: administrative/diplomatic] [lead: No.10/FCDO] [start: 2026-01] [horizon: short]
+**Outcome score:** 0 — A realistic diplomatic move; outcomes depend on concrete steps and how trade-offs are managed.
+
+## Northern Ireland Troubles Bill — legacy governance (introduced)
+[status: bill] [lead: Northern Ireland Office] [start: 2025-10] [horizon: long]
+**Outcome score:** 0 — High-stakes governance change; the bill’s details and legitimacy will determine impact.
 
 ## US Politics Entanglements — Interference Row and Outreach Optics
 [status: consideration] [lead: No.10/FCDO/Party HQ] [start: 2024-10] [horizon: short]
@@ -183,6 +219,10 @@
 ## Independent Football Regulator (IFR)
 [status: enacted] [lead: DCMS/IFR] [start: 2025-05] [horizon: medium]
 **Outcome score:** +1 — Strong consumer protection for fans with proportionate costs; 'Quango' risk potential on feedback, pending implementation 
+
+## Unauthorised Entry to Football Matches Act 2026 — matchday safety and enforcement
+[status: enacted] [lead: Home Office / DCMS] [start: 2026-01] [horizon: short]
+**Outcome score:** +1 — A targeted safety/enforcement upgrade; impact depends on consistent implementation.
 
 ## Tobacco and Vapes (Smoke‑free Generation)
 [status: bill-in-train] [lead: DHSC] [start: 2024-11] [horizon: long]
@@ -220,6 +260,18 @@
 [status: programme] [lead: DCMS] [start: 2024-10] [horizon: medium]
 **Outcome score:** +1 — Helpful sectoral support; strategy clarity still developing.
 
+## Telegraph sale — referred for media plurality scrutiny (CMA/Ofcom process)
+[status: administrative] [lead: DCMS / CMA / Ofcom] [start: 2026-02] [horizon: short]
+**Outcome score:** 0 — Correct institutional route; outcome depends on evidence and process integrity.
+
+## Holocaust Memorial Act 2026 — memorial delivery and planning constraint removed
+[status: enacted] [lead: Cabinet Office / DLUHC] [start: 2026-01] [horizon: long]
+**Outcome score:** +1 — Clear delivery unblocker for a culturally significant project; the remaining delivery pipeline is the test.
+
+## Animal Welfare (Import of Dogs, Cats and Ferrets) Act 2025 — tightening pet import rules
+[status: enacted] [lead: Defra] [start: 2025-12] [horizon: short]
+**Outcome score:** +1 — Strong signal and legal lever; outcomes depend on enforcement at borders and online marketplaces.
+
 # 2.14 — Cross-Cutting Systems and Trade-offs
 
 ## Net Zero Delivery System — Planning, Grid and Skills
@@ -229,6 +281,18 @@
 ## Capital Allocation and Fiscal Rules (Office for Budget Responsibility oversight)
 [status: enacted+administrative] [lead: HM Treasury / OBR] [start: 2024-10] [horizon: long]
 **Outcome score:** +1 — Credibility gain with a real trade‑off on pace of rebuild.
+
+## Autumn Budget 2025 — fiscal package and delivery trade-offs
+[status: enacted] [lead: HM Treasury] [start: 2025-11] [horizon: medium]
+**Outcome score:** 0 — A necessary fiscal reset; quality depends on measure design and delivery realism.
+
+## Finance (No. 2) Bill 2025–26 — implementing Budget measures (introduced)
+[status: bill] [lead: HM Treasury / HMRC] [start: 2025-12] [horizon: short]
+**Outcome score:** 0 — Pure implementation vehicle; quality depends on what is inside and how it is administered.
+
+## Carbon Border Adjustment Mechanism (CBAM) — moving from policy to draft rules (planned 2027 start)
+[status: bill+consultation] [lead: HM Treasury / DESNZ] [start: 2026-02] [horizon: medium]
+**Outcome score:** +1 — Potentially powerful climate‑trade tool; success depends on simple, enforceable design.
 
 ## Cross‑Cutting Communication — Explaining Trade‑offs Better
 [status: consideration] [lead: No.10/Departments] [start: 2024-07] [horizon: short]
@@ -300,6 +364,18 @@
 [status: consideration] [lead: No.10/Party HQ] [start: 2025-05] [horizon: short]
 **Outcome score:** −1 — Warning light on regional support and turnout. Reflects poor optics and wedge issues more than overall policy, but relevant regardless.
 
+## Washington appointment controversy — Mandelson, Epstein links and staff churn
+[status: consideration] [lead: No.10/FCDO] [start: 2026-02] [horizon: short]
+**Outcome score:** −2 — A major avoidable optics hit with real operational churn; fix requires credible process improvements.
+
+## Cabinet Secretary stands down — delivery confidence and leadership churn
+[status: consideration] [lead: No.10/Cabinet Office] [start: 2026-02] [horizon: short]
+**Outcome score:** −1 — Not automatically harmful, but high-level churn is a real delivery risk.
+
+## Budget information security — NCSC review and OBR early-access controls
+[status: consideration] [lead: HM Treasury / NCSC / OBR] [start: 2026-02] [horizon: short]
+**Outcome score:** −1 — Fixable governance failure; credibility improves only if controls change materially and stick.
+
 # 2.2 — Water and Environmental Regulation
 
 ## Water (Special Measures) Act 2025 — Implementation
@@ -318,9 +394,17 @@
 [status: programme] [lead: Environment Agency (EA)/DEFRA] [start: 2025-04] [horizon: short]
 **Outcome score:** +1 — Visible enforcement ups the pressure; court throughput is the main constraint.
 
+## Redirecting Water Company Fines to Local-Led Restoration
+[status: administrative] [lead: DEFRA/Environment Agency] [start: 2026-01] [horizon: short]
+**Outcome score:** +1 — Good accountability optics and potentially real local gains if allocation and measurement are robust.
+
 ## Storm Overflow Reduction Programme — Monitoring & Targets
 [status: programme] [lead: Ofwat/EA/Water Companies] [start: 2025-01] [horizon: medium]
 **Outcome score:** +2 — Clear plan with transparency and penalties; delivery is hard but benefits are broad.
+
+## A New Vision for Water — White Paper and Reform Bill Direction
+[status: programme] [lead: DEFRA] [start: 2026-01] [horizon: long]
+**Outcome score:** +1 — High-leverage governance fix if executed cleanly; risk is transition disruption without clearer outcomes.
 
 ## Unified Water Regulator — Proposal to Merge Functions
 [status: programme] [lead: DEFRA] [start: 2025-07] [horizon: long]
@@ -340,9 +424,17 @@
 [status: programme] [lead: HMT/DLUHC/UKIB] [start: 2024-11] [horizon: medium]
 **Outcome score:** +1 — Strong lever in weak markets if targeted well.
 
+## Social and Affordable Housing — “Decade of Renewal” Progress Update (Jan 2026)
+[status: administrative] [lead: DLUHC/Homes England] [start: 2026-01] [horizon: long]
+**Outcome score:** +1 — High social value if sustained; outcomes depend on funding stability and delivery capacity.
+
 ## Planning System Capacity & Performance (fees, staffing, delegation)
 [status: programme] [lead: DLUHC/Planning Inspectorate] [start: 2024-09] [horizon: short]
 **Outcome score:** +2 — Practical, near‑term throughput gains if hiring lands.
+
+## Planning and Infrastructure Act 2025 — Consents and Delivery Acceleration
+[status: enacted] [lead: DLUHC/DESNZ] [start: 2025-12] [horizon: medium]
+**Outcome score:** +1 — High-leverage accelerator if implementation is resourced and sequenced well.
 
 ## Infrastructure Contributions Reform (Infrastructure Levy / Section 106)
 [status: programme] [lead: DLUHC] [start: 2024-12] [horizon: medium]
@@ -356,9 +448,17 @@
 [status: programme] [lead: DESNZ/DfT/DLUHC] [start: 2024-12] [horizon: medium]
 **Outcome score:** +1 — Practical enabler tied to regulated investment cycles.
 
-## Renters’ Rights Bill (Private Rented Sector reform)
-[status: bill-in-train] [lead: DLUHC] [start: 2024-11] [horizon: medium]
+## Renters’ Rights Act 2025 (Private Rented Sector reform)
+[status: enacted] [lead: DLUHC] [start: 2025-10] [horizon: medium]
 **Outcome score:** +1 — Clear tenant protection if courts are resourced.
+
+## National Plan to End Homelessness (England)
+[status: programme] [lead: DLUHC/Local Authorities] [start: 2025-12] [horizon: medium]
+**Outcome score:** +1 — High-value aim, but success depends on supply, funding and local delivery capacity.
+
+## High Value Council Tax Surcharge (England, £2m+ homes)
+[status: administrative] [lead: DLUHC/HMT] [start: 2025-11] [horizon: short]
+**Outcome score:** 0 — Potentially progressive, but outcomes depend on design details and enforcement.
 
 ## Developer Market Structure & Mergers (e.g., Barratt–Redrow)
 [status: programme] [lead: CMA/DLUHC] [start: 2025-02] [horizon: medium]
@@ -374,9 +474,21 @@
 [status: programme] [lead: DHSC/NHS England] [start: 2024-07] [horizon: medium]
 **Outcome score:** +1 — Clear progress visible, with risks around sustaining throughput.
 
+## Model Emergency Department — High-Performing Urgent and Emergency Care Pathways
+[status: administrative] [lead: NHS England] [start: 2026-02] [horizon: short]
+**Outcome score:** +1 — Practical operational lever if paired with capacity; risks are uptake and system bottlenecks.
+
+## NHS England Medium‑Term Planning Framework (2026/27–2028/29)
+[status: administrative] [lead: NHS England] [start: 2025-10] [horizon: medium]
+**Outcome score:** 0 — Useful steer, but impact depends on stability and how it interacts with funding reality.
+
 ## Ending Strikes and Stabilising the Workforce (Pay Deals)
 [status: enacted] [lead: DHSC/NHS England] [start: 2024-07] [horizon: short]
 **Outcome score:** +2 — Immediate service stability gain and public benefit.
+
+## NHS Pay Review Body Award 2026/27 (3.3%)
+[status: administrative] [lead: DHSC/NHS Employers] [start: 2026-02] [horizon: short]
+**Outcome score:** 0 — Necessary for workforce stability, but trade-offs depend on affordability and perceived fairness.
 
 ## NHS Strikes Return and Performance Heat
 [status: consideration] [lead: DHSC/NHS England/Unions] [start: 2025-09] [horizon: short]
@@ -390,9 +502,17 @@
 [status: programme] [lead: DHSC/NHS England/ICBs] [start: 2025-07] [horizon: long]
 **Outcome score:** +2 — Strong long‑term benefits if delivery holds.
 
+## Mental Health Act 2025
+[status: enacted] [lead: DHSC] [start: 2025-12] [horizon: long]
+**Outcome score:** +1 — High-value rights and care reform if implemented with capacity; otherwise risks becoming paper change.
+
 ## Modernising Data and Digital Care
 [status: programme] [lead: DHSC/NHS England] [start: 2025-07] [horizon: medium]
 **Outcome score:** +1 — Tangible early wins; execution and inclusion are key.
+
+## “NHS Reform” Package — Redirecting Spend Back Into Patient Care
+[status: administrative] [lead: DHSC/NHS England] [start: 2025-11] [horizon: short]
+**Outcome score:** +1 — High potential if it cuts real waste; downside risk is destabilising “delivery plumbing”.
 
 ## Accountability: No Executive Bonuses at Failing Providers
 [status: enacted] [lead: DHSC/NHS England] [start: 2025-04] [horizon: short]
@@ -412,6 +532,10 @@
 [status: administrative] [lead: DWP] [start: 2017; continued 2024–25] [horizon: short]
 **Outcome score:** −2 — Significant poverty effects on larger families with no offsetting targeted support.
 
+## Universal Credit (Removal of Two Child Limit) Bill (introduced)
+[status: bill-in-train] [lead: DWP/HMT] [start: 2026-01] [horizon: medium]
+**Outcome score:** +2 — Large anti‑poverty impact if enacted; fiscal cost is the binding constraint.
+
 ## Universal Credit (Adjustment) Act — Base Rate Up, Health Element Rebalanced
 [status: enacted] [lead: HMT/DWP] [start: 2025-03] [horizon: medium]
 **Outcome score:** 0 — Balanced: higher base support vs reduced future top‑ups for some disabled newcomers.
@@ -420,9 +544,17 @@
 [status: programme] [lead: DWP] [start: 2025-07] [horizon: medium]
 **Outcome score:** -1 — Right call to avoid defeat; impact depends on the review and follow‑through. Scored down primarily for upset, rather than outcomes.
 
+## Public Authorities (Fraud, Error and Recovery) Act 2025
+[status: enacted] [lead: Cabinet Office/DWP/HMRC] [start: 2025-12] [horizon: medium]
+**Outcome score:** 0 — Valuable integrity tool if safeguards are robust; risk is harm from errors and heavy-handed recovery.
+
 ## Universal Credit Administration — Debt Deductions and Reassessments
 [status: administrative] [lead: DWP] [start: 2025-04] [horizon: short]
 **Outcome score:** +1 — Practical cash‑flow relief with manageable delivery risks.
+
+## National Insurance Contributions (Employer Pensions Contributions) Bill (introduced)
+[status: bill-in-train] [lead: HMT/HMRC] [start: 2025-12] [horizon: short]
+**Outcome score:** 0 — Could raise revenue or reshape incentives, but policy value depends on design and mitigations.
 
 ## Free School Meals — Expansion to All Families on Universal Credit
 [status: administrative] [lead: DfE] [start: 2024-09] [horizon: short]
@@ -459,8 +591,12 @@
 **Outcome score:** +2 — Direct household benefit, contingent on provider capacity.
 
 ## Skills England and Modern Apprenticeships
-[status: bill-in-train] [lead: Department for Education] [start: 2025-XX] [horizon: medium]
+[status: bill-in-train] [lead: Department for Education] [start: 2025-11] [horizon: medium]
 **Outcome score:** +1 — Sensible coordination reform; success hinges on delivery and employer buy‑in.
+
+## Medical Training (Prioritisation) Bill (introduced)
+[status: bill-in-train] [lead: DHSC/NHS England] [start: 2026-01] [horizon: long]
+**Outcome score:** +1 — High potential long-run value, but slow-burn and capacity constrained.
 
 ## Higher Education Pressures: Funding and International Students
 [status: administrative] [lead: Department for Education / Home Office] [start: 2024-11] [horizon: medium]
@@ -504,17 +640,29 @@
 [status: programme] [lead: Home Office/FCDO] [start: ongoing] [horizon: medium]
 **Outcome score:** +2 — Ethical, rules‑based routes that undercut smugglers when combined with enforcement.
 
+## Asylum and Returns Policy Statement — “Restoring Order and Control”
+[status: policy-statement] [lead: Home Office/No.10] [start: 2025-11] [horizon: medium]
+**Outcome score:** 0 — Sets direction, but delivery is constrained by capacity, law and partner cooperation.
+
 ## Removals and Returns Uplift
 [status: programme] [lead: Home Office] [start: 2024-09] [horizon: short]
 **Outcome score:** +1 — Activity levels improving; legal and capacity bottlenecks remain the main brake.
 
-## Borders & Enforcement Bill — Post‑Rwanda Framework
-[status: bill-in-train] [lead: Home Office] [start: 2025-01] [horizon: medium]
+## Border Security, Asylum and Immigration Act 2025 (post‑Rwanda framework)
+[status: enacted] [lead: Home Office] [start: 2025-12] [horizon: medium]
 **Outcome score:** +1 — Sensible clean‑up and process fixes; results depend on delivery and court rulings.
+
+## Deprivation of Citizenship Orders (Effect during Appeal) Act 2025
+[status: enacted] [lead: Home Office] [start: 2025-10] [horizon: medium]
+**Outcome score:** 0 — Potentially strengthens national security posture, but fairness and legal safeguards are central.
 
 ## Universities and Migration — International Student Squeeze
 [status: consideration] [lead: Home Office/DfE/HMT] [start: 2025-09] [horizon: short]
 **Outcome score:** −1 — Risks to regional growth and sector health unless finely tuned.
+
+## Visa and Settlement Rule Tightenings (implemented/queued)
+[status: administrative] [lead: Home Office] [start: 2025-12] [horizon: medium]
+**Outcome score:** 0 — Could improve control optics, but risks to growth and services depend on design and calibration.
 
 # 2.8 — Digital, Data and AI
 
@@ -532,15 +680,23 @@
 
 ## Public-Sector Digital Identity — trusted checks for everyday life
 [status: programme] [lead: DSIT/OfDIA/Cabinet Office] [start: 2025-06] [horizon: medium]
-**Outcome score:** +1 — High-utility public infrastructure if delivered with strong privacy, reliable tech and inclusive design. Privacy concerns
+**Outcome score:** +1 — High-utility public infrastructure if delivered with strong privacy, reliable tech and inclusive design.
+
+## Cyber Security and Resilience (NIS) Bill — critical infrastructure baseline (introduced)
+[status: bill] [lead: DSIT/NCSC] [start: 2025-11] [horizon: medium]
+**Outcome score:** +1 — Sensible “systems plumbing”, but delivery depends on scope, standards and enforcement.
 
 ## Product Safety for the Online Age — new powers and duties
 [status: enacted] [lead: DBT/OPSS] [start: 2025-07] [horizon: medium]
 **Outcome score:** +2 — Brings safety law into line with how people actually shop and use devices.
 
+## Property (Digital Assets etc) Act 2025 — digital assets as personal property
+[status: enacted] [lead: MoJ] [start: 2025-12] [horizon: medium]
+**Outcome score:** +1 — Valuable clarity, but most benefits are indirect and depend on wider market/regulatory practice.
+
 ## Online Safety Act — implementation stance (context summary)
 [status: programme] [lead: Ofcom/DSIT] [start: 2024-10] [horizon: medium]
-**Outcome score:** -1 — Important but contested; outcomes depend on execution and safeguards. High impact, low knowledge wedge issue, tech is 'sufficient' with caveats, in compliant scenarios, poorly communicated.
+**Outcome score:** -1 — Important but contested; now shifting from codes into visible enforcement, with major trade-offs still in play.
 
 ## Free‑Speech and Online Safety Act Flashpoint
 [status: consideration] [lead: HO/DCMS/No.10] [start: 2025-09] [horizon: short]
@@ -560,6 +716,10 @@
 [status: programme] [lead: DfT/Mayors/Local Transport Authorities] [start: 2024-09] [horizon: medium]
 **Outcome score:** +2 — Tangible service improvements where implemented; finances must be watched closely.
 
+## EV Charging Infrastructure — permitted development rights reform (consultation)
+[status: consultation] [lead: DfT/DLUHC] [start: 2025-11] [horizon: short]
+**Outcome score:** +1 — Useful friction-reducer, but only one of several constraints on EV charging rollout.
+
 ## Mayoral Growth & Investment Funds (Recyclable)
 [status: programme] [lead: HMT/DLUHC/Mayors] [start: 2025-04] [horizon: medium]
 **Outcome score:** +1 — Useful financial tool; outcomes hinge on disciplined project selection.
@@ -571,3 +731,7 @@
 ## Great British Railways (Regional Partnerships & Rail Integration)
 [status: programme] [lead: DfT/Shadow GBR/Mayors] [start: 2025-02] [horizon: medium]
 **Outcome score:** +1 — Promising system fix; benefits arrive as legislation and partnerships mature.
+
+## Train drivers — lowering the minimum age from 20 to 18 (proposal/consultation)
+[status: consultation] [lead: DfT/ORR] [start: 2025-11] [horizon: short]
+**Outcome score:** +1 — A pragmatic supply-side lever if safety and training standards are maintained.
