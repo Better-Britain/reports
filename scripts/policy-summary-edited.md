@@ -126,11 +126,7 @@
 
 ## Proscription of “Palestine Action” (SI 2025/803)
 [status: enacted] [lead: Home Office / Counter Terrorism Policing] [start: 2025-07-05] [horizon: medium]
-**Outcome score:** 0 — Potentially proportionate response to serious criminal damage; proportionality and free‑speech implications are contested and under judicial review. (Policing of post‑ban protests is assessed separately below.)
-
-## Aggressive Policing of Palestine Action‑Related Free‑Speech Protests
-[status: administrative] [lead: Home Office / NPCC / local forces] [start: 2025-07-05] [horizon: short]
-**Outcome score:** −2 — Disproportionate enforcement against peaceful expression; mass arrests for symbols/words undermine rights and trust, pending court outcomes.
+**Outcome score:** −2 — Rapid deterrent signal and operational clarity for police, but with significant free‑speech risks and many outcomes pending in court.
 
 ## National Inquiry into Grooming Gangs (Casey Review U‑turn)
 [status: enacted] [lead: Home Office] [start: 2025-06] [horizon: medium]
@@ -182,19 +178,19 @@
 
 ## Independent Football Regulator (IFR)
 [status: enacted] [lead: DCMS/IFR] [start: 2025-05] [horizon: medium]
-**Outcome score:** +1 — Strong consumer protection for fans with proportionate costs; 'Quango' risk potential on feedback, pending implementation 
+**Outcome score:** +2 — Strong consumer protection for fans with proportionate costs.
 
 ## Tobacco and Vapes (Smoke‑free Generation)
 [status: bill-in-train] [lead: DHSC] [start: 2024-11] [horizon: long]
 **Outcome score:** +2 — High‑value public health reform if enforcement is robust.
 
-## Equality Act — Biological Sex Clarity in Law
+## Equality Act — Biological Sex Ruling (UK Supreme Court) and Government Response
 [status: judicial+administrative] [lead: GEO/EHRC] [start: 2025-04] [horizon: medium]
-**Outcome score:** +1 — Legal clarity and consistency achieved; sensitive rollout needed.
+**Outcome score:** +1 — Clarity increased; transition needs careful handling.
 
-## Equality Act — Social Justice Risks for Excluded Trans People
-[status: judicial+administrative] [lead: GEO/EHRC] [start: 2025-04] [horizon: medium]
-**Outcome score:** –1 — Legal certainty gained at significant risk of exclusion and social division.
+## EHRC Single‑Sex Spaces Enforcement Drive
+[status: programme] [lead: EHRC] [start: 2025-06] [horizon: short]
+**Outcome score:** +1 — Improves legal compliance; sensitive communication required.
 
 ## Trans Prisoners — Allocation Policy and Review
 [status: programme] [lead: MoJ/HMPPS] [start: 2025-03] [horizon: short]
@@ -278,7 +274,7 @@
 
 ## Angela Rayner Stamp Duty Row
 [status: consideration] [lead: No.10/Cabinet Office/Whips] [start: 2025-09] [horizon: short]
-**Outcome score:** −1 — High‑profile error; repayment, resignation and transparency mitigate, but optics are poor. Opportunity to reform the system to make it harder to err/dodge.
+**Outcome score:** −1 — High‑profile error; repayment and transparency mitigate, but optics are poor.
 
 ## Suspension of Rebellious MPs (Party Discipline Crackdown)
 [status: administrative] [lead: No.10/Chief Whip] [start: 2025-07] [horizon: short]
