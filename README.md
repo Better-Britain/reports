@@ -2,6 +2,10 @@
 
 This repo powers the [Better Britain Bureau site](https://betterbritain.org.uk/) and the Broken Britain Briefing starting with the [Year of Labour Report](https://betterbritain.org.uk/year-of-labour.html). Content is mostly Markdown rendered with `markdown-it`, coordinated by a small site orchestrator. GitHub Actions build and deploy to GitHub Pages.
 
+## Latest content update (13 Feb 2026)
+
+The Year of Labour dataset was refreshed to cover the Sep 2025 → Feb 2026 period, adding/updating major items across energy (GBE delivery milestones, Local Power Plan, CfD AR7, grid connections/investment), water reform (Defra white paper direction), housing/planning (Renters’ Rights Act + commencements, Planning and Infrastructure Act, homelessness plan), labour market enforcement (Employment Rights Act + Fair Work Agency), borders/asylum (Border Security Act + asylum/returns statement), justice (Sentencing Act), digital regulation (DVS statutory regime, Online Safety enforcement milestones, digital assets property act), fiscal architecture (Budget 2025 / Finance Bill / CBAM draft regs), plus selected media/culture and governance events. The completed checklist is tracked in `TODO_NEW-POLICIES.md`.
+
 ## Run locally
 
 1) Install deps: `npm i` (or `yarn`)
