@@ -6,6 +6,13 @@
     <atom:link href="https://betterbritain.org.uk/feed.xml" rel="self" type="application/rss+xml" />
     <description>Broken Britain Briefing</description>
     <item>
+      <title>A Year of Labour: February 2026 update</title>
+      <link>https://betterbritain.org.uk/posts/2026-02-13-year-of-labour-update.html</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-13-year-of-labour-update.html</guid>
+      <pubDate>Fri, 13 Feb 2026 10:30:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/assets/a-year-of-labour-landing-image.jpg" type="image/jpeg"/>
+    </item>
+    <item>
       <title>New microsite: “Immigrants vs Billionaires”</title>
       <link>https://betterbritain.org.uk/posts/2026-02-12-immigrants-vs-billionaires.html</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-12-immigrants-vs-billionaires.html</guid>
