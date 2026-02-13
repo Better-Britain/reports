@@ -156,12 +156,160 @@ section > h2 {
 }
 
 .tag {
-  background: #f0f2f6;
-  border-radius: .25rem;
-  padding: .1rem .35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
   margin: 0 .15rem;
-  font-size: .85em;
+  background: #f0f2f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
   color: #374151;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag__label {
+  display: none;
+}
+
+/* Default icon */
+.tag::before { content: "🏷"; font-size: .9rem; line-height: 1; }
+
+.tag:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Click popover for tags (mobile-friendly tooltip) */
+.tag-popover {
+  position: fixed;
+  z-index: 2000;
+  max-width: min(320px, calc(100vw - 20px));
+  background: #111827;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+  padding: 10px 12px;
+}
+.tag-popover__title {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.25;
+}
+.tag-popover__subtitle {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.25;
+  color: rgba(255,255,255,.78);
+}
+
+/* Tag icons + light colour coding */
+.tag--impact::before { content: "📈"; }
+.tag--impact-proven { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
+.tag--impact-proven::before { content: "✅"; }
+.tag--impact-likely { background: #e0f2fe; border-color: #bae6fd; color: #075985; }
+.tag--impact-likely::before { content: "↗"; }
+.tag--impact-hypothetical { background: #ede9fe; border-color: #ddd6fe; color: #5b21b6; }
+.tag--impact-hypothetical::before { content: "◇"; }
+.tag--impact-unknown::before { content: "？"; }
+
+.tag--area::before { content: "🏷"; }
+.tag--area-energy::before { content: "⚡"; }
+.tag--area-economy::before { content: "£"; }
+.tag--area-housing::before { content: "🏠"; }
+.tag--area-health::before { content: "✚"; }
+.tag--area-migration::before { content: "🛂"; }
+.tag--area-justice::before { content: "⚖"; }
+.tag--area-digital::before { content: "⌁"; }
+.tag--area-education::before { content: "🎓"; }
+.tag--area-defence::before { content: "🛡"; }
+.tag--area-foreign::before { content: "🌍"; }
+.tag--area-environment::before { content: "🌿"; }
+
+.tag--horizon::before { content: "⏳"; }
+.tag--horizon-short::before { content: "⏱"; }
+.tag--horizon-medium::before { content: "⏳"; }
+.tag--horizon-long::before { content: "🕰"; }
+
+.tag--status::before { content: "🏷"; }
+.tag--status-enacted { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
+.tag--status-enacted::before { content: "✅"; }
+.tag--status-programme::before { content: "🛠"; }
+.tag--status-policy-statement::before { content: "📄"; }
+.tag--status-consideration::before { content: "👀"; }
+.tag--status-draft::before { content: "🧾"; }
+.tag--status-consultation::before { content: "🗣"; }
+
+.tag--lead::before { content: "🏛"; }
+.tag--start::before { content: "📅"; }
+.tag--dist::before { content: "👥"; }
+
+.tag--risk { background: #fff7ed; border-color: #fed7aa; color: #7c2d12; }
+.tag--risk::before { content: "⚠"; }
+.tag--risk-legal::before { content: "⚖"; }
+.tag--risk-finance::before { content: "£"; }
+.tag--risk-delivery::before { content: "🏗"; }
+.tag--risk-political::before { content: "🏛"; }
+.tag--risk-rights::before { content: "🧑"; }
+.tag--risk-equity::before { content: "⚖"; }
+.tag--risk-reputational::before { content: "📰"; }
+.tag--risk-morale::before { content: "🧠"; }
+.tag--risk-climate::before { content: "🌧"; }
+
+.tag--flag { background: #f3f4f6; border-color: #e5e7eb; color: #374151; }
+.tag--flag::before { content: "？"; }
+.tag--flag-unknown::before { content: "？"; }
+.tag--flag-opinion::before { content: "💬"; }
+.tag--flag-question::before { content: "❓"; }
+
+.policy-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-column-gap: .75rem;
+  margin: 1.25rem 0;
+  padding: 1.25rem;
+  scroll-margin-top: 5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: .85rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* Default: everything spans full width */
+.policy-card > * { grid-column: 1 / -1; }
+
+/* Header row: title + meta icons */
+.policy-card > h1 { grid-column: 1; margin: 0; }
+.policy-card > h1 + .policy-meta {
+  grid-column: 2;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .35rem;
+  flex-wrap: wrap;
+  color: #6b7280;
+  font-size: 0; /* avoid whitespace text nodes affecting flex gaps */
+}
+.policy-card > h1 + .policy-meta .tag { margin: 0; }
+
+/* Give the first body paragraph a little breathing room when meta row exists */
+.policy-card > h1 + .policy-meta + p { margin-top: .75rem; }
+
+/* Claim tags at the start of list items: tighter spacing */
+.policy-card li .tag { width: 1.45rem; height: 1.45rem; }
+.policy-card li .tag + .tag { margin-left: .2rem; }
+
+@media (max-width: 900px){
+  .policy-card { grid-template-columns: 1fr; }
+  .policy-card > h1 { grid-column: 1; }
+  .policy-card > h1 + .policy-meta { grid-column: 1; justify-content: flex-start; margin-top: .5rem; }
 }
 
 .tag-codes code {
@@ -447,7 +595,6 @@ body.font-theme-sans #content { font: inherit; }
 }
 
 .policy-card {
-  padding-top: 40px;
   page-break-before: always;
   break-before: page;
   -webkit-region-break-inside: avoid;

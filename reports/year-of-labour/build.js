@@ -63,17 +63,60 @@ function transformTags(markdown) {
 		return `__CODE_INLINE_${i}__`;
 	});
 
-	// Tag transforms on non-code content
+	// Wrap the "metadata line" under policy headings so it can be styled cleanly
+	// e.g. "[status: enacted] [lead: DESNZ] [start: 2025-05] [horizon: long]"
+	tmp = tmp.split(/\r?\n/).map((line) => {
+		if (/^\s*(\[(status|lead|start|horizon):[^\]]+\]\s*)+\s*$/i.test(line)) {
+			return `<div class="policy-meta">${line.trim()}</div>`;
+		}
+		return line;
+	}).join('\n');
+
+	function escapeAttr(value) {
+		return String(value)
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;');
+	}
+
+	function slug(value) {
+		return String(value)
+			.toLowerCase()
+			.trim()
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-+|-+$/g, '');
+	}
+
+	function tagSpan(type, value, label) {
+		const typeSlug = slug(type);
+		const valueSlug = value ? slug(value) : '';
+		const classes = ['tag', `tag--${typeSlug}`];
+		if (valueSlug) classes.push(`tag--${typeSlug}-${valueSlug}`);
+		const title = label || (value ? `${type}: ${value}` : `${type}`);
+		const attrs = [
+			`class="${classes.join(' ')}"`,
+			`data-tag-type="${escapeAttr(type)}"`,
+			value ? `data-tag-value="${escapeAttr(value)}"` : '',
+			`title="${escapeAttr(title)}"`,
+			`role="button"`,
+			`tabindex="0"`,
+			`aria-haspopup="dialog"`,
+			`aria-label="${escapeAttr(title)}"`,
+		].filter(Boolean).join(' ');
+		return `<span ${attrs}><span class="tag__label">${escapeAttr(title)}</span></span>`;
+	}
+
+	// Tag transforms on non-code content (render as compact icons with accessible labels + tooltips)
 	tmp = tmp
-		.replace(/\[(impact-[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(area:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(horizon:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(risk:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(dist:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(status:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(lead:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(start:[^\]]+)\]/g, '<span class="tag" data-tag="$1">[$1]</span>')
-		.replace(/\[(unknown|opinion|question)\]/g, '<span class="tag" data-tag="$1">[$1]</span>');
+		.replace(/\[(impact)-([^\]]+)\]/g, (_m, type, value) => tagSpan(type, value, `Impact: ${value}`))
+		.replace(/\[(area|horizon|risk|dist|status|lead|start):([^\]]+)\]/g, (_m, type, value) => {
+			const cleanValue = value.trim();
+			const labelType = type === 'start' ? 'Start' : (type[0].toUpperCase() + type.slice(1));
+			return tagSpan(type, cleanValue, `${labelType}: ${cleanValue}`);
+		})
+		.replace(/\[(unknown|opinion|question)\]/g, (_m, flag) => tagSpan('flag', flag, flag[0].toUpperCase() + flag.slice(1)));
 
 	// Restore inline code and code blocks
 	tmp = tmp.replace(/__CODE_INLINE_(\d+)__/g, (_m, idx) => inlineCodes[Number(idx)]);

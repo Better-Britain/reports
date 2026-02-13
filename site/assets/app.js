@@ -205,6 +205,176 @@ document.addEventListener('DOMContentLoaded', () => {
   // On manual hash changes (e.g., back/forward)
   window.addEventListener('hashchange', expandHashTarget);
 
+  // Tag popover (mobile-friendly replacement for hover tooltips)
+  const humaniseTag = (type, value, fallback) => {
+    const t = (type || '').toLowerCase();
+    const v = (value || '').toLowerCase();
+
+    const titleCase = (s) => (s || '').replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()).trim();
+
+    if (t === 'impact') {
+      if (v === 'proven') return 'Proven';
+      if (v === 'likely') return 'Likely';
+      if (v === 'hypothetical') return 'Possible';
+      if (v === 'unknown') return 'Unknown';
+    }
+    if (t === 'horizon') {
+      if (v === 'short') return 'Soon';
+      if (v === 'medium') return 'Mid-term';
+      if (v === 'long') return 'Long-term';
+    }
+    if (t === 'risk') {
+      if (v === 'delivery') return 'Delivery risk';
+      if (v === 'finance') return 'Cost risk';
+      if (v === 'legal') return 'Legal risk';
+      if (v === 'political') return 'Political risk';
+      if (v === 'rights') return 'Rights risk';
+      if (v === 'equity') return 'Fairness risk';
+      if (v === 'reputational') return 'Reputation risk';
+      if (v === 'morale') return 'Morale risk';
+      if (v === 'climate') return 'Climate risk';
+      if (v === 'data-gap') return 'Data gap';
+    }
+    if (t === 'status') {
+      if (v === 'enacted') return 'Law';
+      if (v === 'programme') return 'Programme';
+      if (v === 'policy-statement') return 'Statement';
+      if (v === 'consideration') return 'In progress';
+      if (v === 'draft') return 'Draft';
+      if (v === 'consultation') return 'Consultation';
+    }
+    if (t === 'area') {
+      const areaMap = {
+        energy: 'Energy',
+        economy: 'Economy',
+        housing: 'Housing',
+        planning: 'Planning',
+        nhs: 'NHS',
+        'social-care': 'Social care',
+        welfare: 'Welfare',
+        education: 'Education',
+        skills: 'Skills',
+        migration: 'Migration',
+        justice: 'Justice',
+        fiscal: 'Public finances',
+        devolution: 'Devolution',
+        transport: 'Transport',
+        business: 'Business',
+        'labour-market': 'Work',
+        digital: 'Digital',
+        ai: 'AI',
+        environment: 'Environment',
+        water: 'Water',
+        foreign: 'Foreign policy',
+        defence: 'Defence',
+        culture: 'Culture',
+      };
+      if (areaMap[v]) return areaMap[v];
+      return titleCase(value);
+    }
+    if (t === 'lead') {
+      return value ? `${value}` : (fallback || 'Lead');
+    }
+    if (t === 'start') {
+      // Try to turn YYYY-MM into a month+year label
+      const m = (value || '').match(/^(\d{4})-(\d{2})$/);
+      if (m) {
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const month = Number(m[2]);
+        if (month >= 1 && month <= 12) return `${monthNames[month - 1]} ${m[1]}`;
+      }
+      return value ? `${value}` : (fallback || 'Start');
+    }
+    if (t === 'dist') return value ? titleCase(value) : (fallback || 'Distribution');
+    if (t === 'flag') return titleCase(value || fallback || 'Note');
+
+    return fallback || `${type}${value ? `: ${value}` : ''}`;
+  };
+
+  const escapeHtml = (input) => String(input || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  const hideTagPopover = () => {
+    const existing = document.getElementById('tag-popover');
+    if (existing) existing.remove();
+  };
+
+  const showTagPopover = (tagEl) => {
+    if (!tagEl) return;
+    const existing = document.getElementById('tag-popover');
+    if (existing && existing.__forEl === tagEl) {
+      existing.remove();
+      return;
+    }
+    hideTagPopover();
+
+    const type = tagEl.getAttribute('data-tag-type') || '';
+    const value = tagEl.getAttribute('data-tag-value') || '';
+    const fallback = tagEl.getAttribute('aria-label') || tagEl.getAttribute('title') || `${type}${value ? `: ${value}` : ''}`;
+    const shortTitle = humaniseTag(type, value, fallback);
+
+    const pop = document.createElement('div');
+    pop.id = 'tag-popover';
+    pop.className = 'tag-popover';
+    pop.setAttribute('role', 'dialog');
+    pop.setAttribute('aria-modal', 'false');
+    pop.__forEl = tagEl;
+
+    const subtitle = (shortTitle && fallback && shortTitle !== fallback) ? `<div class="tag-popover__subtitle">${escapeHtml(fallback)}</div>` : '';
+    pop.innerHTML = `<div class="tag-popover__title">${escapeHtml(shortTitle || fallback)}</div>${subtitle}`;
+    document.body.appendChild(pop);
+
+    // Position near the tag (fixed, viewport coords)
+    const rect = tagEl.getBoundingClientRect();
+    const popRect = pop.getBoundingClientRect();
+    const margin = 10;
+
+    let top = rect.top - popRect.height - 10;
+    let left = rect.left + (rect.width / 2) - (popRect.width / 2);
+
+    // Flip below if not enough space above
+    if (top < margin) top = rect.bottom + 10;
+    // Clamp within viewport
+    left = Math.max(margin, Math.min(left, window.innerWidth - popRect.width - margin));
+    top = Math.max(margin, Math.min(top, window.innerHeight - popRect.height - margin));
+
+    pop.style.left = `${Math.round(left)}px`;
+    pop.style.top = `${Math.round(top)}px`;
+  };
+
+  document.body.addEventListener('click', (event) => {
+    const inPopover = event.target.closest('#tag-popover');
+    if (inPopover) return;
+    const tag = event.target.closest('.tag');
+    if (!tag) {
+      hideTagPopover();
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    showTagPopover(tag);
+  });
+
+  document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      hideTagPopover();
+      return;
+    }
+    const tag = event.target && event.target.closest ? event.target.closest('.tag') : null;
+    if (!tag) return;
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      showTagPopover(tag);
+    }
+  });
+
+  window.addEventListener('scroll', hideTagPopover, { passive: true });
+  window.addEventListener('resize', hideTagPopover);
+
   // Optional: RSS helper popover
   document.body.addEventListener('click', (event) => {
     const link = event.target.closest('a.rss-link');
