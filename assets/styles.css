@@ -210,7 +210,6 @@ section > h2 {
 }
 
 /* Tag icons + light colour coding */
-.tag--impact::before { content: "📈"; }
 .tag--impact-proven { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
 .tag--impact-proven::before { content: "✅"; }
 .tag--impact-likely { background: #e0f2fe; border-color: #bae6fd; color: #075985; }
@@ -219,25 +218,35 @@ section > h2 {
 .tag--impact-hypothetical::before { content: "◇"; }
 .tag--impact-unknown::before { content: "？"; }
 
-.tag--area::before { content: "🏷"; }
 .tag--area-energy::before { content: "⚡"; }
 .tag--area-economy::before { content: "£"; }
 .tag--area-housing::before { content: "🏠"; }
-.tag--area-health::before { content: "✚"; }
+.tag--area-planning::before { content: "🗺"; }
+.tag--area-water::before { content: "💧"; }
+.tag--area-nhs::before { content: "🏥"; }
+.tag--area-social-care::before { content: "🧑‍⚕️"; }
+.tag--area-welfare::before { content: "👪"; }
+.tag--area-skills::before { content: "🧰"; }
+.tag--area-fiscal::before { content: "🧾"; }
+.tag--area-devolution::before { content: "🏛"; }
+.tag--area-transport::before { content: "🚆"; }
+.tag--area-business::before { content: "🏢"; }
+.tag--area-labour-market::before { content: "👷"; }
+.tag--area-ai::before { content: "🤖"; }
+.tag--area-culture::before { content: "🎭"; }
+.tag--area-health::before { content: "🏥"; }
 .tag--area-migration::before { content: "🛂"; }
 .tag--area-justice::before { content: "⚖"; }
-.tag--area-digital::before { content: "⌁"; }
+.tag--area-digital::before { content: "💻"; }
 .tag--area-education::before { content: "🎓"; }
 .tag--area-defence::before { content: "🛡"; }
 .tag--area-foreign::before { content: "🌍"; }
 .tag--area-environment::before { content: "🌿"; }
 
-.tag--horizon::before { content: "⏳"; }
 .tag--horizon-short::before { content: "⏱"; }
 .tag--horizon-medium::before { content: "⏳"; }
 .tag--horizon-long::before { content: "🕰"; }
 
-.tag--status::before { content: "🏷"; }
 .tag--status-enacted { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
 .tag--status-enacted::before { content: "✅"; }
 .tag--status-programme::before { content: "🛠"; }
@@ -249,9 +258,15 @@ section > h2 {
 .tag--lead::before { content: "🏛"; }
 .tag--start::before { content: "📅"; }
 .tag--dist::before { content: "👥"; }
+.tag--dist-low-income::before { content: "💷"; }
+.tag--dist-pensioners::before { content: "👵"; }
+.tag--dist-renters::before { content: "🔑"; }
+.tag--dist-homeowners::before { content: "🏡"; }
+.tag--dist-smes::before { content: "🏪"; }
+.tag--dist-large-firms::before { content: "🏢"; }
+.tag[data-tag-type="dist"][data-tag-value^="regions:"]::before { content: "📍"; }
 
 .tag--risk { background: #fff7ed; border-color: #fed7aa; color: #7c2d12; }
-.tag--risk::before { content: "⚠"; }
 .tag--risk-legal::before { content: "⚖"; }
 .tag--risk-finance::before { content: "£"; }
 .tag--risk-delivery::before { content: "🏗"; }
@@ -261,9 +276,9 @@ section > h2 {
 .tag--risk-reputational::before { content: "📰"; }
 .tag--risk-morale::before { content: "🧠"; }
 .tag--risk-climate::before { content: "🌧"; }
+.tag--risk-data-gap::before { content: "📊"; }
 
 .tag--flag { background: #f3f4f6; border-color: #e5e7eb; color: #374151; }
-.tag--flag::before { content: "？"; }
 .tag--flag-unknown::before { content: "？"; }
 .tag--flag-opinion::before { content: "💬"; }
 .tag--flag-question::before { content: "❓"; }
@@ -301,6 +316,9 @@ section > h2 {
 
 /* Give the first body paragraph a little breathing room when meta row exists */
 .policy-card > h1 + .policy-meta + p { margin-top: .75rem; }
+.policy-card p {
+  margin-bottom: 0;
+}
 
 /* Claim tags at the start of list items: tighter spacing */
 .policy-card li .tag { width: 1.45rem; height: 1.45rem; }
@@ -344,7 +362,8 @@ footer.site-footer {
   text-decoration: none;
   margin: 0 .1rem;
   color: #111;
-  border: 1px solid #d1d5db;
+  border: 0px solid #d1d5db;
+  border-bottom: 0px !important;
   border-radius: .25rem;
   padding: .05rem .25rem;
   font-size: .85em;

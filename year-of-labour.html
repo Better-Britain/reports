@@ -180,18 +180,24 @@
 <summary>
 To make the content filterable and to keep the write‑ups short, we use a small set of tags. Expand for details.
 </summary>
-<p>Impact quality describes how confident we are in a claim:</p>
-<ul>
-<li><code>[impact-proven]</code> is supported by direct evidence, delivered outputs or robust evaluation.</li>
-<li><code>[impact-likely]</code> has strong rationale and early indicators but needs time to confirm.</li>
-<li><code>[impact-hypothetical]</code> is a plausible mechanism with little or no current evidence.</li>
-<li><code>[unknown]</code> flags a material uncertainty or missing data.</li>
-<li><code>[opinion]</code> marks a clearly interpretive statement.</li>
-</ul>
-<p>Areas of effect help group by domain. Common examples include: <code>[area: energy]</code>, <code>[area: water]</code>, <code>[area: housing]</code>, <code>[area: planning]</code>, <code>[area: nhs]</code>, <code>[area: social-care]</code>, <code>[area: welfare]</code>, <code>[area: education]</code>, <code>[area: skills]</code>, <code>[area: migration]</code>, <code>[area: justice]</code>, <code>[area: economy]</code>, <code>[area: fiscal]</code>, <code>[area: devolution]</code>, <code>[area: digital]</code>, <code>[area: ai]</code>, <code>[area: environment]</code>, <code>[area: business]</code>, <code>[area: labour-market]</code>, <code>[area: transport]</code>, <code>[area: culture]</code>, <code>[area: foreign]</code>, <code>[area: defence]</code>.</p>
-<p>Time horizons describe when effects should become visible: <code>[horizon: short(&lt;1y)]</code>, <code>[horizon: medium(1–3y)]</code>, and <code>[horizon: long(&gt;3y)]</code>.</p>
-<p>Distributional tags highlight who is most affected. For example: <code>[dist: low-income]</code>, <code>[dist: pensioners]</code>, <code>[dist: renters]</code>, <code>[dist: homeowners]</code>, <code>[dist: SMEs]</code>, <code>[dist: large-firms]</code>, and regional tags like <code>[dist: regions:Greater Manchester]</code>.</p>
-<p>Risk and uncertainty tags call out the main constraints. We use <code>[risk: legal]</code>, <code>[risk: delivery]</code>, <code>[risk: finance]</code>, <code>[risk: political]</code> and <code>[risk: data-gap]</code> to signpost what might go wrong or what we do not yet know.</p>
+<pre><code>Impact quality describes how confident we are in a claim:
+
+- ✅ `[impact-proven]` is supported by direct evidence, delivered outputs or robust evaluation.
+- ↗ `[impact-likely]` has strong rationale and early indicators but needs time to confirm.
+- ◇ `[impact-hypothetical]` is a plausible mechanism with little or no current evidence.
+- ？ `[unknown]` flags a material uncertainty or missing data.
+- 💬 `[opinion]` marks a clearly interpretive statement.
+
+Areas of effect help group by domain. Common examples include: ⚡ `[area: energy]`, 💧 `[area: water]`, 🏠 `[area: housing]`, 🗺 `[area: planning]`, 🏥 `[area: nhs]`, 🧑‍⚕️ `[area: social-care]`, 👪 `[area: welfare]`, 🎓 `[area: education]`, 🧰 `[area: skills]`, 🛂 `[area: migration]`, ⚖ `[area: justice]`, £ `[area: economy]`, 🧾 `[area: fiscal]`, 🏛 `[area: devolution]`, 💻 `[area: digital]`, 🤖 `[area: ai]`, 🌿 `[area: environment]`, 🏢 `[area: business]`, 👷 `[area: labour-market]`, 🚆 `[area: transport]`, 🎭 `[area: culture]`, 🌍 `[area: foreign]`, 🛡 `[area: defence]`.
+
+Time horizons describe when effects should become visible: ⏱ `[horizon: short]` (under 1 year), ⏳ `[horizon: medium]` (1–3 years), and 🕰 `[horizon: long]` (over 3 years).
+
+Distributional tags highlight who is most affected. For example: 💷 `[dist: low-income]`, 👵 `[dist: pensioners]`, 🔑 `[dist: renters]`, 🏡 `[dist: homeowners]`, 🏪 `[dist: SMEs]`, 🏢 `[dist: large-firms]`, and regional tags like 📍 `[dist: regions:Greater Manchester]`.
+
+Risk and uncertainty tags call out the main constraints. We use ⚖ `[risk: legal]`, 🏗 `[risk: delivery]`, £ `[risk: finance]`, 🏛 `[risk: political]` and 📊 `[risk: data-gap]` to signpost what might go wrong or what we do not yet know.
+
+Cards also have a small “meta line” under the title. Common tags there include: ✅ `[status: enacted]` / 🛠 `[status: programme]`, 🏛 `[lead: department/body]`, 📅 `[start: YYYY-MM]`, and (again) the time horizon tags above.
+</code></pre>
 </details>
 <h2 id="citations-and-references" tabindex="-1">Citations and references</h2>
 <p>We use inline footnotes for every material claim: <code>[^id]</code>. Multiple references can be listed in one footnote, for example: <code>[^rshe-guidance-2025; ^ofcom-roadmap-2023]</code>. Source registries and provenance notes live in the references section of the project so you can trace what we relied on and why.</p>
