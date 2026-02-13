@@ -697,7 +697,7 @@
     .finalCtaArt span{
       position: absolute;
       left: 10px;
-      top: 10px;
+      bottom: 10px;
       z-index: 4;
       display: inline-block;
       padding: 6px 9px;
