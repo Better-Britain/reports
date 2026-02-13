@@ -9,14 +9,14 @@ We’ve refreshed our “A Year of Labour” report, bringing it up to date as o
 
 In broad strokes, this update adds and tightens up coverage on:
 
-- **Clean energy delivery**: early Great British Energy milestones, new community energy funding, the latest renewables auction results, and the push to speed up grid connections.
-- **Water reform**: the government’s new direction for how the system is meant to be run and regulated.
+- **Clean energy delivery**: early Great British Energy milestones, new support for local/community energy, the latest renewables auction results, and the push to speed up grid connections.
+- **Water reform**: the government’s direction for how the system is meant to be run and regulated.
 - **Housing and planning**: major renters’ rights changes, planning reform, and the national plan on homelessness.
-- **Work and enforcement**: new workplace rights law and the planned enforcement body/timetable.
+- **Work and enforcement**: new workplace rights law, and plans for a new enforcement body.
 - **Migration and asylum**: new legislation and the latest policy direction on returns and removals.
 - **Justice**: sentencing reform.
 - **Digital rules**: clearer standards for digital ID, and Online Safety enforcement moving from theory to practice.
-- **The “money and rules” backdrop**: the Budget and Finance Bill, plus the planned carbon border tax (a charge on high‑carbon imports).
+- **The “money and rules” backdrop**: the Budget, plus the planned carbon border tax (a charge on high‑carbon imports).
 
 Read the report: <a href="/year-of-labour.html">A Year of Labour</a>
 
