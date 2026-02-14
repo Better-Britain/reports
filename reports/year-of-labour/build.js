@@ -498,7 +498,11 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 	}
 
 	// Build score summary (overall and per 2.# group only)
-	const policyGroups = navMeta.filter((doc) => /^2\./.test(doc.sectionId));
+	const policyGroups = navMeta.filter((doc) => {
+		if (!/^2\./.test(doc.sectionId)) return false;
+		if (/conclusions/i.test(doc.sectionId) || /conclusions/i.test(doc.docTitle || '')) return false;
+		return true;
+	});
 	const groups = policyGroups.map((doc) => {
 		const scored = doc.headings.filter((h) => (h.score === 0 || typeof h.score === 'number'));
 		const count = scored.length;
