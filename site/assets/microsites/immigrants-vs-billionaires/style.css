@@ -538,6 +538,59 @@
       font-size: 14px;
     }
 
+    .faqPanel h3{
+      margin-bottom: 10px;
+    }
+
+    .faqItem{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      padding: 10px 12px;
+    }
+    .faqItem + .faqItem{
+      margin-top: 10px;
+    }
+    .faqItem summary{
+      cursor: pointer;
+      font-weight: 900;
+      color: rgba(246,250,255,.94);
+      font-size: 14px;
+      line-height: 1.3;
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faqItem summary::-webkit-details-marker{display:none}
+    .faqItem summary::after{
+      content:"+";
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+      font-weight: 950;
+      line-height: 1;
+    }
+    .faqItem[open] summary::after{content:"–"}
+    .faqItem summary:focus-visible{
+      outline: 2px solid rgba(137,182,255,.65);
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+    .faqItem p{
+      margin: 10px 0 0;
+      color: rgba(255,255,255,.84);
+      line-height: 1.55;
+    }
+
     .panel ul{
       margin: 10px 0 0;
       padding-left: 18px;
