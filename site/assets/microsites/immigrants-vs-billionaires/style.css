@@ -140,6 +140,23 @@
       text-decoration: none;
     }
 
+    .topPanels{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 0 0 16px;
+    }
+    .topPanels .brandPanel{
+      margin: 0;
+      flex: 1 1 620px;
+    }
+    .topPanels .microCrossLinks{
+      margin: 0;
+      flex: 0 0 auto;
+      max-width: 420px;
+    }
+
     .microCrossLinks{
       margin: 0 0 14px;
       padding: 10px 12px;
@@ -887,6 +904,8 @@
     }
 
     @media (max-width: 940px){
+      .topPanels{flex-direction:column; align-items:stretch}
+      .topPanels .microCrossLinks{max-width: 760px}
       header{flex-direction:column; align-items:flex-start}
       .controls{min-width: 100%}
       .fine{grid-template-columns: 1fr}
