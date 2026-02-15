@@ -572,7 +572,7 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 					<div class="score-range__marker" style="left:${posPct}%;" title="${totalScore} of [${minPossible}..${maxPossible}]"></div>
 				</div>
 				<div class="overall-explainer">
-					Each policy is scored from −2 (harmful) to +2 (very positive). The total score is the sum across all policies; the average is the total divided by the number of policies. The coloured bar shows where the total sits between the minimum (all −2) and maximum (all +2) possible scores.
+					Each policy is scored from −2 (harmful) to +2 (very positive).
 				</div>
 				<div class="score-toggle policies-only-toggle" role="group" aria-label="Score summary filters">
 					<input id="policies-only-toggle" type="checkbox" />
