@@ -49,7 +49,7 @@
       <div class="title">
         <h1>Woke vs Anti-woke</h1>
         <p>
-          Pick the framing you agree with for each issue. The centre option is the default (and where most people live).
+          Pick the framing you agree with for each issue.
           Your selection changes the “failure mode” shown under that row.
         </p>
       </div>
@@ -57,9 +57,9 @@
       <div class="controls controlsPrimary" aria-label="Your result">
         <p class="controlsTitle">Your result</p>
         <p class="controlsLead">
-          This is a deliberately blunt “normal vs extreme” vibe check. It’s about pattern, not scoring you as a person.
+          This is a deliberately blunt “normal vs extreme” vibe check.
         </p>
-        <div class="primaryValue" id="verdictBig">You’re mostly normal.</div>
+        <div class="primaryValue" id="verdictBig">You’re probably normal.</div>
         <div class="row">
           <div class="label">Extremes picked</div>
           <div class="value"><span id="extremesCount">0</span> / <span id="issuesTotal">23</span></div>
@@ -75,28 +75,28 @@
     </header>
 
     <div class="panel panelReview" role="status" aria-live="polite">
-      <strong>⚠ Content under review.</strong> This page is still being developed and may change.
+      <strong>⚠ Content under review.</strong> This page is still being developed and will definitely change.
     </div>
 
     <section class="selectorCard" aria-label="Issue selector">
       <div class="selectorHead">
         <div>
           <p class="h">Choose your framing</p>
-          <p class="sub">Left and right are the “extremes”; centre is the default.</p>
+          <p class="sub">What do you believe? No data is gathered, this tool is offline.</p>
         </div>
       </div>
 
       <div class="gridHead" aria-hidden="true">
         <div class="issueCol">Issue</div>
-        <div class="optCol optColLeft">Woke framing</div>
-        <div class="optCol optColCenter">Normal framing</div>
-        <div class="optCol optColRight">Anti-woke framing</div>
+        <div class="optCol optColLeft">Woke</div>
+        <div class="optCol optColCenter">Middling</div>
+        <div class="optCol optColRight">Anti-woke</div>
       </div>
 
       <div class="rows" id="rows">
         <div class="issueCard" data-issue="trans">
           <div class="issueTop">
-            <div class="issueTitle">Trans people exist, and deserve basic rights.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Trans people exist.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Self-ID is valid</span><span class="optPoint">broad inclusion</span><span class="optPoint">restrict “gatekeeping”</span><span class="optPoint">strong protection from discrimination and stigma.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Treat trans people with dignity</span><span class="optPoint">protect against harassment and discrimination</span><span class="optPoint">write careful rules for sports, prisons, and youth medical care</span><span class="optPoint">keep debates grounded.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Treat trans identity as delusion/ideology</span><span class="optPoint">restrict transition care (often including adults)</span><span class="optPoint">legislate bathroom/school bans</span><span class="optPoint">normalise misgendering.</span></button>
@@ -113,7 +113,7 @@
 
         <div class="issueCard" data-issue="gay">
           <div class="issueTop">
-            <div class="issueTitle">Gay people exist, and deserve basic rights.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Gay people exist.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Full equality plus active celebration/visibility</span><span class="optPoint">challenge heteronormativity</span><span class="optPoint">strong anti-discrimination.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Equal rights</span><span class="optPoint">don’t harass people</span><span class="optPoint">keep participation voluntary (religion/associations)</span><span class="optPoint">keep schools age-appropriate.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Traditional family” politics</span><span class="optPoint">roll back protections</span><span class="optPoint">frame LGBT visibility as “grooming”</span><span class="optPoint">police culture and education.</span></button>
@@ -130,7 +130,7 @@
 
         <div class="issueCard" data-issue="racism">
           <div class="issueTop">
-            <div class="issueTitle">Racism still exists (incl. institutions), and it matters.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Racism exists (incl. institutions), and it matters.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Systems-level framing</span><span class="optPoint">disparities = evidence</span><span class="optPoint">active correction (sometimes race-conscious policy).</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Racism exists and should be punished</span><span class="optPoint">fix unfair systems without turning it into collective guilt</span><span class="optPoint">focus on outcomes and opportunity.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Minimise racism</span><span class="optPoint">treat anti-racism as the real racism</span><span class="optPoint">defend “our culture” rhetoric</span><span class="optPoint">hostility to immigration/multiculturalism.</span></button>
@@ -147,7 +147,7 @@
 
         <div class="issueCard" data-issue="sexism">
           <div class="issueTop">
-            <div class="issueTitle">Sexism still exists, and it matters.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Sexism exists, and it matters.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Patriarchy framing</span><span class="optPoint">believe survivors</span><span class="optPoint">strong norms around speech/behaviour</span><span class="optPoint">gendered power analysis.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Sexism exists</span><span class="optPoint">protect people from harassment/abuse</span><span class="optPoint">due process matters</span><span class="optPoint">address men’s and women’s issues without team-sport framing.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Feminism ruined everything”</span><span class="optPoint">downplay harassment</span><span class="optPoint">oppose workplace protections</span><span class="optPoint">reassert strict gender roles.</span></button>
@@ -164,7 +164,7 @@
 
         <div class="issueCard" data-issue="disability">
           <div class="issueTop">
-            <div class="issueTitle">Don’t be a prick to disabled people.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Disabled people exist.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Social model focus</span><span class="optPoint">strong accessibility norms</span><span class="optPoint">language policing can creep in.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Basic respect</span><span class="optPoint">practical accessibility</span><span class="optPoint">don’t make it a performative purity contest.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Stop special treatment”</span><span class="optPoint">mockery as “free speech”</span><span class="optPoint">cut accommodations as weakness/cost.</span></button>
@@ -215,7 +215,7 @@
 
         <div class="issueCard" data-issue="police">
           <div class="issueTop">
-            <div class="issueTitle">Police power should have limits.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Police powers.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Emphasise systemic abuse</span><span class="optPoint">push deep reform</span><span class="optPoint">sometimes rhetorically hostile to policing itself.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Police are necessary</span><span class="optPoint">accountability is necessary</span><span class="optPoint">clear rules, body cams, independent oversight</span><span class="optPoint">fund what works.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Police are above criticism</span><span class="optPoint">“law and order” as blanket justification</span><span class="optPoint">tolerate brutality when aimed at “bad people.”</span></button>
@@ -249,7 +249,7 @@
 
         <div class="issueCard" data-issue="healthcare">
           <div class="issueTop">
-            <div class="issueTitle">Healthcare shouldn’t be a luxury good.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Healthcare should be accessible.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Universal coverage as a right</span><span class="optPoint">big public provision</span><span class="optPoint">moral framing.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Nobody should be bankrupted by illness</span><span class="optPoint">mix of public guarantee + cost control + efficiency</span><span class="optPoint">less admin cruelty.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Healthcare as commodity</span><span class="optPoint">minimal safety net</span><span class="optPoint">blame the sick</span><span class="optPoint">resist public spend as “handouts.”</span></button>
@@ -266,7 +266,7 @@
 
         <div class="issueCard" data-issue="housing">
           <div class="issueTop">
-            <div class="issueTitle">Housing shouldn’t be an investor sport.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Housing, affordability and homelessness.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Decommodify housing</span><span class="optPoint">regulate rents heavily</span><span class="optPoint">attack landlords/speculators.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Build more homes</span><span class="optPoint">reform planning</span><span class="optPoint">enforce standards</span><span class="optPoint">curb worst speculation</span><span class="optPoint">protect tenants without freezing supply.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Property rights first”</span><span class="optPoint">deregulate landlords</span><span class="optPoint">oppose social housing</span><span class="optPoint">treat tenants as freeloaders.</span></button>
@@ -283,7 +283,7 @@
 
         <div class="issueCard" data-issue="poverty">
           <div class="issueTop">
-            <div class="issueTitle">Poverty isn’t a personal moral failure.<span class="small">Pick one option</span></div>
+            <div class="issueTitle">Poverty as personal responsibility.<span class="small">Pick one option</span></div>
             <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Structural causes first</span><span class="optPoint">generous support</span><span class="optPoint">moral critique of wealth.</span></button>
             <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Bad luck + bad systems + bad choices all exist</span><span class="optPoint">build ladders (jobs, childcare, training) and a humane floor</span><span class="optPoint">reduce traps.</span></button>
             <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Poverty = laziness</span><span class="optPoint">cut benefits</span><span class="optPoint">“tough love”</span><span class="optPoint">criminalise homelessness.</span></button>
