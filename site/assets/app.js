@@ -472,4 +472,99 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Scores summary: "Policies only" toggle
+  const policiesOnlyToggle = document.getElementById('policies-only-toggle');
+  const scoreSummary = document.getElementById('score-summary');
+  const overallScore = document.getElementById('overall-score');
+  if (policiesOnlyToggle && scoreSummary && overallScore) {
+    const fmtSigned = (value, digits = 2) => {
+      const num = Number(value) || 0;
+      const abs = Math.abs(num).toFixed(digits);
+      return (num >= 0 ? `+${abs}` : `-${abs}`);
+    };
+    const scaleClassFromAvg = (avg) => {
+      const rounded = Math.max(-2, Math.min(2, Math.round(Number(avg) || 0)));
+      return `score-scale-${rounded >= 0 ? rounded : `-${Math.abs(rounded)}`}`;
+    };
+
+    const overallBadge = overallScore.querySelector('.overall-badge');
+    const overallPoliciesStrong = overallScore.querySelector('.overall-policies strong');
+    const overallTotalStrong = overallScore.querySelector('.overall-total strong');
+    const marker = overallScore.querySelector('.score-range__marker');
+
+    const scoreRows = Array.from(scoreSummary.querySelectorAll('tr.group-score-row'));
+    const excludedRows = scoreRows.filter((r) => r.getAttribute('data-exclude-on-policies-only') === '1');
+
+    // Fallback: if builder didn't tag it, try to find by visible title
+    if (!excludedRows.length) {
+      scoreRows.forEach((r) => {
+        const titleCell = r.querySelector('.group-title');
+        const t = (titleCell ? titleCell.textContent : '').toLowerCase();
+        if (t.includes('missed opportunit') && t.includes('governance')) {
+          r.setAttribute('data-exclude-on-policies-only', '1');
+        }
+      });
+    }
+
+    const recompute = () => {
+      const policiesOnly = Boolean(policiesOnlyToggle.checked);
+
+      // Grey out excluded row content but keep it visible
+      scoreRows.forEach((r) => {
+        const isExcludable = r.getAttribute('data-exclude-on-policies-only') === '1';
+        if (policiesOnly && isExcludable) r.classList.add('is-excluded');
+        else r.classList.remove('is-excluded');
+      });
+
+      // Recompute totals
+      let totalPolicies = 0;
+      let totalScore = 0;
+      scoreRows.forEach((r) => {
+        const isExcludable = r.getAttribute('data-exclude-on-policies-only') === '1';
+        if (policiesOnly && isExcludable) return;
+        const p = Number(r.getAttribute('data-policies') || 0) || 0;
+        const s = Number(r.getAttribute('data-score-sum') || 0) || 0;
+        totalPolicies += p;
+        totalScore += s;
+      });
+
+      const overallAvg = totalPolicies ? (totalScore / totalPolicies) : 0;
+
+      // Update datasets
+      scoreSummary.setAttribute('data-total-policies', String(totalPolicies));
+      scoreSummary.setAttribute('data-total-score', String(totalScore));
+      scoreSummary.setAttribute('data-overall-average', overallAvg.toFixed(2));
+      overallScore.setAttribute('data-policies', String(totalPolicies));
+      overallScore.setAttribute('data-score-sum', String(totalScore));
+      overallScore.setAttribute('data-score-avg', overallAvg.toFixed(2));
+
+      // Update badge text + class
+      if (overallBadge) {
+        overallBadge.textContent = fmtSigned(overallAvg, 2);
+        overallBadge.setAttribute('data-score', overallAvg.toFixed(2));
+        // remove any previous score-scale-* class
+        Array.from(overallBadge.classList)
+          .filter((c) => c.startsWith('score-scale-'))
+          .forEach((c) => overallBadge.classList.remove(c));
+        overallBadge.classList.add(scaleClassFromAvg(overallAvg));
+      }
+
+      if (overallPoliciesStrong) overallPoliciesStrong.textContent = String(totalPolicies);
+      if (overallTotalStrong) overallTotalStrong.textContent = String(totalScore);
+
+      // Update slider marker (range depends on policy count)
+      const minPossible = -2 * totalPolicies;
+      const maxPossible = 2 * totalPolicies;
+      const rangeDen = (maxPossible - minPossible) || 1;
+      const posPct = Math.max(0, Math.min(100, ((totalScore - minPossible) / rangeDen) * 100));
+      if (marker) {
+        marker.style.left = `${posPct}%`;
+        marker.title = `${totalScore} of [${minPossible}..${maxPossible}]`;
+      }
+    };
+
+    recompute();
+    policiesOnlyToggle.addEventListener('change', recompute);
+  }
 });

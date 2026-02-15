@@ -496,6 +496,12 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 		const rounded = Math.max(-2, Math.min(2, Math.round(avg)));
 		return `score-scale-${rounded >= 0 ? rounded : `-${Math.abs(rounded)}`}`;
 	}
+	function isPoliciesOnlyExcludedGroupTitle(title) {
+		// Heuristic catch: title originates from markdown and may include numeric prefixes.
+		// We only want the "Missed opportunities, errors and governance" bucket.
+		const t = String(title || '').toLowerCase();
+		return /missed\s+opportunit/.test(t) && /governance/.test(t);
+	}
 
 	// Build score summary (overall and per 2.# group only)
 	const policyGroups = navMeta.filter((doc) => {
@@ -508,7 +514,15 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 		const count = scored.length;
 		const sum = scored.reduce((acc, h) => acc + (h.score || 0), 0);
 		const avg = count ? (sum / count) : 0;
-		return { sectionId: doc.sectionId, title: prettyTitle(doc.docTitle), rawTitle: doc.docTitle, count, sum, avg };
+		return {
+			sectionId: doc.sectionId,
+			title: prettyTitle(doc.docTitle),
+			rawTitle: doc.docTitle,
+			count,
+			sum,
+			avg,
+			excludeOnPoliciesOnly: isPoliciesOnlyExcludedGroupTitle(doc.docTitle),
+		};
 	});
 	const totalPolicies = groups.reduce((a, g) => a + g.count, 0);
 	const totalScore = groups.reduce((a, g) => a + g.sum, 0);
@@ -533,9 +547,11 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 						const badgeScoreSigned = fmtSigned(badgeAvg, 2);
 						const scaleClass = scaleClassFromAvg(badgeAvg);
 						const groupAnchor = slugify(g.rawTitle);
-						return `<tr class="group-score-row" data-group-id="${g.sectionId}" data-policies="${g.count}" data-score-sum="${g.sum}" data-score-avg="${badgeAvg.toFixed(2)}">` +
+						const countLabel = g.excludeOnPoliciesOnly ? 'events' : 'policies';
+						const excludeAttr = g.excludeOnPoliciesOnly ? ` data-exclude-on-policies-only="1"` : '';
+						return `<tr class="group-score-row" data-group-id="${g.sectionId}" data-policies="${g.count}" data-score-sum="${g.sum}" data-score-avg="${badgeAvg.toFixed(2)}"${excludeAttr}>` +
 							`<td class="group-title"><a class="group-link" href="#${escapeHtml(groupAnchor)}" data-anchor="${escapeHtml(groupAnchor)}">${escapeHtml(g.title)}</a></td>` +
-							`<td class="group-badge"><span class="score-badge ${scaleClass}" data-score="${badgeAvg.toFixed(2)}">${badgeScoreSigned} from ${g.count} policies</span></td>` +
+							`<td class="group-badge"><span class="score-badge ${scaleClass}" data-score="${badgeAvg.toFixed(2)}">${badgeScoreSigned} from ${g.count} ${countLabel}</span></td>` +
 						`</tr>`;
 					}).join('')}
 				</tbody>
@@ -557,6 +573,13 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 				</div>
 				<div class="overall-explainer">
 					Each policy is scored from −2 (harmful) to +2 (strong). The total score is the sum across all policies; the average is the total divided by the number of policies. The coloured bar shows where the total sits between the minimum (all −2) and maximum (all +2) possible scores.
+				</div>
+				<div class="policies-only-toggle" role="group" aria-label="Score summary filters">
+					<input id="policies-only-toggle" type="checkbox" />
+					<label for="policies-only-toggle">
+						<div class="policies-only-toggle__title">Policies only</div>
+						<div class="policies-only-toggle__subtitle">Ignore drama, personal decisions or media/public outrage not linked to policy/change.</div>
+					</label>
 				</div>
 			</div>
 		</div>

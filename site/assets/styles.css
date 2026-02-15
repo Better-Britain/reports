@@ -693,6 +693,48 @@ body.font-theme-sans #content { font: inherit; }
 .score-range__bar { height: .75rem; border-radius: .5rem; background: linear-gradient(90deg, #dc2626 0%, #f3f4f6 50%, #059669 100%); }
 .score-range__marker { position: absolute; top: 50%; transform: translate(-50%, -50%); width: .75rem; height: .75rem; border-radius: 50%; border: 2px solid #111; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
 
+/* Policies-only toggle under overall score */
+.policies-only-toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .6rem;
+  align-items: start;
+  margin-top: .75rem;
+  padding: .6rem .7rem;
+  border: 1px solid #e5e7eb;
+  border-radius: .6rem;
+  background: rgba(255,255,255,.6);
+}
+.policies-only-toggle input[type="checkbox"] {
+  margin-top: .15rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #0a66c2;
+}
+.policies-only-toggle label {
+  cursor: pointer;
+  user-select: none;
+}
+.policies-only-toggle__title {
+  font-weight: 650;
+  line-height: 1.2;
+}
+.policies-only-toggle__subtitle {
+  margin-top: .2rem;
+  font-size: .9rem;
+  line-height: 1.3;
+  color: #4b5563;
+}
+
+/* Greyed-out score table row when excluded */
+.group-score-row.is-excluded {
+  opacity: .42;
+  filter: grayscale(.25);
+}
+.group-score-row.is-excluded a {
+  pointer-events: auto; /* keep link usable */
+}
+
 header.site-header a,
 .site-footer a,
 #content a,
@@ -824,6 +866,13 @@ header.site-header a:visited,
   }
   .overall-explainer { 
     color: #cbd5e1; 
+  }
+  .policies-only-toggle {
+    background: rgba(15,19,24,.55);
+    border-color: #2a2f39;
+  }
+  .policies-only-toggle__subtitle {
+    color: #9aa3ad;
   }
   .score-help { 
     color: #464a4f; 
