@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Also collapse the sidebar menu on mobile widths by default
     const sb = document.getElementById('sidebar');
-    if (sb) {a
+    if (sb) {
       const mq = window.matchMedia('(max-width: 900px)');
       if (mq.matches) {
         sb.setAttribute('aria-hidden', 'true');
