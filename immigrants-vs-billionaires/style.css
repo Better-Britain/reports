@@ -140,6 +140,63 @@
       text-decoration: none;
     }
 
+    .topPanels{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 0 0 16px;
+    }
+    .topPanels .brandPanel{
+      margin: 0;
+      flex: 1 1 620px;
+    }
+    .topPanels .microCrossLinks{
+      margin: 0;
+      flex: 0 0 auto;
+      max-width: 420px;
+    }
+
+    .microCrossLinks{
+      margin: 0 0 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      box-shadow: var(--shadow2);
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items:center;
+      max-width: 760px;
+    }
+    .microCrossLabel{
+      color: rgba(255,255,255,.78);
+      font-weight: 900;
+      letter-spacing: .01em;
+      font-size: 13px;
+    }
+    .microCrossLinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: rgba(228,241,252,.92);
+    }
+    .microCrossLinks a:hover{
+      text-decoration:none;
+      background: rgba(255,255,255,.08);
+    }
+
     header{
       display:flex;
       align-items:flex-end;
@@ -847,6 +904,8 @@
     }
 
     @media (max-width: 940px){
+      .topPanels{flex-direction:column; align-items:stretch}
+      .topPanels .microCrossLinks{max-width: 760px}
       header{flex-direction:column; align-items:flex-start}
       .controls{min-width: 100%}
       .fine{grid-template-columns: 1fr}

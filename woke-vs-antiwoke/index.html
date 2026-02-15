@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Woke vs Anti-woke - How 'normal' are you?</title>
+  <!-- SEO/social tags are injected at build time (see site/build-orchestrator.js).
+       Keeping the source file free of canonical/OG/Twitter tags avoids conflicts/duplicates. -->
+
+  <link rel="stylesheet" href="./style.css" />
+<link rel="canonical" href="https://betterbritain.org.uk/woke-vs-antiwoke/">
+<meta name="description" content="A deliberately blunt “normal vs extreme” vibe check: pick framings, see failure modes, and find where you actually sit.">
+<meta property="og:title" content="Woke vs Anti-woke - Better Britain">
+<meta property="og:description" content="A deliberately blunt “normal vs extreme” vibe check: pick framings, see failure modes, and find where you actually sit.">
+<meta property="og:url" content="https://betterbritain.org.uk/woke-vs-antiwoke/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Better Britain Bureau">
+<meta property="og:image" content="https://betterbritain.org.uk/assets/better-britain-bureau-promo.jpg">
+<meta property="og:logo" content="https://betterbritain.org.uk/assets/better-britain-bee.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Woke vs Anti-woke - Better Britain">
+<meta name="twitter:description" content="A deliberately blunt “normal vs extreme” vibe check: pick framings, see failure modes, and find where you actually sit.">
+<meta name="twitter:image" content="https://betterbritain.org.uk/assets/better-britain-bureau-promo.jpg">
+</head>
+<body>
+  <div class="wrap">
+    <div class="topPanels">
+      <section class="brandPanel" aria-label="Better Britain Bureau">
+        <a class="brandMark" href="/" aria-label="Better Britain homepage">
+          <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+          <span class="brandWordmark">Better Britain Bureau</span>
+        </a>
+        <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+        <nav class="brandLinks" aria-label="Better Britain links">
+          <a href="/">Homepage</a>
+          <a href="/year-of-labour.html">Flagship Report</a>
+          <a href="/posts/index.html">Posts</a>
+          <a href="/about.html">About BBB</a>
+        </nav>
+      </section>
+
+      <div class="microCrossLinks" aria-label="Other Better Britain micro-sites">
+        <span class="microCrossLabel">See our other micro-sites:</span>
+        <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
+      </div>
+    </div>
+
+    <header>
+      <div class="title">
+        <h1>Woke vs Anti-woke</h1>
+        <p>
+          Pick the framing you agree with for each issue. The centre option is the default (and where most people live).
+          Your selection changes the “failure mode” shown under that row.
+        </p>
+      </div>
+
+      <div class="controls controlsPrimary" aria-label="Your result">
+        <p class="controlsTitle">Your result</p>
+        <p class="controlsLead">
+          This is a deliberately blunt “normal vs extreme” vibe check. It’s about pattern, not scoring you as a person.
+        </p>
+        <div class="primaryValue" id="verdictBig">You’re mostly normal.</div>
+        <div class="row">
+          <div class="label">Extremes picked</div>
+          <div class="value"><span id="extremesCount">0</span> / <span id="issuesTotal">23</span></div>
+        </div>
+        <div class="row">
+          <div class="label">Lean</div>
+          <div class="value" id="leanReadout">Balanced</div>
+        </div>
+        <div class="actions">
+          <button class="btn btnGhost" id="resetBtn" type="button">Reset to centre</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="panel panelReview" role="status" aria-live="polite">
+      <strong>⚠ Content under review.</strong> This page is still being developed and may change.
+    </div>
+
+    <section class="selectorCard" aria-label="Issue selector">
+      <div class="selectorHead">
+        <div>
+          <p class="h">Choose your framing</p>
+          <p class="sub">Left and right are the “extremes”; centre is the default.</p>
+        </div>
+      </div>
+
+      <div class="gridHead" aria-hidden="true">
+        <div class="issueCol">Issue</div>
+        <div class="optCol optColLeft">Woke framing</div>
+        <div class="optCol optColCenter">Normal framing</div>
+        <div class="optCol optColRight">Anti-woke framing</div>
+      </div>
+
+      <div class="rows" id="rows">
+        <div class="issueCard" data-issue="trans">
+          <div class="issueTop">
+            <div class="issueTitle">Trans people exist, and deserve basic rights.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Self-ID is valid</span><span class="optPoint">broad inclusion</span><span class="optPoint">restrict “gatekeeping”</span><span class="optPoint">strong protection from discrimination and stigma.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Treat trans people with dignity</span><span class="optPoint">protect against harassment and discrimination</span><span class="optPoint">write careful rules for sports, prisons, and youth medical care</span><span class="optPoint">keep debates grounded.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Treat trans identity as delusion/ideology</span><span class="optPoint">restrict transition care (often including adults)</span><span class="optPoint">legislate bathroom/school bans</span><span class="optPoint">normalise misgendering.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</p>
+              <p class="failureText failureMode" data-side="left">Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</p>
+              <p class="failureText failureMode" data-side="right">Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="gay">
+          <div class="issueTop">
+            <div class="issueTitle">Gay people exist, and deserve basic rights.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Full equality plus active celebration/visibility</span><span class="optPoint">challenge heteronormativity</span><span class="optPoint">strong anti-discrimination.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Equal rights</span><span class="optPoint">don’t harass people</span><span class="optPoint">keep participation voluntary (religion/associations)</span><span class="optPoint">keep schools age-appropriate.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Traditional family” politics</span><span class="optPoint">roll back protections</span><span class="optPoint">frame LGBT visibility as “grooming”</span><span class="optPoint">police culture and education.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</p>
+              <p class="failureText failureMode" data-side="left">“Celebrate or you’re a bigot”; coerces participation; turns every cultural product into a purity test.</p>
+              <p class="failureText failureMode" data-side="right">Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="racism">
+          <div class="issueTop">
+            <div class="issueTitle">Racism still exists (incl. institutions), and it matters.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Systems-level framing</span><span class="optPoint">disparities = evidence</span><span class="optPoint">active correction (sometimes race-conscious policy).</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Racism exists and should be punished</span><span class="optPoint">fix unfair systems without turning it into collective guilt</span><span class="optPoint">focus on outcomes and opportunity.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Minimise racism</span><span class="optPoint">treat anti-racism as the real racism</span><span class="optPoint">defend “our culture” rhetoric</span><span class="optPoint">hostility to immigration/multiculturalism.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Enforce anti-discrimination; fix bad incentives and unequal access; talk honestly without collective guilt rituals; measure outcomes.</p>
+              <p class="failureText failureMode" data-side="left">Assumes disparity proves malice; treats individuals as group avatars; replaces persuasion with shaming; creates backlash that helps actual racists.</p>
+              <p class="failureText failureMode" data-side="right">Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="sexism">
+          <div class="issueTop">
+            <div class="issueTitle">Sexism still exists, and it matters.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Patriarchy framing</span><span class="optPoint">believe survivors</span><span class="optPoint">strong norms around speech/behaviour</span><span class="optPoint">gendered power analysis.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Sexism exists</span><span class="optPoint">protect people from harassment/abuse</span><span class="optPoint">due process matters</span><span class="optPoint">address men’s and women’s issues without team-sport framing.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Feminism ruined everything”</span><span class="optPoint">downplay harassment</span><span class="optPoint">oppose workplace protections</span><span class="optPoint">reassert strict gender roles.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</p>
+              <p class="failureText failureMode" data-side="left">Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</p>
+              <p class="failureText failureMode" data-side="right">Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="disability">
+          <div class="issueTop">
+            <div class="issueTitle">Don’t be a prick to disabled people.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Social model focus</span><span class="optPoint">strong accessibility norms</span><span class="optPoint">language policing can creep in.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Basic respect</span><span class="optPoint">practical accessibility</span><span class="optPoint">don’t make it a performative purity contest.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Stop special treatment”</span><span class="optPoint">mockery as “free speech”</span><span class="optPoint">cut accommodations as weakness/cost.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Practical accessibility; respect; fund what improves daily life; don’t fetishise “perfect” speech.</p>
+              <p class="failureText failureMode" data-side="left">Language-policing substitutes for ramps, access, carers, and money; virtue beats practicality.</p>
+              <p class="failureText failureMode" data-side="right">“Hard world, cope”; cuts accommodations; mocks need as weakness; treats inclusion as theft.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="consent">
+          <div class="issueTop">
+            <div class="issueTitle">Consent matters.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Explicit consent culture</span><span class="optPoint">broaden definitions</span><span class="optPoint">sometimes expands into clumsy overreach.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Teach consent clearly and early (age-appropriate)</span><span class="optPoint">protect victims</span><span class="optPoint">keep legal standards sane.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Minimise/deny SA</span><span class="optPoint">blame victims</span><span class="optPoint">treat consent talk as “woke brainwashing.”</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Clear, age-appropriate consent norms; strong response to coercion; legal standards stay strict; education stays human.</p>
+              <p class="failureText failureMode" data-side="left">Turns intimacy into a legalistic checklist; broadens definitions until normal awkwardness becomes predation; creates fear and cynicism.</p>
+              <p class="failureText failureMode" data-side="right">Minimises consent; laughs off coercion; keeps rape myths alive; treats consent talk as ideological attack.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="kids">
+          <div class="issueTop">
+            <div class="issueTitle">Kids should be safe from abuse.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Expand safeguarding</span><span class="optPoint">increase reporting</span><span class="optPoint">risk of panic/overreach.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Protect kids</span><span class="optPoint">punish abusers</span><span class="optPoint">keep investigations evidence-based</span><span class="optPoint">don’t turn it into a witch-hunt.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Selective outrage</span><span class="optPoint">weaponise “protect kids” against out-groups</span><span class="optPoint">excuse “our side” predators.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</p>
+              <p class="failureText failureMode" data-side="left">Moral panic and over-reporting; institutions cover themselves instead of kids; families get dragged through hell on vibes.</p>
+              <p class="failureText failureMode" data-side="right">Selective outrage; excuses “our” abusers; weaponises child-safety language to target out-groups rather than predators.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="police">
+          <div class="issueTop">
+            <div class="issueTitle">Police power should have limits.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Emphasise systemic abuse</span><span class="optPoint">push deep reform</span><span class="optPoint">sometimes rhetorically hostile to policing itself.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Police are necessary</span><span class="optPoint">accountability is necessary</span><span class="optPoint">clear rules, body cams, independent oversight</span><span class="optPoint">fund what works.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Police are above criticism</span><span class="optPoint">“law and order” as blanket justification</span><span class="optPoint">tolerate brutality when aimed at “bad people.”</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</p>
+              <p class="failureText failureMode" data-side="left">Treats policing as inherently illegitimate; demoralises good cops; reforms become theatre; crime victims get abandoned.</p>
+              <p class="failureText failureMode" data-side="right">“Law and order” as blank cheque; tolerates brutality; erodes civil liberties; treats accountability as betrayal.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="boss">
+          <div class="issueTop">
+            <div class="issueTitle">Your boss shouldn’t be allowed to treat you like meat.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Strong labour rights</span><span class="optPoint">anti-corporate</span><span class="optPoint">expansive protections</span><span class="optPoint">suspicion of markets.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Decent pay, safe work, predictable schedules</span><span class="optPoint">stop exploitation without making small business impossible.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“If you don’t like it, quit”</span><span class="optPoint">unions are parasites</span><span class="optPoint">worker protections = weakness</span><span class="optPoint">defend boss power.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Decent pay and conditions; enforce basics (safety, hours, wage theft); keep flexibility; stop monopolies and exploitation.</p>
+              <p class="failureText failureMode" data-side="left">Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</p>
+              <p class="failureText failureMode" data-side="right">Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="healthcare">
+          <div class="issueTop">
+            <div class="issueTitle">Healthcare shouldn’t be a luxury good.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Universal coverage as a right</span><span class="optPoint">big public provision</span><span class="optPoint">moral framing.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Nobody should be bankrupted by illness</span><span class="optPoint">mix of public guarantee + cost control + efficiency</span><span class="optPoint">less admin cruelty.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Healthcare as commodity</span><span class="optPoint">minimal safety net</span><span class="optPoint">blame the sick</span><span class="optPoint">resist public spend as “handouts.”</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Guarantee care without bankruptcy; invest in prevention; cut admin waste; align incentives so care is fast, competent, and humane.</p>
+              <p class="failureText failureMode" data-side="left">Assumes money fixes everything; expands entitlements without cost control; admin sprawl; quality/access become slogans not outcomes.</p>
+              <p class="failureText failureMode" data-side="right">Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="housing">
+          <div class="issueTop">
+            <div class="issueTitle">Housing shouldn’t be an investor sport.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Decommodify housing</span><span class="optPoint">regulate rents heavily</span><span class="optPoint">attack landlords/speculators.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Build more homes</span><span class="optPoint">reform planning</span><span class="optPoint">enforce standards</span><span class="optPoint">curb worst speculation</span><span class="optPoint">protect tenants without freezing supply.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Property rights first”</span><span class="optPoint">deregulate landlords</span><span class="optPoint">oppose social housing</span><span class="optPoint">treat tenants as freeloaders.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</p>
+              <p class="failureText failureMode" data-side="left">Over-controls rents/building; freezes supply; creates scarcity and black markets; every fix becomes a new distortion.</p>
+              <p class="failureText failureMode" data-side="right">Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="poverty">
+          <div class="issueTop">
+            <div class="issueTitle">Poverty isn’t a personal moral failure.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Structural causes first</span><span class="optPoint">generous support</span><span class="optPoint">moral critique of wealth.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Bad luck + bad systems + bad choices all exist</span><span class="optPoint">build ladders (jobs, childcare, training) and a humane floor</span><span class="optPoint">reduce traps.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Poverty = laziness</span><span class="optPoint">cut benefits</span><span class="optPoint">“tough love”</span><span class="optPoint">criminalise homelessness.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Humane floor + real ladders; reduce traps; childcare, skills, jobs; support with expectations that actually help.</p>
+              <p class="failureText failureMode" data-side="left">Removes agency; builds systems that trap people; incentives punish progress; moralises wealth more than it helps the poor.</p>
+              <p class="failureText failureMode" data-side="right">Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="refugees">
+          <div class="issueTop">
+            <div class="issueTitle">Refugees are human beings.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Maximal compassion</span><span class="optPoint">expand asylum</span><span class="optPoint">moral urgency</span><span class="optPoint">low emphasis on capacity limits.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Humane treatment + controlled borders</span><span class="optPoint">fast processing</span><span class="optPoint">stop traffickers</span><span class="optPoint">integrate properly</span><span class="optPoint">help in-region too.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Dehumanise migrants</span><span class="optPoint">mass deportation rhetoric</span><span class="optPoint">conspiracy framing (“invasion”)</span><span class="optPoint">cruelty as deterrence.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</p>
+              <p class="failureText failureMode" data-side="left">Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</p>
+              <p class="failureText failureMode" data-side="right">Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="climate">
+          <div class="issueTop">
+            <div class="issueTitle">Climate change is real, and we should react like adults.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Urgent decarbonisation</span><span class="optPoint">climate justice</span><span class="optPoint">aggressive regulation</span><span class="optPoint">high trust in expert consensus.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Climate is changing and humans contribute</span><span class="optPoint">cut emissions pragmatically, keep energy reliable, adapt where needed</span><span class="optPoint">measure results not slogans.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Deny or minimise</span><span class="optPoint">frame it as hoax/plot</span><span class="optPoint">block action</span><span class="optPoint">treat regulation as tyranny (but still likes clean air when it’s local).</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Cut emissions pragmatically; keep energy reliable; invest in clean tech and adaptation; track results; share costs fairly.</p>
+              <p class="failureText failureMode" data-side="left">Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</p>
+              <p class="failureText failureMode" data-side="right">Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="history">
+          <div class="issueTop">
+            <div class="issueTitle">History happened, incl. the ugly bits.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Centre oppression narratives</span><span class="optPoint">expand curricula</span><span class="optPoint">symbolic fights over statues/language.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Teach the good and bad</span><span class="optPoint">context matters</span><span class="optPoint">don’t sanitize, don’t indoctrinate</span><span class="optPoint">make kids literate in evidence.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Nationalist myth-making</span><span class="optPoint">ban “unpatriotic” teaching</span><span class="optPoint">treat critique as betrayal.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</p>
+              <p class="failureText failureMode" data-side="left">Turns history into identity therapy; present-day guilt rituals; collapses complexity into oppressor/oppressed fanfic.</p>
+              <p class="failureText failureMode" data-side="right">Sanitises and bans; mythologises nationhood; treats critique as treason; makes people historically illiterate on purpose.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="jokes">
+          <div class="issueTop">
+            <div class="issueTitle">Some jokes are just cruelty with a grin.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Social norms should discourage punching down</span><span class="optPoint">more social consequence</span><span class="optPoint">sometimes over-polices humour.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Don’t be a bully</span><span class="optPoint">comedy’s messy</span><span class="optPoint">judge intent + pattern + power</span><span class="optPoint">don’t confuse offence with harm.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“It’s just a joke” as shield</span><span class="optPoint">cruelty-as-entertainment</span><span class="optPoint">target minorities to signal tribe.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</p>
+              <p class="failureText failureMode" data-side="left">Confuses offence with harm; tries to police tone; turns humour into compliance; hands martyrs to bad actors.</p>
+              <p class="failureText failureMode" data-side="right">Cruelty as entertainment; targets minorities for status; hides behind “just joking” to normalise contempt.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="speech">
+          <div class="issueTop">
+            <div class="issueTitle">Some “free speech” is “I want to be a cunt without consequences.”<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Push hard on platforming</span><span class="optPoint">blur speech and harm</span><span class="optPoint">endorse deplatforming.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Free speech is broad</span><span class="optPoint">consequences exist but shouldn’t be mob rule</span><span class="optPoint">keep rules narrow (threats, harassment, incitement).</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Free speech” only for in-group</span><span class="optPoint">ban books/teachers</span><span class="optPoint">use state power to punish opponents.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Broad speech rights; narrow rules on threats/harassment; consistent enforcement; don’t outsource justice to mobs or states.</p>
+              <p class="failureText failureMode" data-side="left">Deplatform first, argue never; expands “harm” until dissent is unsafe; mob enforcement replaces norms.</p>
+              <p class="failureText failureMode" data-side="right">“Free speech for me”; bans books/teachers; uses state power to punish opponents; intimidation politics.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="media">
+          <div class="issueTop">
+            <div class="issueTitle">Representation in media isn’t oppression.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Representation as cultural repair</span><span class="optPoint">critique “default whiteness/straightness”</span><span class="optPoint">sometimes sacrifices story for signalling.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">More kinds of people on screen is fine</span><span class="optPoint">story first</span><span class="optPoint">don’t treat audiences as enemies</span><span class="optPoint">don’t do quota-vibes writing.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Rage at “forced diversity”</span><span class="optPoint">nostalgia politics</span><span class="optPoint">treat any inclusion as attack.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</p>
+              <p class="failureText failureMode" data-side="left">Box-ticking replaces craft; scolds the audience; treats disagreement as moral failure; undermines the goal by making it annoying.</p>
+              <p class="failureText failureMode" data-side="right">Treats any inclusion as attack; harassment campaigns; nostalgia politics; cultural gatekeeping as identity defence.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="words">
+          <div class="issueTop">
+            <div class="issueTitle">Words can be used to dehumanise, on purpose.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Strong focus on rhetoric harms</span><span class="optPoint">more speech rules</span><span class="optPoint">“harm” language expands.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Rhetoric matters</span><span class="optPoint">challenge dehumanising talk</span><span class="optPoint">keep legal limits tight but social norms firm.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Normalise slurs/dogwhistles</span><span class="optPoint">dismiss harm</span><span class="optPoint">use dehumanising language strategically.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Call out dehumanising rhetoric; keep law narrow; keep norms strong; distinguish disagreement from incitement.</p>
+              <p class="failureText failureMode" data-side="left">Treats language as violence by default; expands taboo lists endlessly; chills discourse; misses actual dehumanisation because everything is “harm.”</p>
+              <p class="failureText failureMode" data-side="right">Dogwhistles and slurs normalised; dehumanisation used strategically; escalates hostility; primes real-world harm.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="harassment">
+          <div class="issueTop">
+            <div class="issueTitle">Harassment isn’t “debate.”<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Broaden “harassment” category</span><span class="optPoint">more moderation</span><span class="optPoint">sometimes labels dissent as harm.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Threats, stalking, pile-ons aren’t debate</span><span class="optPoint">disagreement is fine</span><span class="optPoint">enforce clear lines.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Targeted harassment as sport</span><span class="optPoint">“owning” people</span><span class="optPoint">intimidation campaigns dressed up as politics.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Clear lines: threats/stalking/pile-ons punished; disagreement allowed; transparent moderation and due process.</p>
+              <p class="failureText failureMode" data-side="left">Labels dissent “harassment”; uses safety language to avoid scrutiny; moderation becomes viewpoint enforcement.</p>
+              <p class="failureText failureMode" data-side="right">Pile-ons as sport; intimidation as politics; doxxing/threats winked at; “owning” replaces argument.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="nazis">
+          <div class="issueTop">
+            <div class="issueTitle">Nazis are still bad, actually.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Anti-fascism as moral baseline</span><span class="optPoint">deplatform organised extremism</span><span class="optPoint">sometimes overuses “Nazi” as insult.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Nazis are bad</span><span class="optPoint">don’t normalise extremist organising</span><span class="optPoint">keep language accurate so warnings still mean something.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Nazis bad, but…” minimisation</span><span class="optPoint">flirt with ethnonationalism</span><span class="optPoint">obsessive focus on left as the *real* threat.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Keep the word meaningful; oppose extremist organising; target actual networks, not vibes; defend pluralism.</p>
+              <p class="failureText failureMode" data-side="left">Overuses “Nazi” until it’s noise; treats normal conservatives as fascists; builds the very radicalisation it fears.</p>
+              <p class="failureText failureMode" data-side="right">Minimises or flirts with ethnonationalism; “just asking questions” laundering; normalises extremist aesthetics.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="conspiracies">
+          <div class="issueTop">
+            <div class="issueTitle">Conspiracies aren’t a personality.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Emphasis on misinformation harms</span><span class="optPoint">heavy trust in institutions</span><span class="optPoint">sometimes too quick to dismiss real scandals.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Be sceptical, check sources, follow evidence</span><span class="optPoint">institutions can fail without everything being a plot.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Deep state” as universal answer</span><span class="optPoint">paranoia politics</span><span class="optPoint">constant moving-target claims.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Healthy scepticism; verify claims; follow evidence; admit institutional failure without turning it into a grand plot.</p>
+              <p class="failureText failureMode" data-side="left">“Misinformation” used to dodge legitimate criticism; over-trust in institutions; treats scepticism as pathology.</p>
+              <p class="failureText failureMode" data-side="right">Paranoia as worldview; every loss is a rig; scapegoats replace analysis; reality becomes optional.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="issueCard" data-issue="facts">
+          <div class="issueTop">
+            <div class="issueTitle">Facts don’t stop being facts because they annoy you.<span class="small">Pick one option</span></div>
+            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">“Trust science”</span><span class="optPoint">high confidence in expert consensus</span><span class="optPoint">sometimes blind to incentives/bias.</span></button>
+            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Evidence first</span><span class="optPoint">update when wrong</span><span class="optPoint">trust expertise but demand transparency, replication, and receipts.</span></button>
+            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Vibes over evidence</span><span class="optPoint">“my feed &gt; reality”</span><span class="optPoint">treat inconvenient facts as enemy propaganda.</span></button>
+          </div>
+          <div class="issueBottom">
+            <div class="failurePill center">Normal outcome</div>
+            <div>
+              <p class="failureText failureMode active" data-side="center">Evidence first; transparent methods; update when wrong; tolerate disagreement; demand receipts.</p>
+              <p class="failureText failureMode" data-side="left">“Trust experts” becomes faith; ignores incentives/bias; punishes dissent even when it’s right; credibility collapses.</p>
+              <p class="failureText failureMode" data-side="right">Vibes &gt; data; selective “facts”; hostile to expertise; treats correction as attack; lives inside narrative.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fine fineSingle" aria-label="Footnote">
+      <div class="panel panelWide">
+        <h3>Note</h3>
+        <p>
+          <strong>Disclaimer.</strong> These extremes do not all carry the same harms. We are not saying they are “the same” in scope and scale... only that they represent competing positions on individual issues. Some pull or push harder than others.
+        </p>
+        <p>
+          The left-to-right binary is itself something of a myth. The political spectrum vastly oversimplifies reality, and often asks you (the real person) to “bucket” yourself (even when that means jumping onboard with people and positions you wouldn’t normally). The concept of the <a href="https://en.wikipedia.org/wiki/Overton_window" target="_blank" rel="noopener">Overton window</a> (the range of ideas considered politically acceptable at a given time) helps explain how discourse shifts, and why “extreme” and “mainstream” are always in motion.
+        </p>
+        <p>
+          Anti-extremism is partly about recognising radicalisation cycles and feedback loops: how groups can fuel each other’s rhetoric and actions. Many of these issues may not affect you personally, but who you choose to lend your support to affects how society responds to them as a whole.
+        </p>
+        <p>
+          <strong>Further reading:</strong>
+          <a href="https://crestresearch.ac.uk/resources/reciprocal-radicalisation/" target="_blank" rel="noopener">CREST - Reciprocal Radicalisation</a>;
+          <a href="https://crestresearch.ac.uk/resources/online-radicalisation-a-rapid-review-of-the-literature/" target="_blank" rel="noopener">CREST - Online Radicalisation</a>;
+          <a href="https://hedayah.com/resources/the-cve-cycle/" target="_blank" rel="noopener">Hedayah - The CVE Cycle</a>;
+          <a href="https://reason.com/2023/05/21/the-left-right-spectrum-is-mostly-meaningless/" target="_blank" rel="noopener">Reason - The Left-Right Spectrum Is Mostly Meaningless</a>.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
