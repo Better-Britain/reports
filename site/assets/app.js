@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Also collapse the sidebar menu on mobile widths by default
     const sb = document.getElementById('sidebar');
-    if (sb) {
+    if (sb) {a
       const mq = window.matchMedia('(max-width: 900px)');
       if (mq.matches) {
         sb.setAttribute('aria-hidden', 'true');
@@ -566,5 +566,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     recompute();
     policiesOnlyToggle.addEventListener('change', recompute);
+  }
+
+  // Score summary: "Keir Starmer" toggle (does not affect scores)
+  const keirToggle = document.getElementById('keir-starmer-toggle');
+  if (keirToggle) {
+    const container = keirToggle.closest('.score-toggle') || keirToggle.closest('.keir-starmer-toggle');
+    const subtitleEl = container ? container.querySelector('.score-toggle__subtitle') : null;
+    const apply = () => {
+      if (!subtitleEl) return;
+      const defaultText = subtitleEl.getAttribute('data-subtitle-default') || subtitleEl.textContent || '';
+      const checkedText = subtitleEl.getAttribute('data-subtitle-checked') || defaultText;
+      subtitleEl.textContent = keirToggle.checked ? checkedText : defaultText;
+      if (container) {
+        if (keirToggle.checked) container.classList.add('is-expanded');
+        else container.classList.remove('is-expanded');
+      }
+    };
+    apply();
+    keirToggle.addEventListener('change', apply);
   }
 });
