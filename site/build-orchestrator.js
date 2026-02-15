@@ -261,6 +261,7 @@ async function buildHomepage(config) {
 	}
 	const national = config.reports?.national || [];
 	const local = config.reports?.local || [];
+	const microsites = (config.microsites || []).filter(ms => !ms.disabled);
 	const brand = config.brand || { siteTitle: 'Better Britain Bureau', rootHeading: 'Broken Britain Briefing' };
 
 	// Detect optional large logo asset
@@ -288,6 +289,15 @@ async function buildHomepage(config) {
 		return items.join('');
 	};
 
+	const micrositeList = (arr) => {
+		const items = arr.map(ms => {
+			const title = escapeHtml(ms.title || ms.slug);
+			const href = escapeHtml(ms.publicPath || `/${ms.slug || ''}/`);
+			return `\n<div class="report-card">\n  <a href="${href}">\n    <div class="card-title">${title}</div>\n    ${ms.description ? `<div class=\"card-meta\">${escapeHtml(ms.description)}</div>` : ''}\n  </a>\n</div>`;
+		});
+		return items.join('');
+	};
+
 	const intro = brand.intro || `Many people feel Britain is struggling, caught between headlines of crisis and waves of outrage. The Broken Britain Briefing sets out to move beyond that cycle, examining the evidence with clarity and perspective. Our papers assess the country’s real condition and the policies intended to improve it, aiming to ground debate in facts and thoughtful scrutiny rather than despair or division.`;
 
 	const content = `
@@ -311,6 +321,14 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 	<h3 id="local-reports">Local Reports</h3>
 	<div class="reports-grid">
 		${list(local) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
+	</div>
+</section>
+
+<section aria-labelledby="microsites">
+	<h3 id="microsites">Microsites</h3>
+	<p class="muted">Short, interactive explainers and tools — quick ways to sanity-check popular claims.</p>
+	<div class="reports-grid">
+		${micrositeList(microsites) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
 	</div>
 </section>
 

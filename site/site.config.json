@@ -80,6 +80,14 @@
       "title": "Immigrants vs Billionaires",
       "description": "Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.",
       "image": "/assets/ivb-preview.jpg"
+    },
+    {
+      "id": "woke-vs-antiwoke",
+      "slug": "woke-vs-antiwoke",
+      "publicPath": "/woke-vs-antiwoke/",
+      "sourceDir": "site/assets/microsites/woke-vs-antiwoke",
+      "title": "Woke vs Anti-woke",
+      "description": "A deliberately blunt “normal vs extreme” vibe check: pick framings, see failure modes, and find where you actually sit."
     }
   ]
 }
