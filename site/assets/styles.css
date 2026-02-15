@@ -729,11 +729,15 @@ body.font-theme-sans #content { font: inherit; }
   font-size: .9rem;
   line-height: 1.3;
   color: #4b5563;
+}
+
+/* Only clamp/expand the Keir panel subtitle */
+.keir-starmer-toggle .score-toggle__subtitle {
   max-height: 2.6em;
   overflow: hidden;
   transition: max-height .18s ease;
 }
-.score-toggle.is-expanded .score-toggle__subtitle {
+.keir-starmer-toggle.is-expanded .score-toggle__subtitle {
   max-height: 6.6em;
 }
 
