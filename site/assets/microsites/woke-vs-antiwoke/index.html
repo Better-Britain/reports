@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Woke vs Anti-woke - How 'normal' are you?</title>
+  <title>Woke or not woke?</title>
   <!-- SEO/social tags are injected at build time (see site/build-orchestrator.js).
        Keeping the source file free of canonical/OG/Twitter tags avoids conflicts/duplicates. -->
 
@@ -34,29 +34,10 @@
 
     <header>
       <div class="title">
-        <h1>Woke vs Anti-woke</h1>
+        <h1>Woke or not woke?</h1>
         <p>
-          Pick the framing you agree with for each issue. 
+          Pick the positions you actually agree with. No teams, just claims. Nothing leaves your device.
         </p>
-      </div>
-
-      <div class="controls controlsPrimary" aria-label="Your result">
-        <p class="controlsTitle">Your result</p>
-        <p class="controlsLead">
-          This is a deliberately blunt “normal vs extreme” vibe check.
-        </p>
-        <div class="primaryValue" id="verdictBig">You’re probably normal.</div>
-        <div class="row">
-          <div class="label">Extremes picked</div>
-          <div class="value"><span id="extremesCount">0</span> / <span id="issuesTotal">23</span></div>
-        </div>
-        <div class="row">
-          <div class="label">Lean</div>
-          <div class="value" id="leanReadout">Balanced</div>
-        </div>
-        <div class="actions">
-          <button class="btn btnGhost" id="resetBtn" type="button">Reset to centre</button>
-        </div>
       </div>
     </header>
 
@@ -64,411 +45,529 @@
       <strong>⚠ Content under review.</strong> This page is still being developed and will definitely change.
     </div>
 
-    <section class="selectorCard" aria-label="Issue selector">
+    <section class="selectorCard" aria-label="Woke score quiz">
       <div class="selectorHead">
         <div>
-          <p class="h">Choose your framing</p>
-          <p class="sub">What do you believe? No data is gathered, this tool is offline.</p>
+          <p class="h">Pick what you believe</p>
+          <p class="sub">Choose any positions you agree with on each issue. The next issue opens after your first pick.</p>
         </div>
       </div>
 
-      <div class="gridHead" aria-hidden="true">
-        <div class="issueCol">Issue</div>
-        <div class="optCol optColLeft">Woke</div>
-        <div class="optCol optColCenter">Middling</div>
-        <div class="optCol optColRight">Anti-woke</div>
-      </div>
-
-      <div class="rows" id="rows">
-        <div class="issueCard" data-issue="trans">
-          <div class="issueTop">
-            <div class="issueTitle">Trans people exist.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Self-ID is valid</span><span class="optPoint">broad inclusion</span><span class="optPoint">restrict “gatekeeping”</span><span class="optPoint">strong protection from discrimination and stigma.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Treat trans people with dignity</span><span class="optPoint">protect against harassment and discrimination</span><span class="optPoint">write careful rules for sports, prisons, and youth medical care</span><span class="optPoint">keep debates grounded.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Treat trans identity as delusion/ideology</span><span class="optPoint">restrict transition care (often including adults)</span><span class="optPoint">legislate bathroom/school bans</span><span class="optPoint">normalise misgendering.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</p>
-              <p class="failureText failureMode" data-side="left">Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</p>
-              <p class="failureText failureMode" data-side="right">Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</p>
+      <section class="issues" id="issues">
+        <details class="issue" data-issue="trans" open>
+          <summary>
+            <span class="issueTitle">Trans people exist.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Trans: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="trans_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “Treat trans people with dignity” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially around sport/prisons/youth edge-cases. (Score: +1.)</span><span class="optEffect" hidden>Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</span>
+              <button class="optBtn" type="button" data-opt="trans_l1" data-woke="43" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “Self-ID is valid” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially around sport/prisons/youth edge-cases. (Score: +4.)</span><span class="optEffect" hidden>Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</span>
+              <button class="optBtn" type="button" data-opt="trans_r1" data-woke="-4-3" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “Treat trans identity as delusion/ideology” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially around sport/prisons/youth edge-cases. (Score: -4.)</span><span class="optEffect" hidden>Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</span>
+              <button class="optBtn" type="button" data-opt="trans_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “protect against harassment and discrimination” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially around sport/prisons/youth edge-cases. (Score: +1.)</span><span class="optEffect" hidden>Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</span>
+              <button class="optBtn" type="button" data-opt="trans_l2" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “broad inclusion” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially around sport/prisons/youth edge-cases. (Score: +3.)</span><span class="optEffect" hidden>Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</span>
+              <button class="optBtn" type="button" data-opt="trans_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “restrict transition care (often including adults)” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially around sport/prisons/youth edge-cases. (Score: -3.)</span><span class="optEffect" hidden>Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</span>
+              <button class="optBtn" type="button" data-opt="trans_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “write careful rules for sports, prisons, and youth medical care” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially around sport/prisons/youth edge-cases. (Score: +0.)</span><span class="optEffect" hidden>Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</span>
+              <button class="optBtn" type="button" data-opt="trans_l3" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “restrict “gatekeeping” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially around sport/prisons/youth edge-cases. (Score: +3.)</span><span class="optEffect" hidden>Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</span>
+              <button class="optBtn" type="button" data-opt="trans_r3" data-woke="-4-3" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “legislate bathroom/school bans” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially around sport/prisons/youth edge-cases. (Score: -4.)</span><span class="optEffect" hidden>Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</span>
+              <button class="optBtn" type="button" data-opt="trans_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “keep debates grounded.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially around sport/prisons/youth edge-cases. (Score: +0.)</span><span class="optEffect" hidden>Dignity in daily life, anti-harassment, anti-discrimination; careful rules for sports/prisons/safeguarding; youth care handled cautiously, case-by-case, evidence-led.</span>
+              <button class="optBtn" type="button" data-opt="trans_l4" data-woke="43" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “strong protection from discrimination and stigma.” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially around sport/prisons/youth edge-cases. (Score: +4.)</span><span class="optEffect" hidden>Turns every boundary question into moral evil; punishes uncertainty; collapses trade-offs into slogans; ignores women’s privacy/sport edge-cases until it backfires.</span>
+              <button class="optBtn" type="button" data-opt="trans_r4" data-woke="-4-3" aria-pressed="false"><span class="optEffect" hidden>On trans policy and daily dignity: picking “normalise misgendering.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially around sport/prisons/youth edge-cases. (Score: -4.)</span><span class="optEffect" hidden>Treats trans people as a contagion/ideology; bans and humiliation as policy; normalises bullying; uses “protect kids” as cover for blanket hostility.</span>
             </div>
           </div>
+        </details>
+
+        <details class="issue" data-issue="gay">
+          <summary>
+            <span class="issueTitle">Gay people exist.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Gay rights: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="gay_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “Equal rights” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +1.)</span><span class="optEffect" hidden>Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</span>
+              <button class="optBtn" type="button" data-opt="gay_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “Traditional family” politics” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</span>
+              <button class="optBtn" type="button" data-opt="gay_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “Full equality plus active celebration/visibility” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +3.)</span><span class="optEffect" hidden>“Celebrate or you’re a bigot”; coerces participation; turns every cultural product into a purity test.</span>
+              <button class="optBtn" type="button" data-opt="gay_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “don’t harass people” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</span>
+              <button class="optBtn" type="button" data-opt="gay_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “roll back protections” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</span>
+              <button class="optBtn" type="button" data-opt="gay_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “challenge heteronormativity” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>“Celebrate or you’re a bigot”; coerces participation; turns every cultural product into a purity test.</span>
+              <button class="optBtn" type="button" data-opt="gay_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “keep participation voluntary (religion/associations)” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</span>
+              <button class="optBtn" type="button" data-opt="gay_r3" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “frame LGBT visibility as “grooming” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</span>
+              <button class="optBtn" type="button" data-opt="gay_l3" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “strong anti-discrimination.” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +3.)</span><span class="optEffect" hidden>“Celebrate or you’re a bigot”; coerces participation; turns every cultural product into a purity test.</span>
+              <button class="optBtn" type="button" data-opt="gay_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “keep schools age-appropriate.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</span>
+              <button class="optBtn" type="button" data-opt="gay_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On gay rights and cultural participation: picking “police culture and education.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="racism">
+          <summary>
+            <span class="issueTitle">Racism exists (incl. institutions), and it matters.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Racism: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="racism_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “Racism exists and should be punished” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Enforce anti-discrimination; fix bad incentives and unequal access; talk honestly without collective guilt rituals; measure outcomes.</span>
+              <button class="optBtn" type="button" data-opt="racism_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “Minimise racism” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</span>
+              <button class="optBtn" type="button" data-opt="racism_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “Systems-level framing” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Assumes disparity proves malice; treats individuals as group avatars; replaces persuasion with shaming; creates backlash that helps actual racists.</span>
+              <button class="optBtn" type="button" data-opt="racism_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “fix unfair systems without turning it into collective guilt” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Enforce anti-discrimination; fix bad incentives and unequal access; talk honestly without collective guilt rituals; measure outcomes.</span>
+              <button class="optBtn" type="button" data-opt="racism_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “treat anti-racism as the real racism” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</span>
+              <button class="optBtn" type="button" data-opt="racism_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “disparities = evidence” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Assumes disparity proves malice; treats individuals as group avatars; replaces persuasion with shaming; creates backlash that helps actual racists.</span>
+              <button class="optBtn" type="button" data-opt="racism_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “focus on outcomes and opportunity.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Enforce anti-discrimination; fix bad incentives and unequal access; talk honestly without collective guilt rituals; measure outcomes.</span>
+              <button class="optBtn" type="button" data-opt="racism_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “defend “our culture” rhetoric” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</span>
+              <button class="optBtn" type="button" data-opt="racism_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “active correction (sometimes race-conscious policy).” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Assumes disparity proves malice; treats individuals as group avatars; replaces persuasion with shaming; creates backlash that helps actual racists.</span>
+              <button class="optBtn" type="button" data-opt="racism_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On racism, institutions, and outcomes: picking “hostility to immigration/multiculturalism.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="sexism">
+          <summary>
+            <span class="issueTitle">Sexism exists, and it matters.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Sexism: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="sexism_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “Sexism exists” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</span>
+              <button class="optBtn" type="button" data-opt="sexism_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “Feminism ruined everything” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</span>
+              <button class="optBtn" type="button" data-opt="sexism_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “Patriarchy framing” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</span>
+              <button class="optBtn" type="button" data-opt="sexism_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “protect people from harassment/abuse” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +1.)</span><span class="optEffect" hidden>Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</span>
+              <button class="optBtn" type="button" data-opt="sexism_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “downplay harassment” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</span>
+              <button class="optBtn" type="button" data-opt="sexism_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “believe survivors” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</span>
+              <button class="optBtn" type="button" data-opt="sexism_c3" data-woke="-10" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “due process matters” nudges toward restraint / scepticism. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: -1.)</span><span class="optEffect" hidden>Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</span>
+              <button class="optBtn" type="button" data-opt="sexism_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “oppose workplace protections” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</span>
+              <button class="optBtn" type="button" data-opt="sexism_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “strong norms around speech/behaviour” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</span>
+              <button class="optBtn" type="button" data-opt="sexism_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “address men’s and women’s issues without team-sport framing.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</span>
+              <button class="optBtn" type="button" data-opt="sexism_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “reassert strict gender roles.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</span>
+              <button class="optBtn" type="button" data-opt="sexism_l4" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On sexism, harassment, and due process: picking “gendered power analysis.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="disability">
+          <summary>
+            <span class="issueTitle">Disabled people exist.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Disability: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="disability_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “Basic respect” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Practical accessibility; respect; fund what improves daily life; don’t fetishise “perfect” speech.</span>
+              <button class="optBtn" type="button" data-opt="disability_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “Stop special treatment” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>“Hard world, cope”; cuts accommodations; mocks need as weakness; treats inclusion as theft.</span>
+              <button class="optBtn" type="button" data-opt="disability_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “Social model focus” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Language-policing substitutes for ramps, access, carers, and money; virtue beats practicality.</span>
+              <button class="optBtn" type="button" data-opt="disability_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “practical accessibility” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +1.)</span><span class="optEffect" hidden>Practical accessibility; respect; fund what improves daily life; don’t fetishise “perfect” speech.</span>
+              <button class="optBtn" type="button" data-opt="disability_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “mockery as “free speech” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>“Hard world, cope”; cuts accommodations; mocks need as weakness; treats inclusion as theft.</span>
+              <button class="optBtn" type="button" data-opt="disability_l2" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “strong accessibility norms” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +3.)</span><span class="optEffect" hidden>Language-policing substitutes for ramps, access, carers, and money; virtue beats practicality.</span>
+              <button class="optBtn" type="button" data-opt="disability_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “don’t make it a performative purity contest.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Practical accessibility; respect; fund what improves daily life; don’t fetishise “perfect” speech.</span>
+              <button class="optBtn" type="button" data-opt="disability_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “cut accommodations as weakness/cost.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>“Hard world, cope”; cuts accommodations; mocks need as weakness; treats inclusion as theft.</span>
+              <button class="optBtn" type="button" data-opt="disability_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On disability, access, and support: picking “language policing can creep in.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Language-policing substitutes for ramps, access, carers, and money; virtue beats practicality.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="consent">
+          <summary>
+            <span class="issueTitle">Consent matters.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Consent: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="consent_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “Teach consent clearly and early (age-appropriate)” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Clear, age-appropriate consent norms; strong response to coercion; legal standards stay strict; education stays human.</span>
+              <button class="optBtn" type="button" data-opt="consent_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “Minimise/deny SA” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Minimises consent; laughs off coercion; keeps rape myths alive; treats consent talk as ideological attack.</span>
+              <button class="optBtn" type="button" data-opt="consent_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “Explicit consent culture” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns intimacy into a legalistic checklist; broadens definitions until normal awkwardness becomes predation; creates fear and cynicism.</span>
+              <button class="optBtn" type="button" data-opt="consent_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “protect victims” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +1.)</span><span class="optEffect" hidden>Clear, age-appropriate consent norms; strong response to coercion; legal standards stay strict; education stays human.</span>
+              <button class="optBtn" type="button" data-opt="consent_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “blame victims” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Minimises consent; laughs off coercion; keeps rape myths alive; treats consent talk as ideological attack.</span>
+              <button class="optBtn" type="button" data-opt="consent_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “broaden definitions” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns intimacy into a legalistic checklist; broadens definitions until normal awkwardness becomes predation; creates fear and cynicism.</span>
+              <button class="optBtn" type="button" data-opt="consent_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “keep legal standards sane.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Clear, age-appropriate consent norms; strong response to coercion; legal standards stay strict; education stays human.</span>
+              <button class="optBtn" type="button" data-opt="consent_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “treat consent talk as “woke brainwashing.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Minimises consent; laughs off coercion; keeps rape myths alive; treats consent talk as ideological attack.</span>
+              <button class="optBtn" type="button" data-opt="consent_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On consent, education, and legal standards: picking “sometimes expands into clumsy overreach.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns intimacy into a legalistic checklist; broadens definitions until normal awkwardness becomes predation; creates fear and cynicism.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="kids">
+          <summary>
+            <span class="issueTitle">Kids should be safe from abuse.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Kids and abuse: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="kids_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “Protect kids” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when panic beats evidence. (Score: +1.)</span><span class="optEffect" hidden>Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</span>
+              <button class="optBtn" type="button" data-opt="kids_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “Selective outrage” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when panic beats evidence. (Score: -3.)</span><span class="optEffect" hidden>Selective outrage; excuses “our” abusers; weaponises child-safety language to target out-groups rather than predators.</span>
+              <button class="optBtn" type="button" data-opt="kids_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “Expand safeguarding” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when panic beats evidence. (Score: +2.)</span><span class="optEffect" hidden>Moral panic and over-reporting; institutions cover themselves instead of kids; families get dragged through hell on vibes.</span>
+              <button class="optBtn" type="button" data-opt="kids_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “punish abusers” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when panic beats evidence. (Score: +0.)</span><span class="optEffect" hidden>Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</span>
+              <button class="optBtn" type="button" data-opt="kids_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “weaponise “protect kids” against out-groups” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when panic beats evidence. (Score: -3.)</span><span class="optEffect" hidden>Selective outrage; excuses “our” abusers; weaponises child-safety language to target out-groups rather than predators.</span>
+              <button class="optBtn" type="button" data-opt="kids_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “increase reporting” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when panic beats evidence. (Score: +2.)</span><span class="optEffect" hidden>Moral panic and over-reporting; institutions cover themselves instead of kids; families get dragged through hell on vibes.</span>
+              <button class="optBtn" type="button" data-opt="kids_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “keep investigations evidence-based” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when panic beats evidence. (Score: +0.)</span><span class="optEffect" hidden>Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</span>
+              <button class="optBtn" type="button" data-opt="kids_r3" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “excuse “our side” predators.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when panic beats evidence. (Score: -3.)</span><span class="optEffect" hidden>Selective outrage; excuses “our” abusers; weaponises child-safety language to target out-groups rather than predators.</span>
+              <button class="optBtn" type="button" data-opt="kids_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “risk of panic/overreach.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when panic beats evidence. (Score: +2.)</span><span class="optEffect" hidden>Moral panic and over-reporting; institutions cover themselves instead of kids; families get dragged through hell on vibes.</span>
+              <button class="optBtn" type="button" data-opt="kids_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On child safety and safeguarding: picking “don’t turn it into a witch-hunt.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when panic beats evidence. (Score: +0.)</span><span class="optEffect" hidden>Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="police">
+          <summary>
+            <span class="issueTitle">Police powers.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Police: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="police_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “Police are necessary” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when accountability systems are weak. (Score: +0.)</span><span class="optEffect" hidden>Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</span>
+              <button class="optBtn" type="button" data-opt="police_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “Police are above criticism” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when accountability systems are weak. (Score: -3.)</span><span class="optEffect" hidden>“Law and order” as blank cheque; tolerates brutality; erodes civil liberties; treats accountability as betrayal.</span>
+              <button class="optBtn" type="button" data-opt="police_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “Emphasise systemic abuse” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when accountability systems are weak. (Score: +2.)</span><span class="optEffect" hidden>Treats policing as inherently illegitimate; demoralises good cops; reforms become theatre; crime victims get abandoned.</span>
+              <button class="optBtn" type="button" data-opt="police_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “accountability is necessary” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when accountability systems are weak. (Score: +1.)</span><span class="optEffect" hidden>Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</span>
+              <button class="optBtn" type="button" data-opt="police_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “law and order” as blanket justification” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when accountability systems are weak. (Score: -2.)</span><span class="optEffect" hidden>“Law and order” as blank cheque; tolerates brutality; erodes civil liberties; treats accountability as betrayal.</span>
+              <button class="optBtn" type="button" data-opt="police_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “push deep reform” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when accountability systems are weak. (Score: +2.)</span><span class="optEffect" hidden>Treats policing as inherently illegitimate; demoralises good cops; reforms become theatre; crime victims get abandoned.</span>
+              <button class="optBtn" type="button" data-opt="police_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “clear rules, body cams, independent oversight” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when accountability systems are weak. (Score: +0.)</span><span class="optEffect" hidden>Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</span>
+              <button class="optBtn" type="button" data-opt="police_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “tolerate brutality when aimed at “bad people.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when accountability systems are weak. (Score: -2.)</span><span class="optEffect" hidden>“Law and order” as blank cheque; tolerates brutality; erodes civil liberties; treats accountability as betrayal.</span>
+              <button class="optBtn" type="button" data-opt="police_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “sometimes rhetorically hostile to policing itself.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when accountability systems are weak. (Score: +2.)</span><span class="optEffect" hidden>Treats policing as inherently illegitimate; demoralises good cops; reforms become theatre; crime victims get abandoned.</span>
+              <button class="optBtn" type="button" data-opt="police_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On policing, accountability, and civil liberties: picking “fund what works.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when accountability systems are weak. (Score: +0.)</span><span class="optEffect" hidden>Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="boss">
+          <summary>
+            <span class="issueTitle">Your boss shouldn’t be allowed to treat you like meat.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Work and bosses: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="boss_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “Decent pay, safe work, predictable schedules” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Decent pay and conditions; enforce basics (safety, hours, wage theft); keep flexibility; stop monopolies and exploitation.</span>
+              <button class="optBtn" type="button" data-opt="boss_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “If you don’t like it, quit” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</span>
+              <button class="optBtn" type="button" data-opt="boss_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “Strong labour rights” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</span>
+              <button class="optBtn" type="button" data-opt="boss_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “stop exploitation without making small business impossible.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Decent pay and conditions; enforce basics (safety, hours, wage theft); keep flexibility; stop monopolies and exploitation.</span>
+              <button class="optBtn" type="button" data-opt="boss_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “unions are parasites” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</span>
+              <button class="optBtn" type="button" data-opt="boss_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “anti-corporate” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</span>
+              <button class="optBtn" type="button" data-opt="boss_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “worker protections = weakness” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</span>
+              <button class="optBtn" type="button" data-opt="boss_l3" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “expansive protections” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +3.)</span><span class="optEffect" hidden>Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</span>
+              <button class="optBtn" type="button" data-opt="boss_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “defend boss power.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</span>
+              <button class="optBtn" type="button" data-opt="boss_l4" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On work, power, and labour protections: picking “suspicion of markets.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="healthcare">
+          <summary>
+            <span class="issueTitle">Healthcare should be accessible.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Healthcare: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="healthcare_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “Nobody should be bankrupted by illness” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Guarantee care without bankruptcy; invest in prevention; cut admin waste; align incentives so care is fast, competent, and humane.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “Healthcare as commodity” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “Universal coverage as a right” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +3.)</span><span class="optEffect" hidden>Assumes money fixes everything; expands entitlements without cost control; admin sprawl; quality/access become slogans not outcomes.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “mix of public guarantee + cost control + efficiency” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Guarantee care without bankruptcy; invest in prevention; cut admin waste; align incentives so care is fast, competent, and humane.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “minimal safety net” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “big public provision” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Assumes money fixes everything; expands entitlements without cost control; admin sprawl; quality/access become slogans not outcomes.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_c3" data-woke="-10" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “less admin cruelty.” nudges toward restraint / scepticism. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: -1.)</span><span class="optEffect" hidden>Guarantee care without bankruptcy; invest in prevention; cut admin waste; align incentives so care is fast, competent, and humane.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “blame the sick” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “moral framing.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Assumes money fixes everything; expands entitlements without cost control; admin sprawl; quality/access become slogans not outcomes.</span>
+              <button class="optBtn" type="button" data-opt="healthcare_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On healthcare access and cost control: picking “resist public spend as “handouts.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="housing">
+          <summary>
+            <span class="issueTitle">Housing, affordability and homelessness.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Housing: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="housing_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “Build more homes” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when supply stays constrained. (Score: +1.)</span><span class="optEffect" hidden>Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</span>
+              <button class="optBtn" type="button" data-opt="housing_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “Property rights first” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when supply stays constrained. (Score: -3.)</span><span class="optEffect" hidden>Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</span>
+              <button class="optBtn" type="button" data-opt="housing_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “Decommodify housing” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when supply stays constrained. (Score: +3.)</span><span class="optEffect" hidden>Over-controls rents/building; freezes supply; creates scarcity and black markets; every fix becomes a new distortion.</span>
+              <button class="optBtn" type="button" data-opt="housing_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “reform planning” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when supply stays constrained. (Score: +0.)</span><span class="optEffect" hidden>Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</span>
+              <button class="optBtn" type="button" data-opt="housing_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “deregulate landlords” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when supply stays constrained. (Score: -2.)</span><span class="optEffect" hidden>Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</span>
+              <button class="optBtn" type="button" data-opt="housing_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “regulate rents heavily” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when supply stays constrained. (Score: +2.)</span><span class="optEffect" hidden>Over-controls rents/building; freezes supply; creates scarcity and black markets; every fix becomes a new distortion.</span>
+              <button class="optBtn" type="button" data-opt="housing_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “enforce standards” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when supply stays constrained. (Score: +0.)</span><span class="optEffect" hidden>Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</span>
+              <button class="optBtn" type="button" data-opt="housing_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “oppose social housing” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when supply stays constrained. (Score: -2.)</span><span class="optEffect" hidden>Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</span>
+              <button class="optBtn" type="button" data-opt="housing_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “attack landlords/speculators.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when supply stays constrained. (Score: +2.)</span><span class="optEffect" hidden>Over-controls rents/building; freezes supply; creates scarcity and black markets; every fix becomes a new distortion.</span>
+              <button class="optBtn" type="button" data-opt="housing_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “curb worst speculation” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when supply stays constrained. (Score: +0.)</span><span class="optEffect" hidden>Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</span>
+              <button class="optBtn" type="button" data-opt="housing_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “treat tenants as freeloaders.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when supply stays constrained. (Score: -2.)</span><span class="optEffect" hidden>Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</span>
+              <button class="optBtn" type="button" data-opt="housing_c5" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On housing supply, standards, and tenancy: picking “protect tenants without freezing supply.” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when supply stays constrained. (Score: +1.)</span><span class="optEffect" hidden>Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="poverty">
+          <summary>
+            <span class="issueTitle">Poverty as personal responsibility.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Poverty: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="poverty_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “Bad luck + bad systems + bad choices all exist” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Humane floor + real ladders; reduce traps; childcare, skills, jobs; support with expectations that actually help.</span>
+              <button class="optBtn" type="button" data-opt="poverty_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “Poverty = laziness” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</span>
+              <button class="optBtn" type="button" data-opt="poverty_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “Structural causes first” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Removes agency; builds systems that trap people; incentives punish progress; moralises wealth more than it helps the poor.</span>
+              <button class="optBtn" type="button" data-opt="poverty_c2" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “build ladders (jobs, childcare, training) and a humane floor” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +1.)</span><span class="optEffect" hidden>Humane floor + real ladders; reduce traps; childcare, skills, jobs; support with expectations that actually help.</span>
+              <button class="optBtn" type="button" data-opt="poverty_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “cut benefits” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</span>
+              <button class="optBtn" type="button" data-opt="poverty_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “generous support” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Removes agency; builds systems that trap people; incentives punish progress; moralises wealth more than it helps the poor.</span>
+              <button class="optBtn" type="button" data-opt="poverty_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “reduce traps.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Humane floor + real ladders; reduce traps; childcare, skills, jobs; support with expectations that actually help.</span>
+              <button class="optBtn" type="button" data-opt="poverty_r3" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “tough love” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</span>
+              <button class="optBtn" type="button" data-opt="poverty_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “moral critique of wealth.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Removes agency; builds systems that trap people; incentives punish progress; moralises wealth more than it helps the poor.</span>
+              <button class="optBtn" type="button" data-opt="poverty_r4" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On poverty, ladders, and the safety net: picking “criminalise homelessness.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="refugees">
+          <summary>
+            <span class="issueTitle">Refugees are people too.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Refugees: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="refugees_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “Humane treatment + controlled borders” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when integration capacity is ignored. (Score: +1.)</span><span class="optEffect" hidden>Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</span>
+              <button class="optBtn" type="button" data-opt="refugees_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “Dehumanise migrants” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when integration capacity is ignored. (Score: -3.)</span><span class="optEffect" hidden>Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</span>
+              <button class="optBtn" type="button" data-opt="refugees_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “Maximal compassion” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when integration capacity is ignored. (Score: +3.)</span><span class="optEffect" hidden>Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</span>
+              <button class="optBtn" type="button" data-opt="refugees_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “fast processing” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when integration capacity is ignored. (Score: +0.)</span><span class="optEffect" hidden>Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</span>
+              <button class="optBtn" type="button" data-opt="refugees_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “mass deportation rhetoric” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when integration capacity is ignored. (Score: -2.)</span><span class="optEffect" hidden>Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</span>
+              <button class="optBtn" type="button" data-opt="refugees_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “expand asylum” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when integration capacity is ignored. (Score: +2.)</span><span class="optEffect" hidden>Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</span>
+              <button class="optBtn" type="button" data-opt="refugees_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “stop traffickers” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when integration capacity is ignored. (Score: +0.)</span><span class="optEffect" hidden>Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</span>
+              <button class="optBtn" type="button" data-opt="refugees_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “conspiracy framing (“invasion”)” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when integration capacity is ignored. (Score: -2.)</span><span class="optEffect" hidden>Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</span>
+              <button class="optBtn" type="button" data-opt="refugees_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “moral urgency” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when integration capacity is ignored. (Score: +2.)</span><span class="optEffect" hidden>Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</span>
+              <button class="optBtn" type="button" data-opt="refugees_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “integrate properly” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when integration capacity is ignored. (Score: +0.)</span><span class="optEffect" hidden>Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</span>
+              <button class="optBtn" type="button" data-opt="refugees_r4" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “cruelty as deterrence.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when integration capacity is ignored. (Score: -3.)</span><span class="optEffect" hidden>Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</span>
+              <button class="optBtn" type="button" data-opt="refugees_l4" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “low emphasis on capacity limits.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when integration capacity is ignored. (Score: +2.)</span><span class="optEffect" hidden>Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</span>
+              <button class="optBtn" type="button" data-opt="refugees_c5" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On refugees, borders, and integration: picking “help in-region too.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when integration capacity is ignored. (Score: +0.)</span><span class="optEffect" hidden>Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="climate">
+          <summary>
+            <span class="issueTitle">Climate change is real, and we should respond.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Climate: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="climate_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “Climate is changing and humans contribute” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when costs spike or reliability slips. (Score: +0.)</span><span class="optEffect" hidden>Cut emissions pragmatically; keep energy reliable; invest in clean tech and adaptation; track results; share costs fairly.</span>
+              <button class="optBtn" type="button" data-opt="climate_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “Deny or minimise” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when costs spike or reliability slips. (Score: -3.)</span><span class="optEffect" hidden>Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</span>
+              <button class="optBtn" type="button" data-opt="climate_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “Urgent decarbonisation” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when costs spike or reliability slips. (Score: +3.)</span><span class="optEffect" hidden>Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</span>
+              <button class="optBtn" type="button" data-opt="climate_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “cut emissions pragmatically, keep energy reliable, adapt where needed” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when costs spike or reliability slips. (Score: +0.)</span><span class="optEffect" hidden>Cut emissions pragmatically; keep energy reliable; invest in clean tech and adaptation; track results; share costs fairly.</span>
+              <button class="optBtn" type="button" data-opt="climate_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “frame it as hoax/plot” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when costs spike or reliability slips. (Score: -2.)</span><span class="optEffect" hidden>Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</span>
+              <button class="optBtn" type="button" data-opt="climate_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “climate justice” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when costs spike or reliability slips. (Score: +2.)</span><span class="optEffect" hidden>Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</span>
+              <button class="optBtn" type="button" data-opt="climate_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “measure results not slogans.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when costs spike or reliability slips. (Score: +0.)</span><span class="optEffect" hidden>Cut emissions pragmatically; keep energy reliable; invest in clean tech and adaptation; track results; share costs fairly.</span>
+              <button class="optBtn" type="button" data-opt="climate_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “block action” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when costs spike or reliability slips. (Score: -2.)</span><span class="optEffect" hidden>Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</span>
+              <button class="optBtn" type="button" data-opt="climate_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “aggressive regulation” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when costs spike or reliability slips. (Score: +2.)</span><span class="optEffect" hidden>Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</span>
+              <button class="optBtn" type="button" data-opt="climate_r4" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “treat regulation as tyranny (but still likes clean air when it’s local).” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when costs spike or reliability slips. (Score: -2.)</span><span class="optEffect" hidden>Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</span>
+              <button class="optBtn" type="button" data-opt="climate_l4" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On climate action and energy reliability: picking “high trust in expert consensus.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when costs spike or reliability slips. (Score: +2.)</span><span class="optEffect" hidden>Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="history">
+          <summary>
+            <span class="issueTitle">History happened, incl. the ugly bits.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="History: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="history_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “Teach the good and bad” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</span>
+              <button class="optBtn" type="button" data-opt="history_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “Nationalist myth-making” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Sanitises and bans; mythologises nationhood; treats critique as treason; makes people historically illiterate on purpose.</span>
+              <button class="optBtn" type="button" data-opt="history_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “Centre oppression narratives” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns history into identity therapy; present-day guilt rituals; collapses complexity into oppressor/oppressed fanfic.</span>
+              <button class="optBtn" type="button" data-opt="history_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “context matters” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</span>
+              <button class="optBtn" type="button" data-opt="history_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “ban “unpatriotic” teaching” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Sanitises and bans; mythologises nationhood; treats critique as treason; makes people historically illiterate on purpose.</span>
+              <button class="optBtn" type="button" data-opt="history_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “expand curricula” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns history into identity therapy; present-day guilt rituals; collapses complexity into oppressor/oppressed fanfic.</span>
+              <button class="optBtn" type="button" data-opt="history_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “don’t sanitize, don’t indoctrinate” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</span>
+              <button class="optBtn" type="button" data-opt="history_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “treat critique as betrayal.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Sanitises and bans; mythologises nationhood; treats critique as treason; makes people historically illiterate on purpose.</span>
+              <button class="optBtn" type="button" data-opt="history_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “symbolic fights over statues/language.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Turns history into identity therapy; present-day guilt rituals; collapses complexity into oppressor/oppressed fanfic.</span>
+              <button class="optBtn" type="button" data-opt="history_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On history education and evidence: picking “make kids literate in evidence.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="jokes">
+          <summary>
+            <span class="issueTitle">Some jokes are just cruel.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Jokes: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="jokes_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “Don’t be a bully” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</span>
+              <button class="optBtn" type="button" data-opt="jokes_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “It’s just a joke” as shield” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Cruelty as entertainment; targets minorities for status; hides behind “just joking” to normalise contempt.</span>
+              <button class="optBtn" type="button" data-opt="jokes_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “Social norms should discourage punching down” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Confuses offence with harm; tries to police tone; turns humour into compliance; hands martyrs to bad actors.</span>
+              <button class="optBtn" type="button" data-opt="jokes_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “comedy’s messy” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</span>
+              <button class="optBtn" type="button" data-opt="jokes_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “cruelty-as-entertainment” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Cruelty as entertainment; targets minorities for status; hides behind “just joking” to normalise contempt.</span>
+              <button class="optBtn" type="button" data-opt="jokes_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “more social consequence” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Confuses offence with harm; tries to police tone; turns humour into compliance; hands martyrs to bad actors.</span>
+              <button class="optBtn" type="button" data-opt="jokes_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “judge intent + pattern + power” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</span>
+              <button class="optBtn" type="button" data-opt="jokes_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “target minorities to signal tribe.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Cruelty as entertainment; targets minorities for status; hides behind “just joking” to normalise contempt.</span>
+              <button class="optBtn" type="button" data-opt="jokes_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “sometimes over-polices humour.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Confuses offence with harm; tries to police tone; turns humour into compliance; hands martyrs to bad actors.</span>
+              <button class="optBtn" type="button" data-opt="jokes_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On humour, bullying, and social norms: picking “don’t confuse offence with harm.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="speech">
+          <summary>
+            <span class="issueTitle">Some “free speech” is “I want to be a c**t without consequences.”</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Free speech: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="speech_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “Free speech is broad” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when rules get enforced by mobs or ministers. (Score: +0.)</span><span class="optEffect" hidden>Broad speech rights; narrow rules on threats/harassment; consistent enforcement; don’t outsource justice to mobs or states.</span>
+              <button class="optBtn" type="button" data-opt="speech_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “Free speech” only for in-group” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when rules get enforced by mobs or ministers. (Score: -3.)</span><span class="optEffect" hidden>“Free speech for me”; bans books/teachers; uses state power to punish opponents; intimidation politics.</span>
+              <button class="optBtn" type="button" data-opt="speech_l1" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “Push hard on platforming” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when rules get enforced by mobs or ministers. (Score: +3.)</span><span class="optEffect" hidden>Deplatform first, argue never; expands “harm” until dissent is unsafe; mob enforcement replaces norms.</span>
+              <button class="optBtn" type="button" data-opt="speech_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “consequences exist but shouldn’t be mob rule” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when rules get enforced by mobs or ministers. (Score: +0.)</span><span class="optEffect" hidden>Broad speech rights; narrow rules on threats/harassment; consistent enforcement; don’t outsource justice to mobs or states.</span>
+              <button class="optBtn" type="button" data-opt="speech_r2" data-woke="-4-3" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “ban books/teachers” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when rules get enforced by mobs or ministers. (Score: -4.)</span><span class="optEffect" hidden>“Free speech for me”; bans books/teachers; uses state power to punish opponents; intimidation politics.</span>
+              <button class="optBtn" type="button" data-opt="speech_l2" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “blur speech and harm” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when rules get enforced by mobs or ministers. (Score: +3.)</span><span class="optEffect" hidden>Deplatform first, argue never; expands “harm” until dissent is unsafe; mob enforcement replaces norms.</span>
+              <button class="optBtn" type="button" data-opt="speech_c3" data-woke="-10" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “keep rules narrow (threats, harassment, incitement).” nudges toward restraint / scepticism. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when rules get enforced by mobs or ministers. (Score: -1.)</span><span class="optEffect" hidden>Broad speech rights; narrow rules on threats/harassment; consistent enforcement; don’t outsource justice to mobs or states.</span>
+              <button class="optBtn" type="button" data-opt="speech_r3" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “use state power to punish opponents.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when rules get enforced by mobs or ministers. (Score: -3.)</span><span class="optEffect" hidden>“Free speech for me”; bans books/teachers; uses state power to punish opponents; intimidation politics.</span>
+              <button class="optBtn" type="button" data-opt="speech_l3" data-woke="43" aria-pressed="false"><span class="optEffect" hidden>On speech, platforming, and enforcement: picking “endorse deplatforming.” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when rules get enforced by mobs or ministers. (Score: +4.)</span><span class="optEffect" hidden>Deplatform first, argue never; expands “harm” until dissent is unsafe; mob enforcement replaces norms.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="media">
+          <summary>
+            <span class="issueTitle">Representation in media isn’t oppression.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Media representation: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="media_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “More kinds of people on screen is fine” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</span>
+              <button class="optBtn" type="button" data-opt="media_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “Rage at “forced diversity” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats any inclusion as attack; harassment campaigns; nostalgia politics; cultural gatekeeping as identity defence.</span>
+              <button class="optBtn" type="button" data-opt="media_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “Representation as cultural repair” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Box-ticking replaces craft; scolds the audience; treats disagreement as moral failure; undermines the goal by making it annoying.</span>
+              <button class="optBtn" type="button" data-opt="media_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “story first” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</span>
+              <button class="optBtn" type="button" data-opt="media_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “nostalgia politics” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -3.)</span><span class="optEffect" hidden>Treats any inclusion as attack; harassment campaigns; nostalgia politics; cultural gatekeeping as identity defence.</span>
+              <button class="optBtn" type="button" data-opt="media_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “critique “default whiteness/straightness” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Box-ticking replaces craft; scolds the audience; treats disagreement as moral failure; undermines the goal by making it annoying.</span>
+              <button class="optBtn" type="button" data-opt="media_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “don’t treat audiences as enemies” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</span>
+              <button class="optBtn" type="button" data-opt="media_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “treat any inclusion as attack.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Treats any inclusion as attack; harassment campaigns; nostalgia politics; cultural gatekeeping as identity defence.</span>
+              <button class="optBtn" type="button" data-opt="media_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “sometimes sacrifices story for signalling.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Box-ticking replaces craft; scolds the audience; treats disagreement as moral failure; undermines the goal by making it annoying.</span>
+              <button class="optBtn" type="button" data-opt="media_c4" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On media representation and storytelling: picking “don’t do quota-vibes writing.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="words">
+          <summary>
+            <span class="issueTitle">Words can be used to dehumanise, on purpose.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Language: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="words_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “Rhetoric matters” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Call out dehumanising rhetoric; keep law narrow; keep norms strong; distinguish disagreement from incitement.</span>
+              <button class="optBtn" type="button" data-opt="words_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “Normalise slurs/dogwhistles” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dogwhistles and slurs normalised; dehumanisation used strategically; escalates hostility; primes real-world harm.</span>
+              <button class="optBtn" type="button" data-opt="words_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “Strong focus on rhetoric harms” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats language as violence by default; expands taboo lists endlessly; chills discourse; misses actual dehumanisation because everything is “harm.”</span>
+              <button class="optBtn" type="button" data-opt="words_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “challenge dehumanising talk” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Call out dehumanising rhetoric; keep law narrow; keep norms strong; distinguish disagreement from incitement.</span>
+              <button class="optBtn" type="button" data-opt="words_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “dismiss harm” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dogwhistles and slurs normalised; dehumanisation used strategically; escalates hostility; primes real-world harm.</span>
+              <button class="optBtn" type="button" data-opt="words_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “more speech rules” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats language as violence by default; expands taboo lists endlessly; chills discourse; misses actual dehumanisation because everything is “harm.”</span>
+              <button class="optBtn" type="button" data-opt="words_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “keep legal limits tight but social norms firm.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Call out dehumanising rhetoric; keep law narrow; keep norms strong; distinguish disagreement from incitement.</span>
+              <button class="optBtn" type="button" data-opt="words_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “use dehumanising language strategically.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Dogwhistles and slurs normalised; dehumanisation used strategically; escalates hostility; primes real-world harm.</span>
+              <button class="optBtn" type="button" data-opt="words_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On rhetoric, norms, and legal limits: picking “harm” language expands.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Treats language as violence by default; expands taboo lists endlessly; chills discourse; misses actual dehumanisation because everything is “harm.”</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="harassment">
+          <summary>
+            <span class="issueTitle">Harassment isn’t “debate.”</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Harassment: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="harassment_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “Threats, stalking, pile-ons aren’t debate” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Clear lines: threats/stalking/pile-ons punished; disagreement allowed; transparent moderation and due process.</span>
+              <button class="optBtn" type="button" data-opt="harassment_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “Targeted harassment as sport” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pile-ons as sport; intimidation as politics; doxxing/threats winked at; “owning” replaces argument.</span>
+              <button class="optBtn" type="button" data-opt="harassment_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “Broaden “harassment” category” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Labels dissent “harassment”; uses safety language to avoid scrutiny; moderation becomes viewpoint enforcement.</span>
+              <button class="optBtn" type="button" data-opt="harassment_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “disagreement is fine” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Clear lines: threats/stalking/pile-ons punished; disagreement allowed; transparent moderation and due process.</span>
+              <button class="optBtn" type="button" data-opt="harassment_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “owning” people” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pile-ons as sport; intimidation as politics; doxxing/threats winked at; “owning” replaces argument.</span>
+              <button class="optBtn" type="button" data-opt="harassment_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “more moderation” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Labels dissent “harassment”; uses safety language to avoid scrutiny; moderation becomes viewpoint enforcement.</span>
+              <button class="optBtn" type="button" data-opt="harassment_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “enforce clear lines.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency. (Score: +0.)</span><span class="optEffect" hidden>Clear lines: threats/stalking/pile-ons punished; disagreement allowed; transparent moderation and due process.</span>
+              <button class="optBtn" type="button" data-opt="harassment_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “intimidation campaigns dressed up as politics.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy. (Score: -2.)</span><span class="optEffect" hidden>Pile-ons as sport; intimidation as politics; doxxing/threats winked at; “owning” replaces argument.</span>
+              <button class="optBtn" type="button" data-opt="harassment_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On harassment, moderation, and boundaries: picking “sometimes labels dissent as harm.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash. (Score: +2.)</span><span class="optEffect" hidden>Labels dissent “harassment”; uses safety language to avoid scrutiny; moderation becomes viewpoint enforcement.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="nazis">
+          <summary>
+            <span class="issueTitle">Nazis are bad.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Nazis: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="nazis_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “Nazis are bad” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when language gets sloppy and everything becomes "Nazi". (Score: +0.)</span><span class="optEffect" hidden>Keep the word meaningful; oppose extremist organising; target actual networks, not vibes; defend pluralism.</span>
+              <button class="optBtn" type="button" data-opt="nazis_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “Nazis bad, but…” minimisation” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when language gets sloppy and everything becomes "Nazi". (Score: -3.)</span><span class="optEffect" hidden>Minimises or flirts with ethnonationalism; “just asking questions” laundering; normalises extremist aesthetics.</span>
+              <button class="optBtn" type="button" data-opt="nazis_l1" data-woke="43" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “Anti-fascism as moral baseline” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when language gets sloppy and everything becomes "Nazi". (Score: +4.)</span><span class="optEffect" hidden>Overuses “Nazi” until it’s noise; treats normal conservatives as fascists; builds the very radicalisation it fears.</span>
+              <button class="optBtn" type="button" data-opt="nazis_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “don’t normalise extremist organising” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when language gets sloppy and everything becomes "Nazi". (Score: +0.)</span><span class="optEffect" hidden>Keep the word meaningful; oppose extremist organising; target actual networks, not vibes; defend pluralism.</span>
+              <button class="optBtn" type="button" data-opt="nazis_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “flirt with ethnonationalism” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when language gets sloppy and everything becomes "Nazi". (Score: -3.)</span><span class="optEffect" hidden>Minimises or flirts with ethnonationalism; “just asking questions” laundering; normalises extremist aesthetics.</span>
+              <button class="optBtn" type="button" data-opt="nazis_l2" data-woke="43" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “deplatform organised extremism” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when language gets sloppy and everything becomes "Nazi". (Score: +4.)</span><span class="optEffect" hidden>Overuses “Nazi” until it’s noise; treats normal conservatives as fascists; builds the very radicalisation it fears.</span>
+              <button class="optBtn" type="button" data-opt="nazis_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “keep language accurate so warnings still mean something.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when language gets sloppy and everything becomes "Nazi". (Score: +0.)</span><span class="optEffect" hidden>Keep the word meaningful; oppose extremist organising; target actual networks, not vibes; defend pluralism.</span>
+              <button class="optBtn" type="button" data-opt="nazis_r3" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “obsessive focus on left as the *real* threat.” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when language gets sloppy and everything becomes "Nazi". (Score: -3.)</span><span class="optEffect" hidden>Minimises or flirts with ethnonationalism; “just asking questions” laundering; normalises extremist aesthetics.</span>
+              <button class="optBtn" type="button" data-opt="nazis_l3" data-woke="33" aria-pressed="false"><span class="optEffect" hidden>On extremism, language, and normalisation: picking “sometimes overuses “Nazi” as insult.” pulls hard toward inclusion and active intervention. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when language gets sloppy and everything becomes "Nazi". (Score: +3.)</span><span class="optEffect" hidden>Overuses “Nazi” until it’s noise; treats normal conservatives as fascists; builds the very radicalisation it fears.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="conspiracies">
+          <summary>
+            <span class="issueTitle">Conspiracies aren’t a personality.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Conspiracies: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="conspiracies_c1" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “Be sceptical, check sources, follow evidence” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when "healthy scepticism" becomes a personality. (Score: +0.)</span><span class="optEffect" hidden>Healthy scepticism; verify claims; follow evidence; admit institutional failure without turning it into a grand plot.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_r1" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “Deep state” as universal answer” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when "healthy scepticism" becomes a personality. (Score: -2.)</span><span class="optEffect" hidden>Paranoia as worldview; every loss is a rig; scapegoats replace analysis; reality becomes optional.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “Emphasis on misinformation harms” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when "healthy scepticism" becomes a personality. (Score: +2.)</span><span class="optEffect" hidden>“Misinformation” used to dodge legitimate criticism; over-trust in institutions; treats scepticism as pathology.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “institutions can fail without everything being a plot.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when "healthy scepticism" becomes a personality. (Score: +0.)</span><span class="optEffect" hidden>Healthy scepticism; verify claims; follow evidence; admit institutional failure without turning it into a grand plot.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_r2" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “paranoia politics” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when "healthy scepticism" becomes a personality. (Score: -3.)</span><span class="optEffect" hidden>Paranoia as worldview; every loss is a rig; scapegoats replace analysis; reality becomes optional.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “heavy trust in institutions” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when "healthy scepticism" becomes a personality. (Score: +2.)</span><span class="optEffect" hidden>“Misinformation” used to dodge legitimate criticism; over-trust in institutions; treats scepticism as pathology.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “constant moving-target claims.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when "healthy scepticism" becomes a personality. (Score: -2.)</span><span class="optEffect" hidden>Paranoia as worldview; every loss is a rig; scapegoats replace analysis; reality becomes optional.</span>
+              <button class="optBtn" type="button" data-opt="conspiracies_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On conspiracies, scepticism, and institutions: picking “sometimes too quick to dismiss real scandals.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when "healthy scepticism" becomes a personality. (Score: +2.)</span><span class="optEffect" hidden>“Misinformation” used to dodge legitimate criticism; over-trust in institutions; treats scepticism as pathology.</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="issue" data-issue="facts">
+          <summary>
+            <span class="issueTitle">Facts vs feelings.</span>
+            <span class="issueMeta"><span data-role="pickedCount">0</span> picked</span>
+          </summary>
+          <div class="issueBody">
+            <div class="optionsGrid" role="group" aria-label="Facts: pick any positions you agree with">
+              <button class="optBtn" type="button" data-opt="facts_c1" data-woke="10" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “Evidence first” nudges toward inclusion / harm-reduction. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when incentives and bias aren’t acknowledged. (Score: +1.)</span><span class="optEffect" hidden>Evidence first; transparent methods; update when wrong; tolerate disagreement; demand receipts.</span>
+              <button class="optBtn" type="button" data-opt="facts_r1" data-woke="-3-3" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “Vibes over evidence” pulls hard toward restriction and rollback. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when incentives and bias aren’t acknowledged. (Score: -3.)</span><span class="optEffect" hidden>Vibes &gt; data; selective “facts”; hostile to expertise; treats correction as attack; lives inside narrative.</span>
+              <button class="optBtn" type="button" data-opt="facts_l1" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “Trust science” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when incentives and bias aren’t acknowledged. (Score: +2.)</span><span class="optEffect" hidden>“Trust experts” becomes faith; ignores incentives/bias; punishes dissent even when it’s right; credibility collapses.</span>
+              <button class="optBtn" type="button" data-opt="facts_c2" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “update when wrong” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when incentives and bias aren’t acknowledged. (Score: +0.)</span><span class="optEffect" hidden>Evidence first; transparent methods; update when wrong; tolerate disagreement; demand receipts.</span>
+              <button class="optBtn" type="button" data-opt="facts_r2" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “my feed &amp;gt; reality” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when incentives and bias aren’t acknowledged. (Score: -2.)</span><span class="optEffect" hidden>Vibes &gt; data; selective “facts”; hostile to expertise; treats correction as attack; lives inside narrative.</span>
+              <button class="optBtn" type="button" data-opt="facts_l2" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “high confidence in expert consensus” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when incentives and bias aren’t acknowledged. (Score: +2.)</span><span class="optEffect" hidden>“Trust experts” becomes faith; ignores incentives/bias; punishes dissent even when it’s right; credibility collapses.</span>
+              <button class="optBtn" type="button" data-opt="facts_c3" data-woke="00" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “trust expertise but demand transparency, replication, and receipts.” aims for a workable trade-off. the downside is it can land as "meh": gaps remain, and the people getting hit feel like you chose comfort over urgency — especially when incentives and bias aren’t acknowledged. (Score: +0.)</span><span class="optEffect" hidden>Evidence first; transparent methods; update when wrong; tolerate disagreement; demand receipts.</span>
+              <button class="optBtn" type="button" data-opt="facts_r3" data-woke="-2-3" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “treat inconvenient facts as enemy propaganda.” leans toward restraint, tradition, or tighter boundaries. if pushed hard, it can normalise cruelty, exclude minorities from ordinary life, and turn disgust into policy — especially when incentives and bias aren’t acknowledged. (Score: -2.)</span><span class="optEffect" hidden>Vibes &gt; data; selective “facts”; hostile to expertise; treats correction as attack; lives inside narrative.</span>
+              <button class="optBtn" type="button" data-opt="facts_l3" data-woke="23" aria-pressed="false"><span class="optEffect" hidden>On evidence, expertise, and transparency: picking “sometimes blind to incentives/bias.” leans toward inclusion and proactive fixes. if pushed hard, it can flatten trade-offs into moral tests, overreach on enforcement, and feed backlash — especially when incentives and bias aren’t acknowledged. (Score: +2.)</span><span class="optEffect" hidden>“Trust experts” becomes faith; ignores incentives/bias; punishes dissent even when it’s right; credibility collapses.</span>
+            </div>
+          </div>
+        </details>
+      </section>
+    </section>
+
+    <section class="results" id="results" aria-label="Your woke score">
+      <div class="panel panelWide resultsPanel">
+        <h2>Your woke score</h2>
+        <p class="resultsLead">
+          This is a deliberately blunt toy. It’s about patterns in what you picked, not judging you as a person.
+        </p>
+        <div class="scoreRow" aria-live="polite">
+          <div class="scoreValue" id="scoreValue">Pick at least one position in every issue to see your score.</div>
+          <div class="scoreBucket" id="scoreBucket"></div>
+        </div>
+        <div class="actions resultsActions">
+          <button class="btn btnGhost" id="resetAllBtn" type="button">Reset picks</button>
         </div>
 
-        <div class="issueCard" data-issue="gay">
-          <div class="issueTop">
-            <div class="issueTitle">Gay people exist.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Full equality plus active celebration/visibility</span><span class="optPoint">challenge heteronormativity</span><span class="optPoint">strong anti-discrimination.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Equal rights</span><span class="optPoint">don’t harass people</span><span class="optPoint">keep participation voluntary (religion/associations)</span><span class="optPoint">keep schools age-appropriate.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Traditional family” politics</span><span class="optPoint">roll back protections</span><span class="optPoint">frame LGBT visibility as “grooming”</span><span class="optPoint">police culture and education.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Equal rights; no harassment; opt-outs for belief/association without allowing discrimination in essentials; keep kids’ stuff age-appropriate.</p>
-              <p class="failureText failureMode" data-side="left">“Celebrate or you’re a bigot”; coerces participation; turns every cultural product into a purity test.</p>
-              <p class="failureText failureMode" data-side="right">Frames LGBT visibility as predation; rolls back rights; turns moral disgust into law.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="racism">
-          <div class="issueTop">
-            <div class="issueTitle">Racism exists (incl. institutions), and it matters.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Systems-level framing</span><span class="optPoint">disparities = evidence</span><span class="optPoint">active correction (sometimes race-conscious policy).</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Racism exists and should be punished</span><span class="optPoint">fix unfair systems without turning it into collective guilt</span><span class="optPoint">focus on outcomes and opportunity.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Minimise racism</span><span class="optPoint">treat anti-racism as the real racism</span><span class="optPoint">defend “our culture” rhetoric</span><span class="optPoint">hostility to immigration/multiculturalism.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Enforce anti-discrimination; fix bad incentives and unequal access; talk honestly without collective guilt rituals; measure outcomes.</p>
-              <p class="failureText failureMode" data-side="left">Assumes disparity proves malice; treats individuals as group avatars; replaces persuasion with shaming; creates backlash that helps actual racists.</p>
-              <p class="failureText failureMode" data-side="right">Pretends racism is basically solved; uses “anti-racism is the real racism” to block reform; dogwhistles become mainstream.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="sexism">
-          <div class="issueTop">
-            <div class="issueTitle">Sexism exists, and it matters.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Patriarchy framing</span><span class="optPoint">believe survivors</span><span class="optPoint">strong norms around speech/behaviour</span><span class="optPoint">gendered power analysis.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Sexism exists</span><span class="optPoint">protect people from harassment/abuse</span><span class="optPoint">due process matters</span><span class="optPoint">address men’s and women’s issues without team-sport framing.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Feminism ruined everything”</span><span class="optPoint">downplay harassment</span><span class="optPoint">oppose workplace protections</span><span class="optPoint">reassert strict gender roles.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Protect against harassment/abuse; credible reporting + fair investigation; support everyone harmed; avoid gender team-sports.</p>
-              <p class="failureText failureMode" data-side="left">Treats messy human conflict as structural crime; inflates bad dates into politics; weakens due process; builds resentment instead of safety.</p>
-              <p class="failureText failureMode" data-side="right">Dismisses harassment as whining; blames victims; re-legitimises old hierarchies as “common sense.”</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="disability">
-          <div class="issueTop">
-            <div class="issueTitle">Disabled people exist.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Social model focus</span><span class="optPoint">strong accessibility norms</span><span class="optPoint">language policing can creep in.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Basic respect</span><span class="optPoint">practical accessibility</span><span class="optPoint">don’t make it a performative purity contest.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Stop special treatment”</span><span class="optPoint">mockery as “free speech”</span><span class="optPoint">cut accommodations as weakness/cost.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Practical accessibility; respect; fund what improves daily life; don’t fetishise “perfect” speech.</p>
-              <p class="failureText failureMode" data-side="left">Language-policing substitutes for ramps, access, carers, and money; virtue beats practicality.</p>
-              <p class="failureText failureMode" data-side="right">“Hard world, cope”; cuts accommodations; mocks need as weakness; treats inclusion as theft.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="consent">
-          <div class="issueTop">
-            <div class="issueTitle">Consent matters.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Explicit consent culture</span><span class="optPoint">broaden definitions</span><span class="optPoint">sometimes expands into clumsy overreach.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Teach consent clearly and early (age-appropriate)</span><span class="optPoint">protect victims</span><span class="optPoint">keep legal standards sane.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Minimise/deny SA</span><span class="optPoint">blame victims</span><span class="optPoint">treat consent talk as “woke brainwashing.”</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Clear, age-appropriate consent norms; strong response to coercion; legal standards stay strict; education stays human.</p>
-              <p class="failureText failureMode" data-side="left">Turns intimacy into a legalistic checklist; broadens definitions until normal awkwardness becomes predation; creates fear and cynicism.</p>
-              <p class="failureText failureMode" data-side="right">Minimises consent; laughs off coercion; keeps rape myths alive; treats consent talk as ideological attack.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="kids">
-          <div class="issueTop">
-            <div class="issueTitle">Kids should be safe from abuse.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Expand safeguarding</span><span class="optPoint">increase reporting</span><span class="optPoint">risk of panic/overreach.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Protect kids</span><span class="optPoint">punish abusers</span><span class="optPoint">keep investigations evidence-based</span><span class="optPoint">don’t turn it into a witch-hunt.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Selective outrage</span><span class="optPoint">weaponise “protect kids” against out-groups</span><span class="optPoint">excuse “our side” predators.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Prioritise child safety; evidence-based investigations; harsh penalties for abusers; safeguards that don’t become witch-hunts.</p>
-              <p class="failureText failureMode" data-side="left">Moral panic and over-reporting; institutions cover themselves instead of kids; families get dragged through hell on vibes.</p>
-              <p class="failureText failureMode" data-side="right">Selective outrage; excuses “our” abusers; weaponises child-safety language to target out-groups rather than predators.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="police">
-          <div class="issueTop">
-            <div class="issueTitle">Police powers.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Emphasise systemic abuse</span><span class="optPoint">push deep reform</span><span class="optPoint">sometimes rhetorically hostile to policing itself.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Police are necessary</span><span class="optPoint">accountability is necessary</span><span class="optPoint">clear rules, body cams, independent oversight</span><span class="optPoint">fund what works.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Police are above criticism</span><span class="optPoint">“law and order” as blanket justification</span><span class="optPoint">tolerate brutality when aimed at “bad people.”</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Police with clear constraints; independent oversight; body cams, training, discipline; fund prevention and mental health alongside enforcement.</p>
-              <p class="failureText failureMode" data-side="left">Treats policing as inherently illegitimate; demoralises good cops; reforms become theatre; crime victims get abandoned.</p>
-              <p class="failureText failureMode" data-side="right">“Law and order” as blank cheque; tolerates brutality; erodes civil liberties; treats accountability as betrayal.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="boss">
-          <div class="issueTop">
-            <div class="issueTitle">Your boss shouldn’t be allowed to treat you like meat.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Strong labour rights</span><span class="optPoint">anti-corporate</span><span class="optPoint">expansive protections</span><span class="optPoint">suspicion of markets.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Decent pay, safe work, predictable schedules</span><span class="optPoint">stop exploitation without making small business impossible.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“If you don’t like it, quit”</span><span class="optPoint">unions are parasites</span><span class="optPoint">worker protections = weakness</span><span class="optPoint">defend boss power.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Decent pay and conditions; enforce basics (safety, hours, wage theft); keep flexibility; stop monopolies and exploitation.</p>
-              <p class="failureText failureMode" data-side="left">Reduces work to oppression; regulation grows without feedback loops; unions/HR become their own power centres; productivity collapses and workers still lose.</p>
-              <p class="failureText failureMode" data-side="right">Romanticises exploitation as character-building; weakens worker protections; celebrates precarity; workers become disposable inputs.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="healthcare">
-          <div class="issueTop">
-            <div class="issueTitle">Healthcare should be accessible.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Universal coverage as a right</span><span class="optPoint">big public provision</span><span class="optPoint">moral framing.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Nobody should be bankrupted by illness</span><span class="optPoint">mix of public guarantee + cost control + efficiency</span><span class="optPoint">less admin cruelty.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Healthcare as commodity</span><span class="optPoint">minimal safety net</span><span class="optPoint">blame the sick</span><span class="optPoint">resist public spend as “handouts.”</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Guarantee care without bankruptcy; invest in prevention; cut admin waste; align incentives so care is fast, competent, and humane.</p>
-              <p class="failureText failureMode" data-side="left">Assumes money fixes everything; expands entitlements without cost control; admin sprawl; quality/access become slogans not outcomes.</p>
-              <p class="failureText failureMode" data-side="right">Treats sickness as personal failure; price-gouging tolerated; denies coverage; “freedom” means you die poorer and earlier.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="housing">
-          <div class="issueTop">
-            <div class="issueTitle">Housing, affordability and homelessness.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Decommodify housing</span><span class="optPoint">regulate rents heavily</span><span class="optPoint">attack landlords/speculators.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Build more homes</span><span class="optPoint">reform planning</span><span class="optPoint">enforce standards</span><span class="optPoint">curb worst speculation</span><span class="optPoint">protect tenants without freezing supply.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Property rights first”</span><span class="optPoint">deregulate landlords</span><span class="optPoint">oppose social housing</span><span class="optPoint">treat tenants as freeloaders.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Build more homes; planning reform; tenant protections enforced; target speculation; decent social housing where market fails.</p>
-              <p class="failureText failureMode" data-side="left">Over-controls rents/building; freezes supply; creates scarcity and black markets; every fix becomes a new distortion.</p>
-              <p class="failureText failureMode" data-side="right">Lets speculative hoarding run wild; treats housing only as asset; tenants have no leverage; homelessness becomes normalised.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="poverty">
-          <div class="issueTop">
-            <div class="issueTitle">Poverty as personal responsibility.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Structural causes first</span><span class="optPoint">generous support</span><span class="optPoint">moral critique of wealth.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Bad luck + bad systems + bad choices all exist</span><span class="optPoint">build ladders (jobs, childcare, training) and a humane floor</span><span class="optPoint">reduce traps.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Poverty = laziness</span><span class="optPoint">cut benefits</span><span class="optPoint">“tough love”</span><span class="optPoint">criminalise homelessness.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Humane floor + real ladders; reduce traps; childcare, skills, jobs; support with expectations that actually help.</p>
-              <p class="failureText failureMode" data-side="left">Removes agency; builds systems that trap people; incentives punish progress; moralises wealth more than it helps the poor.</p>
-              <p class="failureText failureMode" data-side="right">Blames and punishes poverty; cuts support; criminalises survival; calls cruelty “tough love.”</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="refugees">
-          <div class="issueTop">
-            <div class="issueTitle">Refugees are human beings.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Maximal compassion</span><span class="optPoint">expand asylum</span><span class="optPoint">moral urgency</span><span class="optPoint">low emphasis on capacity limits.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Humane treatment + controlled borders</span><span class="optPoint">fast processing</span><span class="optPoint">stop traffickers</span><span class="optPoint">integrate properly</span><span class="optPoint">help in-region too.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Dehumanise migrants</span><span class="optPoint">mass deportation rhetoric</span><span class="optPoint">conspiracy framing (“invasion”)</span><span class="optPoint">cruelty as deterrence.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Humane borders; fast processing; stop traffickers; safe routes where feasible; integrate properly; help in-region too.</p>
-              <p class="failureText failureMode" data-side="left">Ignores capacity and integration; turns management questions into taboo; fuels backlash and empowers the worst actors.</p>
-              <p class="failureText failureMode" data-side="right">Dehumanises migrants; cruelty as deterrence; conspiracy framing; policy becomes performative punishment.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="climate">
-          <div class="issueTop">
-            <div class="issueTitle">Climate change is real, and we should react like adults.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Urgent decarbonisation</span><span class="optPoint">climate justice</span><span class="optPoint">aggressive regulation</span><span class="optPoint">high trust in expert consensus.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Climate is changing and humans contribute</span><span class="optPoint">cut emissions pragmatically, keep energy reliable, adapt where needed</span><span class="optPoint">measure results not slogans.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Deny or minimise</span><span class="optPoint">frame it as hoax/plot</span><span class="optPoint">block action</span><span class="optPoint">treat regulation as tyranny (but still likes clean air when it’s local).</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Cut emissions pragmatically; keep energy reliable; invest in clean tech and adaptation; track results; share costs fairly.</p>
-              <p class="failureText failureMode" data-side="left">Catastrophe rhetoric without delivery; policies that jack up costs and fail; moral purity over engineering; drives denialism.</p>
-              <p class="failureText failureMode" data-side="right">Denial/minimisation; blocks action; “regulation = tyranny”; accepts pollution harms while pretending it’s freedom.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="history">
-          <div class="issueTop">
-            <div class="issueTitle">History happened, incl. the ugly bits.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Centre oppression narratives</span><span class="optPoint">expand curricula</span><span class="optPoint">symbolic fights over statues/language.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Teach the good and bad</span><span class="optPoint">context matters</span><span class="optPoint">don’t sanitize, don’t indoctrinate</span><span class="optPoint">make kids literate in evidence.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Nationalist myth-making</span><span class="optPoint">ban “unpatriotic” teaching</span><span class="optPoint">treat critique as betrayal.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Teach evidence-led history; include ugliness and achievements; context and causality; avoid indoctrination either way.</p>
-              <p class="failureText failureMode" data-side="left">Turns history into identity therapy; present-day guilt rituals; collapses complexity into oppressor/oppressed fanfic.</p>
-              <p class="failureText failureMode" data-side="right">Sanitises and bans; mythologises nationhood; treats critique as treason; makes people historically illiterate on purpose.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="jokes">
-          <div class="issueTop">
-            <div class="issueTitle">Some jokes are just cruelty with a grin.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Social norms should discourage punching down</span><span class="optPoint">more social consequence</span><span class="optPoint">sometimes over-polices humour.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Don’t be a bully</span><span class="optPoint">comedy’s messy</span><span class="optPoint">judge intent + pattern + power</span><span class="optPoint">don’t confuse offence with harm.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“It’s just a joke” as shield</span><span class="optPoint">cruelty-as-entertainment</span><span class="optPoint">target minorities to signal tribe.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Don’t be a bully; call out patterns; let comedy breathe; consequences for harassment, not for being imperfect.</p>
-              <p class="failureText failureMode" data-side="left">Confuses offence with harm; tries to police tone; turns humour into compliance; hands martyrs to bad actors.</p>
-              <p class="failureText failureMode" data-side="right">Cruelty as entertainment; targets minorities for status; hides behind “just joking” to normalise contempt.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="speech">
-          <div class="issueTop">
-            <div class="issueTitle">Some “free speech” is “I want to be a cunt without consequences.”<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Push hard on platforming</span><span class="optPoint">blur speech and harm</span><span class="optPoint">endorse deplatforming.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Free speech is broad</span><span class="optPoint">consequences exist but shouldn’t be mob rule</span><span class="optPoint">keep rules narrow (threats, harassment, incitement).</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Free speech” only for in-group</span><span class="optPoint">ban books/teachers</span><span class="optPoint">use state power to punish opponents.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Broad speech rights; narrow rules on threats/harassment; consistent enforcement; don’t outsource justice to mobs or states.</p>
-              <p class="failureText failureMode" data-side="left">Deplatform first, argue never; expands “harm” until dissent is unsafe; mob enforcement replaces norms.</p>
-              <p class="failureText failureMode" data-side="right">“Free speech for me”; bans books/teachers; uses state power to punish opponents; intimidation politics.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="media">
-          <div class="issueTop">
-            <div class="issueTitle">Representation in media isn’t oppression.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Representation as cultural repair</span><span class="optPoint">critique “default whiteness/straightness”</span><span class="optPoint">sometimes sacrifices story for signalling.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">More kinds of people on screen is fine</span><span class="optPoint">story first</span><span class="optPoint">don’t treat audiences as enemies</span><span class="optPoint">don’t do quota-vibes writing.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Rage at “forced diversity”</span><span class="optPoint">nostalgia politics</span><span class="optPoint">treat any inclusion as attack.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">More kinds of people on screen; story-first; avoid preachy writing; let audiences choose without being called evil.</p>
-              <p class="failureText failureMode" data-side="left">Box-ticking replaces craft; scolds the audience; treats disagreement as moral failure; undermines the goal by making it annoying.</p>
-              <p class="failureText failureMode" data-side="right">Treats any inclusion as attack; harassment campaigns; nostalgia politics; cultural gatekeeping as identity defence.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="words">
-          <div class="issueTop">
-            <div class="issueTitle">Words can be used to dehumanise, on purpose.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Strong focus on rhetoric harms</span><span class="optPoint">more speech rules</span><span class="optPoint">“harm” language expands.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Rhetoric matters</span><span class="optPoint">challenge dehumanising talk</span><span class="optPoint">keep legal limits tight but social norms firm.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Normalise slurs/dogwhistles</span><span class="optPoint">dismiss harm</span><span class="optPoint">use dehumanising language strategically.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Call out dehumanising rhetoric; keep law narrow; keep norms strong; distinguish disagreement from incitement.</p>
-              <p class="failureText failureMode" data-side="left">Treats language as violence by default; expands taboo lists endlessly; chills discourse; misses actual dehumanisation because everything is “harm.”</p>
-              <p class="failureText failureMode" data-side="right">Dogwhistles and slurs normalised; dehumanisation used strategically; escalates hostility; primes real-world harm.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="harassment">
-          <div class="issueTop">
-            <div class="issueTitle">Harassment isn’t “debate.”<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Broaden “harassment” category</span><span class="optPoint">more moderation</span><span class="optPoint">sometimes labels dissent as harm.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Threats, stalking, pile-ons aren’t debate</span><span class="optPoint">disagreement is fine</span><span class="optPoint">enforce clear lines.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Targeted harassment as sport</span><span class="optPoint">“owning” people</span><span class="optPoint">intimidation campaigns dressed up as politics.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Clear lines: threats/stalking/pile-ons punished; disagreement allowed; transparent moderation and due process.</p>
-              <p class="failureText failureMode" data-side="left">Labels dissent “harassment”; uses safety language to avoid scrutiny; moderation becomes viewpoint enforcement.</p>
-              <p class="failureText failureMode" data-side="right">Pile-ons as sport; intimidation as politics; doxxing/threats winked at; “owning” replaces argument.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="nazis">
-          <div class="issueTop">
-            <div class="issueTitle">Nazis are still bad, actually.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Anti-fascism as moral baseline</span><span class="optPoint">deplatform organised extremism</span><span class="optPoint">sometimes overuses “Nazi” as insult.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Nazis are bad</span><span class="optPoint">don’t normalise extremist organising</span><span class="optPoint">keep language accurate so warnings still mean something.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Nazis bad, but…” minimisation</span><span class="optPoint">flirt with ethnonationalism</span><span class="optPoint">obsessive focus on left as the *real* threat.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Keep the word meaningful; oppose extremist organising; target actual networks, not vibes; defend pluralism.</p>
-              <p class="failureText failureMode" data-side="left">Overuses “Nazi” until it’s noise; treats normal conservatives as fascists; builds the very radicalisation it fears.</p>
-              <p class="failureText failureMode" data-side="right">Minimises or flirts with ethnonationalism; “just asking questions” laundering; normalises extremist aesthetics.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="conspiracies">
-          <div class="issueTop">
-            <div class="issueTitle">Conspiracies aren’t a personality.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">Emphasis on misinformation harms</span><span class="optPoint">heavy trust in institutions</span><span class="optPoint">sometimes too quick to dismiss real scandals.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Be sceptical, check sources, follow evidence</span><span class="optPoint">institutions can fail without everything being a plot.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">“Deep state” as universal answer</span><span class="optPoint">paranoia politics</span><span class="optPoint">constant moving-target claims.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Healthy scepticism; verify claims; follow evidence; admit institutional failure without turning it into a grand plot.</p>
-              <p class="failureText failureMode" data-side="left">“Misinformation” used to dodge legitimate criticism; over-trust in institutions; treats scepticism as pathology.</p>
-              <p class="failureText failureMode" data-side="right">Paranoia as worldview; every loss is a rig; scapegoats replace analysis; reality becomes optional.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="issueCard" data-issue="facts">
-          <div class="issueTop">
-            <div class="issueTitle">Facts don’t stop being facts because they annoy you.<span class="small">Pick one option</span></div>
-            <button class="optBtn" type="button" data-side="left" role="radio" aria-checked="false"><span class="optPoint">“Trust science”</span><span class="optPoint">high confidence in expert consensus</span><span class="optPoint">sometimes blind to incentives/bias.</span></button>
-            <button class="optBtn selected" type="button" data-side="center" role="radio" aria-checked="true"><span class="optPoint">Evidence first</span><span class="optPoint">update when wrong</span><span class="optPoint">trust expertise but demand transparency, replication, and receipts.</span></button>
-            <button class="optBtn" type="button" data-side="right" role="radio" aria-checked="false"><span class="optPoint">Vibes over evidence</span><span class="optPoint">“my feed &gt; reality”</span><span class="optPoint">treat inconvenient facts as enemy propaganda.</span></button>
-          </div>
-          <div class="issueBottom">
-            <div class="failurePill center">Normal outcome</div>
-            <div>
-              <p class="failureText failureMode active" data-side="center">Evidence first; transparent methods; update when wrong; tolerate disagreement; demand receipts.</p>
-              <p class="failureText failureMode" data-side="left">“Trust experts” becomes faith; ignores incentives/bias; punishes dissent even when it’s right; credibility collapses.</p>
-              <p class="failureText failureMode" data-side="right">Vibes &gt; data; selective “facts”; hostile to expertise; treats correction as attack; lives inside narrative.</p>
-            </div>
-          </div>
+        <div class="breakdown" id="breakdown" hidden>
+          <details open>
+            <summary>Most woke picks</summary>
+            <ol id="posList"></ol>
+          </details>
+          <details>
+            <summary>Most anti-woke picks</summary>
+            <ol id="negList"></ol>
+          </details>
+          <details>
+            <summary>By issue</summary>
+            <div id="issueList"></div>
+          </details>
         </div>
       </div>
     </section>
