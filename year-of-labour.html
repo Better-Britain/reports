@@ -126,11 +126,18 @@
 				<div class="overall-explainer">
 					Each policy is scored from −2 (harmful) to +2 (very positive). The total score is the sum across all policies; the average is the total divided by the number of policies. The coloured bar shows where the total sits between the minimum (all −2) and maximum (all +2) possible scores.
 				</div>
-				<div class="policies-only-toggle" role="group" aria-label="Score summary filters">
+				<div class="score-toggle policies-only-toggle" role="group" aria-label="Score summary filters">
 					<input id="policies-only-toggle" type="checkbox" />
 					<label for="policies-only-toggle">
-						<div class="policies-only-toggle__title">Policies only</div>
-						<div class="policies-only-toggle__subtitle">Ignore drama, personal decisions or media/public outrage not linked to policy/change.</div>
+						<div class="score-toggle__title policies-only-toggle__title">Policies only</div>
+						<div class="score-toggle__subtitle policies-only-toggle__subtitle">Ignore drama, personal decisions or media/public outrage not linked to policy/change.</div>
+					</label>
+				</div>
+				<div class="score-toggle keir-starmer-toggle" role="group" aria-label="Score summary filters">
+					<input id="keir-starmer-toggle" type="checkbox" />
+					<label for="keir-starmer-toggle">
+						<div class="score-toggle__title">Keir Starmer</div>
+						<div class="score-toggle__subtitle" data-subtitle-default="I just don't like Keir Starmer" data-subtitle-checked="I just don't like Keir Starmer — we can't help with that; we don't like him either, but we're not having him over for tea. Grow up.">I just don't like Keir Starmer</div>
 					</label>
 				</div>
 			</div>
