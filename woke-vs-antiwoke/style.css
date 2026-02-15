@@ -326,6 +326,57 @@ header{
   font-size: 13px;
 }
 
+.issues{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+
+details.issue{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  overflow:hidden;
+}
+details.issue > summary{
+  list-style: none;
+  cursor: pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 12px 12px;
+}
+details.issue > summary::-webkit-details-marker{display:none}
+details.issue > summary .issueTitle{
+  padding: 0;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+  color: rgba(248,252,255,.94);
+  line-height: 1.25;
+}
+.issueMeta{
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 950;
+  font-size: 12px;
+  color: rgba(240,247,255,.86);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.22);
+}
+.issueBody{
+  border-top: 1px solid rgba(255,255,255,.09);
+  padding: 12px 12px 12px;
+}
+.optionsGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .gridHead{
   display:grid;
   grid-template-columns: minmax(200px, 1.1fr) repeat(3, minmax(0, 1fr));
@@ -393,6 +444,12 @@ header{
   line-height: 1.35;
   cursor: pointer;
   transition: transform .12s ease, border-color .12s ease, background-color .12s ease, box-shadow .12s ease;
+}
+.optBtn .optText{display:block}
+.optBtn.selected{
+  border-color: rgba(137,182,255,.60);
+  box-shadow: 0 0 0 2px rgba(137,182,255,.18), 0 10px 24px rgba(0,0,0,.25);
+  background: linear-gradient(180deg, rgba(137,182,255,.12), rgba(255,255,255,.03));
 }
 .optBtn .optPoint{
   display: block;
@@ -483,6 +540,93 @@ header{
   color: rgba(255,248,220,.95);
 }
 .panel.panelReview strong{color: rgba(255,248,220,.98)}
+
+.results{margin-top: 16px}
+.resultsPanel.incomplete{
+  opacity: .62;
+  filter: grayscale(.15);
+}
+.resultsPanel h2{
+  margin: 0 0 8px;
+  font-size: 20px;
+  letter-spacing:-0.01em;
+}
+.resultsLead{
+  margin: 8px 0 12px;
+  color: rgba(255,255,255,.82);
+  line-height: 1.45;
+  font-size: 14px;
+  max-width: 70ch;
+}
+.scoreRow{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+  margin: 10px 0 10px;
+}
+.scoreValue{
+  font-weight: 950;
+  letter-spacing:-0.01em;
+  font-size: 18px;
+}
+.scoreBucket{
+  flex: 0 0 auto;
+  font-weight: 950;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.22);
+  color: rgba(240,247,255,.86);
+}
+.breakdown{
+  margin-top: 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.breakdown details{
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  background: rgba(0,0,0,.14);
+  padding: 8px 10px;
+}
+.breakdown summary{
+  cursor: pointer;
+  font-weight: 950;
+  letter-spacing: .02em;
+}
+.breakdown ol{margin: 10px 0 0; padding-left: 20px}
+.pickItem{margin: 0 0 10px}
+.pickHead{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+.pickText{font-weight: 900; color: rgba(248,252,255,.92)}
+.pickMeta{color: rgba(220,236,248,.74); font-weight: 900; font-size: 12px; white-space:nowrap}
+.pickEffect{margin-top: 6px; color: rgba(232,241,250,.82); font-size: 13px; line-height: 1.45}
+.issueScoreRow{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items:baseline;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.issueScoreRow:first-child{border-top: none}
+.issueScoreTitle{font-weight: 950; color: rgba(248,252,255,.92)}
+.issueScoreTag{
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  color: rgba(240,247,255,.82);
+}
+.issueScoreValue{font-variant-numeric: tabular-nums; font-weight: 950}
 .panel h3{
   margin: 0 0 8px;
   font-size: 16px;
@@ -502,6 +646,7 @@ header{
   .controls{min-width: 100%}
 }
 @media (max-width: 840px){
+  .optionsGrid{grid-template-columns: 1fr}
   .gridHead{display:none}
   .issueTop{
     grid-template-columns: 1fr;
