@@ -377,6 +377,12 @@ header{
   cursor: pointer;
   transition: transform .12s ease, border-color .12s ease, background-color .12s ease, box-shadow .12s ease;
 }
+.optBtn .optPoint{
+  display: block;
+}
+.optBtn .optPoint + .optPoint{
+  margin-top: 4px;
+}
 .optBtn:hover{
   transform: translateY(-1px);
   border-color: rgba(255,255,255,.18);
