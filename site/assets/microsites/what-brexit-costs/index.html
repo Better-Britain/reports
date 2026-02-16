@@ -39,7 +39,6 @@
         <h1>Brexit: a Trillion pounds and counting…</h1>
         <p>
           Brexit isn’t a one-off bill. It’s a persistent drag: the economy is smaller than the no‑Brexit baseline, every year, and the gap compounds.
-          That’s how you get to a trillion without a single dramatic moment - just slow leak, plus time.
         </p>
         <p class="heroPunch">
           This isn’t money we <em>might</em> lose. This is money we already lost - and we’re not even trying to scrape it back.
@@ -56,23 +55,21 @@
       </aside>
     </header>
 
-    <section class="chartCard" aria-label="Brexit cost paths chart">
-      <div class="chartHead">
-        <div>
-          <p class="h">Illustrative Brexit cost paths</p>
-          <p class="sub">Solid lines: annual impacts (£bn/year). Dashed line: cumulative GDP shortfall (right axis, £bn).</p>
-        </div>
-        <div class="sub" id="compareAxisReadout"></div>
-      </div>
+	    <section class="chartCard" aria-label="Brexit cost paths chart">
+	      <div class="chartHead">
+	        <div>
+	          <p class="h">Illustrative Brexit cost paths</p>
+	          <p class="sub">Different channels that leave the UK economy smaller than a no‑Brexit baseline — and how the gap builds up over time.</p>
+	        </div>
+	      </div>
 
       <div class="lineChartWrap" aria-label="Interactive Brexit paths line chart">
-        <div class="lineChartLegend" id="chartLegend" aria-label="Chart legend and toggles"></div>
-        <div class="lineChartViewport">
-          <svg class="lineChart" id="lineChart" viewBox="0 0 960 520" role="img" aria-label="Brexit cost paths chart"></svg>
-          <div class="chartHint">Tip: toggle lines in the legend. Nothing leaves your device.</div>
-        </div>
-      </div>
-    </section>
+	        <div class="lineChartLegend" id="chartLegend" aria-label="Chart legend and toggles"></div>
+	        <div class="lineChartViewport">
+	          <svg class="lineChart" id="lineChart" viewBox="0 0 960 520" role="img" aria-label="Brexit cost paths chart"></svg>
+	        </div>
+	      </div>
+	    </section>
 
     <section class="fine fineSingle" aria-label="Real-world effects">
       <div class="panel panelWide">
@@ -120,16 +117,34 @@
           </div>
         </div>
 
-        <details class="advDetails">
-          <summary>Compare to other “real” lines</summary>
-          <ul class="compareBullets">
-            <li><strong>Interest on national debt:</strong> ~£106Bn/yr</li>
-            <li><strong>Pension tax relief:</strong> ~£60Bn/yr</li>
-            <li><strong>“Tax gap” (under-counted):</strong> ~£45Bn/yr</li>
-            <li><strong>Housing support → private landlords:</strong> ~£12Bn/yr</li>
-            <li><strong>Immigration fiscal cost (generous cap):</strong> under ~£10Bn/yr</li>
-          </ul>
-        </details>
+        <p class="switchHeading">Other big yearly lines (for scale)</p>
+        <div class="kpiRow compareKpiRow" aria-label="Scale comparisons">
+          <div class="kpi" role="group" aria-label="Debt interest comparison">
+            <div class="k">Paying interest on national debt</div>
+            <div class="v">~£106Bn/yr</div>
+            <div class="d">Money spent each year just to service existing government debt.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Pension tax relief comparison">
+            <div class="k">Tax relief on private pensions</div>
+            <div class="v">~£60Bn/yr</div>
+            <div class="d">A tax subsidy for pension saving (largest gains skew to higher earners).</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Tax gap comparison">
+            <div class="k">Tax owed but not collected (“tax gap”)</div>
+            <div class="v">~£45Bn/yr</div>
+            <div class="d">The difference between what should be paid in tax and what actually arrives.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Housing support to landlords comparison">
+            <div class="k">Housing support that ends up with landlords</div>
+            <div class="v">~£12Bn/yr</div>
+            <div class="d">Public money routed into private rents via housing support.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Immigration fiscal cost comparison">
+            <div class="k">Upper-bound “immigration cost” framing</div>
+            <div class="v">Under ~£10Bn/yr</div>
+            <div class="d">A generous cap used by hardliners — still single‑digit billions vs Brexit’s tens of billions.</div>
+          </div>
+        </div>
 
         <details class="advDetails">
           <summary>Advanced assumptions</summary>
@@ -138,36 +153,21 @@
               <p class="switchHeading">Tax-to-GDP ratio</p>
               <p class="switchHelp">Used to turn Treasury receipts shortfall into an implied GDP shortfall series for the chart and the total counter.</p>
               <div class="primaryValue" id="taxToGdpReadout">35%</div>
-              <input id="taxToGdp" type="range" min="25" max="45" step="1" value="35" />
-              <div class="rangeMeta">
-                <span>25%</span>
-                <span>35%</span>
-                <span>45%</span>
-              </div>
+              <p class="switchHelp">Assumption: <strong>35%</strong>.</p>
             </div>
 
             <div class="advItem">
               <p class="switchHeading">NHS share of spending</p>
-              <p class="switchHelp">Default is 19% (the “~£300m/week” heuristic band in the notes).</p>
+              <p class="switchHelp">Default is 19%, the share of total spending that goes to the NHS.</p>
               <div class="primaryValue" id="nhsShareReadout">19%</div>
-              <input id="nhsShare" type="range" min="14" max="26" step="1" value="19" />
-              <div class="rangeMeta">
-                <span>14%</span>
-                <span>19%</span>
-                <span>26%</span>
-              </div>
+              <p class="switchHelp">Assumption: <strong>19%</strong>.</p>
             </div>
 
             <div class="advItem">
               <p class="switchHeading">“Money cycles” factor</p>
               <p class="switchHelp">Optional storytelling knob for the prize board (1.00 = direct receipts only).</p>
               <div class="primaryValue" id="cycleReadout">1.40×</div>
-              <input id="cycleFactor" type="range" min="1" max="1.8" step="0.05" value="1.4" />
-              <div class="rangeMeta">
-                <span>1.00×</span>
-                <span>1.40×</span>
-                <span>1.80×</span>
-              </div>
+              <p class="switchHelp">Assumption: <strong>1.40×</strong>.</p>
             </div>
           </div>
         </details>
@@ -197,27 +197,25 @@
         </ul>
       </div>
 
-      <div class="panel panelWide finalCta" aria-label="Wrap-up">
-        <div class="finalCtaCopy">
-          <p class="finalEyebrow">The point</p>
-          <h3>Britain’s skint - and Brexit is a big chunk of why.</h3>
-          <p class="finalLead">If you want to argue priorities, argue the numbers - but don’t pretend this is a cute little sovereignty hobby.</p>
-          <p class="finalBody">Want to improve the model? Send better sources, better assumptions, or better ways to communicate the scale.</p>
-          <div class="finalActions">
-            <a class="finalBtn finalBtnPrimary" href="/posts/index.html">More posts</a>
-            <button class="finalBtn finalBtnGhost" type="button" id="busBtn">Write it on a bus</button>
-          </div>
-        </div>
+	      <div class="panel panelWide finalCta" aria-label="Wrap-up">
+	        <div class="finalCtaCopy">
+	          <p class="finalEyebrow">Thanks for reading</p>
+	          <h3>Britain’s skint - and Brexit is a big chunk of why.</h3>
+	          <p class="finalLead">It’s easy to feel like it’s too late, or that the argument is stuck forever. It doesn’t have to be.</p>
+	          <p class="finalBody">
+	            Almost nobody in politics is shouting “rejoin” (except Steve), but we can still have a serious, practical conversation about healing those economic links,
+	            rebuilding trust, and moving toward closer ways of working that other EU‑friendly countries already use. 
+	          </p>
+	          <div class="finalActions">
+	            <a class="finalBtn finalBtnPrimary" href="/">Better Britain Bureau</a>
+	            <button class="finalBtn finalBtnGhost" type="button" id="busBtn">Write it on a bus</button>
+	          </div>
+	        </div>
 
-        <a class="finalCtaArt" href="./brexit-one-trillion-pounds-graph.png" target="_blank" rel="noopener" aria-label="Open the original graph image">
-          <img src="./brexit-one-trillion-pounds-graph.png" alt="Brexit cost graph preview" loading="lazy" />
-          <span>Original graphic</span>
-        </a>
-
-        <a class="finalEasterEgg" href="#bus" id="busEgg" aria-label="Bus easter egg">
-          <img src="./brexit-bus-real-nhs-cost.jpg" alt="Bus image: Brexit costs the NHS £300 million every week" loading="lazy" />
-        </a>
-      </div>
+	        <a class="finalEasterEgg" href="#bus" id="busEgg" aria-label="Bus easter egg">
+	          <img src="./brexit-bus-real-nhs-cost.jpg" alt="Bus image: Brexit costs the NHS £300 million every week" loading="lazy" />
+	        </a>
+	      </div>
     </section>
   </div>
 

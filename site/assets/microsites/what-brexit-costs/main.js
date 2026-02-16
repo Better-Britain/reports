@@ -32,18 +32,21 @@ const BASE_SERIES = {
 };
 
 const SERIES_META = [
-  { key: "gdpShortfall", label: "GDP shortfall (annual, £bn)", tone: "gdp", color: "#3aa1ff", axis: "left", dashed: false, defaultOn: true },
-  { key: "investmentShortfall", label: "Investment shortfall (annual, £bn)", tone: "investment", color: "#ffb24a", axis: "left", dashed: false, defaultOn: true },
-  { key: "sterlingImportHit", label: "Sterling/import-price hit (annual, £bn)", tone: "sterling", color: "#67bf8d", axis: "left", dashed: false, defaultOn: true },
-  { key: "borderAdmin", label: "Border + customs admin (annual, £bn)", tone: "border", color: "#ff6b6b", axis: "left", dashed: false, defaultOn: true },
-  { key: "exceptionProcurementLeakage", label: "Exception-politics procurement leakage (annual, £bn)", tone: "leakage", color: "#b08cff", axis: "left", dashed: false, defaultOn: true },
-  { key: "cumulativeGdpShortfall", label: "Cumulative GDP shortfall (right axis, £bn)", tone: "cumulative", color: "#3aa1ff", axis: "right", dashed: true, defaultOn: true },
+  { key: "gdpShortfall", label: "GDP shortfall", tone: "gdp", color: "#3aa1ff", axis: "left", dashed: false, defaultOn: true },
+  { key: "investmentShortfall", label: "Investment shortfall", tone: "investment", color: "#ffb24a", axis: "left", dashed: false, defaultOn: true },
+  { key: "sterlingImportHit", label: "Sterling/import-price hit", tone: "sterling", color: "#67bf8d", axis: "left", dashed: false, defaultOn: true },
+  { key: "borderAdmin", label: "Border + customs admin", tone: "border", color: "#ff6b6b", axis: "left", dashed: false, defaultOn: true },
+  { key: "exceptionProcurementLeakage", label: "Exception-politics procurement leakage", tone: "leakage", color: "#b08cff", axis: "left", dashed: false, defaultOn: true },
+  { key: "cumulativeGdpShortfall", label: "Cumulative GDP shortfall (right axis)", tone: "cumulative", color: "#3aa1ff", axis: "right", dashed: true, defaultOn: true },
 ];
 
 // --- “Here’s what you could have won” prize board
 const UK_HOUSEHOLDS = 28_500_000;
 const BUS_WEEK_GBP = 350_000_000;
 const RECEIPTS_BN_DEFAULT = 75; // midpoint of the “£65–£90bn/year” range in the notes
+const TAX_TO_GDP_DEFAULT = 0.35;
+const NHS_SHARE_DEFAULT = 0.19;
+const CYCLE_FACTOR_DEFAULT = 1.4;
 
 const PRIZES = [
   {
@@ -53,7 +56,7 @@ const PRIZES = [
     bucket: 1,
     unitCost: 1_500_000_000,
     baseline: 2,
-    baselineLabel: "~2 major projects/year (rough)",
+    baselineLabel: "~2 major projects/year",
   },
   {
     id: "police",
@@ -62,7 +65,7 @@ const PRIZES = [
     bucket: 1_000,
     unitCost: 500_000,
     baseline: 140_000,
-    baselineLabel: "~140k officers (rough)",
+    baselineLabel: "~140k officers",
   },
   {
     id: "nurses",
@@ -71,7 +74,7 @@ const PRIZES = [
     bucket: 1_000,
     unitCost: 375_000,
     baseline: 350_000,
-    baselineLabel: "~350k nurses (rough)",
+    baselineLabel: "~350k nurses",
   },
   {
     id: "cancerStaff",
@@ -80,7 +83,7 @@ const PRIZES = [
     bucket: 500,
     unitCost: 1_250_000,
     baseline: 60_000,
-    baselineLabel: "~60k staff (rough)",
+    baselineLabel: "~60k staff",
   },
   {
     id: "socialHomes",
@@ -89,7 +92,7 @@ const PRIZES = [
     bucket: 10_000,
     unitCost: 150_000,
     baseline: 60_000,
-    baselineLabel: "~60k homes/year (rough)",
+    baselineLabel: "~60k homes/year",
   },
   {
     id: "insulation",
@@ -98,7 +101,7 @@ const PRIZES = [
     bucket: 100_000,
     unitCost: 15_000,
     baseline: 500_000,
-    baselineLabel: "~500k/year (rough)",
+    baselineLabel: "~500k/year",
   },
   {
     id: "teachers",
@@ -107,7 +110,7 @@ const PRIZES = [
     bucket: 1_000,
     unitCost: 750_000,
     baseline: 470_000,
-    baselineLabel: "~470k teachers (rough)",
+    baselineLabel: "~470k teachers",
   },
 ];
 
@@ -128,11 +131,8 @@ const ui = {
   busWeeksReadout: el("busWeeksReadout"),
   nhsWeeklyReadout: el("nhsWeeklyReadout"),
 
-  taxToGdp: el("taxToGdp"),
   taxToGdpReadout: el("taxToGdpReadout"),
-  nhsShare: el("nhsShare"),
   nhsShareReadout: el("nhsShareReadout"),
-  cycleFactor: el("cycleFactor"),
   cycleReadout: el("cycleReadout"),
 
   // Effects
@@ -203,9 +203,9 @@ function fmtWeekSignedFromPerYear(perYearGbp) {
 function getState() {
   return {
     receiptsBn: RECEIPTS_BN_DEFAULT,
-    taxToGdp: parseFloat(ui.taxToGdp.value) / 100,
-    nhsShare: parseFloat(ui.nhsShare.value) / 100,
-    cycleFactor: parseFloat(ui.cycleFactor.value),
+    taxToGdp: TAX_TO_GDP_DEFAULT,
+    nhsShare: NHS_SHARE_DEFAULT,
+    cycleFactor: CYCLE_FACTOR_DEFAULT,
   };
 }
 
@@ -247,6 +247,16 @@ function clearSvg(node) {
 
 function buildLegend(visible, onToggle) {
   ui.chartLegend.innerHTML = "";
+  const hdr = document.createElement("div");
+  hdr.className = "legendHdr";
+  hdr.textContent = "Units";
+  ui.chartLegend.appendChild(hdr);
+
+  const sub = document.createElement("div");
+  sub.className = "legendSub";
+  sub.textContent = "Annual: £bn/yr · Cumulative: £bn (right axis)";
+  ui.chartLegend.appendChild(sub);
+
   for (const meta of SERIES_META) {
     const row = document.createElement("label");
     row.className = "legendRow";
@@ -289,7 +299,7 @@ function renderChart(state, scaled, visible) {
   const cumMax = visible.cumulativeGdpShortfall ? Math.max(...series.cumulativeGdpShortfall) : Math.max(...series.cumulativeGdpShortfall);
   const rightAxisMax = niceCeil(cumMax, 250);
 
-  ui.compareAxisReadout.textContent = `Left axis: 0 → £${leftAxisMax}Bn/yr · Right axis: 0 → £${rightAxisMax}Bn`;
+  setText(ui.compareAxisReadout, `Left axis: 0 → £${leftAxisMax}Bn/yr · Right axis: 0 → £${rightAxisMax}Bn`);
 
   const svg = ui.lineChart;
   clearSvg(svg);
@@ -408,11 +418,11 @@ function renderChart(state, scaled, visible) {
 
   // Axis titles
   const leftTitle = svgEl("text", { x: margin.l - 56, y: margin.t + ph / 2, class: "axisTitle", transform: `rotate(-90 ${margin.l - 56} ${margin.t + ph / 2})` });
-  leftTitle.textContent = "Annual impact (£bn/year)";
+  leftTitle.textContent = "Annual impact";
   svg.appendChild(leftTitle);
 
   const rightTitle = svgEl("text", { x: margin.l + pw + 58, y: margin.t + ph / 2, class: "axisTitle", transform: `rotate(-90 ${margin.l + pw + 58} ${margin.t + ph / 2})` });
-  rightTitle.textContent = "Cumulative GDP shortfall (£bn)";
+  rightTitle.textContent = "Cumulative GDP";
   svg.appendChild(rightTitle);
 
   const xTitle = svgEl("text", { x: margin.l + pw / 2, y: margin.t + ph + 58, class: "axisTitle", "text-anchor": "middle" });
@@ -676,9 +686,6 @@ function wire() {
   });
 
   const inputs = [
-    ui.taxToGdp,
-    ui.nhsShare,
-    ui.cycleFactor,
   ].filter(Boolean);
 
   inputs.forEach((node) => node.addEventListener("input", () => {
