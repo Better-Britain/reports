@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brexit: a Trillion pounds and counting…</title>
+  <!-- SEO/social tags are injected at build time (see site/build-orchestrator.js).
+       Keeping the source file free of canonical/OG/Twitter tags avoids conflicts/duplicates. -->
+
+  <link rel="stylesheet" href="./style.css" />
+<link rel="canonical" href="https://betterbritain.org.uk/what-brexit-costs/">
+<meta name="description" content="A live counter and “real effects” estimate of the ongoing cost of Brexit.">
+<meta property="og:title" content="Brexit: £1 trillion and counting - Better Britain">
+<meta property="og:description" content="A live counter and “real effects” estimate of the ongoing cost of Brexit.">
+<meta property="og:url" content="https://betterbritain.org.uk/what-brexit-costs/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Better Britain Bureau">
+<meta property="og:image" content="https://betterbritain.org.uk/what-brexit-costs/brexit-bus-real-nhs-cost.jpg">
+<meta property="og:logo" content="https://betterbritain.org.uk/assets/better-britain-bee.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brexit: £1 trillion and counting - Better Britain">
+<meta name="twitter:description" content="A live counter and “real effects” estimate of the ongoing cost of Brexit.">
+<meta name="twitter:image" content="https://betterbritain.org.uk/what-brexit-costs/brexit-bus-real-nhs-cost.jpg">
+</head>
+<body>
+  <div class="wrap">
+    <div class="topPanels">
+      <section class="brandPanel" aria-label="Better Britain Bureau">
+        <a class="brandMark" href="/" aria-label="Better Britain homepage">
+          <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+          <span class="brandWordmark">Better Britain Bureau</span>
+        </a>
+        <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+        <nav class="brandLinks" aria-label="Better Britain links">
+          <a href="/">Homepage</a>
+          <a href="/year-of-labour.html">Flagship Report</a>
+          <a href="/posts/index.html">Posts</a>
+          <a href="/about.html">About BBB</a>
+        </nav>
+      </section>
+
+      <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
+        <span class="microCrossLabel">See our other side-quests:</span>
+        <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
+        <!-- <a href="../woke-vs-antiwoke/">Woke vs Anti-woke</a> -->
+        <a href="../labour-screw-ups/">Labour screw-ups dashboard</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="title">
+        <h1>Brexit: a Trillion pounds and counting…</h1>
+        <p>
+          Brexit isn’t a one-off bill. It’s a persistent drag: the economy is smaller than the no‑Brexit baseline, every year, and the gap compounds.
+        </p>
+        <p class="heroPunch">
+          This isn’t money we <em>might</em> lose. This is money we already lost - and we’re not even trying to scrape it back.
+        </p>
+	      </div>
+
+	      <aside class="counterPanel counterPanelSatire" aria-label="Brexit Benefits counter (satirical)">
+	        <canvas class="fireworksCanvas" id="fireworksCanvas" aria-hidden="true"></canvas>
+	        <div class="counterMini" id="trillionCountdown" aria-label="Estimated time to one trillion pounds">To £1tn: —</div>
+	        <div class="counterLabel">Brexit Benefits</div>
+	        <div class="counterValue counterValueBig" id="totalCounter">£0.00</div>
+	        <div class="counterSub">
+	          <span class="chip" id="totalRateReadout">~£0/week</span>
+	          <span class="muted">Cumulative “missing output” since 2016.</span>
+	        </div>
+	      </aside>
+    </header>
+
+	    <section class="chartCard" aria-label="Brexit cost paths chart">
+	      <div class="chartHead">
+	        <div>
+	          <p class="h">Illustrative Brexit cost paths</p>
+	          <p class="sub">Different channels that leave the UK economy smaller than a no‑Brexit baseline — and how the gap builds up over time.</p>
+	        </div>
+	      </div>
+
+      <div class="lineChartWrap" aria-label="Interactive Brexit paths line chart">
+	        <div class="lineChartLegend" id="chartLegend" aria-label="Chart legend and toggles"></div>
+	        <div class="lineChartViewport">
+	          <svg class="lineChart" id="lineChart" viewBox="0 0 960 520" role="img" aria-label="Brexit cost paths chart"></svg>
+	        </div>
+	      </div>
+	    </section>
+
+    <section class="fine fineSingle" aria-label="Real-world effects">
+      <div class="panel panelWide">
+        <h3>Here’s what we could have won</h3>
+        <p>
+          Take the Treasury shortfall, and translate it into estimated budgets through likely tax receipts.
+        </p>
+
+        <div class="kpiRow kpiRow3">
+          <div class="kpi">
+            <div class="k">Usable tax cash (total since 2016)</div>
+            <div class="v" id="usableTaxReadout">£77.5Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">Average per week (since 2016)</div>
+            <div class="v" id="usableTaxWeeklyReadout">£1.49Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">Per household (avg weekly)</div>
+            <div class="v" id="householdWeeklyReadout">£0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panelWide" aria-label="Brexit bus reality panel">
+        <h3>So what number goes on the bus now?</h3>
+        <p>
+          The big important Brexit number was never what “we pay the EU”, it's what that growth did for us.
+          Using a Treasury receipts shortfall of <span id="receiptsReadout">~£75Bn/yr</span> <span class="muted">(±£12.5Bn; sensible range: £65–£90Bn)</span>,
+          here’s what that looks like per week - and what share that implies for the NHS if spending stayed roughly proportional.
+        </p>
+
+        <div class="kpiRow kpiRow3">
+          <div class="kpi">
+            <div class="k">Treasury shortfall (weekly)</div>
+            <div class="v" id="treasuryWeeklyReadout">£0</div>
+          </div>
+          <div class="kpi">
+            <div class="k">“Bus weeks” (× £350m)</div>
+            <div class="v" id="busWeeksReadout">0.0×</div>
+          </div>
+          <div class="kpi">
+            <div class="k">NHS share implied (weekly)</div>
+            <div class="v" id="nhsWeeklyReadout">£0</div>
+          </div>
+        </div>
+
+        <p class="switchHeading">Other big yearly lines (for scale)</p>
+        <div class="kpiRow compareKpiRow" aria-label="Scale comparisons">
+          <div class="kpi" role="group" aria-label="Debt interest comparison">
+            <div class="k">Paying interest on national debt</div>
+            <div class="v">~£106Bn/yr</div>
+            <div class="d">Money spent each year just to service existing government debt.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Pension tax relief comparison">
+            <div class="k">Tax relief on private pensions</div>
+            <div class="v">~£60Bn/yr</div>
+            <div class="d">A tax subsidy for pension saving (largest gains skew to higher earners).</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Tax gap comparison">
+            <div class="k">Tax owed but not collected (“tax gap”)</div>
+            <div class="v">~£45Bn/yr</div>
+            <div class="d">The difference between what should be paid in tax and what actually arrives.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Housing support to landlords comparison">
+            <div class="k">Housing support that ends up with landlords</div>
+            <div class="v">~£12Bn/yr</div>
+            <div class="d">Public money routed into private rents via housing support.</div>
+          </div>
+          <div class="kpi" role="group" aria-label="Immigration fiscal cost comparison">
+            <div class="k">Upper-bound “immigration cost” framing</div>
+            <div class="v">Under ~£10Bn/yr</div>
+            <div class="d">A generous cap used by hardliners — still single‑digit billions vs Brexit’s tens of billions.</div>
+          </div>
+        </div>
+
+        <details class="advDetails">
+          <summary>Advanced assumptions</summary>
+          <div class="advGrid">
+            <div class="advItem">
+              <p class="switchHeading">Tax-to-GDP ratio</p>
+              <p class="switchHelp">Used to turn Treasury receipts shortfall into an implied GDP shortfall series for the chart and the total counter.</p>
+              <div class="primaryValue" id="taxToGdpReadout">35%</div>
+              <p class="switchHelp">Assumption: <strong>35%</strong>.</p>
+            </div>
+
+            <div class="advItem">
+              <p class="switchHeading">NHS share of spending</p>
+              <p class="switchHelp">Default is 19%, the share of total spending that goes to the NHS.</p>
+              <div class="primaryValue" id="nhsShareReadout">19%</div>
+              <p class="switchHelp">Assumption: <strong>19%</strong>.</p>
+            </div>
+
+            <div class="advItem">
+              <p class="switchHeading">“Money cycles” factor</p>
+              <p class="switchHelp">Optional storytelling knob for the prize board (1.00 = direct receipts only).</p>
+              <div class="primaryValue" id="cycleReadout">1.40×</div>
+              <p class="switchHelp">Assumption: <strong>1.40×</strong>.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <div class="panel panelWide" aria-label="Where the cost shows up (sourced)">
+        <h3>Where the cost shows up</h3>
+        <p>
+          The “tab” isn’t a pile of banknotes in Brussels. It shows up as deadweight loss, lower investment, and friction that turns normal economic activity into overhead.
+          Some of the leak is obvious; some of it is political opportunity.
+        </p>
+        <ul class="compareBullets">
+          <li><strong>Real-income hit:</strong> sterling drop → higher import prices → squeezed living standards.</li>
+          <li><strong>Investment hole:</strong> less kit, less productivity, weaker future wages.</li>
+          <li><strong>Trade/admin friction:</strong> paperwork and border processes as a permanent tax on SMEs and exporters.</li>
+          <li><strong>Leakage:</strong> procurement/contracting and “intermediaries” ecosystems that grow around new friction.</li>
+        </ul>
+        <p class="switchHeading">Key sources</p>
+        <ul class="compareBullets">
+          <li><a href="https://ukandeu.ac.uk/brexits-impact-on-the-uk-economy/" target="_blank" rel="noopener">UK in a Changing Europe - Brexit’s impact on the UK economy</a> (6–8% GDP per capita shortfall estimate by 2025)</li>
+          <li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/bktl/pn2" target="_blank" rel="noopener">ONS - annual nominal GDP series</a> (baseline GDP path)</li>
+          <li><a href="https://commonslibrary.parliament.uk/research-briefings/sn02783/" target="_blank" rel="noopener">House of Commons Library - GDP figures</a> (context for “£bn/year” scale)</li>
+          <li><a href="https://obr.uk/box/how-are-our-brexit-trade-forecast-assumptions-performing/" target="_blank" rel="noopener">OBR - Brexit trade assumption performance</a> (trade volumes + productivity drag framing)</li>
+          <li><a href="https://ifs.org.uk/articles/fall-sterling-who-hit-rise-inflation" target="_blank" rel="noopener">IFS - sterling fall and inflation</a> + <a href="https://cepr.org/voxeu/columns/brexit-vote-and-inflation-updated-evidence" target="_blank" rel="noopener">CEPR/VoxEU - Brexit depreciation &amp; prices</a> (import-price pass-through)</li>
+          <li><a href="https://www.gov.uk/government/publications/estimating-the-customs-administrative-burden-of-2022-declarations/estimating-the-administrative-burden-of-2022-import-and-export-customs-declarations-for-trade-between-great-britain-and-the-european-union-executive" target="_blank" rel="noopener">GOV.UK - customs administrative burden</a> (friction and compliance costs)</li>
+          <li><a href="https://publications.parliament.uk/pa/cm5803/cmselect/cmpubacc/260/report.html" target="_blank" rel="noopener">Public Accounts Committee - PPE procurement</a> + <a href="https://www.nao.org.uk/wp-content/uploads/2022/03/Investigation-into-the-management-of-PPE-contracts.pdf" target="_blank" rel="noopener">NAO - PPE contracts</a> (procurement risk + waste dynamics)</li>
+        </ul>
+      </div>
+
+	      <div class="panel panelWide finalCta" aria-label="Wrap-up">
+	        <div class="finalCtaCopy">
+	          <p class="finalEyebrow">Thanks for reading</p>
+	          <h3>Britain’s skint - and Brexit is a big chunk of why.</h3>
+	          <p class="finalLead">It’s easy to feel like it’s too late, or that the argument is stuck forever. It doesn’t have to be.</p>
+	          <p class="finalBody">
+	            Almost nobody in politics is shouting “rejoin” (except Steve), but we can still have a serious, practical conversation about healing those economic links,
+	            rebuilding trust, and moving toward closer ways of working that other EU‑friendly countries already use. 
+	          </p>
+	          <div class="finalActions">
+	            <a class="finalBtn finalBtnPrimary" href="/">Better Britain Bureau</a>
+	            <button class="finalBtn finalBtnGhost" type="button" id="busBtn">Write it on a bus</button>
+	          </div>
+	        </div>
+
+	        <a class="finalEasterEgg" href="#bus" id="busEgg" aria-label="Bus easter egg">
+	          <img src="./brexit-bus-real-nhs-cost.jpg" alt="Bus image: Brexit costs the NHS £300 million every week" loading="lazy" />
+	        </a>
+	      </div>
+    </section>
+  </div>
+
+  <dialog class="busDialog" id="busDialog" aria-label="Brexit bus easter egg">
+    <div class="busDialogInner">
+      <form method="dialog" class="busDialogTop">
+        <strong>Write it on a bus</strong>
+        <button class="busClose" value="close" aria-label="Close">Close</button>
+      </form>
+      <img class="busImg" src="./brexit-bus-real-nhs-cost.jpg" alt="Bus graphic: Brexit (not immigrants) costs the NHS £300 million every week." />
+      <p class="busCaption">Yes: the bus is real. (Well, the image is.)</p>
+    </div>
+  </dialog>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
