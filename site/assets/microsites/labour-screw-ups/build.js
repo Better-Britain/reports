@@ -168,6 +168,7 @@ function parseEntriesFromMarkdown(markdownText) {
     const { meta } = parseMetaComment(firstLineRaw);
     const { tagRaw } = parseTagPrefix(parseMetaComment(firstLineRaw).line);
     const { actor, category, categoryPath } = splitTag(tagRaw);
+    const categories = categoryPath.map((c) => c.trim()).filter(Boolean);
 
     const statementMarkdown = stripMetaAndTrailingSources(firstLineRaw)
       .replace(/^\s*\d+\.\s+/, '')
@@ -194,6 +195,7 @@ function parseEntriesFromMarkdown(markdownText) {
       tagRaw,
       category,
       categoryPath,
+      categories,
       sortIso,
       dateIso,
       precision,
@@ -219,7 +221,9 @@ function renderEntries(entries) {
 
     const uturnPill = e.isUturn ? `<span class="pill pill--uturn" title="U-turn / reversal / climbdown flagged">U-turn</span>` : '';
     const statePill = e.state ? `<span class="pill pill--state" title="Outcome state from notes">${escapeHtml(e.state)}</span>` : '';
-    const categoryPill = e.category ? `<span class="pill" title="Category">${escapeHtml(e.category)}</span>` : '';
+    const cats = Array.isArray(e.categories) ? e.categories : (e.category ? [e.category] : []);
+    const categoryPills = cats.slice(0, 3).map((c) => `<span class="pill" title="Category">${escapeHtml(c)}</span>`).join(' ');
+    const moreCats = cats.length > 3 ? ` <span class="pill" title="More categories">+${escapeHtml(cats.length - 3)}</span>` : '';
 
     const sourcesHtml = e.sources.length
       ? `<ul class="sources" aria-label="Sources">${e.sources.map((s) => `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.label)}</a></li>`).join('')}</ul>`
@@ -230,11 +234,11 @@ function renderEntries(entries) {
       : '';
 
     return `
-<article class="entry" data-role="entry" data-sort="${escapeHtml(e.sortIso)}" data-date="${escapeHtml(e.dateIso)}" data-precision="${escapeHtml(e.precision)}" data-group="${escapeHtml(e.actor)}" data-actor="${escapeHtml(e.actor)}"${e.category ? ` data-category="${escapeHtml(e.category)}"` : ''} data-tag="${escapeHtml(e.tagRaw)}" data-uturn="${e.isUturn ? '1' : '0'}"${e.state ? ` data-state="${escapeHtml(e.state)}"` : ''}>
+<article class="entry" data-role="entry" data-sort="${escapeHtml(e.sortIso)}" data-date="${escapeHtml(e.dateIso)}" data-precision="${escapeHtml(e.precision)}" data-group="${escapeHtml(e.actor)}" data-actor="${escapeHtml(e.actor)}"${cats.length ? ` data-categories="${escapeHtml(cats.join('|'))}"` : ''}${e.category ? ` data-category="${escapeHtml(e.category)}"` : ''} data-tag="${escapeHtml(e.tagRaw)}" data-uturn="${e.isUturn ? '1' : '0'}"${e.state ? ` data-state="${escapeHtml(e.state)}"` : ''}>
   <div class="entryTop">
     <span class="pill pill--id">#${escapeHtml(e.id)}</span>
     <span class="pill ${groupPillClass}" title="Actor">${escapeHtml(e.actor)}</span>
-    ${categoryPill}
+    ${categoryPills}${moreCats}
     ${uturnPill}
     ${statePill}
     ${dateDisplay ? `<span class="entryDate"><time datetime="${escapeHtml(e.dateIso)}">${escapeHtml(dateDisplay)}</time></span>` : ''}
@@ -257,8 +261,12 @@ function buildContent({ title, entries }) {
   for (const e of entries) {
     const actor = e.actor || 'Other';
     byActor.set(actor, (byActor.get(actor) || 0) + 1);
-    const category = e.category || '';
-    if (category) byCategory.set(category, (byCategory.get(category) || 0) + 1);
+    const cats = Array.isArray(e.categories) ? e.categories : (e.category ? [e.category] : []);
+    for (const c of cats) {
+      const category = String(c || '').trim();
+      if (!category) continue;
+      byCategory.set(category, (byCategory.get(category) || 0) + 1);
+    }
     const state = e.state || '';
     if (state) byState.set(state, (byState.get(state) || 0) + 1);
   }
