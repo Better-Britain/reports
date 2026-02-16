@@ -47,7 +47,15 @@
   function matchesFilters(entry) {
     if (filters.uturn && String(entry.dataset.uturn || '0') !== '1') return false;
     if (filters.actor.size && !filters.actor.has(String(entry.dataset.actor || entry.dataset.group || ''))) return false;
-    if (filters.category.size && !filters.category.has(String(entry.dataset.category || ''))) return false;
+    if (filters.category.size) {
+      const raw = String(entry.dataset.categories || entry.dataset.category || '');
+      const cats = raw ? raw.split('|').map((s) => s.trim()).filter(Boolean) : [];
+      let ok = false;
+      for (const c of cats) {
+        if (filters.category.has(c)) { ok = true; break; }
+      }
+      if (!ok) return false;
+    }
     if (filters.state.size && !filters.state.has(String(entry.dataset.state || ''))) return false;
     return true;
   }
