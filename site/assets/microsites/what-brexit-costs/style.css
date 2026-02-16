@@ -212,6 +212,8 @@ a:hover{text-decoration:underline}
 }
 
 .counterPanel{
+  position: relative;
+  overflow: hidden;
   border-radius: 14px;
   padding: 16px 16px 14px;
   border: 1px solid rgba(255,204,102,.45);
@@ -221,11 +223,42 @@ a:hover{text-decoration:underline}
   box-shadow: 0 14px 30px rgba(28,20,9,.30), inset 0 0 0 1px rgba(255,255,255,.04);
   min-width: min(460px, 100%);
 }
+.counterPanel > *{
+  position: relative;
+  z-index: 2;
+}
+.fireworksCanvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.counterMini{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.20);
+  color: rgba(246,250,255,.92);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 .counterPanelSatire{
   border-color: rgba(217,91,91,.55);
   background:
     radial-gradient(620px 180px at 10% 0%, rgba(217,91,91,.16), transparent 65%),
     linear-gradient(180deg, rgba(20,36,52,.88), rgba(12,21,32,.92));
+}
+.counterPanelSatire .counterMini{
+  border-color: rgba(217,91,91,.28);
+  background: rgba(217,91,91,.10);
 }
 .counterPanelSatire .counterValue{
   color: rgba(255,140,140,.95);

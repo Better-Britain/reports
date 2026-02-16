@@ -19,6 +19,13 @@ const setText = (node, text) => {
   node.textContent = String(text);
 };
 
+const TRILLION_BN = 1000;
+const YEAR_MS = 365.25 * 24 * 3600 * 1000;
+
+// Fireworks: set this to false to only fire when the counter crosses £1tn.
+const FIREWORKS_ALWAYS_ON = true;
+const FIREWORKS_INTERVAL_MS = 3800;
+
 // --- Chart data (from the "illustrative ramp" described in chats + the original PNG)
 const YEARS = Array.from({ length: 15 }, (_, i) => 2016 + i); // 2016..2030
 
@@ -118,6 +125,8 @@ const ui = {
   // Header counter
   totalCounter: el("totalCounter"),
   totalRateReadout: el("totalRateReadout"),
+  trillionCountdown: el("trillionCountdown"),
+  fireworksCanvas: el("fireworksCanvas"),
 
   // Chart
   compareAxisReadout: el("compareAxisReadout"),
@@ -453,6 +462,174 @@ function cumulativeToStartOfYear(year, scaledGdpSeries) {
   return sum;
 }
 
+const fireworks = {
+  ctx: null,
+  w: 0,
+  h: 0,
+  particles: [],
+  running: false,
+  lastFrameMs: 0,
+  lastAutoFireMs: 0,
+  lastCumBn: null,
+  crossedTrillion: false,
+};
+
+function resizeFireworksCanvas() {
+  const canvas = ui.fireworksCanvas;
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const w = Math.max(1, rect.width);
+  const h = Math.max(1, rect.height);
+  const dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+  canvas.width = Math.max(1, Math.floor(w * dpr));
+  canvas.height = Math.max(1, Math.floor(h * dpr));
+  fireworks.w = w;
+  fireworks.h = h;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  fireworks.ctx = ctx;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function formatDurationShort(ms) {
+  if (!Number.isFinite(ms) || ms <= 0) return "0s";
+  const s = Math.floor(ms / 1000);
+  const days = Math.floor(s / 86400);
+  const hours = Math.floor((s % 86400) / 3600);
+  const mins = Math.floor((s % 3600) / 60);
+  if (days > 0) return `${days}d ${String(hours).padStart(2, "0")}h`;
+  if (hours > 0) return `${hours}h ${String(mins).padStart(2, "0")}m`;
+  return `${Math.max(1, mins)}m`;
+}
+
+function renderTrillionCountdown(nowMs, cumBn, annualBn) {
+  if (!ui.trillionCountdown) return;
+  if (!Number.isFinite(cumBn) || !Number.isFinite(annualBn) || annualBn <= 0) {
+    setText(ui.trillionCountdown, "To £1tn: —");
+    return;
+  }
+  if (cumBn >= TRILLION_BN) {
+    setText(ui.trillionCountdown, "£1tn: reached");
+    ui.trillionCountdown.title = "Estimated: already past £1tn of cumulative missing output since 2016.";
+    return;
+  }
+  const remainingBn = TRILLION_BN - cumBn;
+  const remainingMs = (remainingBn / annualBn) * YEAR_MS;
+  const eta = new Date(nowMs + remainingMs);
+  setText(ui.trillionCountdown, `To £1tn: ~${formatDurationShort(remainingMs)}`);
+  ui.trillionCountdown.title = `Estimated crossing time: ${eta.toUTCString()}`;
+}
+
+function fireworksBurst() {
+  if (prefersReducedMotion()) return;
+  if (!ui.fireworksCanvas) return;
+  if (!fireworks.ctx) resizeFireworksCanvas();
+  if (!fireworks.ctx || fireworks.w <= 0 || fireworks.h <= 0) return;
+
+  const palette = ["#ffcc66", "#3aa1ff", "#67bf8d", "#ff6b6b", "#b08cff", "#ffffff"];
+  const bursts = 2;
+  for (let b = 0; b < bursts; b += 1) {
+    const cx = fireworks.w * (0.35 + Math.random() * 0.55);
+    const cy = fireworks.h * (0.18 + Math.random() * 0.35);
+    const count = 42 + Math.floor(Math.random() * 26);
+    for (let i = 0; i < count; i += 1) {
+      const a = Math.random() * Math.PI * 2;
+      const sp = 90 + Math.random() * 260;
+      fireworks.particles.push({
+        x: cx,
+        y: cy,
+        vx: Math.cos(a) * sp,
+        vy: Math.sin(a) * sp,
+        r: 1.4 + Math.random() * 1.8,
+        life: 900 + Math.random() * 700,
+        age: 0,
+        color: palette[(Math.random() * palette.length) | 0],
+      });
+    }
+  }
+
+  if (!fireworks.running) {
+    fireworks.running = true;
+    fireworks.lastFrameMs = 0;
+    requestAnimationFrame(fireworksLoop);
+  }
+}
+
+function fireworksLoop(nowMs) {
+  if (!fireworks.running) return;
+  const ctx = fireworks.ctx;
+  if (!ctx) {
+    fireworks.running = false;
+    return;
+  }
+  const t = typeof performance !== "undefined" && Number.isFinite(performance.timeOrigin)
+    ? performance.timeOrigin + nowMs
+    : Date.now();
+  const dt = fireworks.lastFrameMs ? Math.min(0.05, (t - fireworks.lastFrameMs) / 1000) : 0.016;
+  fireworks.lastFrameMs = t;
+
+  ctx.clearRect(0, 0, fireworks.w, fireworks.h);
+
+  const g = 240; // px/s^2
+  const drag = 0.985;
+
+  const next = [];
+  for (const p of fireworks.particles) {
+    const age = p.age + dt * 1000;
+    if (age >= p.life) continue;
+    const k = 1 - age / p.life;
+    const alpha = Math.max(0, Math.min(1, k));
+
+    const vx = p.vx * drag;
+    const vy = (p.vy + g * dt) * drag;
+    const x = p.x + vx * dt;
+    const y = p.y + vy * dt;
+
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(x, y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    next.push({ ...p, x, y, vx, vy, age });
+  }
+  ctx.globalAlpha = 1;
+
+  fireworks.particles = next;
+  if (fireworks.particles.length > 0) {
+    requestAnimationFrame(fireworksLoop);
+    return;
+  }
+  fireworks.running = false;
+}
+
+function maybeFireFireworks(nowMs, cumBn) {
+  if (!Number.isFinite(cumBn)) return;
+  if (prefersReducedMotion()) return;
+
+  if (FIREWORKS_ALWAYS_ON) {
+    if (!fireworks.lastAutoFireMs) {
+      fireworks.lastAutoFireMs = nowMs;
+      fireworksBurst();
+      fireworks.lastCumBn = cumBn;
+      return;
+    }
+    if (nowMs - fireworks.lastAutoFireMs >= FIREWORKS_INTERVAL_MS) {
+      fireworks.lastAutoFireMs = nowMs;
+      fireworksBurst();
+    }
+    fireworks.lastCumBn = cumBn;
+    return;
+  }
+
+  if (fireworks.crossedTrillion) return;
+  if (fireworks.lastCumBn != null && fireworks.lastCumBn < TRILLION_BN && cumBn >= TRILLION_BN) {
+    fireworks.crossedTrillion = true;
+    fireworksBurst();
+  }
+  fireworks.lastCumBn = cumBn;
+}
+
 function renderCounter(nowMs, state, scaled) {
   const now = new Date(nowMs);
   const year = now.getUTCFullYear();
@@ -466,8 +643,10 @@ function renderCounter(nowMs, state, scaled) {
 
   const totalGbp = cumBn * 1e9;
   // Satirical framing: “benefits” shown below zero.
-  ui.totalCounter.textContent = GBP.format(-totalGbp);
-  ui.totalRateReadout.textContent = fmtWeekSignedFromPerYear(-annualBn * 1e9);
+  setText(ui.totalCounter, GBP.format(-totalGbp));
+  setText(ui.totalRateReadout, fmtWeekSignedFromPerYear(-annualBn * 1e9));
+  renderTrillionCountdown(nowMs, cumBn, annualBn);
+  maybeFireFireworks(nowMs, cumBn);
 }
 
 function renderControls(state) {
@@ -685,6 +864,8 @@ function wire() {
     renderStatic(Date.now());
   });
 
+  resizeFireworksCanvas();
+
   const inputs = [
   ].filter(Boolean);
 
@@ -694,6 +875,7 @@ function wire() {
   }));
 
   window.addEventListener("resize", () => {
+    resizeFireworksCanvas();
     needsStaticRender = true;
     renderStatic(Date.now());
   });
