@@ -678,6 +678,24 @@ body.font-theme-sans #content { font: inherit; }
 .score-badge.score-scale-1  { background: #e9f7ef; color: #065f46; }
 .score-badge.score-scale-2  { background: #d1fae5; color: #065f46; }
 
+/* Forced override style for Keir toggle mode */
+.score-badge--overall.is-keir-override {
+  background: #b91c1c;
+  color: #fff;
+  animation: keir-score-flash .7s ease-in-out infinite;
+}
+
+@keyframes keir-score-flash {
+  0%, 100% { color: #fff; text-shadow: 0 0 0 rgba(255,255,255,0); }
+  50% { color: #fee2e2; text-shadow: 0 0 12px rgba(255,255,255,.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .score-badge--overall.is-keir-override {
+    animation: none;
+  }
+}
+
 /* Circular overall badge */
 .score-badge--overall {
   border-radius: 999px;

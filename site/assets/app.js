@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Also collapse the sidebar menu on mobile widths by default
     const sb = document.getElementById('sidebar');
-    if (sb) {a
+    if (sb) {
       const mq = window.matchMedia('(max-width: 900px)');
       if (mq.matches) {
         sb.setAttribute('aria-hidden', 'true');
@@ -473,6 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const keirToggle = document.getElementById('keir-starmer-toggle');
+
   // Scores summary: "Policies only" toggle
   const policiesOnlyToggle = document.getElementById('policies-only-toggle');
   const scoreSummary = document.getElementById('score-summary');
@@ -509,6 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const recompute = () => {
       const policiesOnly = Boolean(policiesOnlyToggle.checked);
+      const keirOverride = Boolean(keirToggle && keirToggle.checked);
 
       // Grey out excluded row content but keep it visible
       scoreRows.forEach((r) => {
@@ -529,47 +532,50 @@ document.addEventListener('DOMContentLoaded', () => {
         totalScore += s;
       });
 
-      const overallAvg = totalPolicies ? (totalScore / totalPolicies) : 0;
+      const computedAvg = totalPolicies ? (totalScore / totalPolicies) : 0;
+      const displayAvg = keirOverride ? -2 : computedAvg;
+      const displayTotalScore = keirOverride ? (-2 * totalPolicies) : totalScore;
 
       // Update datasets
       scoreSummary.setAttribute('data-total-policies', String(totalPolicies));
-      scoreSummary.setAttribute('data-total-score', String(totalScore));
-      scoreSummary.setAttribute('data-overall-average', overallAvg.toFixed(2));
+      scoreSummary.setAttribute('data-total-score', String(displayTotalScore));
+      scoreSummary.setAttribute('data-overall-average', displayAvg.toFixed(2));
       overallScore.setAttribute('data-policies', String(totalPolicies));
-      overallScore.setAttribute('data-score-sum', String(totalScore));
-      overallScore.setAttribute('data-score-avg', overallAvg.toFixed(2));
+      overallScore.setAttribute('data-score-sum', String(displayTotalScore));
+      overallScore.setAttribute('data-score-avg', displayAvg.toFixed(2));
 
       // Update badge text + class
       if (overallBadge) {
-        overallBadge.textContent = fmtSigned(overallAvg, 2);
-        overallBadge.setAttribute('data-score', overallAvg.toFixed(2));
+        overallBadge.textContent = keirOverride ? '-2!' : fmtSigned(displayAvg, 2);
+        overallBadge.setAttribute('data-score', displayAvg.toFixed(2));
         // remove any previous score-scale-* class
         Array.from(overallBadge.classList)
           .filter((c) => c.startsWith('score-scale-'))
           .forEach((c) => overallBadge.classList.remove(c));
-        overallBadge.classList.add(scaleClassFromAvg(overallAvg));
+        overallBadge.classList.add(keirOverride ? 'score-scale--2' : scaleClassFromAvg(displayAvg));
+        overallBadge.classList.toggle('is-keir-override', keirOverride);
       }
 
       if (overallPoliciesStrong) overallPoliciesStrong.textContent = String(totalPolicies);
-      if (overallTotalStrong) overallTotalStrong.textContent = String(totalScore);
+      if (overallTotalStrong) overallTotalStrong.textContent = String(displayTotalScore);
 
       // Update slider marker (range depends on policy count)
       const minPossible = -2 * totalPolicies;
       const maxPossible = 2 * totalPolicies;
       const rangeDen = (maxPossible - minPossible) || 1;
-      const posPct = Math.max(0, Math.min(100, ((totalScore - minPossible) / rangeDen) * 100));
+      const posPct = Math.max(0, Math.min(100, ((displayTotalScore - minPossible) / rangeDen) * 100));
       if (marker) {
         marker.style.left = `${posPct}%`;
-        marker.title = `${totalScore} of [${minPossible}..${maxPossible}]`;
+        marker.title = `${displayTotalScore} of [${minPossible}..${maxPossible}]`;
       }
     };
 
     recompute();
     policiesOnlyToggle.addEventListener('change', recompute);
+    if (keirToggle) keirToggle.addEventListener('change', recompute);
   }
 
-  // Score summary: "Keir Starmer" toggle (does not affect scores)
-  const keirToggle = document.getElementById('keir-starmer-toggle');
+  // Score summary: "Keir Starmer" toggle
   if (keirToggle) {
     const container = keirToggle.closest('.score-toggle') || keirToggle.closest('.keir-starmer-toggle');
     const subtitleEl = container ? container.querySelector('.score-toggle__subtitle') : null;
