@@ -581,17 +581,20 @@ export async function buildReport(outFile = path.resolve('docs/year-of-labour.ht
 						<div class="score-toggle__subtitle policies-only-toggle__subtitle">Ignore drama, personal decisions or media/public outrage not linked to policies/change.</div>
 					</label>
 				</div>
-				<div class="score-toggle keir-starmer-toggle" role="group" aria-label="Score summary filters">
-					<input id="keir-starmer-toggle" type="checkbox" />
-					<label for="keir-starmer-toggle">
-						<div class="score-toggle__title">...but Keir Starmer</div>
-						<div class="score-toggle__subtitle" data-subtitle-default="I just don't like Keir Starmer" data-subtitle-checked="I just don't like Keir Starmer — we can't help with that; we don't like him either, but we're not having him over for tea. Grow up.">I just don't like Keir Starmer</div>
-					</label>
+					<div class="score-toggle keir-starmer-toggle" role="group" aria-label="Score summary filters">
+						<input id="keir-starmer-toggle" type="checkbox" />
+						<label for="keir-starmer-toggle">
+							<div class="score-toggle__title">...but Keir Starmer</div>
+							<div class="score-toggle__subtitle" data-subtitle-default="I just don't like Keir Starmer" data-subtitle-checked="I just don't like Keir Starmer — we can't help with that; we don't like him either, but we're not having him over for tea. Grow up.">I just don't like Keir Starmer</div>
+						</label>
+						<div class="score-toggle__link">
+							<a href="/labour-screw-ups/">Here's our dashboard of what Labour screwed up (occasionally updated).</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>`;
+	</div>`;
 
 		const sections = [];
 		for (const file of files) {
