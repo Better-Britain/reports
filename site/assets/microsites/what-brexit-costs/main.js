@@ -473,17 +473,20 @@ function renderPrizes(nowMs, state, scaled) {
   const avgWeekly = usableTotal / elapsedWeeks;
   const perHouseholdPerWeek = avgWeekly / UK_HOUSEHOLDS;
 
-  ui.usableTaxReadout.textContent = fmtBn1(usableTotal / 1e9);
-  ui.usableTaxWeeklyReadout.textContent = fmtBn1(avgWeekly / 1e9);
-  ui.householdWeeklyReadout.textContent = GBP0.format(perHouseholdPerWeek);
+  if (ui.usableTaxReadout) ui.usableTaxReadout.textContent = fmtBn1(usableTotal / 1e9);
+  if (ui.usableTaxWeeklyReadout) ui.usableTaxWeeklyReadout.textContent = fmtBn1(avgWeekly / 1e9);
+  if (ui.householdWeeklyReadout) ui.householdWeeklyReadout.textContent = GBP0.format(perHouseholdPerWeek);
 
   const avgAnnual = usableTotal / elapsedYears;
   const count = PRIZES.length;
   const sharePerYear = count > 0 ? avgAnnual / count : 0;
-  ui.prizeCountReadout.textContent = String(count);
-  ui.prizeShareReadout.textContent = fmtGbpCompact(sharePerYear) + " / year (avg)";
+  if (ui.prizeCountReadout) ui.prizeCountReadout.textContent = String(count);
+  if (ui.prizeShareReadout) ui.prizeShareReadout.textContent = fmtGbpCompact(sharePerYear) + " / year (avg)";
+
+  if (!ui.prizeBoard) return;
 
   ui.prizeBoard.innerHTML = "";
+  const prizeCards = [];
   for (const prize of PRIZES) {
     const rawQty = prize.unitCost > 0 ? sharePerYear / prize.unitCost : 0;
     const bucketed = Math.floor(rawQty / prize.bucket) * prize.bucket;
@@ -522,7 +525,44 @@ function renderPrizes(nowMs, state, scaled) {
     card.appendChild(v);
     card.appendChild(sub);
     ui.prizeBoard.appendChild(card);
+    prizeCards.push(card);
   }
+
+  // Add + icons between prizes to signal “AND”.
+  requestAnimationFrame(() => {
+    const board = ui.prizeBoard;
+    if (!board) return;
+    board.querySelectorAll(".prizePlus").forEach((n) => n.remove());
+
+    const boardRect = board.getBoundingClientRect();
+    const rects = prizeCards.map((n) => n.getBoundingClientRect());
+    const rowThresh = 10;
+
+    for (let i = 0; i < prizeCards.length - 1; i += 1) {
+      const a = rects[i];
+      const b = rects[i + 1];
+      const sameRow = Math.abs(a.top - b.top) < rowThresh;
+
+      const plus = document.createElement("div");
+      plus.className = "prizePlus";
+      plus.textContent = "+";
+
+      let x;
+      let y;
+      if (sameRow) {
+        x = (a.right + b.left) / 2;
+        y = (a.top + a.bottom) / 2;
+      } else {
+        x = (b.left + b.right) / 2;
+        y = (a.bottom + b.top) / 2;
+      }
+
+      plus.style.left = (x - boardRect.left) + "px";
+      plus.style.top = (y - boardRect.top) + "px";
+
+      board.appendChild(plus);
+    }
+  });
 }
 
 function prefersReducedMotion() {
