@@ -43,6 +43,7 @@ const BUS_WEEK_GBP = 350_000_000;
 const PRIZES = [
   {
     id: "hospitals",
+    emoji: "🏥",
     label: "Major hospital projects (per year)",
     bucket: 1,
     unitCost: 1_500_000_000,
@@ -51,6 +52,7 @@ const PRIZES = [
   },
   {
     id: "police",
+    emoji: "👮",
     label: "Police officers (extra funded posts, per year)",
     bucket: 1_000,
     unitCost: 500_000,
@@ -59,6 +61,7 @@ const PRIZES = [
   },
   {
     id: "nurses",
+    emoji: "🧑‍⚕️",
     label: "Nurses (extra funded posts, per year)",
     bucket: 1_000,
     unitCost: 375_000,
@@ -67,6 +70,7 @@ const PRIZES = [
   },
   {
     id: "cancerStaff",
+    emoji: "🎗️",
     label: "Cancer care staff (extra funded posts, per year)",
     bucket: 500,
     unitCost: 1_250_000,
@@ -75,6 +79,7 @@ const PRIZES = [
   },
   {
     id: "socialHomes",
+    emoji: "🏠",
     label: "Social/affordable homes supported (per year)",
     bucket: 10_000,
     unitCost: 150_000,
@@ -83,6 +88,7 @@ const PRIZES = [
   },
   {
     id: "insulation",
+    emoji: "🧱",
     label: "Homes insulated/retrofitted (per year)",
     bucket: 100_000,
     unitCost: 15_000,
@@ -91,6 +97,7 @@ const PRIZES = [
   },
   {
     id: "teachers",
+    emoji: "🧑‍🏫",
     label: "Teachers (extra funded posts, per year)",
     bucket: 1_000,
     unitCost: 750_000,
@@ -150,6 +157,14 @@ function fmtWeekFromPerYear(perYearGbp) {
   if (perWeek >= 1e9) return "~" + fmtBn1(perWeek / 1e9) + "/week";
   if (perWeek >= 1e6) return "~£" + Math.round(perWeek / 1e6) + "m/week";
   return "~" + GBP0.format(perWeek) + "/week";
+}
+
+function fmtWeekSignedFromPerYear(perYearGbp) {
+  const sign = perYearGbp < 0 ? "−" : "";
+  const perWeekAbs = Math.abs(perYearGbp) / 52;
+  if (perWeekAbs >= 1e9) return "~" + sign + fmtBn1(perWeekAbs / 1e9) + "/week";
+  if (perWeekAbs >= 1e6) return "~" + sign + "£" + Math.round(perWeekAbs / 1e6) + "m/week";
+  return "~" + sign + GBP0.format(perWeekAbs) + "/week";
 }
 
 function getState() {
@@ -407,8 +422,9 @@ function renderCounter(nowMs, state, scaled) {
   const cumBn = cumulativeToStartOfYear(year, gdpSeries) + annualBn * frac;
 
   const totalGbp = cumBn * 1e9;
-  ui.totalCounter.textContent = GBP.format(totalGbp);
-  ui.totalRateReadout.textContent = fmtWeekFromPerYear(annualBn * 1e9);
+  // Satirical framing: “benefits” shown below zero.
+  ui.totalCounter.textContent = GBP.format(-totalGbp);
+  ui.totalRateReadout.textContent = fmtWeekSignedFromPerYear(-annualBn * 1e9);
 }
 
 function renderControls(state) {
@@ -439,24 +455,41 @@ function fmtSignedInt(n) {
   return sign + Math.round(n).toLocaleString("en-GB");
 }
 
-function renderPrizes(state) {
-  const receiptsPerYear = state.receiptsBn * 1e9;
-  const usablePerYear = receiptsPerYear * state.cycleFactor;
-  const usablePerWeek = usablePerYear / 52;
-  const perHouseholdPerWeek = usablePerWeek / UK_HOUSEHOLDS;
+function renderPrizes(nowMs, state, scaled) {
+  const gdpBn = scaled.series.gdpShortfall;
+  const receiptsBnByYear = gdpBn.map((v) => v * state.taxToGdp);
 
-  ui.usableTaxReadout.textContent = fmtBn1(usablePerYear / 1e9);
-  ui.usableTaxWeeklyReadout.textContent = fmtBn1((usablePerYear / 52) / 1e9);
+  const now = new Date(nowMs);
+  const year = now.getUTCFullYear();
+  const yearStart = Date.UTC(year, 0, 1);
+  const yearEnd = Date.UTC(year + 1, 0, 1);
+  const frac = clamp01((nowMs - yearStart) / (yearEnd - yearStart));
+
+  const startMs = Date.UTC(2016, 0, 1);
+  const elapsedWeeks = Math.max(1, (nowMs - startMs) / (7 * 24 * 3600 * 1000));
+  const elapsedYears = Math.max(0.25, (nowMs - startMs) / (365.25 * 24 * 3600 * 1000));
+
+  const receiptsCumToStartBn = cumulativeToStartOfYear(year, receiptsBnByYear);
+  const receiptsAnnualBn = annualGdpShortfallForYear(year, receiptsBnByYear);
+  const receiptsCumBn = receiptsCumToStartBn + receiptsAnnualBn * frac;
+
+  const usableTotal = receiptsCumBn * 1e9 * state.cycleFactor;
+  const avgWeekly = usableTotal / elapsedWeeks;
+  const perHouseholdPerWeek = avgWeekly / UK_HOUSEHOLDS;
+
+  ui.usableTaxReadout.textContent = fmtBn1(usableTotal / 1e9);
+  ui.usableTaxWeeklyReadout.textContent = fmtBn1(avgWeekly / 1e9);
   ui.householdWeeklyReadout.textContent = GBP0.format(perHouseholdPerWeek);
 
+  const avgAnnual = usableTotal / elapsedYears;
   const count = PRIZES.length;
-  const share = count > 0 ? usablePerYear / count : 0;
+  const sharePerYear = count > 0 ? avgAnnual / count : 0;
   ui.prizeCountReadout.textContent = String(count);
-  ui.prizeShareReadout.textContent = fmtGbpCompact(share) + " / year";
+  ui.prizeShareReadout.textContent = fmtGbpCompact(sharePerYear) + " / year (avg)";
 
   ui.prizeBoard.innerHTML = "";
   for (const prize of PRIZES) {
-    const rawQty = prize.unitCost > 0 ? share / prize.unitCost : 0;
+    const rawQty = prize.unitCost > 0 ? sharePerYear / prize.unitCost : 0;
     const bucketed = Math.floor(rawQty / prize.bucket) * prize.bucket;
     const locked = bucketed <= 0;
 
@@ -465,7 +498,13 @@ function renderPrizes(state) {
 
     const h = document.createElement("div");
     h.className = "prizeTitle";
-    h.textContent = prize.label;
+    const em = document.createElement("span");
+    em.className = "prizeEmoji";
+    em.textContent = prize.emoji || "🎁";
+    const txt = document.createElement("span");
+    txt.textContent = prize.label;
+    h.appendChild(em);
+    h.appendChild(txt);
 
     const v = document.createElement("div");
     v.className = "prizeValue";
@@ -513,7 +552,7 @@ function renderStatic(nowMs) {
   cachedScaled = scaledSeries(cachedState);
   renderControls(cachedState);
   renderChart(cachedState, cachedScaled, visibleSeries);
-  renderPrizes(cachedState);
+  renderPrizes(nowMs, cachedState, cachedScaled);
   renderCounter(nowMs, cachedState, cachedScaled);
   needsStaticRender = false;
 }
