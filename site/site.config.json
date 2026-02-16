@@ -103,9 +103,9 @@
       "slug": "what-brexit-costs",
       "publicPath": "/what-brexit-costs/",
       "sourceDir": "site/assets/microsites/what-brexit-costs",
-      "title": "Brexit: a Trillion pounds and counting…",
-      "description": "A live counter and interactive “real effects” estimator for the ongoing cost of Brexit (tweakable assumptions).",
-      "image": "/what-brexit-costs/brexit-one-trillion-pounds-graph.png"
+      "title": "Brexit: £1 trillion and counting",
+      "description": "A live counter and “real effects” estimate of the ongoing cost of Brexit.",
+      "image": "/what-brexit-costs/brexit-bus-real-nhs-cost.jpg"
     }
   ]
 }
