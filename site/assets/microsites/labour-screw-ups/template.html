@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{title}}</title>
+  <!-- SEO/social tags are injected at build time (see site/build-orchestrator.js).
+       Keeping the source file free of canonical/OG/Twitter tags avoids conflicts/duplicates. -->
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="{{bodyClass}}">
+  <div class="wrap">
+    {{content}}
+  </div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
+

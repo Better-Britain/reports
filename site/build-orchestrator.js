@@ -6,7 +6,7 @@
 
 import fs from 'fs/promises';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { pathToFileURL } from 'url';
 
 import MarkdownIt from 'markdown-it';
 import mdAnchor from 'markdown-it-anchor';
@@ -18,7 +18,7 @@ const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 
-async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0) {
+async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0, rootDir = srcDir) {
 	await fs.mkdir(destDir, { recursive: true });
 	let entries = [];
 	try {
@@ -32,8 +32,13 @@ async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0) {
 		}
 		const srcPath = path.join(srcDir, entry.name);
 		const destPath = path.join(destDir, entry.name);
+		const relPath = path.relative(rootDir, srcPath).replace(/\\/g, '/');
+		if (typeof options.filter === 'function') {
+			const ok = options.filter({ entry, srcPath, destPath, relPath, depth });
+			if (!ok) continue;
+		}
 		if (entry.isDirectory()) {
-			await copyDirRecursive(srcPath, destPath, options, depth + 1);
+			await copyDirRecursive(srcPath, destPath, options, depth + 1, rootDir);
 		} else if (entry.isFile()) {
 			await fs.mkdir(path.dirname(destPath), { recursive: true });
 			await fs.copyFile(srcPath, destPath);
@@ -220,7 +225,32 @@ async function buildMicrosites(config, includeDrafts) {
 		const sourceDir = path.resolve(ms.sourceDir || `site/assets/microsites/${slug}`);
 		const publicPath = ensureTrailingSlash(ms.publicPath || `/${slug}/`);
 		const destDir = path.join(OUTPUT_DIR, publicPath.replace(/^\/+|\/+$/g, ''));
-		await copyDirRecursive(sourceDir, destDir);
+		const buildScript = path.join(sourceDir, 'build.js');
+		let hasBuilder = false;
+		try { await fs.access(buildScript); hasBuilder = true; } catch {}
+		if (hasBuilder) {
+			await fs.mkdir(destDir, { recursive: true });
+			const mod = await import(pathToFileURL(buildScript).href);
+			const fn = mod.buildMicrosite || mod.build || mod.default;
+			if (typeof fn !== 'function') {
+				throw new Error(`Microsite builder found but no export function: ${buildScript} (expected buildMicrosite/build/default)`);
+			}
+			await fn({ sourceDir, outDir: destDir, publicPath, microsite: ms, siteConfig: config });
+			// Copy supporting static assets, but exclude source-only files.
+			await copyDirRecursive(sourceDir, destDir, {
+				filter: ({ entry }) => {
+					if (!entry.isFile()) return true;
+					const name = entry.name.toLowerCase();
+					if (name === 'build.js') return false;
+					if (name === 'template.html') return false;
+					if (name === 'index.html') return false;
+					if (name.endsWith('.md')) return false;
+					return true;
+				}
+			});
+		} else {
+			await copyDirRecursive(sourceDir, destDir);
+		}
 
 		const indexPath = path.join(destDir, 'index.html');
 		try {

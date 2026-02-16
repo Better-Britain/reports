@@ -88,6 +88,14 @@
       "sourceDir": "site/assets/microsites/woke-vs-antiwoke",
       "title": "Woke vs Anti-woke",
       "description": "A deliberately blunt “normal vs extreme” vibe check: pick framings, see failure modes, and find where you actually sit."
+    },
+    {
+      "id": "labour-screw-ups",
+      "slug": "labour-screw-ups",
+      "publicPath": "/labour-screw-ups/",
+      "sourceDir": "site/assets/microsites/labour-screw-ups",
+      "title": "Labour screw-ups",
+      "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — with a grouped view."
     }
   ]
 }
