@@ -320,18 +320,14 @@ function buildContent({ title, entries }) {
     ${stateList.length ? `<span class="filtersLabel">State:</span>` : ''}
     ${stateList.map(({ state, n }) => `<button class="chip" type="button" data-role="filter" data-filter="state:${escapeHtml(state)}" aria-pressed="false">${escapeHtml(state)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
     ${categoryList.length ? `
-    <details class="filtersMore">
-      <summary>Categories (${escapeHtml(categoryList.length)})</summary>
-      <div class="filtersMoreBody">
-        <label class="filtersSearch">
-          <span>Search</span>
-          <input type="search" placeholder="e.g. standards, vetting…" data-role="category-search" />
-        </label>
-        <div class="filtersGrid" data-role="category-list">
-          ${categoryList.map(({ category, n }) => `<button class="chip" type="button" data-role="filter" data-filter="category:${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-        </div>
-      </div>
-    </details>` : ''}
+    <span class="filtersLabel filtersLabel--block">Category:</span>
+    <label class="filtersSearch filtersSearch--inline">
+      <span>Search</span>
+      <input type="search" placeholder="e.g. justice, protest…" data-role="category-search" />
+    </label>
+    <div class="filtersGrid" data-role="category-list">
+      ${categoryList.map(({ category, n }) => `<button class="chip" type="button" data-role="filter" data-filter="category:${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+    </div>` : ''}
   </div>
 </header>
 
