@@ -39,6 +39,7 @@ const SERIES_META = [
 // --- “Here’s what you could have won” prize board
 const UK_HOUSEHOLDS = 28_500_000;
 const BUS_WEEK_GBP = 350_000_000;
+const RECEIPTS_BN_DEFAULT = 75; // midpoint of the “£65–£90bn/year” range in the notes
 
 const PRIZES = [
   {
@@ -117,10 +118,7 @@ const ui = {
   chartLegend: el("chartLegend"),
 
   // Controls
-  receiptsBn: el("receiptsBn"),
   receiptsReadout: el("receiptsReadout"),
-  receiptsMinReadout: el("receiptsMinReadout"),
-  receiptsMaxReadout: el("receiptsMaxReadout"),
 
   treasuryWeeklyReadout: el("treasuryWeeklyReadout"),
   busWeeksReadout: el("busWeeksReadout"),
@@ -169,7 +167,7 @@ function fmtWeekSignedFromPerYear(perYearGbp) {
 
 function getState() {
   return {
-    receiptsBn: parseFloat(ui.receiptsBn.value),
+    receiptsBn: RECEIPTS_BN_DEFAULT,
     taxToGdp: parseFloat(ui.taxToGdp.value) / 100,
     nhsShare: parseFloat(ui.nhsShare.value) / 100,
     cycleFactor: parseFloat(ui.cycleFactor.value),
@@ -428,9 +426,7 @@ function renderCounter(nowMs, state, scaled) {
 }
 
 function renderControls(state) {
-  ui.receiptsMinReadout.textContent = "£65Bn";
-  ui.receiptsMaxReadout.textContent = "£90Bn";
-  ui.receiptsReadout.textContent = fmtBn1(state.receiptsBn) + " / year";
+  ui.receiptsReadout.textContent = "~" + fmtBn1(state.receiptsBn) + "/yr";
 
   ui.taxToGdpReadout.textContent = Math.round(state.taxToGdp * 100) + "%";
   ui.nhsShareReadout.textContent = Math.round(state.nhsShare * 100) + "%";
@@ -566,7 +562,12 @@ function renderTick(nowMs) {
 }
 
 function tick(nowMs) {
-  renderTick(nowMs);
+  // requestAnimationFrame provides a monotonic timestamp (not epoch ms).
+  // Convert to epoch so our Date math works.
+  const epochMs = typeof performance !== "undefined" && Number.isFinite(performance.timeOrigin)
+    ? performance.timeOrigin + nowMs
+    : Date.now();
+  renderTick(epochMs);
   if (prefersReducedMotion()) {
     setTimeout(() => requestAnimationFrame(tick), 250);
   } else {
@@ -599,7 +600,6 @@ function wire() {
   });
 
   const inputs = [
-    ui.receiptsBn,
     ui.taxToGdp,
     ui.nhsShare,
     ui.cycleFactor,
@@ -618,4 +618,5 @@ function wire() {
 }
 
 wire();
+renderStatic(Date.now());
 requestAnimationFrame(tick);

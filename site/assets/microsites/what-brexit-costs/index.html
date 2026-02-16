@@ -74,24 +74,55 @@
       </div>
     </section>
 
-    <section class="controlsDock" aria-label="Controls">
+    <section class="fine fineSingle" aria-label="Real-world effects">
       <div class="panel panelWide">
-        <h3>What’s the weekly “bus reality”?</h3>
+        <h3>Here’s what you could have won</h3>
         <p>
-          The headline here isn’t “we pay the EU”. It’s the bit we don’t have: lost receipts and lost output, year after year.
-          Set the Treasury shortfall you think is fair, then see what it means per week — and what share that implies for the NHS if spending shares stay roughly proportional.
-          If you’re blaming immigrants because you think they’re “expensive”, sanity-check the scale: even a maximally uncharitable “immigration cost” framing lands in single‑digit billions per year, not tens of billions.
+          Take the selected Treasury shortfall, apply the optional “money cycles” factor, and translate it into rough “prize” estimates.
+          Think of these as <strong>per-year</strong> outputs on an <strong>average since 2016</strong> basis: a bit of everything, spread evenly, shown in human-scale buckets.
         </p>
 
-        <div class="switchSet">
-          <p class="switchHeading">Treasury receipts shortfall (annual)</p>
-          <div class="primaryValue" id="receiptsReadout">£75.0Bn / year</div>
-          <div class="row">
-            <div class="label">Range used here</div>
-            <div class="value"><span id="receiptsMinReadout">£65Bn</span> → <span id="receiptsMaxReadout">£90Bn</span></div>
+        <div class="kpiRow kpiRow3">
+          <div class="kpi">
+            <div class="k">Usable tax cash (total since 2016)</div>
+            <div class="v" id="usableTaxReadout">£77.5Bn</div>
           </div>
-          <input id="receiptsBn" type="range" min="65" max="90" step="0.5" value="75" />
+          <div class="kpi">
+            <div class="k">Average per week (since 2016)</div>
+            <div class="v" id="usableTaxWeeklyReadout">£1.49Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">Per household (avg weekly)</div>
+            <div class="v" id="householdWeeklyReadout">£0</div>
+          </div>
         </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Prizes (split evenly)</p>
+          <p class="switchHelp">
+            Bullseye-style: each prize below gets the same slice of the pot, so it’s not “all nurses” or “all roads” — it’s a bit of everything.
+          </p>
+          <div class="prizeMeta">
+            <div class="prizeMetaItem">
+              <div class="k">Prizes</div>
+              <div class="v" id="prizeCountReadout">0</div>
+            </div>
+            <div class="prizeMetaItem">
+              <div class="k">Avg share per prize</div>
+              <div class="v" id="prizeShareReadout">£0</div>
+            </div>
+          </div>
+          <div class="prizeBoard" id="prizeBoard" aria-label="Bullseye prize board"></div>
+        </div>
+      </div>
+
+      <div class="panel panelWide" aria-label="Brexit bus reality panel">
+        <h3>The weekly “bus reality”</h3>
+        <p>
+          The headline here isn’t “we pay the EU”. It’s the bit we don’t have: lost receipts and lost output, year after year.
+          Using a Treasury receipts shortfall of <span id="receiptsReadout">~£75Bn/yr</span> <span class="muted">(±£12.5Bn; sensible range: £65–£90Bn)</span>,
+          here’s what that looks like per week — and what share that implies for the NHS if spending shares stay roughly proportional.
+        </p>
 
         <div class="kpiRow kpiRow3">
           <div class="kpi">
@@ -148,7 +179,7 @@
 
             <div class="advItem">
               <p class="switchHeading">“Money cycles” factor</p>
-              <p class="switchHelp">Optional storytelling knob for the “what it could have bought” section (1.00 = direct receipts only).</p>
+              <p class="switchHelp">Optional storytelling knob for the prize board (1.00 = direct receipts only).</p>
               <div class="primaryValue" id="cycleReadout">1.40×</div>
               <input id="cycleFactor" type="range" min="1" max="1.8" step="0.05" value="1.4" />
               <div class="rangeMeta">
@@ -160,67 +191,29 @@
           </div>
         </details>
       </div>
-    </section>
 
-    <section class="fine fineSingle" aria-label="Where the cost shows up">
-      <div class="panel panelWide">
-        <h3>Where the cost shows up (and why it feels like “no money”)</h3>
+      <div class="panel panelWide" aria-label="Where the cost shows up (sourced)">
+        <h3>Where the cost shows up</h3>
         <p>
-          The “tab” isn’t a pile of banknotes in Brussels. It’s deadweight loss, lower investment, and a bunch of friction that turns normal economic activity into overhead.
+          The “tab” isn’t a pile of banknotes in Brussels. It shows up as deadweight loss, lower investment, and friction that turns normal economic activity into overhead.
           Some of the leak is obvious; some of it is political opportunity.
         </p>
         <ul class="compareBullets">
           <li><strong>Real-income hit:</strong> sterling drop → higher import prices → squeezed living standards.</li>
           <li><strong>Investment hole:</strong> less kit, less productivity, weaker future wages.</li>
           <li><strong>Trade/admin friction:</strong> paperwork and border processes as a permanent tax on SMEs and exporters.</li>
-          <li><strong>Leakage:</strong> exception‑politics procurement and chaos‑as‑invoices dynamics (harder to measure cleanly, but the mechanism is real).</li>
+          <li><strong>Leakage:</strong> procurement/contracting and “intermediaries” ecosystems that grow around new friction.</li>
         </ul>
-        <p class="muted">
-          The chart is a deliberately simple “shape of the problem” model: annual impacts plus a cumulative line that crosses the psychological threshold and then keeps climbing.
-        </p>
-      </div>
-    </section>
-
-    <section class="fine fineSingle" aria-label="Real-world effects">
-      <div class="panel panelWide">
-        <h3>Here’s what you could have won</h3>
-        <p>
-          Take the selected Treasury shortfall, apply the optional “money cycles” factor, and translate it into rough “prize” estimates.
-          Think of these as <strong>per-year</strong> outputs on an <strong>average since 2016</strong> basis: a bit of everything, spread evenly, shown in human-scale buckets.
-        </p>
-
-        <div class="kpiRow kpiRow3">
-          <div class="kpi">
-            <div class="k">Usable tax cash (total since 2016)</div>
-            <div class="v" id="usableTaxReadout">£77.5Bn</div>
-          </div>
-          <div class="kpi">
-            <div class="k">Average per week (since 2016)</div>
-            <div class="v" id="usableTaxWeeklyReadout">£1.49Bn</div>
-          </div>
-          <div class="kpi">
-            <div class="k">Per household (avg weekly)</div>
-            <div class="v" id="householdWeeklyReadout">£0</div>
-          </div>
-        </div>
-
-        <div class="switchSet">
-          <p class="switchHeading">Prizes (split evenly)</p>
-          <p class="switchHelp">
-            Bullseye-style: each prize below gets the same slice of the pot, so it’s not “all nurses” or “all roads” — it’s a bit of everything.
-          </p>
-          <div class="prizeMeta">
-            <div class="prizeMetaItem">
-              <div class="k">Prizes</div>
-              <div class="v" id="prizeCountReadout">0</div>
-            </div>
-            <div class="prizeMetaItem">
-              <div class="k">Avg share per prize</div>
-              <div class="v" id="prizeShareReadout">£0</div>
-            </div>
-          </div>
-          <div class="prizeBoard" id="prizeBoard" aria-label="Bullseye prize board"></div>
-        </div>
+        <p class="switchHeading">Key sources</p>
+        <ul class="compareBullets">
+          <li><a href="https://ukandeu.ac.uk/brexits-impact-on-the-uk-economy/" target="_blank" rel="noopener">UK in a Changing Europe — Brexit’s impact on the UK economy</a> (6–8% GDP per capita shortfall estimate by 2025)</li>
+          <li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/timeseries/bktl/pn2" target="_blank" rel="noopener">ONS — annual nominal GDP series</a> (baseline GDP path)</li>
+          <li><a href="https://commonslibrary.parliament.uk/research-briefings/sn02783/" target="_blank" rel="noopener">House of Commons Library — GDP figures</a> (context for “£bn/year” scale)</li>
+          <li><a href="https://obr.uk/box/how-are-our-brexit-trade-forecast-assumptions-performing/" target="_blank" rel="noopener">OBR — Brexit trade assumption performance</a> (trade volumes + productivity drag framing)</li>
+          <li><a href="https://ifs.org.uk/articles/fall-sterling-who-hit-rise-inflation" target="_blank" rel="noopener">IFS — sterling fall and inflation</a> + <a href="https://cepr.org/voxeu/columns/brexit-vote-and-inflation-updated-evidence" target="_blank" rel="noopener">CEPR/VoxEU — Brexit depreciation &amp; prices</a> (import-price pass-through)</li>
+          <li><a href="https://www.gov.uk/government/publications/estimating-the-customs-administrative-burden-of-2022-declarations/estimating-the-administrative-burden-of-2022-import-and-export-customs-declarations-for-trade-between-great-britain-and-the-european-union-executive" target="_blank" rel="noopener">GOV.UK — customs administrative burden</a> (friction and compliance costs)</li>
+          <li><a href="https://publications.parliament.uk/pa/cm5803/cmselect/cmpubacc/260/report.html" target="_blank" rel="noopener">Public Accounts Committee — PPE procurement</a> + <a href="https://www.nao.org.uk/wp-content/uploads/2022/03/Investigation-into-the-management-of-PPE-contracts.pdf" target="_blank" rel="noopener">NAO — PPE contracts</a> (procurement risk + waste dynamics)</li>
+        </ul>
       </div>
 
       <div class="panel panelWide finalCta" aria-label="Wrap-up">
