@@ -68,7 +68,7 @@
 
 33. [Gov | Leadership | Starmer] Government agreed to release Mandelson-appointment documents to the Intelligence and Security Committee. ([Reuters](https://www.reuters.com/world/uk/uks-starmer-says-mandelson-repeatedly-lied-about-epstein-regrets-appointing-him-2026-02-04/)) <!--meta date=2026-02-04 precision=day sort=2026-02-04-->
 
-34. [Gov | Leadership | Starmer] Starmer faced resignation calls from within Labour during the fallout. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmers-communications-director-quits-2026-02-09/)) <!--meta date=2026-02-09 precision=day sort=2026-02-09-->
+34. [Gov | Leadership | Starmer] Starmer faced resignation calls from within Labour during the Mandelson/Epstein appointment fallout. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmers-communications-director-quits-2026-02-09/)) <!--meta date=2026-02-09 precision=day sort=2026-02-09-->
 
 35. [Gov | Leadership | Starmer] Reuters framed the saga as a leadership-weakening “nightmare” of Starmer’s own making. ([Reuters](https://www.reuters.com/world/europe/once-feted-mandelson-becomes-nightmare-weakened-uk-pm-starmer-2026-02-05/)) <!--meta date=2026-02-05 precision=day sort=2026-02-05-->
 
@@ -77,34 +77,34 @@
 37. [Gov | Justice | Economy] High Court ruled the proscription unlawful (Feb 13, 2026). ([Reuters](https://www.reuters.com/business/aerospace-defense/uk-terror-ban-pro-palestine-group-unlawful-court-rules-after-appeal-2026-02-13/)) <!--meta date=2026-02-13 precision=day sort=2026-02-13-->
     - Court reversal: **Palestine Action proscription**: High Court ruled the ban unlawful; arrests/enforcement paused while government pursues appeal. *State: reversed-by-court / legally unstable.* ([Garden Court Chambers](https://gardencourtchambers.co.uk/high-court-rules-proscription-of-palestine-action-unlawful/))
 
-38. [Gov | Justice | Housing] Met paused arrests for “support” offences after the ruling, exposing enforcement chaos. ([The Guardian](https://www.theguardian.com/uk-news/live/2026/feb/13/high-court-to-rule-on-lawfulness-of-home-offices-decision-to-proscribe-palestine-action-live)) <!--meta date=2026-02-13 precision=day sort=2026-02-13-->
+38. [Gov | Justice | Housing] Met Police paused arrests for “support” offences after the High Court ruling against the Palestine Action proscription, exposing enforcement chaos. ([The Guardian](https://www.theguardian.com/uk-news/live/2026/feb/13/high-court-to-rule-on-lawfulness-of-home-offices-decision-to-proscribe-palestine-action-live)) <!--meta date=2026-02-13 precision=day sort=2026-02-13-->
 
-39. [Gov] Government said it would appeal, leaving arrested/charged people in limbo. ([The Guardian](https://www.theguardian.com/world/2026/feb/16/monday-briefing-how-did-the-government-get-it-so-wrong-on-palestine-action)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
+39. [Gov] Government said it would appeal the High Court proscription ruling, leaving arrested/charged people in limbo. ([The Guardian](https://www.theguardian.com/world/2026/feb/16/monday-briefing-how-did-the-government-get-it-so-wrong-on-palestine-action)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
 
-40. [Gov] The ban triggered mass civil-disobedience arrests before being struck down as unlawful. ([The Guardian](https://www.theguardian.com/world/2026/feb/16/monday-briefing-how-did-the-government-get-it-so-wrong-on-palestine-action)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
+40. [Gov] The Palestine Action proscription ban triggered mass civil-disobedience arrests before being struck down as unlawful. ([The Guardian](https://www.theguardian.com/world/2026/feb/16/monday-briefing-how-did-the-government-get-it-so-wrong-on-palestine-action)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
 
 41. [Gov | Justice] Launched the Hillsborough Law bill with big “duty of candour” rhetoric (Sept 2025). ([GOV.UK](https://www.gov.uk/government/news/hillsborough-law-to-ensure-truth-never-concealed-by-state-again)) <!--meta date=2025-09 precision=month sort=2025-09-01-->
 
-42. [Gov | Justice] Tried to insert a security-service carve-out that campaigners said undermined the law’s purpose. ([Reuters](https://www.reuters.com/world/uk/uk-pauses-hillsborough-transparency-law-after-row-over-exemptions-spies-2026-01-19/)) <!--meta date=2026-01-19 precision=day sort=2026-01-19-->
+42. [Gov | Justice] Tried to insert a security-service carve-out into the Hillsborough Law bill that campaigners said undermined the law’s purpose. ([Reuters](https://www.reuters.com/world/uk/uk-pauses-hillsborough-transparency-law-after-row-over-exemptions-spies-2026-01-19/)) <!--meta date=2026-01-19 precision=day sort=2026-01-19-->
 
 43. [Gov | Justice | Media] Pulled the amendment only after backlash from mayors/MPs/families. ([ITVX](https://www.itv.com/news/2026-01-18/hillsborough-amendment-pulled-after-concerns-government-was-watering-down-bill)) <!--meta date=2026-01-18 precision=day sort=2026-01-18-->
     - **Hillsborough Law carve-out for security services**: they tried to write in an opt-out; after the backlash they pulled the amendment. *State: mitigated (design fixed, bill still bruised).* ([ITVX](https://www.itv.com/news/2026-01-18/hillsborough-amendment-pulled-after-concerns-government-was-watering-down-bill))
 
-44. [Gov | Justice] Postponed the Commons vote/third reading until “agreement”, turning a promise into drift. ([Reuters](https://www.reuters.com/world/uk/uk-pauses-hillsborough-transparency-law-after-row-over-exemptions-spies-2026-01-19/)) <!--meta date=2026-01-19 precision=day sort=2026-01-19-->
+44. [Gov | Justice] Postponed the Commons vote/third reading on the Hillsborough Law bill until “agreement”, turning a promise into drift. ([Reuters](https://www.reuters.com/world/uk/uk-pauses-hillsborough-transparency-law-after-row-over-exemptions-spies-2026-01-19/)) <!--meta date=2026-01-19 precision=day sort=2026-01-19-->
     - **Hillsborough Law timetable**: after the same row, they paused/delayed the bill to rework it. *State: stalled/variable (nothing “fixed” until the reworked text lands).* ([Public Law Project](https://publiclawproject.org.uk/latest/the-hillsborough-law-honesty-transparency-and-public-law/))
 
-45. [Gov | Justice] Admitted the bill was stuck in wrangling over national-security exemptions and scope. ([The Guardian](https://www.theguardian.com/law/2026/jan/13/hillsborough-law-delayed-security-services-concerns)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
+45. [Gov | Justice] Admitted the Hillsborough Law bill was stuck in wrangling over national-security exemptions and scope. ([The Guardian](https://www.theguardian.com/law/2026/jan/13/hillsborough-law-delayed-security-services-concerns)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
 
 46. [Gov] Announced only “new local inquiries” on grooming gangs after pressure, not a statutory probe. ([Reuters](https://www.reuters.com/world/uk/britain-back-new-local-inquiries-into-child-sexual-abuse-2025-01-16/)) <!--meta date=2025-01-16 precision=day sort=2025-01-16-->
 
-47. [Gov | Leadership | Starmer] Then U-turned and agreed to a national statutory inquiry (Jun 2025). ([Reuters](https://www.reuters.com/world/uk/britains-starmer-there-will-be-national-inquiry-into-grooming-gangs-2025-06-14/)) <!--meta date=2025-06 precision=month sort=2025-06-01-->
+47. [Gov | Leadership | Starmer] U-turned on the grooming gangs inquiry and agreed to a national statutory inquiry (Jun 2025). ([Reuters](https://www.reuters.com/world/uk/britains-starmer-there-will-be-national-inquiry-into-grooming-gangs-2025-06-14/)) <!--meta date=2025-06 precision=month sort=2025-06-01-->
     - **Grooming gangs inquiry stance**: moved from resisting/limiting the idea to announcing a statutory national inquiry. *State: rectified (politically), but late and reactive.* ([Institute for Government](https://www.instituteforgovernment.org.uk/comment/grooming-inquiry-disagreements))
 
-48. [Gov] Asked the National Crime Agency to chase historic cases, underlining earlier inertia. ([Reuters](https://www.reuters.com/world/uk/uks-national-crime-agency-asked-investigate-grooming-gang-cases-2025-06-15/)) <!--meta date=2025-06-15 precision=day sort=2025-06-15-->
+48. [Gov] Asked the National Crime Agency to chase historic grooming-gang cases, underlining earlier inertia. ([Reuters](https://www.reuters.com/world/uk/uks-national-crime-agency-asked-investigate-grooming-gang-cases-2025-06-15/)) <!--meta date=2025-06-15 precision=day sort=2025-06-15-->
 
-49. [Gov] Took until Dec 2025 to appoint an inquiry chair/panel and publish draft terms. ([GOV.UK](https://www.gov.uk/government/collections/independent-inquiry-into-grooming-gangs)) <!--meta date=2025-12 precision=month sort=2025-12-01-->
+49. [Gov] Took until Dec 2025 to appoint a grooming-gangs inquiry chair/panel and publish draft terms. ([GOV.UK](https://www.gov.uk/government/collections/independent-inquiry-into-grooming-gangs)) <!--meta date=2025-12 precision=month sort=2025-12-01-->
 
-50. [Gov] Faced criticism over delays and scope even after committing to the inquiry. ([Sky News](https://news.sky.com/story/grooming-gangs-inquiry-must-leave-no-stone-unturned-kemi-badenoch-tells-government-13480967)) ([The Guardian (2025-12-08)](https://www.theguardian.com/society/2025/dec/08/grooming-gangs-inquiry-labour-government-kemi-badenoch)) <!--meta date=2025-12-08 precision=day sort=2025-12-08-->
+50. [Gov] Faced criticism over delays and scope even after committing to the grooming-gangs inquiry. ([Sky News](https://news.sky.com/story/grooming-gangs-inquiry-must-leave-no-stone-unturned-kemi-badenoch-tells-government-13480967)) ([The Guardian (2025-12-08)](https://www.theguardian.com/society/2025/dec/08/grooming-gangs-inquiry-labour-government-kemi-badenoch)) <!--meta date=2025-12-08 precision=day sort=2025-12-08-->
 
 51. [Gov | Leadership | Immigration | Digital rights | Starmer] Announced mandatory digital ID cards for all adults as an immigration measure (Sept 2025). ([Reuters](https://www.reuters.com/world/uk/uk-leader-starmer-announce-digital-id-card-plans-media-reports-say-2025-09-25/)) <!--meta date=2025-09 precision=month sort=2025-09-01-->
 
@@ -113,12 +113,12 @@
 53. [Gov | Digital rights] Dropped the “mandatory” requirement for workers in another U-turn (Jan 2026). ([Reuters](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01 precision=month sort=2026-01-01-->
     - **Mandatory digital ID “to work” requirement**: the hard mandate was dropped/blurred so it wasn’t “digital ID or you can’t work”. *State: rectified-ish (core coercion reduced).* ([Full Fact](https://fullfact.org/technology/digital-id-government-proposal-changes/))
 
-54. [Gov] Shifted to optional IDs alongside passports/visas, conceding civil-liberties criticism. ([AP News](https://apnews.com/article/6fad47dc1e4e0de79606e6ac4c73046e)) ([Reuters (2026-01-13)](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
+54. [Gov] Shifted the digital ID plan to optional IDs alongside passports/visas, conceding civil-liberties criticism. ([AP News](https://apnews.com/article/6fad47dc1e4e0de79606e6ac4c73046e)) ([Reuters (2026-01-13)](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
 
 55. [Gov | Justice | Digital rights] Kicked the “optional” scheme out to 2029 after staking political capital on compulsion. ([Reuters](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
     - **Digital ID rollout posture**: shifted to “right-to-work checks digital by 2029, but digital ID itself optional / other digital proofs accepted”. *State: mitigated (less intrusive), credibility hit remains.* ([Pinsent Masons](https://www.pinsentmasons.com/out-law/news/uk-scales-back-digital-id-right-work))
 
-56. [Gov | Media] Sparked a Commons Library briefing scramble amid policy churn and inconsistent messaging. ([Research Briefings](https://researchbriefings.files.parliament.uk/documents/CBP-10369/CBP-10369.pdf)) ([Reuters (2025-09-26)](https://www.reuters.com/world/uk/britain-introduce-mandatory-digital-id-cards-2025-09-26/)) <!--meta date=2025-09-26 precision=day sort=2025-09-26-->
+56. [Gov | Media] Sparked a Commons Library briefing scramble on the digital ID plan amid policy churn and inconsistent messaging. ([Research Briefings](https://researchbriefings.files.parliament.uk/documents/CBP-10369/CBP-10369.pdf)) ([Reuters (2025-09-26)](https://www.reuters.com/world/uk/britain-introduce-mandatory-digital-id-cards-2025-09-26/)) <!--meta date=2025-09-26 precision=day sort=2025-09-26-->
 
 57. [Gov | Welfare] Announced >£5bn welfare cuts by 2029/30, provoking internal unrest. ([Reuters](https://www.reuters.com/world/uk/uk-cut-welfare-payments-bid-address-spiralling-costs-2025-03-18/)) <!--meta date=2025-03-18 precision=day sort=2025-03-18-->
 
@@ -127,7 +127,7 @@
 59. [Gov | Leadership | Welfare | Starmer] Offered concessions (limiting cuts to new claimants) to head off the rebellion. ([Reuters](https://www.reuters.com/world/uk/uks-starmer-offers-concessions-welfare-cuts-quell-labour-revolt-2025-06-26/)) <!--meta date=2025-06-26 precision=day sort=2025-06-26-->
     - **Welfare cuts**: scaled back the package after internal revolt pressure (notably narrowing who would be hit). *State: mitigated (harm reduced), but it’s still the same fight resurfacing.* ([Financial Times](https://www.ft.com/content/d7504206-24b6-45ef-96ec-007726e95549))
 
-60. [Gov | Welfare | Leadership | Starmer] Still forced the bill through amid visible damage to authority and party unity. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmer-wins-vote-parliament-welfare-reform-2025-07-01/)) <!--meta date=2025-07-01 precision=day sort=2025-07-01-->
+60. [Gov | Welfare | Leadership | Starmer] Forced the welfare reform bill through amid visible damage to authority and party unity. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmer-wins-vote-parliament-welfare-reform-2025-07-01/)) <!--meta date=2025-07-01 precision=day sort=2025-07-01-->
 
 61. [Gov | Leadership | Welfare | Starmer] Suspended multiple Labour MPs for rebelling over the two-child benefit cap. ([Sky News](https://news.sky.com/story/labour-suspend-seven-mps-who-rebelled-over-two-child-benefit-cap-13183879)) ([The Guardian (2024-07-23)](https://www.theguardian.com/politics/2024/jul/23/labour-suspends-mps-rebelled-starmer-two-child-benefit-cap)) <!--meta date=2024-07-23 precision=day sort=2024-07-23-->
 
@@ -139,11 +139,11 @@
 
 65. [Gov | Leadership | Welfare | Starmer] Took the welfare fight into a high-stakes Commons showdown with sustained internal opposition. ([Reuters](https://www.reuters.com/world/uk/labour-lawmakers-threaten-uk-pm-starmer-with-revolt-over-welfare-reforms-2025-06-24/)) <!--meta date=2025-06-24 precision=day sort=2025-06-24-->
 
-66. [Gov | Welfare] This welfare cluster became part of the broader “series of U-turns” story line. ([Reuters](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
+66. [Gov | Welfare] The welfare-reform row became part of the broader “series of U-turns” story line. ([Reuters](https://www.reuters.com/world/uk/uk-drops-plans-mandatory-digital-id-workers-latest-u-turn-media-reports-2026-01-13/)) <!--meta date=2026-01-13 precision=day sort=2026-01-13-->
 
 67. [Gov | Leadership | Welfare | Media | Starmer] Cut/means-tested winter fuel payments, sparking backlash from Labour MPs and unions. ([Reuters](https://www.reuters.com/world/uk/uks-starmer-says-more-pensioners-should-be-eligible-winter-fuel-payments-2025-05-21/)) <!--meta date=2025-05-21 precision=day sort=2025-05-21-->
 
-68. [Gov | Leadership | Welfare | Starmer] Starmer signalled a U-turn by widening eligibility after months of refusing to budge. ([Reuters](https://www.reuters.com/world/uk/uks-starmer-says-more-pensioners-should-be-eligible-winter-fuel-payments-2025-05-21/)) <!--meta date=2025-05-21 precision=day sort=2025-05-21-->
+68. [Gov | Leadership | Welfare | Starmer] Starmer signalled a winter-fuel U-turn by widening eligibility after months of refusing to budge. ([Reuters](https://www.reuters.com/world/uk/uks-starmer-says-more-pensioners-should-be-eligible-winter-fuel-payments-2025-05-21/)) <!--meta date=2025-05-21 precision=day sort=2025-05-21-->
     - **Winter fuel payments (the “we’re changing this” phase)**: signalled/confirmed a climbdown after the cut became politically toxic. *State: mitigated (direction changed), but messy.* ([The Guardian](https://www.theguardian.com/society/2025/may/21/keir-starmer-confirms-u-turn-on-winter-fuel-payment-cuts))
 
 69. [Gov | Welfare | Economy] Treasury confirmed the U-turn: restored payments to millions; £1.25bn cost. ([Reuters](https://www.reuters.com/world/uk/uk-restore-winter-fuel-payments-millions-pensioners-major-u-turn-2025-06-09/)) <!--meta date=2025-06-09 precision=day sort=2025-06-09-->
@@ -153,9 +153,9 @@
 
 71. [Gov | Justice] Told WASPI campaigners it would “reconsider” compensation with a hard deadline. ([Yahoo Finance UK](https://uk.finance.yahoo.com/news/waspi-women-government-agreed-reconsider-173102331.html)) ([WASPI (2025-12-02)](https://www.waspi.co.uk/legal-update-2-december-2025-waspi-judicial-review-withdrawn/)) ([ITV News (2025-11-11)](https://www.itv.com/news/2025-11-11/waspi-women-delay-compensation-bid-after-government-responds-to-legal-challenge)) <!--meta date=2025-12-02 precision=day sort=2025-12-02-->
 
-72. [Gov | Welfare] Reconfirmed “no compensation” in the new decision, angering campaigners again. ([The Guardian](https://www.theguardian.com/money/2026/jan/29/waspi-women-again-denied-state-pension-compensation)) <!--meta date=2026-01-29 precision=day sort=2026-01-29-->
+72. [Gov | Welfare] Reconfirmed “no WASPI compensation” in the new decision, angering campaigners again. ([The Guardian](https://www.theguardian.com/money/2026/jan/29/waspi-women-again-denied-state-pension-compensation)) <!--meta date=2026-01-29 precision=day sort=2026-01-29-->
 
-73. [Gov] Left a vacuum long enough for fake “compensation” scams to proliferate. ([The Guardian](https://www.theguardian.com/money/2025/apr/27/waspi-women-fake-scam-compensation-websites)) <!--meta date=2025-04-27 precision=day sort=2025-04-27-->
+73. [Gov] Left a vacuum long enough for fake “WASPI compensation” scams to proliferate. ([The Guardian](https://www.theguardian.com/money/2025/apr/27/waspi-women-fake-scam-compensation-websites)) <!--meta date=2025-04-27 precision=day sort=2025-04-27-->
 
 74. [Gov] Reeves raised employers’ National Insurance to 15% from April as a flagship revenue-raiser. ([Reuters](https://www.reuters.com/world/uk/uks-reeves-raises-employers-national-insurance-contributions-2024-10-30/)) <!--meta date=2024-10-30 precision=day sort=2024-10-30-->
 
@@ -177,12 +177,12 @@
 
 83. [Gov | Protest rights | Economy] Insisted there would be “no U-turn” on the farm tax during early protests. ([Reuters](https://www.reuters.com/world/uk/tractors-block-central-london-streets-farmers-protest-tax-change-2024-12-11/)) <!--meta date=2024-12-11 precision=day sort=2024-12-11-->
 
-84. [Gov | Economy | Media] Then softened the policy by raising thresholds after months of protests. ([Reuters](https://www.reuters.com/world/uk/uk-raise-tax-threshold-farmers-businesses-after-backlash-2025-12-23/)) <!--meta date=2025-12-23 precision=day sort=2025-12-23-->
+84. [Gov | Economy | Media] Softened the farm/business inheritance-tax relief change by raising thresholds after months of protests. ([Reuters](https://www.reuters.com/world/uk/uk-raise-tax-threshold-farmers-businesses-after-backlash-2025-12-23/)) <!--meta date=2025-12-23 precision=day sort=2025-12-23-->
     - **Farm/business inheritance-tax relief threshold**: raised the threshold to £2.5m after sustained backlash/protests. *State: mitigated (most affected cases relieved), original policy judgement still the “wrong bit”.* ([GOV.UK](https://www.gov.uk/government/news/inheritance-tax-reliefs-threshold-to-rise-to-25m-for-farmers-and-businesses))
 
 85. [Gov | Protest rights | Economy] Farming protests repeatedly shut down central London as a visible political own-goal. ([Reuters](https://www.reuters.com/world/uk/british-farmers-protest-against-tractor-tax-london-2024-11-19/)) <!--meta date=2024-11-19 precision=day sort=2024-11-19-->
 
-86. [Gov | Economy | Media] Ended up doing damage-control comms on rural tax rather than landing a stable settlement. ([Reuters](https://www.reuters.com/world/uk/uk-raise-tax-threshold-farmers-businesses-after-backlash-2025-12-23/)) <!--meta date=2025-12-23 precision=day sort=2025-12-23-->
+86. [Gov | Economy | Media] Ended up doing damage-control comms on the farm inheritance-tax change (“tractor tax”) rather than landing a stable settlement. ([Reuters](https://www.reuters.com/world/uk/uk-raise-tax-threshold-farmers-businesses-after-backlash-2025-12-23/)) <!--meta date=2025-12-23 precision=day sort=2025-12-23-->
 
 87. [Gov | Economy] Watered down “day-one” unfair-dismissal protection to a 6-month qualifying period. ([Reuters](https://www.reuters.com/business/world-at-work/uk-government-softens-workers-rights-bill-after-business-pushback-2025-11-27/)) <!--meta date=2025-11-27 precision=day sort=2025-11-27-->
     - **“Day-one” unfair dismissal**: dropped the day-one pledge and settled on a 6-month qualifying period. *State: mitigated (business fear addressed), credibility hit + worker-promise dilution.* ([Acas](https://www.acas.org.uk/employment-rights-act-2025))
@@ -193,16 +193,16 @@
 
 90. [Gov | Economy] ACAS guidance now reflects the 6-month rule, locking in the broken “day-one” pledge. ([Acas](https://www.acas.org.uk/employment-rights-act-2025)) ([Reuters (2025-11-27)](https://www.reuters.com/business/world-at-work/uk-government-softens-workers-rights-bill-after-business-pushback-2025-11-27/)) <!--meta date=2025-11-27 precision=day sort=2025-11-27-->
 
-91. [Gov | Economy] CIPD survey: over a third of employers plan to cut hiring in response to the reforms. ([Reuters](https://www.reuters.com/business/world-at-work/uk-labour-reforms-cut-hiring-by-one-three-employers-survey-shows-2026-02-16/)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
+91. [Gov | Economy] CIPD survey: over a third of employers plan to cut hiring in response to Labour’s employment-rights reforms. ([Reuters](https://www.reuters.com/business/world-at-work/uk-labour-reforms-cut-hiring-by-one-three-employers-survey-shows-2026-02-16/)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
 
 92. [Gov | Economy] FT: MPs/union leaders called the dilution a manifesto breach and a capitulation to business. ([Financial Times](https://www.ft.com/content/e49450ee-15ef-4156-ab93-e5277cd0d681)) ([Reuters (2025-11-27)](https://www.reuters.com/business/world-at-work/uk-government-softens-workers-rights-bill-after-business-pushback-2025-11-27/)) <!--meta date=2025-11-27 precision=day sort=2025-11-27-->
 
-93. [Gov | Economy] Faced warnings business-rates changes would close pubs; signalled a climbdown. ([Reuters](https://www.reuters.com/business/retail-consumer/uk-expected-soften-business-rates-rise-pubs-2026-01-08/)) <!--meta date=2026-01-08 precision=day sort=2026-01-08-->
+93. [Gov | Economy] Faced warnings a business-rates rise for pubs would close venues; signalled a climbdown. ([Reuters](https://www.reuters.com/business/retail-consumer/uk-expected-soften-business-rates-rise-pubs-2026-01-08/)) <!--meta date=2026-01-08 precision=day sort=2026-01-08-->
 
 94. [Gov | Economy | Media] Announced a pubs support package (15% rates discount + freezes) after the backlash. ([Reuters](https://www.reuters.com/business/retail-consumer/uk-announces-support-package-help-pubs-survive-rising-taxes-2026-01-27/)) <!--meta date=2026-01-27 precision=day sort=2026-01-27-->
     - **Pub business rates shock**: after warnings about closures/jobs, they announced extra relief (discount + freezes). *State: mitigated (cost pressure reduced), but it’s basically patching the earlier hit.* ([ICAEW](https://www.icaew.com/insights/tax-news/2026/jan-2026/additional-business-rates-support-announced-for-pubs))
 
-95. [Gov | Economy] Commons Library briefing spells out the relief/caps after the government’s U-turn. ([House of Commons Library](https://commonslibrary.parliament.uk/research-briefings/cbp-10460/)) ([Reuters (2026-01-27)](https://www.reuters.com/business/retail-consumer/uk-announces-support-package-help-pubs-survive-rising-taxes-2026-01-27/)) <!--meta date=2026-01-27 precision=day sort=2026-01-27-->
+95. [Gov | Economy] Commons Library briefing spells out the pubs business-rates relief/caps after the government’s U-turn. ([House of Commons Library](https://commonslibrary.parliament.uk/research-briefings/cbp-10460/)) ([Reuters (2026-01-27)](https://www.reuters.com/business/retail-consumer/uk-announces-support-package-help-pubs-survive-rising-taxes-2026-01-27/)) <!--meta date=2026-01-27 precision=day sort=2026-01-27-->
 
 96. [Gov | Economy] Labour MPs publicly complained the pub-rates U-turn still didn’t go far enough. ([The Independent](https://www.independent.co.uk/news/uk/politics/pubs-business-rates-reeves-budget-b2908657.html)) ([Reuters (2026-01-27)](https://www.reuters.com/business/retail-consumer/uk-announces-support-package-help-pubs-survive-rising-taxes-2026-01-27/)) <!--meta date=2026-01-27 precision=day sort=2026-01-27-->
 
@@ -225,7 +225,7 @@
 
 105. **[Gov | Elections | Leadership]** Put Louise Haigh in cabinet, then had her resign after her fraud conviction resurfaced. ([Reuters](https://www.reuters.com/world/uk/uk-transport-minister-louise-haigh-resigns-sky-news-reports-2024-11-29/)) <!--meta date=2024-11-29 precision=day sort=2024-11-29-->
 
-106. **[Gov | Standards]** Took a reputational hit from the Haigh phone-fraud story right after promising “integrity”. ([Reuters](https://www.reuters.com/world/uk/uk-transport-minister-louise-haigh-resigns-sky-news-reports-2024-11-29/)) <!--meta date=2024-11-29 precision=day sort=2024-11-29-->
+106. **[Gov | Standards]** Took a reputational hit from Louise Haigh’s phone-fraud story right after promising “integrity”. ([Reuters](https://www.reuters.com/world/uk/uk-transport-minister-louise-haigh-resigns-sky-news-reports-2024-11-29/)) <!--meta date=2024-11-29 precision=day sort=2024-11-29-->
 
 107. **[Gov | Leadership]** Forced an urgent transport secretary replacement within hours of Haigh’s resignation. ([Reuters](https://www.reuters.com/world/uk/uk-transport-minister-louise-haigh-resigns-sky-news-reports-2024-11-29/)) <!--meta date=2024-11-29 precision=day sort=2024-11-29-->
 
@@ -233,7 +233,7 @@
 
 109. **[Gov | Standards]** Lost Siddiq anyway when she resigned over the reputational damage/conflict optics. ([Reuters](https://www.reuters.com/world/uk/uk-anti-corruption-minister-tulip-siddiq-resigns-2025-01-14/)) <!--meta date=2025-01-14 precision=day sort=2025-01-14-->
 
-110. **[Gov | Standards]** Had an ethics adviser say “no breach” but still flag serious reputational risk—exactly the sort of appointment that should’ve been avoided. ([Reuters](https://www.reuters.com/world/uk/uk-anti-corruption-minister-tulip-siddiq-resigns-2025-01-14/)) <!--meta date=2025-01-14 precision=day sort=2025-01-14-->
+110. **[Gov | Standards]** Had an ethics adviser say “no breach” over Tulip Siddiq but still flag serious reputational risk—exactly the sort of appointment that should’ve been avoided. ([Reuters](https://www.reuters.com/world/uk/uk-anti-corruption-minister-tulip-siddiq-resigns-2025-01-14/)) <!--meta date=2025-01-14 precision=day sort=2025-01-14-->
 
 111. **[Gov | Standards]** Made the “anti-corruption” brief itself look farcical by giving it to someone engulfed by corruption-linked reporting. ([Reuters](https://www.reuters.com/world/uk/uk-anti-corruption-minister-tulip-siddiq-resigns-2025-01-14/)) <!--meta date=2025-01-14 precision=day sort=2025-01-14-->
 
@@ -261,13 +261,13 @@
 
 123. **[Gov | Leadership | Starmer]** Let allies brief that Starmer would face down leadership bids and name possible challengers, then publicly distanced himself. ([Reuters](https://www.reuters.com/world/uk/talk-plan-replace-uk-pm-starmer-is-not-true-says-health-minister-2025-11-12/)) <!--meta date=2025-11-12 precision=day sort=2025-11-12-->
 
-124. **[Gov]** Reuters’ readout of that moment: authority shaken, rift deepened, and MPs complaining of “bunker mentality”. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmers-authority-shaken-rift-with-labour-lawmakers-deepens-2025-11-12/)) <!--meta date=2025-11-12 precision=day sort=2025-11-12-->
+124. **[Gov]** Reuters’ readout of the leadership-plot rumours moment: authority shaken, rift deepened, and MPs complaining of “bunker mentality”. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmers-authority-shaken-rift-with-labour-lawmakers-deepens-2025-11-12/)) <!--meta date=2025-11-12 precision=day sort=2025-11-12-->
 
 125. **[Gov | Justice]** Proposed cutting jury trials for many cases via judge-only courts—scrapping a historic right to tackle the backlog. ([Reuters](https://www.reuters.com/world/uk-justice-minister-plans-judge-only-courts-lower-level-cases-2025-12-02/)) <!--meta date=2025-12-02 precision=day sort=2025-12-02-->
 
 126. **[Gov | Leadership | Justice | Starmer]** Doubled down on the jury-trial change in the face of internal rebellion headlines. ([The Guardian](https://www.theguardian.com/law/2026/jan/28/starmer-indicates-not-u-turn-plan-jury-trials)) <!--meta date=2026-01-28 precision=day sort=2026-01-28-->
 
-127. **[Gov | Leadership | Justice | Starmer]** Warned the policy could worsen unfairness/miscarriages for Black and minority ethnic defendants (a predictable own-goal). ([The Guardian](https://www.theguardian.com/law/2025/nov/26/labour-plan-slash-jury-trials-keir-starmer-past-calls-expand)) <!--meta date=2025-11-26 precision=day sort=2025-11-26-->
+127. **[Gov | Leadership | Justice | Starmer]** Warned the plan to slash jury trials (expanding judge-only courts) could worsen unfairness/miscarriages for Black and minority ethnic defendants (a predictable own-goal). ([The Guardian](https://www.theguardian.com/law/2025/nov/26/labour-plan-slash-jury-trials-keir-starmer-past-calls-expand)) <!--meta date=2025-11-26 precision=day sort=2025-11-26-->
 
 128. **[Gov | Leadership | Justice | Elections | Starmer]** Floated SEND changes that sparked an organised campaign warning ministers not to strip children’s legal rights. ([The Guardian](https://www.theguardian.com/education/2026/jan/12/new-campaign-urges-starmer-not-to-diminish-legal-rights-of-send-children)) <!--meta date=2026-01-12 precision=day sort=2026-01-12-->
 
@@ -277,7 +277,7 @@
 
 131. **[Gov | Foreign policy]** Quietly pared back the promised China audit into something less critical to smooth a “reset”. ([Reuters](https://www.reuters.com/world/uk/britain-pares-back-secretive-china-strategy-review-seeking-closer-ties-2024-12-16/)) <!--meta date=2024-12-16 precision=day sort=2024-12-16-->
 
-132. **[Gov | Foreign policy]** Briefed as “early June”, then ended up being delivered to parliament late June (missed expectation). ([Reuters](https://www.reuters.com/world/uk/britains-audit-china-relations-be-released-june-sources-say-2025-05-16/)) <!--meta date=2025-05-16 precision=day sort=2025-05-16-->
+132. **[Gov | Foreign policy]** Briefed the China audit as “early June”, then ended up being delivered to parliament late June (missed expectation). ([Reuters](https://www.reuters.com/world/uk/britains-audit-china-relations-be-released-june-sources-say-2025-05-16/)) <!--meta date=2025-05-16 precision=day sort=2025-05-16-->
 
 133. **[Gov | Leadership | Foreign policy | Starmer]** Reuters reported Starmer declined to condemn the jailing of Hong Kong pro-democracy activists at the G20—looked like moral silence for access. ([Reuters](https://www.reuters.com/world/uk/britains-audit-china-relations-be-released-june-sources-say-2025-05-16/)) <!--meta date=2025-05-16 precision=day sort=2025-05-16-->
 
@@ -332,7 +332,7 @@
 
 157. **[Gov | Leadership]** Confirmed 91 prisoners freed in error since April 2025, with some still at large. ([The Guardian](https://www.theguardian.com/society/2025/nov/11/david-lammy-says-91-prisoners-freed-in-error-in-england-and-wales-since-april)) <!--meta date=2025-04 precision=month sort=2025-04-01-->
 
-158. **[Gov]** Had to announce stronger release checks + an independent review after the error spike. ([House of Commons Library](https://commonslibrary.parliament.uk/prisoners-released-in-error/)) ([Reuters (2025-11-06)](https://www.reuters.com/world/several-prisoners-mistakenly-released-uk-prisons-each-week-minister-says-2025-11-06/)) <!--meta date=2025-11-06 precision=day sort=2025-11-06-->
+158. **[Gov]** Had to announce stronger release checks + an independent review after the spike in prisoners released by mistake. ([House of Commons Library](https://commonslibrary.parliament.uk/prisoners-released-in-error/)) ([Reuters (2025-11-06)](https://www.reuters.com/world/several-prisoners-mistakenly-released-uk-prisons-each-week-minister-says-2025-11-06/)) <!--meta date=2025-11-06 precision=day sort=2025-11-06-->
 
 159. **[Gov | Justice]** Summoned prison chiefs to urgent meetings as wrongful releases became a rolling scandal. ([The Guardian](https://www.theguardian.com/society/2025/nov/06/england-prison-chiefs-meeting-ministers-wrongful-releases)) <!--meta date=2025-11-06 precision=day sort=2025-11-06-->
 
@@ -403,7 +403,7 @@
 
 191. **[Gov | Economy]** Employer survey: over a third plan to cut permanent hiring due to Labour’s employment-rights changes. ([Reuters](https://www.reuters.com/business/world-at-work/uk-labour-reforms-cut-hiring-by-one-three-employers-survey-shows-2026-02-16/)) <!--meta date=2026-02-16 precision=day sort=2026-02-16-->
 
-192. **[Gov | Economy | Foreign policy]** After building expectations, decided the China audit wouldn’t be published separately “in the national interest”. ([Reuters](https://www.reuters.com/business/aerospace-defense/uk-broaden-security-focus-set-5-defence-spending-target-2025-06-23/)) <!--meta date=2025-06-23 precision=day sort=2025-06-23-->
+192. **[Gov | Economy | Foreign policy]** After building expectations, decided the China relations audit wouldn’t be published separately “in the national interest”. ([Reuters](https://www.reuters.com/business/aerospace-defense/uk-broaden-security-focus-set-5-defence-spending-target-2025-06-23/)) <!--meta date=2025-06-23 precision=day sort=2025-06-23-->
 
 193. **[Gov]** Chief of staff Morgan McSweeney quit over the Mandelson–Epstein fallout, signalling inner-circle breakdown. ([Reuters](https://www.reuters.com/world/uk/uk-pm-starmers-chief-staff-morgan-mcsweeney-quits-sky-news-reports-2026-02-08/)) <!--meta date=2026-02-08 precision=day sort=2026-02-08-->
 

@@ -349,3 +349,18 @@ header.pageHead p{
 .detailsBody p{margin:8px 0}
 
 noscript{color:var(--muted)}
+
+.pageFoot{
+  margin-top:18px;
+  padding-top:14px;
+  border-top:2px solid var(--line);
+  font-size:14px;
+  color:var(--muted);
+}
+.pageFoot a{
+  color:var(--ink);
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:2px;
+}
+.pageFoot a:hover{text-decoration-thickness:3px}

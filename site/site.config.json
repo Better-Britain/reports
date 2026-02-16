@@ -95,7 +95,8 @@
       "publicPath": "/labour-screw-ups/",
       "sourceDir": "site/assets/microsites/labour-screw-ups",
       "title": "Labour screw-ups",
-      "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — with a grouped view."
+      "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — filterable by actor, category, state, and U-turn flags.",
+      "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
     }
   ]
 }

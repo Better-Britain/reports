@@ -310,7 +310,7 @@ function buildContent({ title, entries }) {
   <div class="metaRow">
     ${updated ? `<span>Updated: <time datetime="${escapeHtml(lastSort)}">${escapeHtml(updated)}</time></span>` : ''}
     <span data-role="showing">Showing: <strong data-role="showing-count">${escapeHtml(count)}</strong> / ${escapeHtml(count)}</span>
-    <span class="noJs"><noscript>JavaScript is off: grouped view is unavailable.</noscript></span>
+    <span class="noJs"><noscript>JavaScript is off: filters won’t work (the list still loads).</noscript></span>
   </div>
   <div class="filters" aria-label="Filters">
     <button class="chip chip--primary" type="button" data-role="filter" data-filter="all" aria-pressed="true">All <span class="chipCount">${escapeHtml(count)}</span></button>
@@ -332,6 +332,15 @@ function buildContent({ title, entries }) {
     ${renderEntries(entries)}
   </div>
 </section>
+
+<footer class="pageFoot" aria-label="Suggest updates">
+  <p>
+    Spotted something missing or wrong? Suggest an update to
+    <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/labour-screw-ups/Labour-Screw-Ups.md" target="_blank" rel="noopener noreferrer"><strong>Labour-Screw-Ups.md</strong></a>
+    (PRs/issues welcome).
+    <a href="https://github.com/Better-Britain/reports/edit/main/site/assets/microsites/labour-screw-ups/Labour-Screw-Ups.md" target="_blank" rel="noopener noreferrer">Suggest an edit</a>.
+  </p>
+</footer>
 `.trim();
 }
 
