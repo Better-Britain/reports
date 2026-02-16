@@ -64,17 +64,18 @@ function parseTagPrefix(mainLine) {
 }
 
 function splitTag(tagRaw) {
-  if (!tagRaw) return { group: 'Other', topic: '' };
+  if (!tagRaw) return { actor: 'Other', category: '', categoryPath: [] };
   const parts = tagRaw.split('|').map((s) => s.trim()).filter(Boolean);
   const left = parts[0] || tagRaw;
-  const topic = parts.slice(1).join(' | ');
+  const categoryPath = parts.slice(1);
+  const category = categoryPath[0] || '';
 
-  // Small normalization to keep grouping sane.
+  // Normalize actor (property), keep category separate.
   const norm = left.toLowerCase();
-  if (norm === 'gov' || norm === 'government') return { group: 'Government', topic };
-  if (norm === 'opp' || norm === 'opposition') return { group: 'Opposition', topic };
-  if (norm === 'opp/party' || norm === 'opp / party') return { group: 'Opposition / Party', topic };
-  return { group: left, topic };
+  if (norm === 'gov' || norm === 'government') return { actor: 'Government', category, categoryPath };
+  if (norm === 'opp' || norm === 'opposition') return { actor: 'Opposition', category, categoryPath };
+  if (norm === 'opp/party' || norm === 'opp / party') return { actor: 'Opposition / Party', category, categoryPath };
+  return { actor: left, category, categoryPath };
 }
 
 function stripMetaAndTrailingSources(markdownLine) {
@@ -165,8 +166,8 @@ function parseEntriesFromMarkdown(markdownText) {
 
     const firstLineRaw = block[0];
     const { meta } = parseMetaComment(firstLineRaw);
-    const { tagRaw, rest } = parseTagPrefix(parseMetaComment(firstLineRaw).line);
-    const { group, topic } = splitTag(tagRaw);
+    const { tagRaw } = parseTagPrefix(parseMetaComment(firstLineRaw).line);
+    const { actor, category, categoryPath } = splitTag(tagRaw);
 
     const statementMarkdown = stripMetaAndTrailingSources(firstLineRaw)
       .replace(/^\s*\d+\.\s+/, '')
@@ -189,9 +190,10 @@ function parseEntriesFromMarkdown(markdownText) {
 
     entries.push({
       id: (firstLineRaw.match(/^\s*(\d+)\./) || [])[1] || '',
-      group,
+      actor,
       tagRaw,
-      topic,
+      category,
+      categoryPath,
       sortIso,
       dateIso,
       precision,
@@ -211,13 +213,13 @@ function parseEntriesFromMarkdown(markdownText) {
 function renderEntries(entries) {
   return entries.map((e) => {
     const dateDisplay = formatDateDisplay(e.dateIso, e.precision);
-    const groupPillClass = e.group.toLowerCase().includes('gov') || e.group.toLowerCase() === 'government'
+    const groupPillClass = e.actor.toLowerCase().includes('gov') || e.actor.toLowerCase() === 'government'
       ? 'pill--gov'
-      : (e.group.toLowerCase().includes('opp') ? 'pill--opp' : '');
+      : (e.actor.toLowerCase().includes('opp') ? 'pill--opp' : '');
 
     const uturnPill = e.isUturn ? `<span class="pill pill--uturn" title="U-turn / reversal / climbdown flagged">U-turn</span>` : '';
     const statePill = e.state ? `<span class="pill pill--state" title="Outcome state from notes">${escapeHtml(e.state)}</span>` : '';
-    const topicPill = e.topic ? `<span class="pill" title="Topic">${escapeHtml(e.topic)}</span>` : '';
+    const categoryPill = e.category ? `<span class="pill" title="Category">${escapeHtml(e.category)}</span>` : '';
 
     const sourcesHtml = e.sources.length
       ? `<ul class="sources" aria-label="Sources">${e.sources.map((s) => `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.label)}</a></li>`).join('')}</ul>`
@@ -228,11 +230,11 @@ function renderEntries(entries) {
       : '';
 
     return `
-<article class="entry" data-role="entry" data-sort="${escapeHtml(e.sortIso)}" data-date="${escapeHtml(e.dateIso)}" data-precision="${escapeHtml(e.precision)}" data-group="${escapeHtml(e.group)}" data-tag="${escapeHtml(e.tagRaw)}" data-uturn="${e.isUturn ? '1' : '0'}"${e.state ? ` data-state="${escapeHtml(e.state)}"` : ''}>
+<article class="entry" data-role="entry" data-sort="${escapeHtml(e.sortIso)}" data-date="${escapeHtml(e.dateIso)}" data-precision="${escapeHtml(e.precision)}" data-group="${escapeHtml(e.actor)}" data-actor="${escapeHtml(e.actor)}"${e.category ? ` data-category="${escapeHtml(e.category)}"` : ''} data-tag="${escapeHtml(e.tagRaw)}" data-uturn="${e.isUturn ? '1' : '0'}"${e.state ? ` data-state="${escapeHtml(e.state)}"` : ''}>
   <div class="entryTop">
     <span class="pill pill--id">#${escapeHtml(e.id)}</span>
-    <span class="pill ${groupPillClass}" title="Group">${escapeHtml(e.group)}</span>
-    ${topicPill}
+    <span class="pill ${groupPillClass}" title="Actor">${escapeHtml(e.actor)}</span>
+    ${categoryPill}
     ${uturnPill}
     ${statePill}
     ${dateDisplay ? `<span class="entryDate"><time datetime="${escapeHtml(e.dateIso)}">${escapeHtml(dateDisplay)}</time></span>` : ''}
@@ -249,6 +251,20 @@ function buildContent({ title, entries }) {
   const updated = lastSort ? formatDateDisplay(lastSort, 'day') : '';
   const count = entries.length;
   const uturnCount = entries.filter((e) => e.isUturn).length;
+  const byActor = new Map();
+  const byCategory = new Map();
+  const byState = new Map();
+  for (const e of entries) {
+    const actor = e.actor || 'Other';
+    byActor.set(actor, (byActor.get(actor) || 0) + 1);
+    const category = e.category || '';
+    if (category) byCategory.set(category, (byCategory.get(category) || 0) + 1);
+    const state = e.state || '';
+    if (state) byState.set(state, (byState.get(state) || 0) + 1);
+  }
+  const actorList = Array.from(byActor.entries()).sort((a, b) => b[1] - a[1]).map(([actor, n]) => ({ actor, n }));
+  const categoryList = Array.from(byCategory.entries()).sort((a, b) => b[1] - a[1]).map(([category, n]) => ({ category, n }));
+  const stateList = Array.from(byState.entries()).sort((a, b) => b[1] - a[1]).map(([state, n]) => ({ state, n }));
 
   return `
 <div class="topPanels">
@@ -276,11 +292,38 @@ function buildContent({ title, entries }) {
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
   <p>A running, source-linked list of notable reversals, broken pledges, and messy climbdowns. Default view is <strong>newest first</strong>.</p>
+  <details class="about">
+    <summary>About this dashboard</summary>
+    <div class="aboutBody">
+      <p>This is <strong>mostly AI-generated</strong>, then <strong>reviewed</strong> and kept honest via <strong>linked sources</strong>. It will be updated occasionally.</p>
+      <p>We built it this way because manually digging through modern “bad news” and bullshit is slow, depressing, and usually not that informative — so we made a semi-automatic dashboard to catch Labour drama we might’ve missed.</p>
+    </div>
+  </details>
   <div class="metaRow">
     ${updated ? `<span>Updated: <time datetime="${escapeHtml(lastSort)}">${escapeHtml(updated)}</time></span>` : ''}
-    <span>Entries: ${escapeHtml(count)}</span>
-    <span>U-turn flagged: ${escapeHtml(uturnCount)}</span>
+    <span data-role="showing">Showing: <strong data-role="showing-count">${escapeHtml(count)}</strong> / ${escapeHtml(count)}</span>
     <span class="noJs"><noscript>JavaScript is off: grouped view is unavailable.</noscript></span>
+  </div>
+  <div class="filters" aria-label="Filters">
+    <button class="chip chip--primary" type="button" data-role="filter" data-filter="all" aria-pressed="true">All <span class="chipCount">${escapeHtml(count)}</span></button>
+    <button class="chip" type="button" data-role="filter" data-filter="uturn:1" aria-pressed="false">U-turn flagged <span class="chipCount">${escapeHtml(uturnCount)}</span></button>
+    <span class="filtersLabel">Actor:</span>
+    ${actorList.map(({ actor, n }) => `<button class="chip" type="button" data-role="filter" data-filter="actor:${escapeHtml(actor)}" aria-pressed="false">${escapeHtml(actor)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+    ${stateList.length ? `<span class="filtersLabel">State:</span>` : ''}
+    ${stateList.map(({ state, n }) => `<button class="chip" type="button" data-role="filter" data-filter="state:${escapeHtml(state)}" aria-pressed="false">${escapeHtml(state)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+    ${categoryList.length ? `
+    <details class="filtersMore">
+      <summary>Categories (${escapeHtml(categoryList.length)})</summary>
+      <div class="filtersMoreBody">
+        <label class="filtersSearch">
+          <span>Search</span>
+          <input type="search" placeholder="e.g. standards, vetting…" data-role="category-search" />
+        </label>
+        <div class="filtersGrid" data-role="category-list">
+          ${categoryList.map(({ category, n }) => `<button class="chip" type="button" data-role="filter" data-filter="category:${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+        </div>
+      </div>
+    </details>` : ''}
   </div>
 </header>
 
