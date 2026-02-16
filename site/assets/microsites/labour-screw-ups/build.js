@@ -328,13 +328,6 @@ function buildContent({ title, entries }) {
 </header>
 
 <section class="panel" aria-label="Entries">
-  <div class="tabs" role="tablist" aria-label="View">
-    <button class="tabBtn" type="button" role="tab" aria-selected="true" data-role="tab-timeline">Timeline</button>
-    <button class="tabBtn" type="button" role="tab" aria-selected="false" data-role="tab-grouped">Grouped</button>
-  </div>
-  <div class="tabHint">
-    <strong>Timeline</strong> sorts newest→oldest. <strong>Grouped</strong> shows headings and sorts oldest→newest within each group.
-  </div>
   <div class="entries" data-role="entries" role="list">
     ${renderEntries(entries)}
   </div>
