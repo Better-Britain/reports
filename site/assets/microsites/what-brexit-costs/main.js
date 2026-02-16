@@ -14,6 +14,10 @@ const GBP0 = new Intl.NumberFormat("en-GB", {
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const el = (id) => document.getElementById(id);
+const setText = (node, text) => {
+  if (!node) return;
+  node.textContent = String(text);
+};
 
 // --- Chart data (from the "illustrative ramp" described in chats + the original PNG)
 const YEARS = Array.from({ length: 15 }, (_, i) => 2016 + i); // 2016..2030
@@ -136,15 +140,46 @@ const ui = {
   usableTaxWeeklyReadout: el("usableTaxWeeklyReadout"),
   householdWeeklyReadout: el("householdWeeklyReadout"),
 
-  prizeCountReadout: el("prizeCountReadout"),
-  prizeShareReadout: el("prizeShareReadout"),
-  prizeBoard: el("prizeBoard"),
+  // Prize board elements are optional and may be renamed/removed in HTML edits.
+  // We resolve them dynamically in `ensurePrizeDom()` to play nicely with changes.
 
   // Bus easter egg
   busBtn: el("busBtn"),
   busEgg: el("busEgg"),
   busDialog: el("busDialog"),
 };
+
+function ensurePrizeDom() {
+  const board =
+    document.getElementById("prizeBoard") ||
+    document.querySelector('[data-role="prizeBoard"]') ||
+    document.querySelector(".prizeBoard");
+
+  const count = document.getElementById("prizeCountReadout") || document.querySelector('[data-role="prizeCount"]');
+  const share = document.getElementById("prizeShareReadout") || document.querySelector('[data-role="prizeShare"]');
+
+  if (board) return { board, count, share };
+
+  // If the author removed the container during copy tweaks, recreate the minimal mount point
+  // inside the “Real-world effects” section so the panel still appears.
+  const section = document.querySelector('section[aria-label="Real-world effects"]');
+  const hostPanel = section?.querySelector(".panel.panelWide");
+  if (!hostPanel) return { board: null, count, share };
+
+  const kpiRow = hostPanel.querySelector(".kpiRow");
+  const mount = document.createElement("div");
+  mount.className = "prizeBoard";
+  mount.id = "prizeBoard";
+  mount.setAttribute("aria-label", "Prize board");
+
+  if (kpiRow) {
+    kpiRow.insertAdjacentElement("afterend", mount);
+  } else {
+    hostPanel.appendChild(mount);
+  }
+
+  return { board: mount, count, share };
+}
 
 function fmtBn1(vBn) {
   return "£" + (Math.round(vBn * 10) / 10).toFixed(1) + "Bn";
@@ -473,19 +508,20 @@ function renderPrizes(nowMs, state, scaled) {
   const avgWeekly = usableTotal / elapsedWeeks;
   const perHouseholdPerWeek = avgWeekly / UK_HOUSEHOLDS;
 
-  if (ui.usableTaxReadout) ui.usableTaxReadout.textContent = fmtBn1(usableTotal / 1e9);
-  if (ui.usableTaxWeeklyReadout) ui.usableTaxWeeklyReadout.textContent = fmtBn1(avgWeekly / 1e9);
-  if (ui.householdWeeklyReadout) ui.householdWeeklyReadout.textContent = GBP0.format(perHouseholdPerWeek);
+  setText(ui.usableTaxReadout, fmtBn1(usableTotal / 1e9));
+  setText(ui.usableTaxWeeklyReadout, fmtBn1(avgWeekly / 1e9));
+  setText(ui.householdWeeklyReadout, GBP0.format(perHouseholdPerWeek));
 
   const avgAnnual = usableTotal / elapsedYears;
   const count = PRIZES.length;
   const sharePerYear = count > 0 ? avgAnnual / count : 0;
-  if (ui.prizeCountReadout) ui.prizeCountReadout.textContent = String(count);
-  if (ui.prizeShareReadout) ui.prizeShareReadout.textContent = fmtGbpCompact(sharePerYear) + " / year (avg)";
+  const dom = ensurePrizeDom();
+  setText(dom.count, String(count));
+  setText(dom.share, fmtGbpCompact(sharePerYear) + " / year (avg)");
 
-  if (!ui.prizeBoard) return;
+  if (!dom.board) return;
 
-  ui.prizeBoard.innerHTML = "";
+  dom.board.innerHTML = "";
   const prizeCards = [];
   for (const prize of PRIZES) {
     const rawQty = prize.unitCost > 0 ? sharePerYear / prize.unitCost : 0;
@@ -524,13 +560,13 @@ function renderPrizes(nowMs, state, scaled) {
     card.appendChild(h);
     card.appendChild(v);
     card.appendChild(sub);
-    ui.prizeBoard.appendChild(card);
+    dom.board.appendChild(card);
     prizeCards.push(card);
   }
 
   // Add + icons between prizes to signal “AND”.
   requestAnimationFrame(() => {
-    const board = ui.prizeBoard;
+    const board = dom.board;
     if (!board) return;
     board.querySelectorAll(".prizePlus").forEach((n) => n.remove());
 
