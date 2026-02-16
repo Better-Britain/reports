@@ -303,7 +303,7 @@ function buildContent({ title, entries }) {
   <details class="about" open>
     <summary>About this dashboard</summary>
     <div class="aboutBody">
-      <p>This is <strong>mostly AI-generated</strong>, then <strong>reviewed</strong> and kept honest via <strong>linked sources</strong>. It will be updated occasionally.</p>
+      <p>This is <strong>mostly AI-generated</strong>, <strong>barely reviewed</strong> with <strong>linked sources</strong>. It will be updated occasionally.</p>
       <p>We built it this way because manually digging through modern “bad news” and bullshit is slow, depressing, and usually not that informative — so we made a semi-automatic dashboard to catch Labour drama we might’ve missed.</p>
     </div>
   </details>
