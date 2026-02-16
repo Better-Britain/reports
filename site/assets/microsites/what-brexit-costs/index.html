@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brexit: a Trillion pounds and counting…</title>
+  <!-- SEO/social tags are injected at build time (see site/build-orchestrator.js).
+       Keeping the source file free of canonical/OG/Twitter tags avoids conflicts/duplicates. -->
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topPanels">
+      <section class="brandPanel" aria-label="Better Britain Bureau">
+        <a class="brandMark" href="/" aria-label="Better Britain homepage">
+          <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+          <span class="brandWordmark">Better Britain Bureau</span>
+        </a>
+        <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+        <nav class="brandLinks" aria-label="Better Britain links">
+          <a href="/">Homepage</a>
+          <a href="/year-of-labour.html">Flagship Report</a>
+          <a href="/posts/index.html">Posts</a>
+          <a href="/about.html">About BBB</a>
+        </nav>
+      </section>
+
+      <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
+        <span class="microCrossLabel">See our other side-quests:</span>
+        <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
+        <a href="../woke-vs-antiwoke/">Woke vs Anti-woke</a>
+        <a href="../labour-screw-ups/">Labour screw-ups dashboard</a>
+      </div>
+    </div>
+
+    <header class="hero">
+      <div class="title">
+        <h1>Brexit: a Trillion pounds and counting…</h1>
+        <p>
+          A rough, interactive counter for “Brexit drag” — pick the assumptions you care about, and watch the cost tick up in real time.
+        </p>
+      </div>
+
+      <div class="controls controlsPrimary" aria-label="Brexit cost assumptions">
+        <p class="controlsTitle">Assumptions</p>
+        <p class="controlsLead">
+          This page is a <em>sanity-check model</em>, not a full macro forecast. It’s meant to make the scale feel real, and let you stress-test the inputs.
+        </p>
+
+        <div class="switchSet">
+          <p class="switchHeading">Which counters should be visible?</p>
+          <label class="switchRow" for="showEconomy">
+            <input id="showEconomy" type="checkbox" checked />
+            <span><strong>Economy gap</strong> (output lost vs “remain” baseline)</span>
+          </label>
+          <label class="switchRow" for="showTreasury">
+            <input id="showTreasury" type="checkbox" checked />
+            <span><strong>Treasury gap</strong> (tax receipts not collected)</span>
+          </label>
+          <label class="switchRow" for="showNhs">
+            <input id="showNhs" type="checkbox" checked />
+            <span><strong>NHS-equivalent</strong> (share-of-spend heuristic)</span>
+          </label>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Treasury receipts shortfall (annual)</p>
+          <div class="primaryValue" id="receiptsReadout">£77.5Bn / year</div>
+          <div class="row">
+            <div class="label">Range from the blog post</div>
+            <div class="value"><span id="receiptsMinReadout">£65Bn</span> → <span id="receiptsMaxReadout">£90Bn</span></div>
+          </div>
+          <input id="receiptsBn" type="range" min="65" max="90" step="0.5" value="77.5" />
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Tax-to-GDP ratio (for the economy counter)</p>
+          <p class="switchHelp">Used only to back-calculate an implied “GDP gap” rate from the selected Treasury gap.</p>
+          <div class="primaryValue" id="taxToGdpReadout">35%</div>
+          <input id="taxToGdp" type="range" min="25" max="45" step="1" value="35" />
+          <div class="rangeMeta">
+            <span>25%</span>
+            <span>Default: 35%</span>
+            <span>45%</span>
+          </div>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">“Money cycles” factor (for the “what it could buy” section)</p>
+          <p class="switchHelp">Optional storytelling knob: set to 1.00 to use direct receipts only.</p>
+          <div class="primaryValue" id="cycleReadout">1.00×</div>
+          <input id="cycleFactor" type="range" min="1" max="1.8" step="0.05" value="1" />
+          <div class="rangeMeta">
+            <span>1.00×</span>
+            <span>1.40×</span>
+            <span>1.80×</span>
+          </div>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">NHS share of receipts (heuristic)</p>
+          <p class="switchHelp">A “broad spending shares” proxy. The blog post’s shorthand (~£300m/week) is about a 20% share.</p>
+          <div class="primaryValue" id="nhsShareReadout">20%</div>
+          <input id="nhsShare" type="range" min="14" max="26" step="1" value="20" />
+          <div class="rangeMeta">
+            <span>14%</span>
+            <span>20%</span>
+            <span>26%</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="counterBoard" aria-label="Brexit cost counters">
+      <div class="counterMeta">
+        <div>
+          <div class="counterMetaTitle">Counter anchor</div>
+          <div class="counterMetaBody">
+            “We hit <strong>£1 trillion</strong>” — anchored at <span id="anchorReadout">Feb 09, 2026, 17:09</span> (approx).
+          </div>
+        </div>
+        <div class="counterMetaAside">
+          <div class="k">Selected Treasury gap</div>
+          <div class="v" id="weeklyGapReadout">~£1.49Bn / week</div>
+        </div>
+      </div>
+
+      <div class="counterGrid">
+        <section class="counterCard" id="cardEconomy" aria-label="Economy gap counter">
+          <div class="counterLabel">Economy gap (implied)</div>
+          <div class="counterValue" id="economyCounter">£1,000,000,000,000.00</div>
+          <div class="counterSub">
+            <span class="chip" id="economyRateReadout">~£4.26Bn/week</span>
+            <span class="muted">Counts up from the £1T milestone.</span>
+          </div>
+        </section>
+
+        <section class="counterCard" id="cardTreasury" aria-label="Treasury receipts gap counter">
+          <div class="counterLabel">Treasury receipts gap</div>
+          <div class="counterValue" id="treasuryCounter">£0.00</div>
+          <div class="counterSub">
+            <span class="chip" id="treasuryRateReadout">~£1.49Bn/week</span>
+            <span class="muted">Since the milestone timestamp above.</span>
+          </div>
+        </section>
+
+        <section class="counterCard" id="cardNhs" aria-label="NHS-equivalent gap counter">
+          <div class="counterLabel">NHS-equivalent (heuristic)</div>
+          <div class="counterValue" id="nhsCounter">£0.00</div>
+          <div class="counterSub">
+            <span class="chip" id="nhsRateReadout">~£299m/week</span>
+            <span class="muted">Share-of-spend proxy, not a measured NHS line.</span>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="chartCard" aria-label="Comparisons chart">
+      <div class="chartHead">
+        <div>
+          <p class="h">If you prefer to compare it to other things…</p>
+          <p class="sub">£ billions / year</p>
+        </div>
+        <div class="sub" id="compareAxisReadout"></div>
+      </div>
+
+      <div class="compareWrap">
+        <div class="compareControls" aria-label="Comparison toggles">
+          <p class="switchHeading">Show lines</p>
+          <label class="switchRow" for="cmpBrexit">
+            <input id="cmpBrexit" type="checkbox" checked />
+            <span>Brexit receipts shortfall (selected)</span>
+          </label>
+          <label class="switchRow" for="cmpDebtInterest">
+            <input id="cmpDebtInterest" type="checkbox" checked />
+            <span>Interest on national debt (£106Bn/yr)</span>
+          </label>
+          <label class="switchRow" for="cmpPensionRelief">
+            <input id="cmpPensionRelief" type="checkbox" checked />
+            <span>Pension tax relief (£60Bn/yr)</span>
+          </label>
+          <label class="switchRow" for="cmpTaxGap">
+            <input id="cmpTaxGap" type="checkbox" checked />
+            <span>“Tax gap” (£45Bn/yr)</span>
+          </label>
+          <label class="switchRow" for="cmpHousingSupport">
+            <input id="cmpHousingSupport" type="checkbox" checked />
+            <span>Housing support to landlords (£12Bn/yr)</span>
+          </label>
+          <label class="switchRow" for="cmpImmigration">
+            <input id="cmpImmigration" type="checkbox" />
+            <span>Immigration fiscal cost (generous cap £10Bn/yr)</span>
+          </label>
+        </div>
+
+        <div class="comparePlot" id="comparePlot" aria-label="Comparison bars"></div>
+      </div>
+
+      <details class="figureToggle">
+        <summary>Show the original graphic image</summary>
+        <figure class="figureCard">
+          <img src="./brexit-one-trillion-pounds-graph.png" alt="Graph: one trillion pounds lost due to Brexit" loading="lazy" />
+          <figcaption>This microsite turns the idea into a live, tweakable counter.</figcaption>
+        </figure>
+      </details>
+    </section>
+
+    <section class="fine fineSingle" aria-label="Real-world effects">
+      <div class="panel panelWide">
+        <h3>What that could have bought (effects, not vibes)</h3>
+        <p>
+          This section takes the selected Treasury shortfall, optionally applies the “money cycles” factor, and turns it into rough “how many X could we fund?” outputs.
+          Unit costs vary massively by region, staffing mix, procurement, and build standards — so treat these as ballpark.
+        </p>
+
+        <div class="kpiRow kpiRow3">
+          <div class="kpi">
+            <div class="k">Usable tax cash (annual)</div>
+            <div class="v" id="usableTaxReadout">£77.5Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">Usable tax cash (weekly)</div>
+            <div class="v" id="usableTaxWeeklyReadout">£1.49Bn</div>
+          </div>
+          <div class="kpi">
+            <div class="k">Per UK household (weekly, rough)</div>
+            <div class="v" id="householdWeeklyReadout">£0</div>
+          </div>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Show effects</p>
+          <div class="effectsGrid">
+            <label class="switchRow effectToggle" for="fxNurses"><input id="fxNurses" type="checkbox" checked /><span>Nurses (annual fully-loaded cost)</span></label>
+            <label class="switchRow effectToggle" for="fxTeachers"><input id="fxTeachers" type="checkbox" checked /><span>Teachers (annual fully-loaded cost)</span></label>
+            <label class="switchRow effectToggle" for="fxPolice"><input id="fxPolice" type="checkbox" /><span>Police officers (annual fully-loaded cost)</span></label>
+            <label class="switchRow effectToggle" for="fxSocialHomes"><input id="fxSocialHomes" type="checkbox" checked /><span>Social/affordable homes (capital subsidy)</span></label>
+            <label class="switchRow effectToggle" for="fxInsulation"><input id="fxInsulation" type="checkbox" checked /><span>Home insulation retrofits</span></label>
+            <label class="switchRow effectToggle" for="fxChildcare"><input id="fxChildcare" type="checkbox" /><span>Free childcare places (per child-year)</span></label>
+            <label class="switchRow effectToggle" for="fxBuses"><input id="fxBuses" type="checkbox" /><span>Bus routes saved (route-years)</span></label>
+            <label class="switchRow effectToggle" for="fxFood"><input id="fxFood" type="checkbox" /><span>Free school meals (pupil-years)</span></label>
+          </div>
+        </div>
+
+        <div class="switchSet">
+          <p class="switchHeading">Unit-cost realism</p>
+          <p class="switchHelp">Use this if you think the unit costs are too optimistic/pessimistic.</p>
+          <div class="primaryValue" id="unitScaleReadout">100%</div>
+          <input id="unitScale" type="range" min="70" max="130" step="1" value="100" />
+          <div class="rangeMeta">
+            <span>70%</span>
+            <span>100%</span>
+            <span>130%</span>
+          </div>
+        </div>
+
+        <div class="effectsOutput" id="effectsOutput" aria-label="Effects readout"></div>
+      </div>
+
+      <div class="panel panelWide finalCta" aria-label="Wrap-up">
+        <div class="finalCtaCopy">
+          <p class="finalEyebrow">The point</p>
+          <h3>Britain’s broken — but it’s not immigrants.</h3>
+          <p class="finalLead">If you want to be angry about being skint, be angry at the policies that made us poorer.</p>
+          <p class="finalBody">
+            This is a rough explainer built from a short blog post — if you want to improve the model, suggest better unit costs and better sources.
+          </p>
+          <div class="finalActions">
+            <a class="finalBtn finalBtnPrimary" href="/posts/index.html">More posts</a>
+            <button class="finalBtn finalBtnGhost" type="button" id="busBtn">Write it on a bus</button>
+          </div>
+          <p class="finalBody muted">
+            Easter egg: click the bus. (Yes, really.)
+          </p>
+        </div>
+
+        <a class="finalCtaArt" href="./brexit-one-trillion-pounds-graph.png" target="_blank" rel="noopener" aria-label="Open the original graph image">
+          <img src="./brexit-one-trillion-pounds-graph.png" alt="Brexit cost graph preview" loading="lazy" />
+          <span>Original graphic</span>
+        </a>
+
+        <a class="finalEasterEgg" href="#bus" id="busEgg" aria-label="Bus easter egg">
+          <img src="./brexit-bus-real-nhs-cost.jpg" alt="Bus image: Brexit costs the NHS £300 million every week" loading="lazy" />
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="busDialog" id="busDialog" aria-label="Brexit bus easter egg">
+    <div class="busDialogInner">
+      <form method="dialog" class="busDialogTop">
+        <strong>Write it on a bus</strong>
+        <button class="busClose" value="close" aria-label="Close">Close</button>
+      </form>
+      <img class="busImg" src="./brexit-bus-real-nhs-cost.jpg" alt="Bus graphic: Brexit (not immigrants) costs the NHS £300 million every week." />
+      <p class="busCaption">Yes: the bus is real. (Well, the image is.)</p>
+    </div>
+  </dialog>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
+

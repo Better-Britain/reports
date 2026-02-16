@@ -97,6 +97,15 @@
       "title": "Labour screw-ups",
       "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — filterable by actor, category, state, and U-turn flags.",
       "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
+    },
+    {
+      "id": "what-brexit-costs",
+      "slug": "what-brexit-costs",
+      "publicPath": "/what-brexit-costs/",
+      "sourceDir": "site/assets/microsites/what-brexit-costs",
+      "title": "Brexit: a Trillion pounds and counting…",
+      "description": "A live counter and interactive “real effects” estimator for the ongoing cost of Brexit (tweakable assumptions).",
+      "image": "/what-brexit-costs/brexit-one-trillion-pounds-graph.png"
     }
   ]
 }
