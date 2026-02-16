@@ -1,4 +1,4 @@
-# Labour screw-ups
+# Labour Screw-ups Dashboard
 
 1. [Opp | Climate] Scrapped the £28bn-a-year green investment plan after championing it since 2021. ([Reuters](https://www.reuters.com/world/uk/uks-labour-pledges-hike-green-investment-win-power-2021-09-27/)) <!--meta date=2021-09-27 precision=day sort=2021-09-27-->
 

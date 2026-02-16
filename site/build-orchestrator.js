@@ -354,13 +354,13 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 	</div>
 </section>
 
-<section aria-labelledby="microsites">
-	<h3 id="microsites">Microsites</h3>
-	<p class="muted">Short, interactive explainers and tools — quick ways to sanity-check popular claims.</p>
-	<div class="reports-grid">
-		${micrositeList(microsites) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
-	</div>
-</section>
+	<section aria-labelledby="microsites">
+		<h3 id="microsites">Side quests</h3>
+		<p class="muted">Short, interactive explainers and tools — quick ways to sanity-check popular claims.</p>
+		<div class="reports-grid">
+			${micrositeList(microsites) || '<div class="report-card"><div class="card-title">Coming soon</div></div>'}
+		</div>
+	</section>
 
 <section class="subscribe" aria-labelledby="stay-up-to-date">
 	<h3 id="stay-up-to-date">Stay up to date</h3>

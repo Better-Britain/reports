@@ -145,7 +145,7 @@ function stripIndent(lines) {
 function parseEntriesFromMarkdown(markdownText) {
   const lines = String(markdownText || '').split(/\r?\n/);
 
-  let title = 'Labour screw-ups';
+  let title = 'Labour Screw-ups Dashboard';
   for (const l of lines) {
     const m = l.match(/^#\s+(.*)$/);
     if (m) { title = m[1].trim(); break; }
@@ -290,8 +290,8 @@ function buildContent({ title, entries }) {
     </nav>
   </section>
 
-  <div class="microCrossLinks" aria-label="Other Better Britain micro-sites">
-    <span class="microCrossLabel">See our other micro-sites:</span>
+  <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
+    <span class="microCrossLabel">See our other side-quests:</span>
     <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
     <a href="../woke-vs-antiwoke/">Woke vs Anti-woke</a>
   </div>
