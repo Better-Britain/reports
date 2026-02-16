@@ -5,8 +5,24 @@
   const tabTimeline = document.querySelector('[data-role="tab-timeline"]');
   const tabGrouped = document.querySelector('[data-role="tab-grouped"]');
   const showingCount = document.querySelector('[data-role="showing-count"]');
-  const categorySearch = document.querySelector('[data-role="category-search"]');
-  const categoryList = document.querySelector('[data-role="category-list"]');
+  const aboutDetails = document.querySelector('details.about');
+
+  if (aboutDetails) {
+    const key = 'bbb_labour_screwups_about_open';
+    try {
+      const stored = localStorage.getItem(key);
+      // Default is open (HTML), but allow persisted close.
+      if (stored === '0') aboutDetails.open = false;
+      else if (stored === '1') aboutDetails.open = true;
+      else aboutDetails.open = true;
+      aboutDetails.addEventListener('toggle', () => {
+        try { localStorage.setItem(key, aboutDetails.open ? '1' : '0'); } catch {}
+      });
+    } catch {
+      // If storage is blocked, keep the default open state.
+      aboutDetails.open = true;
+    }
+  }
 
   function getFilterButtons() {
     return Array.from(document.querySelectorAll('[data-role="filter"]'));
@@ -191,17 +207,6 @@
     if (!btn) return;
     ev.preventDefault();
     toggleFilter(String(btn.dataset.filter || ''));
-  });
-
-  // Filter category chips list by search query.
-  categorySearch?.addEventListener('input', () => {
-    const q = String(categorySearch.value || '').trim().toLowerCase();
-    if (!categoryList) return;
-    const chips = Array.from(categoryList.querySelectorAll('[data-role="filter"]'));
-    for (const chip of chips) {
-      const text = String(chip.textContent || '').toLowerCase();
-      chip.hidden = q ? !text.includes(q) : false;
-    }
   });
 
   // Initial view: query string overrides stored preference.

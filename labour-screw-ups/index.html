@@ -49,10 +49,10 @@
 <header class="pageHead">
   <h1>Labour screw-ups</h1>
   <p>A running, source-linked list of notable reversals, broken pledges, and messy climbdowns. Default view is <strong>newest first</strong>.</p>
-  <details class="about">
+  <details class="about" open>
     <summary>About this dashboard</summary>
     <div class="aboutBody">
-      <p>This is <strong>mostly AI-generated</strong>, <strong>barely reviewed</strong> so check the <strong>linked sources</strong> before you rely on anything here. It will be updated occasionally.</p>
+      <p>This is <strong>mostly AI-generated</strong>, then <strong>reviewed</strong> and kept honest via <strong>linked sources</strong>. It will be updated occasionally.</p>
       <p>We built it this way because manually digging through modern “bad news” and bullshit is slow, depressing, and usually not that informative — so we made a semi-automatic dashboard to catch Labour drama we might’ve missed.</p>
     </div>
   </details>
@@ -68,22 +68,18 @@
     <button class="chip" type="button" data-role="filter" data-filter="actor:Government" aria-pressed="false">Government <span class="chipCount">169</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="actor:Opposition" aria-pressed="false">Opposition <span class="chipCount">28</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="actor:Party" aria-pressed="false">Party <span class="chipCount">3</span></button>
-    <span class="filtersLabel">State:</span>
-    <button class="chip" type="button" data-role="filter" data-filter="state:mitigated" aria-pressed="false">mitigated <span class="chipCount">13</span></button>
+	    <span class="filtersLabel">State:</span>
+	    <button class="chip" type="button" data-role="filter" data-filter="state:mitigated" aria-pressed="false">mitigated <span class="chipCount">13</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:rectified" aria-pressed="false">rectified <span class="chipCount">3</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:pending/variable" aria-pressed="false">pending/variable <span class="chipCount">1</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:reversed-by-court" aria-pressed="false">reversed-by-court <span class="chipCount">1</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:acknowledged" aria-pressed="false">acknowledged <span class="chipCount">1</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:stalled/variable" aria-pressed="false">stalled/variable <span class="chipCount">1</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="state:rectified-ish" aria-pressed="false">rectified-ish <span class="chipCount">1</span></button>
-    
-    <span class="filtersLabel filtersLabel--block">Category:</span>
-    <label class="filtersSearch filtersSearch--inline">
-      <span>Search</span>
-      <input type="search" placeholder="e.g. justice, protest…" data-role="category-search" />
-    </label>
-    <div class="filtersGrid" data-role="category-list">
-      <button class="chip" type="button" data-role="filter" data-filter="category:Leadership" aria-pressed="false">Leadership <span class="chipCount">74</span></button>
+	    
+	    <span class="filtersLabel filtersLabel--block">Category:</span>
+	    <div class="filtersGrid" data-role="category-list">
+	      <button class="chip" type="button" data-role="filter" data-filter="category:Leadership" aria-pressed="false">Leadership <span class="chipCount">74</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="category:Starmer" aria-pressed="false">Starmer <span class="chipCount">64</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="category:Economy" aria-pressed="false">Economy <span class="chipCount">42</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="category:Justice" aria-pressed="false">Justice <span class="chipCount">23</span></button>
@@ -101,8 +97,8 @@
 <button class="chip" type="button" data-role="filter" data-filter="category:Immigration" aria-pressed="false">Immigration <span class="chipCount">4</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="category:Equalities" aria-pressed="false">Equalities <span class="chipCount">2</span></button>
 <button class="chip" type="button" data-role="filter" data-filter="category:Local government" aria-pressed="false">Local government <span class="chipCount">1</span></button>
-    </div>
-  </div>
+	    </div>
+	  </div>
 </header>
 
 <section class="panel" aria-label="Entries">
