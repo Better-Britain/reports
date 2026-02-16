@@ -300,10 +300,10 @@ function buildContent({ title, entries }) {
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
   <p>A running, source-linked list of notable reversals, broken pledges, and messy climbdowns. Default view is <strong>newest first</strong>.</p>
-  <details class="about">
+  <details class="about" open>
     <summary>About this dashboard</summary>
     <div class="aboutBody">
-      <p>This is <strong>mostly AI-generated</strong>, <strong>barely reviewed</strong> so check the <strong>linked sources</strong> before you rely on anything here. It will be updated occasionally.</p>
+      <p>This is <strong>mostly AI-generated</strong>, then <strong>reviewed</strong> and kept honest via <strong>linked sources</strong>. It will be updated occasionally.</p>
       <p>We built it this way because manually digging through modern “bad news” and bullshit is slow, depressing, and usually not that informative — so we made a semi-automatic dashboard to catch Labour drama we might’ve missed.</p>
     </div>
   </details>
@@ -317,18 +317,14 @@ function buildContent({ title, entries }) {
     <button class="chip" type="button" data-role="filter" data-filter="uturn:1" aria-pressed="false">U-turn flagged <span class="chipCount">${escapeHtml(uturnCount)}</span></button>
     <span class="filtersLabel">Actor:</span>
     ${actorList.map(({ actor, n }) => `<button class="chip" type="button" data-role="filter" data-filter="actor:${escapeHtml(actor)}" aria-pressed="false">${escapeHtml(actor)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-    ${stateList.length ? `<span class="filtersLabel">State:</span>` : ''}
-    ${stateList.map(({ state, n }) => `<button class="chip" type="button" data-role="filter" data-filter="state:${escapeHtml(state)}" aria-pressed="false">${escapeHtml(state)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-    ${categoryList.length ? `
-    <span class="filtersLabel filtersLabel--block">Category:</span>
-    <label class="filtersSearch filtersSearch--inline">
-      <span>Search</span>
-      <input type="search" placeholder="e.g. justice, protest…" data-role="category-search" />
-    </label>
-    <div class="filtersGrid" data-role="category-list">
-      ${categoryList.map(({ category, n }) => `<button class="chip" type="button" data-role="filter" data-filter="category:${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-    </div>` : ''}
-  </div>
+	    ${stateList.length ? `<span class="filtersLabel">State:</span>` : ''}
+	    ${stateList.map(({ state, n }) => `<button class="chip" type="button" data-role="filter" data-filter="state:${escapeHtml(state)}" aria-pressed="false">${escapeHtml(state)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+	    ${categoryList.length ? `
+	    <span class="filtersLabel filtersLabel--block">Category:</span>
+	    <div class="filtersGrid" data-role="category-list">
+	      ${categoryList.map(({ category, n }) => `<button class="chip" type="button" data-role="filter" data-filter="category:${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+	    </div>` : ''}
+	  </div>
 </header>
 
 <section class="panel" aria-label="Entries">
