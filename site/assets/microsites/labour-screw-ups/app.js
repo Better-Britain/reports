@@ -9,16 +9,16 @@
     const key = 'bbb_labour_screwups_about_open';
     try {
       const stored = localStorage.getItem(key);
-      // Default is open (HTML), but allow persisted close.
+      // Default is closed (HTML), but allow persisted open.
       if (stored === '0') aboutDetails.open = false;
       else if (stored === '1') aboutDetails.open = true;
-      else aboutDetails.open = true;
+      else aboutDetails.open = false;
       aboutDetails.addEventListener('toggle', () => {
         try { localStorage.setItem(key, aboutDetails.open ? '1' : '0'); } catch {}
       });
     } catch {
-      // If storage is blocked, keep the default open state.
-      aboutDetails.open = true;
+      // If storage is blocked, keep the default closed state.
+      aboutDetails.open = false;
     }
   }
 
