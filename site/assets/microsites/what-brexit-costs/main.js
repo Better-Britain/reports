@@ -13,104 +13,129 @@ const GBP0 = new Intl.NumberFormat("en-GB", {
 });
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
-
 const el = (id) => document.getElementById(id);
 
-// Approx anchor from the user-provided blog snippet:
-// - “Posted 1 week ago”
-// - “Start 05:09 PM”
-// - February is GMT, so treat it as 17:09Z.
-//
-// If you want a different anchor, change ANCHOR_ISO (or set it to null to anchor at page load).
-const ANCHOR_ISO = "2026-02-09T17:09:00Z";
-const ECONOMY_MILESTONE_GBP = 1_000_000_000_000;
+// --- Chart data (from the "illustrative ramp" described in chats + the original PNG)
+const YEARS = Array.from({ length: 15 }, (_, i) => 2016 + i); // 2016..2030
 
-// Rough UK household count (for a “per household” sanity check).
-const UK_HOUSEHOLDS = 28_500_000;
+// £bn/year
+const BASE_SERIES = {
+  gdpShortfall: [0, 10.5, 21.7, 45.1, 74.4, 116.1, 142.0, 165.1, 187.5, 210.0, 217.0, 225.0, 232.0, 240.0, 248.0],
+  investmentShortfall: [50.0, 53.0, 55.0, 57.0, 54.0, 59.0, 66.0, 71.0, 74.0, 76.0, 79.0, 81.0, 84.0, 87.0, 90.0],
+  sterlingImportHit: [0.0, 12.0, 25.0, 15.0, 5.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+  borderAdmin: [0.0, 0.0, 0.0, 0.0, 3.0, 5.0, 8.0, 8.0, 7.0, 6.0, 6.0, 6.0, 6.0, 6.0, 6.0],
+  exceptionProcurementLeakage: [0.0, 0.0, 0.0, 1.0, 5.0, 10.0, 8.0, 3.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+};
 
-const BASE_COMPARISONS = [
-  { id: "brexit", label: "Brexit receipts shortfall", valueBn: null, tone: "brexit" },
-  { id: "debtInterest", label: "Interest on national debt", valueBn: 106, tone: "neutral" },
-  { id: "pensionRelief", label: "Pension tax relief", valueBn: 60, tone: "neutral" },
-  { id: "taxGap", label: "“Tax gap”", valueBn: 45, tone: "neutral" },
-  { id: "housingSupport", label: "Housing support → private landlords", valueBn: 12, tone: "neutral" },
-  { id: "immigration", label: "Immigration fiscal cost (generous cap)", valueBn: 10, tone: "contrast" },
+const SERIES_META = [
+  { key: "gdpShortfall", label: "GDP shortfall (annual, £bn)", tone: "gdp", color: "#3aa1ff", axis: "left", dashed: false, defaultOn: true },
+  { key: "investmentShortfall", label: "Investment shortfall (annual, £bn)", tone: "investment", color: "#ffb24a", axis: "left", dashed: false, defaultOn: true },
+  { key: "sterlingImportHit", label: "Sterling/import-price hit (annual, £bn)", tone: "sterling", color: "#67bf8d", axis: "left", dashed: false, defaultOn: true },
+  { key: "borderAdmin", label: "Border + customs admin (annual, £bn)", tone: "border", color: "#ff6b6b", axis: "left", dashed: false, defaultOn: true },
+  { key: "exceptionProcurementLeakage", label: "Exception-politics procurement leakage (annual, £bn)", tone: "leakage", color: "#b08cff", axis: "left", dashed: false, defaultOn: true },
+  { key: "cumulativeGdpShortfall", label: "Cumulative GDP shortfall (right axis, £bn)", tone: "cumulative", color: "#3aa1ff", axis: "right", dashed: true, defaultOn: true },
 ];
 
-const EFFECTS = [
-  { id: "nurses", label: "Nurse-years funded", unitCost: 55_000, unitHint: "£55k per nurse-year" },
-  { id: "teachers", label: "Teacher-years funded", unitCost: 55_000, unitHint: "£55k per teacher-year" },
-  { id: "police", label: "Police officer-years funded", unitCost: 60_000, unitHint: "£60k per officer-year" },
-  { id: "socialHomes", label: "Social/affordable homes supported", unitCost: 120_000, unitHint: "£120k per home (capital subsidy proxy)" },
-  { id: "insulation", label: "Homes insulated/retrofitted", unitCost: 7_000, unitHint: "£7k per home (light retrofit proxy)" },
-  { id: "childcare", label: "Childcare place-years funded", unitCost: 6_000, unitHint: "£6k per child-year" },
-  { id: "buses", label: "Bus route-years saved", unitCost: 250_000, unitHint: "£250k per route-year subsidy proxy" },
-  { id: "food", label: "Free school meal pupil-years", unitCost: 500, unitHint: "£500 per pupil-year" },
+// --- “Here’s what you could have won” prize board
+const UK_HOUSEHOLDS = 28_500_000;
+const BUS_WEEK_GBP = 350_000_000;
+
+const PRIZES = [
+  {
+    id: "hospitals",
+    label: "Major hospital projects (per year)",
+    bucket: 1,
+    unitCost: 1_500_000_000,
+    baseline: 2,
+    baselineLabel: "~2 major projects/year (rough)",
+  },
+  {
+    id: "police",
+    label: "Police officers (extra funded posts, per year)",
+    bucket: 1_000,
+    unitCost: 500_000,
+    baseline: 140_000,
+    baselineLabel: "~140k officers (rough)",
+  },
+  {
+    id: "nurses",
+    label: "Nurses (extra funded posts, per year)",
+    bucket: 1_000,
+    unitCost: 375_000,
+    baseline: 350_000,
+    baselineLabel: "~350k nurses (rough)",
+  },
+  {
+    id: "cancerStaff",
+    label: "Cancer care staff (extra funded posts, per year)",
+    bucket: 500,
+    unitCost: 1_250_000,
+    baseline: 60_000,
+    baselineLabel: "~60k staff (rough)",
+  },
+  {
+    id: "socialHomes",
+    label: "Social/affordable homes supported (per year)",
+    bucket: 10_000,
+    unitCost: 150_000,
+    baseline: 60_000,
+    baselineLabel: "~60k homes/year (rough)",
+  },
+  {
+    id: "insulation",
+    label: "Homes insulated/retrofitted (per year)",
+    bucket: 100_000,
+    unitCost: 15_000,
+    baseline: 500_000,
+    baselineLabel: "~500k/year (rough)",
+  },
+  {
+    id: "teachers",
+    label: "Teachers (extra funded posts, per year)",
+    bucket: 1_000,
+    unitCost: 750_000,
+    baseline: 470_000,
+    baselineLabel: "~470k teachers (rough)",
+  },
 ];
 
 const ui = {
-  showEconomy: el("showEconomy"),
-  showTreasury: el("showTreasury"),
-  showNhs: el("showNhs"),
+  // Header counter
+  totalCounter: el("totalCounter"),
+  totalRateReadout: el("totalRateReadout"),
 
+  // Chart
+  compareAxisReadout: el("compareAxisReadout"),
+  lineChart: el("lineChart"),
+  chartLegend: el("chartLegend"),
+
+  // Controls
   receiptsBn: el("receiptsBn"),
   receiptsReadout: el("receiptsReadout"),
   receiptsMinReadout: el("receiptsMinReadout"),
   receiptsMaxReadout: el("receiptsMaxReadout"),
 
+  treasuryWeeklyReadout: el("treasuryWeeklyReadout"),
+  busWeeksReadout: el("busWeeksReadout"),
+  nhsWeeklyReadout: el("nhsWeeklyReadout"),
+
   taxToGdp: el("taxToGdp"),
   taxToGdpReadout: el("taxToGdpReadout"),
-
+  nhsShare: el("nhsShare"),
+  nhsShareReadout: el("nhsShareReadout"),
   cycleFactor: el("cycleFactor"),
   cycleReadout: el("cycleReadout"),
 
-  nhsShare: el("nhsShare"),
-  nhsShareReadout: el("nhsShareReadout"),
-
-  anchorReadout: el("anchorReadout"),
-  weeklyGapReadout: el("weeklyGapReadout"),
-
-  cardEconomy: el("cardEconomy"),
-  cardTreasury: el("cardTreasury"),
-  cardNhs: el("cardNhs"),
-
-  economyCounter: el("economyCounter"),
-  treasuryCounter: el("treasuryCounter"),
-  nhsCounter: el("nhsCounter"),
-
-  economyRateReadout: el("economyRateReadout"),
-  treasuryRateReadout: el("treasuryRateReadout"),
-  nhsRateReadout: el("nhsRateReadout"),
-
-  cmp: {
-    brexit: el("cmpBrexit"),
-    debtInterest: el("cmpDebtInterest"),
-    pensionRelief: el("cmpPensionRelief"),
-    taxGap: el("cmpTaxGap"),
-    housingSupport: el("cmpHousingSupport"),
-    immigration: el("cmpImmigration"),
-  },
-  compareAxisReadout: el("compareAxisReadout"),
-  comparePlot: el("comparePlot"),
-
+  // Effects
   usableTaxReadout: el("usableTaxReadout"),
   usableTaxWeeklyReadout: el("usableTaxWeeklyReadout"),
   householdWeeklyReadout: el("householdWeeklyReadout"),
 
-  fx: {
-    nurses: el("fxNurses"),
-    teachers: el("fxTeachers"),
-    police: el("fxPolice"),
-    socialHomes: el("fxSocialHomes"),
-    insulation: el("fxInsulation"),
-    childcare: el("fxChildcare"),
-    buses: el("fxBuses"),
-    food: el("fxFood"),
-  },
-  unitScale: el("unitScale"),
-  unitScaleReadout: el("unitScaleReadout"),
-  effectsOutput: el("effectsOutput"),
+  prizeCountReadout: el("prizeCountReadout"),
+  prizeShareReadout: el("prizeShareReadout"),
+  prizeBoard: el("prizeBoard"),
 
+  // Bus easter egg
   busBtn: el("busBtn"),
   busEgg: el("busEgg"),
   busDialog: el("busDialog"),
@@ -120,10 +145,6 @@ function fmtBn1(vBn) {
   return "£" + (Math.round(vBn * 10) / 10).toFixed(1) + "Bn";
 }
 
-function fmtBn0(vBn) {
-  return "£" + Math.round(vBn).toLocaleString("en-GB") + "Bn";
-}
-
 function fmtWeekFromPerYear(perYearGbp) {
   const perWeek = perYearGbp / 52;
   if (perWeek >= 1e9) return "~" + fmtBn1(perWeek / 1e9) + "/week";
@@ -131,153 +152,295 @@ function fmtWeekFromPerYear(perYearGbp) {
   return "~" + GBP0.format(perWeek) + "/week";
 }
 
-function fmtPerSecond(perYearGbp) {
-  return perYearGbp / (365.25 * 24 * 3600);
-}
-
-function setVisible(elm, yes) {
-  if (!elm) return;
-  elm.style.display = yes ? "" : "none";
-}
-
-function parseAnchorMs() {
-  if (!ANCHOR_ISO) return Date.now();
-  const t = Date.parse(ANCHOR_ISO);
-  if (Number.isFinite(t)) return t;
-  return Date.now();
-}
-
-const anchorMs = parseAnchorMs();
-ui.anchorReadout.textContent = new Date(anchorMs).toLocaleString("en-GB", {
-  year: "numeric",
-  month: "short",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  hour12: false,
-  timeZone: "Europe/London",
-});
-
 function getState() {
-  const receiptsBn = parseFloat(ui.receiptsBn.value);
-  const taxToGdp = parseFloat(ui.taxToGdp.value) / 100;
-  const cycleFactor = parseFloat(ui.cycleFactor.value);
-  const nhsShare = parseFloat(ui.nhsShare.value) / 100;
-  const unitScale = parseFloat(ui.unitScale.value) / 100;
   return {
-    show: {
-      economy: ui.showEconomy.checked,
-      treasury: ui.showTreasury.checked,
-      nhs: ui.showNhs.checked,
-    },
-    receiptsBn,
-    taxToGdp,
-    cycleFactor,
-    nhsShare,
-    unitScale,
-    comparisons: {
-      brexit: ui.cmp.brexit.checked,
-      debtInterest: ui.cmp.debtInterest.checked,
-      pensionRelief: ui.cmp.pensionRelief.checked,
-      taxGap: ui.cmp.taxGap.checked,
-      housingSupport: ui.cmp.housingSupport.checked,
-      immigration: ui.cmp.immigration.checked,
-    },
-    effects: {
-      nurses: ui.fx.nurses.checked,
-      teachers: ui.fx.teachers.checked,
-      police: ui.fx.police.checked,
-      socialHomes: ui.fx.socialHomes.checked,
-      insulation: ui.fx.insulation.checked,
-      childcare: ui.fx.childcare.checked,
-      buses: ui.fx.buses.checked,
-      food: ui.fx.food.checked,
-    },
+    receiptsBn: parseFloat(ui.receiptsBn.value),
+    taxToGdp: parseFloat(ui.taxToGdp.value) / 100,
+    nhsShare: parseFloat(ui.nhsShare.value) / 100,
+    cycleFactor: parseFloat(ui.cycleFactor.value),
   };
 }
 
-function computeRates(state) {
-  const receiptsPerYear = state.receiptsBn * 1e9;
-  const economyPerYear = state.taxToGdp > 0 ? receiptsPerYear / state.taxToGdp : 0;
-  const nhsPerYear = receiptsPerYear * state.nhsShare;
-  return { receiptsPerYear, economyPerYear, nhsPerYear };
+function computeScaleFactor(state) {
+  const base2026 = BASE_SERIES.gdpShortfall[YEARS.indexOf(2026)];
+  const impliedGdpGap2026 = state.taxToGdp > 0 ? state.receiptsBn / state.taxToGdp : base2026;
+  return base2026 > 0 ? impliedGdpGap2026 / base2026 : 1;
 }
 
-function renderStatic() {
-  const state = getState();
-  const { receiptsPerYear, economyPerYear, nhsPerYear } = computeRates(state);
+function scaledSeries(state) {
+  const scale = computeScaleFactor(state);
+  const out = {};
+  for (const meta of SERIES_META) {
+    if (meta.key === "cumulativeGdpShortfall") continue;
+    out[meta.key] = BASE_SERIES[meta.key].map((v) => v * scale);
+  }
+  out.cumulativeGdpShortfall = out.gdpShortfall.reduce((acc, v) => {
+    const prev = acc.length ? acc[acc.length - 1] : 0;
+    acc.push(prev + v);
+    return acc;
+  }, []);
+  return { scale, series: out };
+}
 
+function niceCeil(value, step) {
+  if (value <= 0) return step;
+  return Math.ceil(value / step) * step;
+}
+
+function svgEl(tag, attrs = {}) {
+  const n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, String(v)));
+  return n;
+}
+
+function clearSvg(node) {
+  while (node.firstChild) node.removeChild(node.firstChild);
+}
+
+function buildLegend(visible, onToggle) {
+  ui.chartLegend.innerHTML = "";
+  for (const meta of SERIES_META) {
+    const row = document.createElement("label");
+    row.className = "legendRow";
+    row.htmlFor = `lg_${meta.key}`;
+
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.id = `lg_${meta.key}`;
+    cb.checked = Boolean(visible[meta.key]);
+    cb.addEventListener("input", () => onToggle(meta.key, cb.checked));
+
+    const swatch = document.createElement("span");
+    swatch.className = "legendSwatch" + (meta.dashed ? " dashed" : "");
+    swatch.style.setProperty("--swatch", meta.color);
+
+    const text = document.createElement("span");
+    text.className = "legendText";
+    text.textContent = meta.label;
+
+    row.appendChild(cb);
+    row.appendChild(swatch);
+    row.appendChild(text);
+    ui.chartLegend.appendChild(row);
+  }
+}
+
+function renderChart(state, scaled, visible) {
+  const { series } = scaled;
+
+  const leftSeriesKeys = SERIES_META.filter((m) => m.axis === "left" && m.key !== "cumulativeGdpShortfall")
+    .map((m) => m.key)
+    .filter((k) => visible[k]);
+
+  const annualMax = Math.max(
+    50,
+    ...leftSeriesKeys.flatMap((k) => series[k] || []).map((v) => v || 0),
+  );
+  const leftAxisMax = niceCeil(annualMax, 25);
+
+  const cumMax = visible.cumulativeGdpShortfall ? Math.max(...series.cumulativeGdpShortfall) : Math.max(...series.cumulativeGdpShortfall);
+  const rightAxisMax = niceCeil(cumMax, 250);
+
+  ui.compareAxisReadout.textContent = `Left axis: 0 → £${leftAxisMax}Bn/yr · Right axis: 0 → £${rightAxisMax}Bn`;
+
+  const svg = ui.lineChart;
+  clearSvg(svg);
+
+  const W = 960;
+  const H = 520;
+  const margin = { l: 72, r: 76, t: 20, b: 70 };
+  const pw = W - margin.l - margin.r;
+  const ph = H - margin.t - margin.b;
+
+  const xForIndex = (i) => margin.l + (i / (YEARS.length - 1)) * pw;
+  const yLeft = (v) => margin.t + (1 - clamp01(v / leftAxisMax)) * ph;
+  const yRight = (v) => margin.t + (1 - clamp01(v / rightAxisMax)) * ph;
+
+  // Background
+  svg.appendChild(svgEl("rect", { x: 0, y: 0, width: W, height: H, rx: 16, fill: "rgba(0,0,0,.0)" }));
+
+  // Grid + axes
+  const grid = svgEl("g", { class: "chartGrid" });
+  svg.appendChild(grid);
+
+  const yTicks = 5;
+  for (let i = 0; i <= yTicks; i += 1) {
+    const t = i / yTicks;
+    const y = margin.t + t * ph;
+    grid.appendChild(svgEl("line", { x1: margin.l, y1: y, x2: margin.l + pw, y2: y, class: i === yTicks ? "axisLine" : "gridLine" }));
+
+    const v = leftAxisMax * (1 - t);
+    const lbl = svgEl("text", { x: margin.l - 10, y: y + 4, class: "axisLbl", "text-anchor": "end" });
+    lbl.textContent = "£" + Math.round(v) + "Bn";
+    grid.appendChild(lbl);
+
+    const vR = rightAxisMax * (1 - t);
+    const lblR = svgEl("text", { x: margin.l + pw + 10, y: y + 4, class: "axisLbl", "text-anchor": "start" });
+    lblR.textContent = "£" + Math.round(vR) + "Bn";
+    grid.appendChild(lblR);
+  }
+
+  for (let i = 0; i < YEARS.length; i += 1) {
+    const x = xForIndex(i);
+    const isMajor = YEARS[i] % 2 === 0;
+    grid.appendChild(svgEl("line", { x1: x, y1: margin.t, x2: x, y2: margin.t + ph, class: isMajor ? "gridVMajor" : "gridV" }));
+    if (isMajor) {
+      const tx = svgEl("text", { x, y: margin.t + ph + 32, class: "xLbl", "text-anchor": "middle" });
+      tx.textContent = String(YEARS[i]);
+      grid.appendChild(tx);
+    }
+  }
+
+  // Series paths
+  const paths = svgEl("g", { class: "chartPaths" });
+  svg.appendChild(paths);
+
+  const drawPath = ({ values, axis, color, dashed }) => {
+    let d = "";
+    values.forEach((v, i) => {
+      const x = xForIndex(i);
+      const y = axis === "right" ? yRight(v) : yLeft(v);
+      d += (i === 0 ? "M" : "L") + x.toFixed(2) + "," + y.toFixed(2);
+    });
+    const p = svgEl("path", {
+      d,
+      fill: "none",
+      stroke: color,
+      "stroke-width": dashed ? "3.2" : "3.4",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      "stroke-dasharray": dashed ? "10 8" : "none",
+      opacity: "0.95",
+    });
+    paths.appendChild(p);
+
+    // markers
+    values.forEach((v, i) => {
+      if (i % 2 !== 0) return;
+      const x = xForIndex(i);
+      const y = axis === "right" ? yRight(v) : yLeft(v);
+      paths.appendChild(svgEl("circle", { cx: x, cy: y, r: dashed ? 3.2 : 3.6, fill: color, opacity: "0.95" }));
+    });
+  };
+
+  for (const meta of SERIES_META) {
+    if (!visible[meta.key]) continue;
+    const vals = meta.key === "cumulativeGdpShortfall" ? series.cumulativeGdpShortfall : series[meta.key];
+    drawPath({ values: vals, axis: meta.axis, color: meta.color, dashed: meta.dashed });
+  }
+
+  // "£1tn crossed" marker (on right axis)
+  const THRESH = 1000;
+  if (visible.cumulativeGdpShortfall && rightAxisMax >= THRESH) {
+    const y = yRight(THRESH);
+    svg.appendChild(svgEl("line", { x1: margin.l, y1: y, x2: margin.l + pw, y2: y, class: "thresholdLine" }));
+
+    // crossing year fraction
+    const cum = series.cumulativeGdpShortfall;
+    let crossIndex = -1;
+    for (let i = 1; i < cum.length; i += 1) {
+      if (cum[i - 1] < THRESH && cum[i] >= THRESH) {
+        crossIndex = i;
+        break;
+      }
+    }
+    if (crossIndex !== -1) {
+      const prev = cum[crossIndex - 1];
+      const next = cum[crossIndex];
+      const frac = next > prev ? (THRESH - prev) / (next - prev) : 0;
+      const x = xForIndex(crossIndex - 1) + frac * (xForIndex(crossIndex) - xForIndex(crossIndex - 1));
+      svg.appendChild(svgEl("line", { x1: x, y1: margin.t, x2: x, y2: margin.t + ph, class: "thresholdV" }));
+
+      const label = svgEl("text", { x: x + 10, y: y - 10, class: "anno", "text-anchor": "start" });
+      const approxYear = YEARS[crossIndex - 1] + frac;
+      label.textContent = `£1tn crossed ~${approxYear.toFixed(1)}`;
+      svg.appendChild(label);
+    }
+  }
+
+  // Axis titles
+  const leftTitle = svgEl("text", { x: margin.l - 56, y: margin.t + ph / 2, class: "axisTitle", transform: `rotate(-90 ${margin.l - 56} ${margin.t + ph / 2})` });
+  leftTitle.textContent = "Annual impact (£bn/year)";
+  svg.appendChild(leftTitle);
+
+  const rightTitle = svgEl("text", { x: margin.l + pw + 58, y: margin.t + ph / 2, class: "axisTitle", transform: `rotate(-90 ${margin.l + pw + 58} ${margin.t + ph / 2})` });
+  rightTitle.textContent = "Cumulative GDP shortfall (£bn)";
+  svg.appendChild(rightTitle);
+
+  const xTitle = svgEl("text", { x: margin.l + pw / 2, y: margin.t + ph + 58, class: "axisTitle", "text-anchor": "middle" });
+  xTitle.textContent = "Year";
+  svg.appendChild(xTitle);
+}
+
+function annualGdpShortfallForYear(year, scaledGdpSeries) {
+  if (year < YEARS[0]) return 0;
+  if (year > YEARS[YEARS.length - 1]) return scaledGdpSeries[scaledGdpSeries.length - 1];
+  const idx = YEARS.indexOf(year);
+  return idx === -1 ? 0 : scaledGdpSeries[idx];
+}
+
+function cumulativeToStartOfYear(year, scaledGdpSeries) {
+  const first = YEARS[0];
+  const last = YEARS[YEARS.length - 1];
+  if (year <= first) return 0;
+  const end = Math.min(year, last + 1);
+  let sum = 0;
+  for (let y = first; y < end; y += 1) {
+    sum += annualGdpShortfallForYear(y, scaledGdpSeries);
+  }
+  if (year > last + 1) {
+    const extraYears = year - (last + 1);
+    sum += extraYears * annualGdpShortfallForYear(last, scaledGdpSeries);
+  }
+  return sum;
+}
+
+function renderCounter(nowMs, state, scaled) {
+  const now = new Date(nowMs);
+  const year = now.getUTCFullYear();
+  const start = Date.UTC(year, 0, 1);
+  const end = Date.UTC(year + 1, 0, 1);
+  const frac = clamp01((nowMs - start) / (end - start));
+
+  const gdpSeries = scaled.series.gdpShortfall;
+  const annualBn = annualGdpShortfallForYear(year, gdpSeries);
+  const cumBn = cumulativeToStartOfYear(year, gdpSeries) + annualBn * frac;
+
+  const totalGbp = cumBn * 1e9;
+  ui.totalCounter.textContent = GBP.format(totalGbp);
+  ui.totalRateReadout.textContent = fmtWeekFromPerYear(annualBn * 1e9);
+}
+
+function renderControls(state) {
   ui.receiptsMinReadout.textContent = "£65Bn";
   ui.receiptsMaxReadout.textContent = "£90Bn";
   ui.receiptsReadout.textContent = fmtBn1(state.receiptsBn) + " / year";
 
   ui.taxToGdpReadout.textContent = Math.round(state.taxToGdp * 100) + "%";
-  ui.cycleReadout.textContent = state.cycleFactor.toFixed(2) + "×";
   ui.nhsShareReadout.textContent = Math.round(state.nhsShare * 100) + "%";
-  ui.unitScaleReadout.textContent = Math.round(state.unitScale * 100) + "%";
+  ui.cycleReadout.textContent = state.cycleFactor.toFixed(2) + "×";
 
-  ui.weeklyGapReadout.textContent = fmtWeekFromPerYear(receiptsPerYear);
-
-  ui.economyRateReadout.textContent = fmtWeekFromPerYear(economyPerYear);
-  ui.treasuryRateReadout.textContent = fmtWeekFromPerYear(receiptsPerYear);
-  ui.nhsRateReadout.textContent = fmtWeekFromPerYear(nhsPerYear);
-
-  setVisible(ui.cardEconomy, state.show.economy);
-  setVisible(ui.cardTreasury, state.show.treasury);
-  setVisible(ui.cardNhs, state.show.nhs);
-
-  renderComparisons(state);
-  renderEffects(state, receiptsPerYear);
+  const receiptsPerYear = state.receiptsBn * 1e9;
+  const receiptsPerWeek = receiptsPerYear / 52;
+  ui.treasuryWeeklyReadout.textContent = "−" + GBP0.format(receiptsPerWeek);
+  ui.busWeeksReadout.textContent = (receiptsPerWeek / BUS_WEEK_GBP).toFixed(1) + "×";
+  ui.nhsWeeklyReadout.textContent = "−" + GBP0.format(receiptsPerWeek * state.nhsShare);
 }
 
-function renderComparisons(state) {
-  const items = BASE_COMPARISONS.map((it) => {
-    if (it.id === "brexit") return { ...it, valueBn: state.receiptsBn };
-    return it;
-  }).filter((it) => {
-    if (it.id === "brexit") return state.comparisons.brexit;
-    if (it.id === "debtInterest") return state.comparisons.debtInterest;
-    if (it.id === "pensionRelief") return state.comparisons.pensionRelief;
-    if (it.id === "taxGap") return state.comparisons.taxGap;
-    if (it.id === "housingSupport") return state.comparisons.housingSupport;
-    if (it.id === "immigration") return state.comparisons.immigration;
-    return true;
-  });
-
-  const max = Math.max(10, ...items.map((it) => it.valueBn || 0));
-  const axisMax = Math.ceil(max / 10) * 10;
-  ui.compareAxisReadout.textContent = "Axis: 0 → £" + axisMax + "Bn";
-
-  ui.comparePlot.innerHTML = "";
-  for (const it of items) {
-    const row = document.createElement("div");
-    row.className = "cmpRow";
-
-    const left = document.createElement("div");
-    left.className = "cmpLabel";
-    left.textContent = it.label;
-
-    const barWrap = document.createElement("div");
-    barWrap.className = "cmpBarWrap";
-
-    const bar = document.createElement("div");
-    bar.className = "cmpBar" + (it.tone === "brexit" ? " brexit" : it.tone === "contrast" ? " contrast" : "");
-    const pct = clamp01((it.valueBn || 0) / axisMax);
-    bar.style.width = (pct * 100).toFixed(2) + "%";
-
-    const amt = document.createElement("div");
-    amt.className = "cmpAmt";
-    amt.textContent = fmtBn1(it.valueBn || 0);
-
-    barWrap.appendChild(bar);
-    row.appendChild(left);
-    row.appendChild(barWrap);
-    row.appendChild(amt);
-    ui.comparePlot.appendChild(row);
-  }
+function fmtGbpCompact(v) {
+  const abs = Math.abs(v);
+  if (abs >= 1e9) return fmtBn1(abs / 1e9);
+  if (abs >= 1e6) return "£" + Math.round(abs / 1e6) + "m";
+  return GBP0.format(abs);
 }
 
-function renderEffects(state, receiptsPerYear) {
+function fmtSignedInt(n) {
+  const sign = n > 0 ? "+" : "";
+  return sign + Math.round(n).toLocaleString("en-GB");
+}
+
+function renderPrizes(state) {
+  const receiptsPerYear = state.receiptsBn * 1e9;
   const usablePerYear = receiptsPerYear * state.cycleFactor;
   const usablePerWeek = usablePerYear / 52;
   const perHouseholdPerWeek = usablePerWeek / UK_HOUSEHOLDS;
@@ -286,42 +449,47 @@ function renderEffects(state, receiptsPerYear) {
   ui.usableTaxWeeklyReadout.textContent = fmtBn1((usablePerYear / 52) / 1e9);
   ui.householdWeeklyReadout.textContent = GBP0.format(perHouseholdPerWeek);
 
-  const selected = EFFECTS.filter((fx) => state.effects[fx.id]);
-  ui.effectsOutput.innerHTML = "";
-  if (!selected.length) {
-    const empty = document.createElement("div");
-    empty.className = "effectsEmpty";
-    empty.textContent = "Pick some effects above to see the estimates.";
-    ui.effectsOutput.appendChild(empty);
-    return;
-  }
+  const count = PRIZES.length;
+  const share = count > 0 ? usablePerYear / count : 0;
+  ui.prizeCountReadout.textContent = String(count);
+  ui.prizeShareReadout.textContent = fmtGbpCompact(share) + " / year";
 
-  for (const fx of selected) {
-    const unitCost = fx.unitCost * state.unitScale;
-    const count = unitCost > 0 ? usablePerYear / unitCost : 0;
+  ui.prizeBoard.innerHTML = "";
+  for (const prize of PRIZES) {
+    const rawQty = prize.unitCost > 0 ? share / prize.unitCost : 0;
+    const bucketed = Math.floor(rawQty / prize.bucket) * prize.bucket;
+    const locked = bucketed <= 0;
+
     const card = document.createElement("div");
-    card.className = "effectCard";
+    card.className = "prizeCard" + (locked ? " isLocked" : "");
 
     const h = document.createElement("div");
-    h.className = "effectTitle";
-    h.textContent = fx.label;
+    h.className = "prizeTitle";
+    h.textContent = prize.label;
 
     const v = document.createElement("div");
-    v.className = "effectValue";
-    v.textContent = Math.floor(count).toLocaleString("en-GB");
+    v.className = "prizeValue";
+    v.textContent = locked ? "Locked" : fmtSignedInt(bucketed);
 
     const sub = document.createElement("div");
-    sub.className = "effectSub";
-    sub.textContent = `${fx.unitHint} × ${Math.round(state.unitScale * 100)}% realism`;
+    sub.className = "prizeSub";
+    if (locked) {
+      const need = prize.bucket * prize.unitCost;
+      sub.textContent = `Needs ~${fmtGbpCompact(need)} from this prize share (per year).`;
+    } else if (prize.baseline && prize.baseline > 0) {
+      const pct = (bucketed / prize.baseline) * 100;
+      sub.textContent = `~+${pct.toFixed(0)}% vs ${prize.baselineLabel}.`;
+    } else {
+      sub.textContent = `Bucket: ${prize.bucket.toLocaleString("en-GB")} · Share-based estimate.`;
+    }
 
     card.appendChild(h);
     card.appendChild(v);
     card.appendChild(sub);
-    ui.effectsOutput.appendChild(card);
+    ui.prizeBoard.appendChild(card);
   }
 }
 
-let lastMotionPref = null;
 function prefersReducedMotion() {
   try {
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -330,54 +498,44 @@ function prefersReducedMotion() {
   }
 }
 
-function renderCounters(nowMs) {
-  const state = getState();
-  const { receiptsPerYear, economyPerYear, nhsPerYear } = computeRates(state);
-  const elapsedSeconds = Math.max(0, (nowMs - anchorMs) / 1000);
+let visibleSeries = Object.fromEntries(SERIES_META.map((m) => [m.key, Boolean(m.defaultOn)]));
 
-  if (state.show.economy) {
-    const economy = ECONOMY_MILESTONE_GBP + fmtPerSecond(economyPerYear) * elapsedSeconds;
-    ui.economyCounter.textContent = GBP.format(economy);
-  }
-  if (state.show.treasury) {
-    const treasury = fmtPerSecond(receiptsPerYear) * elapsedSeconds;
-    ui.treasuryCounter.textContent = GBP.format(treasury);
-  }
-  if (state.show.nhs) {
-    const nhs = fmtPerSecond(nhsPerYear) * elapsedSeconds;
-    ui.nhsCounter.textContent = GBP.format(nhs);
-  }
+function readFullState() {
+  return getState();
 }
 
-function tick(now) {
-  const reduce = prefersReducedMotion();
-  if (lastMotionPref !== reduce) {
-    lastMotionPref = reduce;
+let cachedState = null;
+let cachedScaled = null;
+let needsStaticRender = true;
+
+function renderStatic(nowMs) {
+  cachedState = readFullState();
+  cachedScaled = scaledSeries(cachedState);
+  renderControls(cachedState);
+  renderChart(cachedState, cachedScaled, visibleSeries);
+  renderPrizes(cachedState);
+  renderCounter(nowMs, cachedState, cachedScaled);
+  needsStaticRender = false;
+}
+
+function renderTick(nowMs) {
+  if (needsStaticRender || !cachedState || !cachedScaled) {
+    renderStatic(nowMs);
+    return;
   }
-  renderCounters(now);
-  if (reduce) {
-    // ~4Hz is still “live”, but less aggressive.
+  renderCounter(nowMs, cachedState, cachedScaled);
+}
+
+function tick(nowMs) {
+  renderTick(nowMs);
+  if (prefersReducedMotion()) {
     setTimeout(() => requestAnimationFrame(tick), 250);
   } else {
     requestAnimationFrame(tick);
   }
 }
 
-function wire() {
-  const inputs = [
-    ui.showEconomy,
-    ui.showTreasury,
-    ui.showNhs,
-    ui.receiptsBn,
-    ui.taxToGdp,
-    ui.cycleFactor,
-    ui.nhsShare,
-    ui.unitScale,
-    ...Object.values(ui.cmp),
-    ...Object.values(ui.fx),
-  ];
-  inputs.forEach((node) => node.addEventListener("input", renderStatic));
-
+function wireBusEgg() {
   const openBus = (e) => {
     e?.preventDefault?.();
     if (ui.busDialog && typeof ui.busDialog.showModal === "function") {
@@ -394,6 +552,31 @@ function wire() {
   });
 }
 
+function wire() {
+  buildLegend(visibleSeries, (key, on) => {
+    visibleSeries = { ...visibleSeries, [key]: on };
+    needsStaticRender = true;
+    renderStatic(Date.now());
+  });
+
+  const inputs = [
+    ui.receiptsBn,
+    ui.taxToGdp,
+    ui.nhsShare,
+    ui.cycleFactor,
+  ].filter(Boolean);
+
+  inputs.forEach((node) => node.addEventListener("input", () => {
+    needsStaticRender = true;
+    renderStatic(Date.now());
+  }));
+
+  window.addEventListener("resize", () => {
+    needsStaticRender = true;
+    renderStatic(Date.now());
+  });
+  wireBusEgg();
+}
+
 wire();
-renderStatic();
 requestAnimationFrame(tick);

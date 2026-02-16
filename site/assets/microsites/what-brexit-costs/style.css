@@ -199,6 +199,31 @@ a:hover{text-decoration:underline}
   font-size: 15px;
   max-width: 70ch;
 }
+.heroPunch{
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,204,102,.22);
+  background: rgba(255,204,102,.06);
+  color: rgba(246,250,255,.92);
+  font-size: 14px;
+  line-height: 1.45;
+  max-width: 70ch;
+}
+
+.counterPanel{
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  border: 1px solid rgba(255,204,102,.45);
+  background:
+    radial-gradient(620px 180px at 10% 0%, rgba(255,204,102,.14), transparent 65%),
+    linear-gradient(180deg, rgba(20,36,52,.88), rgba(12,21,32,.92));
+  box-shadow: 0 14px 30px rgba(28,20,9,.30), inset 0 0 0 1px rgba(255,255,255,.04);
+  min-width: min(460px, 100%);
+}
+.counterValueBig{
+  font-size: clamp(28px, 3vw, 40px);
+}
 
 .controls{
   background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
@@ -459,6 +484,179 @@ input[type="range"]::-moz-range-thumb{
   font-weight: 900;
 }
 
+.lineChartWrap{
+  padding: 14px;
+  display:grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.lineChartLegend{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  padding: 12px;
+}
+.legendRow{
+  display:flex;
+  align-items:flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(236,244,251,.9);
+  font-size: 13px;
+  line-height: 1.25;
+}
+.legendRow:first-child{margin-top: 0;}
+.legendRow input{
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent2);
+  flex: 0 0 auto;
+}
+.legendSwatch{
+  flex: 0 0 auto;
+  width: 26px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: var(--swatch);
+  margin-top: 5px;
+}
+.legendSwatch.dashed{
+  background: repeating-linear-gradient(
+    90deg,
+    var(--swatch) 0 7px,
+    transparent 7px 12px
+  );
+}
+.legendText{flex: 1 1 auto;}
+.lineChartViewport{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.12);
+  padding: 10px;
+  overflow:hidden;
+}
+.lineChart{
+  width: 100%;
+  height: auto;
+  display:block;
+}
+.chartHint{
+  margin-top: 10px;
+  color: rgba(220,236,248,.72);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chartGrid .gridLine{
+  stroke: rgba(255,255,255,.08);
+  stroke-width: 1;
+}
+.chartGrid .axisLine{
+  stroke: rgba(255,255,255,.18);
+  stroke-width: 1.2;
+}
+.chartGrid .gridV{
+  stroke: rgba(255,255,255,.06);
+  stroke-width: 1;
+}
+.chartGrid .gridVMajor{
+  stroke: rgba(255,255,255,.08);
+  stroke-width: 1;
+}
+.axisLbl{
+  fill: rgba(220,236,248,.72);
+  font-size: 11px;
+  font-weight: 800;
+}
+.xLbl{
+  fill: rgba(220,236,248,.72);
+  font-size: 11px;
+  font-weight: 800;
+}
+.axisTitle{
+  fill: rgba(235,244,252,.86);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.thresholdLine{
+  stroke: rgba(255,204,102,.55);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 6;
+}
+.thresholdV{
+  stroke: rgba(255,204,102,.38);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 6;
+}
+.anno{
+  fill: rgba(255,224,160,.92);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.controlsDock{
+  margin-top: 16px;
+}
+.advDetails{
+  margin-top: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  padding: 10px 12px;
+}
+.advDetails summary{
+  cursor: pointer;
+  font-weight: 900;
+  color: rgba(246,250,255,.94);
+  font-size: 14px;
+  list-style: none;
+}
+.advDetails summary::-webkit-details-marker{display:none}
+.advDetails summary::after{
+  content:"+";
+  margin-left: 8px;
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.86);
+  font-weight: 950;
+  line-height: 1;
+}
+.advDetails[open] summary::after{content:"–"}
+.advGrid{
+  margin-top: 12px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.advItem{
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.14);
+}
+
+.compareBullets{
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: rgba(236,244,251,.86);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.compareBullets li{margin-top: 6px;}
+.compareBullets strong{color: rgba(246,250,255,.94);}
+
 .compareWrap{
   display:grid;
   grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
@@ -655,6 +853,72 @@ input[type="range"]::-moz-range-thumb{
   border:1px dashed rgba(255,255,255,.16);
   color: rgba(230,242,252,.84);
   background: rgba(0,0,0,.14);
+}
+
+.prizeMeta{
+  margin-top: 10px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.prizeMetaItem{
+  border-radius: 14px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+}
+.prizeMetaItem .k{
+  font-size: 11px;
+  color: rgba(210,230,245,.70);
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.prizeMetaItem .v{
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+  color: rgba(246,250,255,.92);
+}
+
+.prizeBoard{
+  margin-top: 14px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.prizeCard{
+  border-radius: 18px;
+  padding: 12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(320px 120px at 10% 0%, rgba(255,204,102,.10), transparent 72%),
+    rgba(0,0,0,.16);
+}
+.prizeCard.isLocked{
+  opacity: .62;
+  filter: saturate(.85);
+}
+.prizeTitle{
+  font-size: 12px;
+  color: rgba(210,230,245,.78);
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.prizeValue{
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight: 1000;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.prizeSub{
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(220,236,248,.74);
+  line-height: 1.35;
 }
 
 .finalCta{
@@ -855,9 +1119,13 @@ input[type="range"]::-moz-range-thumb{
   .controls{min-width: 100%}
   .counterGrid{grid-template-columns: 1fr}
   .compareWrap{grid-template-columns: 1fr}
+  .lineChartWrap{grid-template-columns: 1fr}
+  .advGrid{grid-template-columns: 1fr}
   .kpiRow3{grid-template-columns: 1fr}
   .effectsOutput{grid-template-columns: 1fr}
   .effectsGrid{grid-template-columns: 1fr}
+  .prizeBoard{grid-template-columns: 1fr}
+  .prizeMeta{grid-template-columns: 1fr}
   .finalCta{grid-template-columns: 1fr}
 }
 @media (max-width: 760px){
