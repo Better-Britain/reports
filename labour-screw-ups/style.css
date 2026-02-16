@@ -139,6 +139,11 @@ header.pageHead p{
   margin-left:6px;
   margin-right:2px;
 }
+.filtersLabel--block{
+  flex-basis:100%;
+  margin-left:0;
+  margin-top:2px;
+}
 .chip{
   appearance:none;
   border:2px solid var(--line);
@@ -176,36 +181,16 @@ header.pageHead p{
 .chip:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:2px}
 .chip:active{transform:translateY(1px)}
 
-.filtersMore{
-  margin-left:auto;
-}
-.filtersMore summary{
-  cursor:pointer;
-  font-weight:900;
-  list-style:none;
-}
-.filtersMore summary::-webkit-details-marker{display:none}
-.filtersMore summary::after{
-  content:"▾";
-  display:inline-block;
-  margin-left:8px;
-}
-.filtersMore[open] summary::after{content:"▴"}
-.filtersMoreBody{
-  margin-top:10px;
-  padding:10px;
-  border:2px solid var(--line);
-  border-radius:6px;
-  background:var(--paper);
-  box-shadow:0 8px 0 rgba(0,0,0,.10);
-  width:min(560px, 92vw);
-}
 .filtersSearch{
   display:flex;
   align-items:center;
   gap:10px;
   font-size:13px;
   color:var(--muted);
+}
+.filtersSearch--inline{
+  flex-basis:100%;
+  margin-top:2px;
 }
 .filtersSearch input{
   flex:1;
@@ -216,15 +201,15 @@ header.pageHead p{
   font:inherit;
 }
 .filtersGrid{
-  margin-top:10px;
+  flex-basis:100%;
+  margin-top:8px;
   display:flex;
   flex-wrap:wrap;
   gap:8px;
 }
 
 @media (max-width: 700px){
-  .filtersMore{margin-left:0; flex-basis:100%;}
-  .filtersMoreBody{width:100%;}
+  .filtersSearch input{min-width: 0;}
 }
 
 /* Tabs (looks like panels, but stays lightweight) */
