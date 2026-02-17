@@ -191,6 +191,15 @@ function parseTags(meta) {
     .filter(Boolean);
 }
 
+function parseConnections(meta) {
+  const raw = meta?.connections ?? meta?.connection ?? meta?.linked ?? meta?.links ?? '';
+  if (!raw) return [];
+  return String(raw)
+    .split(/[|,]/g)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 function normalizeTags(tags, country) {
   const cKey = String(country || '').trim().toLowerCase();
   const seen = new Set();
@@ -289,6 +298,7 @@ function parseEntriesFromMarkdown(markdownText) {
     sources = moveLinkToFront(sources, primaryUrl || wikipediaUrl);
 
     const tagsRaw = parseTags(meta);
+    const connectionsRaw = parseConnections(meta);
     const stats = parseStats(meta);
 
     const worthRaw = String(meta?.worth || meta?.networth || '').trim() || pickWorthFromStats(stats);
@@ -314,6 +324,7 @@ function parseEntriesFromMarkdown(markdownText) {
       country,
       bucket,
       tags,
+      connectionsRaw,
       stats,
       worthDisplay,
       worthUsd,
@@ -327,6 +338,41 @@ function parseEntriesFromMarkdown(markdownText) {
       primaryUrl: primaryUrl || '',
       wikipediaUrl: wikipediaUrl || '',
     });
+  }
+
+  const byId = new Map();
+  const bySlug = new Map();
+  for (const e of entries) {
+    const idKey = String(e.id || '').trim();
+    if (idKey) byId.set(idKey, e);
+    const slugKey = slugify(e.name);
+    if (slugKey) bySlug.set(slugKey, e);
+  }
+
+  for (const e of entries) {
+    const raw = Array.isArray(e.connectionsRaw) ? e.connectionsRaw : [];
+    const seen = new Set();
+    const resolved = [];
+    for (const token of raw) {
+      const t = String(token || '').trim();
+      if (!t) continue;
+      const key = t.toLowerCase();
+      if (seen.has(key)) continue;
+
+      const byIdHit = byId.get(t) || byId.get(slugify(t));
+      const hit = byIdHit || bySlug.get(slugify(t));
+      if (hit?.id) {
+        if (String(hit.id) === String(e.id)) continue;
+        resolved.push({ id: hit.id, name: hit.name });
+      } else {
+        const slug = slugify(t);
+        resolved.push({ id: slug || t, name: t });
+      }
+
+      seen.add(key);
+    }
+    e.connections = resolved;
+    delete e.connectionsRaw;
   }
 
   entries.sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
@@ -382,6 +428,11 @@ function renderCard(entry) {
 
   const desc = entry.description ? `<p class="cardDesc">${escapeHtml(entry.description)}</p>` : '';
 
+  const connections = Array.isArray(entry.connections) ? entry.connections : [];
+  const connectionsHtml = connections.length
+    ? `<div class="cardConnections" aria-label="Connections"><span class="cardConnectionsLabel">Connections:</span><span class="cardConnectionsList">${connections.slice(0, 6).map((c) => `<a class="pill pill--conn" href="#b-${escapeHtml(c.id)}">${escapeHtml(c.name)}</a>`).join(' ')}${connections.length > 6 ? ` ${pill(`+${connections.length - 6}`)}` : ''}</span></div>`
+    : '';
+
   const details = entry.bodyHtml || entry.sources.length
     ? `<details class="cardDetails"><summary><span>Receipts</span><span class="receiptCount"># Sources ${escapeHtml(entry.sourcesCount || 0)}</span></summary><div class="cardDetailsBody">${entry.bodyHtml}${sourcesHtml}</div></details>`
     : '';
@@ -397,7 +448,7 @@ function renderCard(entry) {
   const dataName = ` data-name="${escapeHtml(entry.name)}"`;
 
   return `
-<article class="card" data-role="card" data-id="${escapeHtml(entry.id)}"${dataTags}${dataCountry}${dataBucket}${dataWorth}${dataAge}${dataSources}${dataName}>
+<article class="card" id="b-${escapeHtml(entry.id)}" data-role="card" data-id="${escapeHtml(entry.id)}"${dataTags}${dataCountry}${dataBucket}${dataWorth}${dataAge}${dataSources}${dataName}>
   <div class="cardInner">
     <div class="cardTop">
       <div class="cardName">${nameHtml}</div>
@@ -405,6 +456,7 @@ function renderCard(entry) {
     </div>
     ${tagMeta}
     ${desc}
+    ${connectionsHtml}
     ${details}
   </div>
   ${statsHtml}
@@ -487,10 +539,11 @@ function buildContent({ title, introHtml, entries }) {
     <summary>About this database</summary>
     <div class="aboutBody">
       <p>This is <strong>mostly AI-generated</strong>, <strong>lightly reviewed</strong>, and intended to be updated over time. Claims are phrased as “reported / described by” with linked sources.</p>
+      <p>No photos, because image rights are an easily exploited legal surface. We try to link to places where there are cleared photos.</p>
+      <p>None of our claims are definitive, and some may be wrong. The database is a work in progress and is updated mainly by AI (so far).</p>
       <p>Spotted something missing or wrong? Suggest an update to
         <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/problematic-billionaires/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>
         (PRs/issues welcome).
-        <a href="https://github.com/Better-Britain/reports/edit/main/site/assets/microsites/problematic-billionaires/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer">Suggest an edit</a>.
       </p>
     </div>
   </details>

@@ -427,6 +427,44 @@ header.pageHead p.subtitle + p{
   font-size:14px;
 }
 
+.cardConnections{
+  margin:10px 0 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 8px;
+  align-items:center;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.2;
+}
+.cardConnectionsLabel{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.cardConnectionsList{
+  display:inline-flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+}
+.cardConnections .pill{
+  border-width:1px;
+  border-color:var(--hair);
+  background:transparent;
+}
+.pill--conn{
+  text-decoration:none;
+}
+.pill--conn:hover{
+  text-decoration:underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:2px;
+}
+
 .cardDetails{
   margin-top:10px;
   border-top:1px dashed var(--hair);
