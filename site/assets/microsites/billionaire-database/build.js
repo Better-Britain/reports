@@ -552,8 +552,8 @@ function buildContent({ title, introHtml, entries }) {
       <p>No photos, because image rights are an easily exploited legal surface. We try to link to places where there are cleared photos.</p>
       <p>None of our claims are definitive, and some may be wrong. The database is a work in progress and is updated mainly by AI (so far).</p>
       <p>Spotted something missing or wrong? Suggest an update to
-        <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/problematic-billionaires/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>
-        (PRs/issues welcome, we welcome contributions written by AI too, but omg, please read and understand what's there before making anyone else drink it straight from the tap).
+        <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/billionaire-database/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>
+        (PRs/issues welcome, we welcome contributions written by AI too, but omg, please read and understand what's there before making anyone else drink your soup straight from the tap).
       </p>
     </div>
   </details>
@@ -620,7 +620,7 @@ function buildContent({ title, introHtml, entries }) {
 <footer class="pageFoot" aria-label="Suggest updates">
   <p>
     Suggest updates to
-    <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/problematic-billionaires/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>.
+    <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/billionaire-database/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>.
   </p>
 </footer>
 `.trim();
@@ -628,7 +628,7 @@ function buildContent({ title, introHtml, entries }) {
 
 export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const src = sourceDir ? path.resolve(sourceDir) : path.resolve(path.dirname(fileURLToPath(import.meta.url)));
-  const out = outDir ? path.resolve(outDir) : path.resolve('docs/problematic-billionaires');
+  const out = outDir ? path.resolve(outDir) : path.resolve('docs/billionaire-database');
 
   const mdPath = path.join(src, DEFAULT_MD_FILE);
   const templatePath = path.join(src, DEFAULT_TEMPLATE_FILE);
@@ -640,7 +640,7 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const template = await fs.readFile(templatePath, 'utf8');
   const html = template
     .replace('{{title}}', escapeHtml(title))
-    .replace('{{bodyClass}}', 'bbb-microsite problematic-billionaires')
+    .replace('{{bodyClass}}', 'bbb-microsite billionaire-database')
     .replace('{{content}}', content);
 
   await fs.mkdir(out, { recursive: true });

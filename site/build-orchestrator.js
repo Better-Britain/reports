@@ -268,58 +268,73 @@ async function buildMicrosites(config, includeDrafts) {
 	const microsites = config.microsites || [];
 	const allMicrosites = microsites.filter(ms => includeDrafts ? true : !ms.disabled);
 	for (const ms of allMicrosites) {
-		const slug = String(ms.slug || '').trim();
-		if (!slug) continue;
-		const sourceDir = path.resolve(ms.sourceDir || `site/assets/microsites/${slug}`);
-		const publicPath = ensureTrailingSlash(ms.publicPath || `/${slug}/`);
-		const destDir = path.join(OUTPUT_DIR, publicPath.replace(/^\/+|\/+$/g, ''));
+		const canonicalSlug = String(ms.slug || '').trim();
+		if (!canonicalSlug) continue;
+
+		const sourceDir = path.resolve(ms.sourceDir || `site/assets/microsites/${canonicalSlug}`);
 		const buildScript = path.join(sourceDir, 'build.js');
 		let hasBuilder = false;
+		let builderFn = null;
 		try { await fs.access(buildScript); hasBuilder = true; } catch {}
 		if (hasBuilder) {
-			await fs.mkdir(destDir, { recursive: true });
 			const mod = await import(pathToFileURL(buildScript).href);
 			const fn = mod.buildMicrosite || mod.build || mod.default;
 			if (typeof fn !== 'function') {
 				throw new Error(`Microsite builder found but no export function: ${buildScript} (expected buildMicrosite/build/default)`);
 			}
-			await fn({ sourceDir, outDir: destDir, publicPath, microsite: ms, siteConfig: config });
-			// Copy supporting static assets, but exclude source-only files.
-			await copyDirRecursive(sourceDir, destDir, {
-				filter: ({ entry }) => {
-					if (!entry.isFile()) return true;
-					const name = entry.name.toLowerCase();
-					if (name === 'build.js') return false;
-					if (name === 'template.html') return false;
-					if (name === 'index.html') return false;
-					if (name.endsWith('.md')) return false;
-					return true;
-				}
-			});
-		} else {
-			await copyDirRecursive(sourceDir, destDir);
+			builderFn = fn;
 		}
+
+		const buildTarget = async ({ microsite, publicPath }) => {
+			const effectiveSlug = String(microsite.slug || '').trim();
+			const targetPublicPath = ensureTrailingSlash(publicPath || microsite.publicPath || (effectiveSlug ? `/${effectiveSlug}/` : '/'));
+			const destDir = path.join(OUTPUT_DIR, targetPublicPath.replace(/^\/+|\/+$/g, ''));
+
+			if (builderFn) {
+				await fs.mkdir(destDir, { recursive: true });
+				await builderFn({ sourceDir, outDir: destDir, publicPath: targetPublicPath, microsite, siteConfig: config });
+				// Copy supporting static assets, but exclude source-only files.
+				await copyDirRecursive(sourceDir, destDir, {
+					filter: ({ entry }) => {
+						if (!entry.isFile()) return true;
+						const name = entry.name.toLowerCase();
+						if (name === 'build.js') return false;
+						if (name === 'template.html') return false;
+						if (name === 'index.html') return false;
+						if (name.endsWith('.md')) return false;
+						return true;
+					}
+				});
+			} else {
+				await copyDirRecursive(sourceDir, destDir);
+			}
 
 			const indexPath = path.join(destDir, 'index.html');
 			try {
 				let html = await fs.readFile(indexPath, 'utf8');
-				html = injectMicrositeCrossLinks(html, { microsites, microsite: ms, publicPath });
-				const canonicalPath = publicPath;
+				html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
+				const canonicalPath = targetPublicPath;
 				const meta = buildMetaTags({
-					title: ms.title || slug,
-					description: ms.description || config.brand?.rootHeading,
+					title: microsite.title || effectiveSlug || canonicalSlug,
+					description: microsite.description || config.brand?.rootHeading,
 					url: absoluteUrl(config.siteUrl, canonicalPath),
-				image: absoluteUrl(config.siteUrl, ms.image ? ms.image : DEFAULT_OG_IMAGE),
-				siteName: config.brand?.siteTitle,
-				logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
-				type: 'website'
-			});
-			html = injectHeadMeta(html, meta);
-			html = applyBasePath(html, config.basePath);
-			await fs.writeFile(indexPath, html, 'utf8');
-		} catch {}
+					image: absoluteUrl(config.siteUrl, microsite.image ? microsite.image : DEFAULT_OG_IMAGE),
+					siteName: config.brand?.siteTitle,
+					logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
+					type: 'website'
+				});
+				html = injectHeadMeta(html, meta);
+				html = applyBasePath(html, config.basePath);
+				await fs.writeFile(indexPath, html, 'utf8');
+			} catch {}
 
-		// Optional aliases: build once, then copy the built output to extra slugs/paths.
+			return { destDir, publicPath: targetPublicPath };
+		};
+
+		const canonicalPublicPath = ensureTrailingSlash(ms.publicPath || `/${canonicalSlug}/`);
+		const canonicalBuilt = await buildTarget({ microsite: ms, publicPath: canonicalPublicPath });
+
+		// Optional aliases: either copy the built output, or rebuild with per-alias metadata overrides.
 		// This is useful when a microsite is evolving and we want multiple URLs to work.
 		const rawAliases = Array.isArray(ms.aliases) ? ms.aliases : (Array.isArray(ms.slugs) ? ms.slugs : []);
 		const aliasList = rawAliases
@@ -327,14 +342,32 @@ async function buildMicrosites(config, includeDrafts) {
 			.filter((a) => a && typeof a === 'object')
 			.map((a) => ({
 				slug: String(a.slug || '').trim(),
-				publicPath: a.publicPath ? ensureTrailingSlash(String(a.publicPath)) : ''
+				publicPath: a.publicPath ? ensureTrailingSlash(String(a.publicPath)) : '',
+				title: a.title,
+				description: a.description,
+				image: a.image,
+				navTitle: a.navTitle
 			}))
-			.filter((a) => a.slug && a.slug !== slug);
+			.filter((a) => a.slug && a.slug !== canonicalSlug);
 
 		for (const a of aliasList) {
 			const aliasPublicPath = a.publicPath || ensureTrailingSlash(`/${a.slug}/`);
 			const aliasDestDir = path.join(OUTPUT_DIR, aliasPublicPath.replace(/^\/+|\/+$/g, ''));
-			await copyDirRecursive(destDir, aliasDestDir);
+			const hasOverrides = Boolean(a.title || a.description || a.image || a.navTitle);
+
+			if (!hasOverrides) {
+				await copyDirRecursive(canonicalBuilt.destDir, aliasDestDir);
+				continue;
+			}
+
+			const aliasMicrosite = {
+				...ms,
+				...a,
+				slug: a.slug,
+				publicPath: aliasPublicPath,
+				aliases: []
+			};
+			await buildTarget({ microsite: aliasMicrosite, publicPath: aliasPublicPath });
 		}
 	}
 }

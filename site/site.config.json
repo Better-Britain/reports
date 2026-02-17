@@ -103,17 +103,22 @@
       "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
     },
     {
-      "id": "problematic-billionaires",
-      "slug": "elon-musk-our-least-problematic-billionaire",
+      "id": "billionaire-database",
+      "slug": "billionaire-database",
       "aliases": [
-        "billionaire-database"
+        {
+          "slug": "elon-musk-our-least-problematic-billionaire",
+          "title": "Elon Musk is our least problematic billionaire",
+          "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
+          "image": "/elon-musk-our-least-problematic-billionaire/images/billionaires-database-preview.jpg"
+        }
       ],
       "publicPath": "/billionaire-database/",
       "sourceDir": "site/assets/microsites/billionaire-database",
       "navTitle": "Billionaire database",
-      "title": "Elon Musk is our least problematic billionaire",
+      "title": "Billionaire database",
       "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
-      "image": "/problematic-billionaires/images/billionaires-database-preview.jpg"
+      "image": "/billionaire-database/images/billionaires-database-preview.jpg"
     },
     {
       "id": "what-brexit-costs",
