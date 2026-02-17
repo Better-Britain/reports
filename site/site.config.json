@@ -108,11 +108,12 @@
       "aliases": [
         "billionaire-database"
       ],
-      "publicPath": "/elon-musk-our-least-problematic-billionaire/",
-      "sourceDir": "site/assets/microsites/problematic-billionaires",
+      "publicPath": "/billionaire-database/",
+      "sourceDir": "site/assets/microsites/billionaire-database",
       "navTitle": "Billionaire database",
       "title": "Elon Musk is our least problematic billionaire",
-      "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources."
+      "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
+      "image": "/problematic-billionaires/images/billionaires-database-preview.jpg"
     },
     {
       "id": "what-brexit-costs",
