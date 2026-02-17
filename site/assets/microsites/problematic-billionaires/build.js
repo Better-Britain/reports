@@ -408,7 +408,8 @@ function buildContent({ title, introHtml, entries }) {
 
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
-  <p>A filterable sticker-book of billionaires: how they got rich, how they keep control, and what we can actually say about them with sources.</p>
+  <p class="subtitle">- Not literally, there's probably one doing _something_ good _somewhere_, but we didn't look very hard.</p>
+  <p>Who are they, and How they got rich, how they keep control, and what we can actually say about them with sources.</p>
   ${introHtml ? `<div class="intro">${introHtml}</div>` : ''}
   <details class="about">
     <summary>About this database</summary>
