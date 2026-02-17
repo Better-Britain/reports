@@ -5,6 +5,7 @@
   const showingCount = document.querySelector('[data-role="showing-count"]');
   const aboutDetails = document.querySelector('details.about');
   const sortSelect = document.querySelector('[data-role="sort"]');
+  const toggleReceiptsBtn = document.querySelector('[data-role="toggle-receipts"]');
 
   if (aboutDetails) {
     const key = 'bbb_problematic_billionaires_about_open';
@@ -26,6 +27,7 @@
   }
 
   const cards = Array.from(container.querySelectorAll('[data-role="card"]'));
+  const receiptDetails = Array.from(document.querySelectorAll('details.cardDetails'));
 
   const filters = {
     bucket: new Set(),
@@ -170,6 +172,41 @@
     });
   }
 
+  function setAllReceiptsOpen(open) {
+    for (const d of receiptDetails) d.open = Boolean(open);
+  }
+
+  function anyReceiptClosed() {
+    for (const d of receiptDetails) {
+      if (!d.open) return true;
+    }
+    return false;
+  }
+
+  function syncReceiptsButton() {
+    if (!toggleReceiptsBtn) return;
+    const shouldOpen = anyReceiptClosed();
+    toggleReceiptsBtn.textContent = shouldOpen ? 'Open receipts' : 'Close receipts';
+    toggleReceiptsBtn.setAttribute('aria-pressed', shouldOpen ? 'false' : 'true');
+  }
+
+  if (toggleReceiptsBtn) {
+    const key = 'bbb_problematic_billionaires_receipts_open';
+    try {
+      const stored = localStorage.getItem(key);
+      if (stored === '1') setAllReceiptsOpen(true);
+      else if (stored === '0') setAllReceiptsOpen(false);
+    } catch {}
+
+    toggleReceiptsBtn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const open = anyReceiptClosed();
+      setAllReceiptsOpen(open);
+      try { localStorage.setItem(key, open ? '1' : '0'); } catch {}
+      syncReceiptsButton();
+    });
+  }
+
   document.addEventListener('click', (ev) => {
     const btn = ev.target?.closest?.('[data-role="filter"]');
     if (!btn) return;
@@ -196,6 +233,7 @@
     }
   });
 
+  syncReceiptsButton();
   applySort();
   syncFilterButtons();
   applyFilters();

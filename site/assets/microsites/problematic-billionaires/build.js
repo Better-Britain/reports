@@ -130,6 +130,41 @@ function uniqLinks(links) {
   return out;
 }
 
+function findWikipediaUrl(links, meta) {
+  const explicit = String(meta?.wiki || meta?.wikipedia || '').trim();
+  if (explicit && /^https?:\/\//i.test(explicit)) return explicit;
+  for (const l of (links || [])) {
+    const url = String(l?.url || '');
+    if (!url) continue;
+    if (/^https?:\/\/([a-z]{2,3}\.)?wikipedia\.org\/wiki\//i.test(url)) return url;
+  }
+  return '';
+}
+
+function pickPrimaryUrl({ links, meta, wikipediaUrl }) {
+  const raw = String(meta?.primary || meta?.primary_url || meta?.primaryUrl || '').trim();
+  if (!raw) return '';
+  const norm = raw.toLowerCase();
+  if (norm === 'wiki' || norm === 'wikipedia') return wikipediaUrl || '';
+  if (/^https?:\/\//i.test(raw)) return raw;
+
+  // Otherwise treat it as a label selector (case-insensitive exact match, then substring).
+  const byExact = (links || []).find((l) => String(l?.label || '').trim().toLowerCase() === norm);
+  if (byExact?.url) return byExact.url;
+  const bySub = (links || []).find((l) => String(l?.label || '').trim().toLowerCase().includes(norm));
+  return bySub?.url || '';
+}
+
+function moveLinkToFront(links, url) {
+  if (!url) return links;
+  const idx = (links || []).findIndex((l) => String(l?.url || '') === String(url));
+  if (idx <= 0) return links;
+  const copy = [...links];
+  const [hit] = copy.splice(idx, 1);
+  copy.unshift(hit);
+  return copy;
+}
+
 function parseTags(meta) {
   const raw = meta?.tags ?? meta?.tag ?? '';
   if (!raw) return [];
@@ -228,10 +263,13 @@ function parseEntriesFromMarkdown(markdownText) {
     }
 
     const bodyMarkdown = stripIndent(block);
-    const sources = uniqLinks([
+    let sources = uniqLinks([
       ...extractLinks(clean),
       ...extractLinks(bodyMarkdown),
     ]);
+    const wikipediaUrl = findWikipediaUrl(sources, meta);
+    const primaryUrl = pickPrimaryUrl({ links: sources, meta, wikipediaUrl });
+    sources = moveLinkToFront(sources, primaryUrl || wikipediaUrl);
 
     const tagsRaw = parseTags(meta);
     const stats = parseStats(meta);
@@ -264,6 +302,8 @@ function parseEntriesFromMarkdown(markdownText) {
       bodyHtml: bodyMarkdown ? md.render(bodyMarkdown) : '',
       sources,
       sourcesCount: sources.length,
+      primaryUrl: primaryUrl || '',
+      wikipediaUrl: wikipediaUrl || '',
     });
   }
 
@@ -308,6 +348,12 @@ function renderCard(entry) {
   <div class="cardWorthValue">${escapeHtml(entry.worthDisplay || '')}</div>
 </div>`.trim();
 
+  const nameInner = escapeHtml(entry.name);
+  const profileUrl = entry.wikipediaUrl || entry.primaryUrl || '';
+  const nameHtml = profileUrl
+    ? `<a class="cardNameLink" href="${escapeHtml(profileUrl)}" target="_blank" rel="noopener noreferrer">${nameInner}</a>`
+    : nameInner;
+
   const desc = entry.description ? `<p class="cardDesc">${escapeHtml(entry.description)}</p>` : '';
 
   const details = entry.bodyHtml || entry.sources.length
@@ -328,7 +374,7 @@ function renderCard(entry) {
 <article class="card" data-role="card" data-id="${escapeHtml(entry.id)}"${dataTags}${dataCountry}${dataBucket}${dataWorth}${dataAge}${dataSources}${dataName}>
   <div class="cardInner">
     <div class="cardTop">
-      <div class="cardName">${escapeHtml(entry.name)}</div>
+      <div class="cardName">${nameHtml}</div>
       ${worthBox}
     </div>
     ${tagMeta}
@@ -408,7 +454,7 @@ function buildContent({ title, introHtml, entries }) {
 
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
-  <p class="subtitle">- Not literally, there's probably one doing _something_ good _somewhere_, but we didn't look very hard.</p>
+  <p class="subtitle">- Not literally, there's probably one doing <em>something</em> good <em>somewhere</em>, but we didn't look very hard.</p>
   <p>Who are they, and How they got rich, how they keep control, and what we can actually say about them with sources.</p>
   ${introHtml ? `<div class="intro">${introHtml}</div>` : ''}
   <details class="about">
@@ -425,17 +471,20 @@ function buildContent({ title, introHtml, entries }) {
   <div class="metaRow">
     <span data-role="showing">Showing: <strong data-role="showing-count">${escapeHtml(count)}</strong> / ${escapeHtml(count)}</span>
     <span class="noJs"><noscript>JavaScript is off: filters won’t work (the cards still load).</noscript></span>
-    <label class="sortControl">Sort:
-      <select class="sortSelect" data-role="sort" aria-label="Sort cards">
-        <option value="worth_desc" selected>Worth (high → low)</option>
-        <option value="worth_asc">Worth (low → high)</option>
-        <option value="name_asc">Name (A–Z)</option>
-        <option value="age_desc">Age (old → young)</option>
-        <option value="age_asc">Age (young → old)</option>
-        <option value="sources_desc">Sources (many → few)</option>
-        <option value="sources_asc">Sources (few → many)</option>
-      </select>
-    </label>
+    <div class="sortRow" aria-label="Sorting and receipts">
+      <label class="sortControl">Sort:
+        <select class="sortSelect" data-role="sort" aria-label="Sort cards">
+          <option value="worth_desc" selected>Worth (high → low)</option>
+          <option value="worth_asc">Worth (low → high)</option>
+          <option value="name_asc">Name (A–Z)</option>
+          <option value="age_desc">Age (old → young)</option>
+          <option value="age_asc">Age (young → old)</option>
+          <option value="sources_desc">Sources (many → few)</option>
+          <option value="sources_asc">Sources (few → many)</option>
+        </select>
+      </label>
+      <button class="sortBtn" type="button" data-role="toggle-receipts" aria-pressed="false">Open receipts</button>
+    </div>
   </div>
 
   <div class="filters" aria-label="Filters">
@@ -445,21 +494,25 @@ function buildContent({ title, introHtml, entries }) {
       const label = bucket === 'quiet' ? 'Quiet extraction' : (bucket === 'sanctioned' ? 'Sanctions / convictions' : bucket);
       return `<button class="chip" type="button" data-role="filter" data-filter="bucket:${escapeHtml(bucket)}" aria-pressed="false">${escapeHtml(label)} <span class="chipCount">${escapeHtml(n)}</span></button>`;
     }).join('\n')}
-    ${countryList.length ? `<span class="filtersLabel">Country:</span>` : ''}
     ${countryList.length ? `
-    <div class="filtersGrid" data-role="country-visible">
-      ${countryOverflow.visible.map(({ country, n }) => `<button class="chip" type="button" data-role="filter" data-filter="country:${escapeHtml(country)}" aria-pressed="false">${escapeHtml(country)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-      ${renderOverflowToggle({ kind: 'country', hiddenCount: countryOverflow.overflow.length })}
+    <div class="filterGroup" data-role="country-group">
+      <span class="filtersLabel">Country:</span>
+      <div class="filtersGrid" data-role="country-visible">
+        ${countryOverflow.visible.map(({ country, n }) => `<button class="chip" type="button" data-role="filter" data-filter="country:${escapeHtml(country)}" aria-pressed="false">${escapeHtml(country)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+        ${renderOverflowToggle({ kind: 'country', hiddenCount: countryOverflow.overflow.length })}
+      </div>
     </div>
     ${countryOverflow.overflow.length ? `<div class="filtersGrid filtersGrid--overflow" data-role="overflow-panel" data-overflow="country" hidden>
       ${countryOverflow.overflow.map(({ country, n }) => `<button class="chip" type="button" data-role="filter" data-filter="country:${escapeHtml(country)}" aria-pressed="false">${escapeHtml(country)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
     </div>` : ''}` : ''}
 
     ${tagList.length ? `
-    <span class="filtersLabel filtersLabel--block">Tags:</span>
-    <div class="filtersGrid" data-role="tag-visible">
-      ${tagOverflow.visible.map(({ tag, n }) => `<button class="chip" type="button" data-role="filter" data-filter="tag:${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
-      ${renderOverflowToggle({ kind: 'tags', hiddenCount: tagOverflow.overflow.length })}
+    <div class="filterGroup" data-role="tag-group">
+      <span class="filtersLabel">Tags:</span>
+      <div class="filtersGrid" data-role="tag-visible">
+        ${tagOverflow.visible.map(({ tag, n }) => `<button class="chip" type="button" data-role="filter" data-filter="tag:${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
+        ${renderOverflowToggle({ kind: 'tags', hiddenCount: tagOverflow.overflow.length })}
+      </div>
     </div>
     ${tagOverflow.overflow.length ? `<div class="filtersGrid filtersGrid--overflow" data-role="overflow-panel" data-overflow="tags" hidden>
       ${tagOverflow.overflow.map(({ tag, n }) => `<button class="chip" type="button" data-role="filter" data-filter="tag:${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)} <span class="chipCount">${escapeHtml(n)}</span></button>`).join('\n')}
