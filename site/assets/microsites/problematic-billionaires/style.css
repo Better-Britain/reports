@@ -315,29 +315,37 @@ header.pageHead p{
 }
 .cardWorth{
   flex:0 0 auto;
-  border:2px solid var(--line);
-  border-radius:12px;
-  background:var(--soft);
-  padding:8px 10px 7px;
-  min-width: 88px;
+  margin:-14px -14px 0 0; /* pull into the card corner */
+  padding:12px 14px 11px 18px;
+  min-width: 116px;
   text-align:right;
-  box-shadow:var(--shadow-btn);
+  background:var(--ink);
+  color:var(--paper);
+  border:none;
+  border-bottom-left-radius:14px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
 }
 .cardWorthLabel{
   font-size:10px;
   font-weight:900;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:var(--muted);
+  color:currentColor;
+  opacity:.78;
   line-height:1.1;
 }
 .cardWorthValue{
   margin-top:2px;
-  font-size:15px;
+  font-size:19px;
   font-weight:950;
-  letter-spacing:-.01em;
-  color:var(--ink);
+  letter-spacing:-.02em;
+  color:currentColor;
   line-height:1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+@supports not (clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px))) {
+  .cardWorth{clip-path:none}
 }
 .cardMeta{
   margin-top:6px;
