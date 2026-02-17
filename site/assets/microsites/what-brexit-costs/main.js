@@ -24,7 +24,7 @@ const YEAR_MS = 365.25 * 24 * 3600 * 1000;
 
 // Fireworks: set this to false to only fire when the counter crosses £1tn.
 const FIREWORKS_ALWAYS_ON = true;
-const FIREWORKS_INTERVAL_MS = 3800;
+const FIREWORKS_INTERVAL_MS = 7600;
 
 // --- Chart data (from the "illustrative ramp" described in chats + the original PNG)
 const YEARS = Array.from({ length: 15 }, (_, i) => 2016 + i); // 2016..2030
@@ -472,6 +472,7 @@ const fireworks = {
   lastAutoFireMs: 0,
   lastCumBn: null,
   crossedTrillion: false,
+  crossedAtMs: 0,
 };
 
 function resizeFireworksCanvas() {
@@ -603,9 +604,31 @@ function fireworksLoop(nowMs) {
   fireworks.running = false;
 }
 
-function maybeFireFireworks(nowMs, cumBn) {
+function fireworksIntervalMs(nowMs, cumBn, annualBn) {
+  const base = FIREWORKS_INTERVAL_MS;
+
+  if (fireworks.crossedAtMs && (nowMs - fireworks.crossedAtMs) <= (60 * 60 * 1000)) {
+    return Math.max(220, Math.round(base / 10));
+  }
+
+  if (Number.isFinite(cumBn) && cumBn < TRILLION_BN && Number.isFinite(annualBn) && annualBn > 0) {
+    const remainingBn = TRILLION_BN - cumBn;
+    const remainingMs = (remainingBn / annualBn) * YEAR_MS;
+    if (remainingMs <= (24 * 60 * 60 * 1000)) {
+      return Math.max(600, Math.round(base / 1.6));
+    }
+  }
+
+  return base;
+}
+
+function maybeFireFireworks(nowMs, cumBn, annualBn) {
   if (!Number.isFinite(cumBn)) return;
   if (prefersReducedMotion()) return;
+
+  if (!fireworks.crossedAtMs && fireworks.lastCumBn != null && fireworks.lastCumBn < TRILLION_BN && cumBn >= TRILLION_BN) {
+    fireworks.crossedAtMs = nowMs;
+  }
 
   if (FIREWORKS_ALWAYS_ON) {
     if (!fireworks.lastAutoFireMs) {
@@ -614,7 +637,8 @@ function maybeFireFireworks(nowMs, cumBn) {
       fireworks.lastCumBn = cumBn;
       return;
     }
-    if (nowMs - fireworks.lastAutoFireMs >= FIREWORKS_INTERVAL_MS) {
+    const interval = fireworksIntervalMs(nowMs, cumBn, annualBn);
+    if (nowMs - fireworks.lastAutoFireMs >= interval) {
       fireworks.lastAutoFireMs = nowMs;
       fireworksBurst();
     }
@@ -625,6 +649,7 @@ function maybeFireFireworks(nowMs, cumBn) {
   if (fireworks.crossedTrillion) return;
   if (fireworks.lastCumBn != null && fireworks.lastCumBn < TRILLION_BN && cumBn >= TRILLION_BN) {
     fireworks.crossedTrillion = true;
+    fireworks.crossedAtMs = nowMs;
     fireworksBurst();
   }
   fireworks.lastCumBn = cumBn;
@@ -639,14 +664,23 @@ function renderCounter(nowMs, state, scaled) {
 
   const gdpSeries = scaled.series.gdpShortfall;
   const annualBn = annualGdpShortfallForYear(year, gdpSeries);
-  const cumBn = cumulativeToStartOfYear(year, gdpSeries) + annualBn * frac;
+  const cumStartBn = cumulativeToStartOfYear(year, gdpSeries);
+  const cumBn = cumStartBn + annualBn * frac;
+
+  // If the threshold was crossed before the page loaded, estimate the crossing time
+  // so we can do “extra fireworks for an hour afterwards”.
+  if (!fireworks.crossedAtMs && Number.isFinite(annualBn) && annualBn > 0 && cumStartBn < TRILLION_BN && (cumStartBn + annualBn) >= TRILLION_BN) {
+    const crossFrac = clamp01((TRILLION_BN - cumStartBn) / annualBn);
+    const crossMs = start + crossFrac * (end - start);
+    if (crossMs <= nowMs) fireworks.crossedAtMs = crossMs;
+  }
 
   const totalGbp = cumBn * 1e9;
   // Satirical framing: “benefits” shown below zero.
   setText(ui.totalCounter, GBP.format(-totalGbp));
   setText(ui.totalRateReadout, fmtWeekSignedFromPerYear(-annualBn * 1e9));
   renderTrillionCountdown(nowMs, cumBn, annualBn);
-  maybeFireFireworks(nowMs, cumBn);
+  maybeFireFireworks(nowMs, cumBn, annualBn);
 }
 
 function renderControls(state) {
