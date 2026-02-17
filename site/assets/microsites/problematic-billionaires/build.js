@@ -553,7 +553,7 @@ function buildContent({ title, introHtml, entries }) {
       <p>None of our claims are definitive, and some may be wrong. The database is a work in progress and is updated mainly by AI (so far).</p>
       <p>Spotted something missing or wrong? Suggest an update to
         <a href="https://github.com/Better-Britain/reports/blob/main/site/assets/microsites/problematic-billionaires/${DEFAULT_MD_FILE}" target="_blank" rel="noopener noreferrer"><strong>${DEFAULT_MD_FILE}</strong></a>
-        (PRs/issues welcome).
+        (PRs/issues welcome, we welcome contributions written by AI too, but omg, please read and understand what's there before making anyone else drink it straight from the tap).
       </p>
     </div>
   </details>
