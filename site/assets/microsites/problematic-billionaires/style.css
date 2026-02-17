@@ -134,6 +134,17 @@ header.pageHead p{
   color:var(--muted);
   max-width:92ch;
 }
+header.pageHead p.subtitle{
+  margin:10px 0 4px;
+  max-width:92ch;
+  font-size:14px;
+  line-height:1.45;
+  opacity:.86;
+  text-wrap:balance;
+}
+header.pageHead p.subtitle + p{
+  margin-top:6px;
+}
 .intro{
   margin-top:10px;
   color:var(--muted);
