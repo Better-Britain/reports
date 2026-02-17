@@ -90,6 +90,113 @@ This is our ongoing attempt to source-link a sticker-book of billionaires.
 - **Worth:** Bloomberg Billionaires Index lists him among the world’s richest (some profiles may be blocked; index still shows the number). ([Bloomberg](https://www.bloomberg.com/billionaires/))
 - **Wealth/control:** Wikipedia summarises Interactive Brokers and founder ownership. ([Wikipedia](https://en.wikipedia.org/wiki/Thomas_Peterffy))
 
+## Zhang Yiming <!--meta id=zhang-yiming worth="$69.3B" vibes="🧠📱" vibes_why="Algorithm + attention vibe: built a global dopamine machine, then stepped away from the front." wiki="https://en.wikipedia.org/wiki/Zhang_Yiming" primary="https://www.forbes.com/profile/zhang-yiming/" country="China" bucket="quiet" tags="china|tech|social-media|bytedance|tiktok" description="ByteDance founder: global attention infrastructure built around recommendation systems." stats="Age:42|Flagship:TikTok|Mode:Algorithms" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/zhang-yiming/))
+- **Wealth/control:** Wikipedia summarises his role founding ByteDance and the company’s product footprint. ([Wikipedia](https://en.wikipedia.org/wiki/Zhang_Yiming))
+
+## Zhong Shanshan <!--meta id=zhong-shanshan worth="$68.9B" vibes="💧🧪" vibes_why="Bottled-water + pharma billionaire vibe: consumer staples + health assets, kept relatively low-profile." wiki="https://en.wikipedia.org/wiki/Zhong_Shanshan" primary="https://www.forbes.com/profile/zhong-shanshan/" country="China" bucket="quiet" tags="china|consumer|beverages|pharma" description="Nongfu Spring founder: consumer staples compounding into enormous quiet power." stats="Age:71|Stack:Water+Pharma|Mode:Staples" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/zhong-shanshan))
+- **Wealth/control:** Forbes summary describes holdings across Nongfu Spring and Wantai Biological. ([Forbes](https://www.forbes.com/profile/zhong-shanshan))
+
+## Ma Huateng <!--meta id=ma-huateng worth="$56.7B" vibes="💬🎮" vibes_why="Messaging + games mega-platform vibe: a whole social graph you can’t opt out of in practice." wiki="https://en.wikipedia.org/wiki/Ma_Huateng" primary="https://www.forbes.com/profile/ma-huateng/" country="China" bucket="quiet" tags="china|tech|tencent|wechat|games" description="Tencent founder/CEO: WeChat + gaming + investments as a platform-layer empire." stats="Age:54|Platform:WeChat|Mode:Graph" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/ma-huateng/))
+- **Wealth/control:** Forbes summary describes Tencent/WeChat scale and the investment web. ([Forbes](https://www.forbes.com/profile/ma-huateng/))
+
+## Li Ka-shing <!--meta id=li-ka-shing worth="$46.4B" vibes="🏗️🧓" vibes_why="Asia’s deal-grandfather vibe: patient compounding across infrastructure, property and utilities." wiki="https://en.wikipedia.org/wiki/Li_Ka-shing" primary="https://www.forbes.com/profile/li-ka-shing/" country="Hong Kong" bucket="dynasty" tags="hong-kong|conglomerate|infrastructure|real-estate" description="CK Hutchison/CK Asset: conglomerate compounding with deep family control." stats="Age:97|Mode:Conglomerate|Tell:Foundation" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/li-ka-shing/))
+- **Wealth/control:** Forbes summary describes CK Hutchison and CK Asset footprint and succession. ([Forbes](https://www.forbes.com/profile/li-ka-shing/))
+
+## Colin Huang <!--meta id=colin-huang worth="$43.2B" vibes="🛒⚡" vibes_why="Hyper-growth e‑commerce vibe: price wars, gamified shopping, and global copy‑paste speed." wiki="https://en.wikipedia.org/wiki/Colin_Huang" primary="https://www.forbes.com/profile/colin-huang" country="China" bucket="quiet" tags="china|tech|e-commerce|pdd|temu" description="PDD founder: built a giant discount-commerce machine and scaled it globally via Temu." stats="Age:45|Platform:PDD/Temu|Mode:Scale" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/colin-huang))
+- **Wealth/control:** Forbes summary describes PDD ownership and Temu expansion. ([Forbes](https://www.forbes.com/profile/colin-huang))
+
+## Giovanni Ferrero <!--meta id=giovanni-ferrero worth="$41.7B" vibes="🍫🏰" vibes_why="Candy dynasty vibe: global snack brands compounding into quiet, durable wealth." wiki="https://en.wikipedia.org/wiki/Giovanni_Ferrero" primary="https://www.forbes.com/profile/giovanni-ferrero/" country="Italy" bucket="dynasty" tags="italy|consumer|food|brands|family" description="Ferrero exec chair: Nutella/Kinder/Tic Tac empire with family control." stats="Age:61|Stack:Brands|Tell:Nutella" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/giovanni-ferrero/))
+- **Wealth/control:** Forbes summary describes Ferrero’s scale and acquisitions. ([Forbes](https://www.forbes.com/profile/giovanni-ferrero/))
+
+## Alexey Mordashov & family <!--meta id=alexey-mordashov worth="$37.3B" vibes="🏭🧊" vibes_why="Steel + ‘quiet assets’ vibe: industrial wealth built in systems, then insulated behind structures." wiki="https://en.wikipedia.org/wiki/Alexey_Mordashov" primary="https://www.forbes.com/profile/alexey-mordashov-family/" country="Russia" bucket="sanctioned" tags="russia|industry|steel|sanctions" description="Severstal owner: industrial compounding with sanctions-era asset reshuffling." stats="Age:60|Core:Steel|Sanctions:2022+" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/alexey-mordashov-family/))
+- **Wealth/control:** Forbes summary describes his Severstal stake and sanctions-era asset changes. ([Forbes](https://www.forbes.com/profile/alexey-mordashov-family/))
+
+## Vagit Alekperov <!--meta id=vagit-alekperov worth="$31.8B" vibes="🛢️🧾" vibes_why="Oil-empire vibe: decades of compounding, plus ‘sanctions-era’ opacity tells." wiki="https://en.wikipedia.org/wiki/Vagit_Alekperov" primary="https://www.forbes.com/profile/vagit-alekperov/" country="Russia" bucket="sanctioned" tags="russia|energy|oil|sanctions" description="Lukoil founder: oil wealth built through post-Soviet industrial control." stats="Age:75|Company:Lukoil|Mode:Oil" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/vagit-alekperov/))
+- **Wealth/control:** Forbes summary notes UK sanctioning and his Lukoil ownership background. ([Forbes](https://www.forbes.com/profile/vagit-alekperov/))
+
+## Prajogo Pangestu <!--meta id=prajogo-pangestu worth="$30B" vibes="🌴🧪" vibes_why="Indonesia’s ‘asset builder’ vibe: timber→petrochem→energy compounding." wiki="https://en.wikipedia.org/wiki/Prajogo_Pangestu" primary="https://www.forbes.com/profile/prajogo-pangestu/" country="Indonesia" bucket="quiet" tags="indonesia|industry|petrochemicals|energy" description="Barito Pacific/Chandra Asri: industrial assets and energy transition plays." stats="Age:82|Stack:Industry|Mode:Assets" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/prajogo-pangestu/))
+- **Wealth/control:** Forbes summary describes Barito Pacific/Chandra Asri footprint and listings. ([Forbes](https://www.forbes.com/profile/prajogo-pangestu/))
+
+## He Xiangjian & family <!--meta id=he-xiangjian worth="$32.9B" vibes="🧊🏠" vibes_why="Appliance mega-factory vibe: global household hardware, mostly offstage." wiki="https://en.wikipedia.org/wiki/He_Xiangjian" primary="https://www.forbes.com/profile/he-xiangjian/" country="China" bucket="quiet" tags="china|industry|appliances|midea" description="Midea founder: household manufacturing scale plus robotics exposure (Kuka). " stats="Age:83|Company:Midea|Mode:Manufacturing" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/he-xiangjian/))
+- **Wealth/control:** Forbes summary describes Midea and the Kuka acquisition. ([Forbes](https://www.forbes.com/profile/he-xiangjian/))
+
+## Leonid Mikhelson & family <!--meta id=leonid-mikhelson worth="$26.4B" vibes="⛽🖼️" vibes_why="Gas oligarch + art-patron vibe: heavy industry money with a culture layer." wiki="https://en.wikipedia.org/wiki/Leonid_Mikhelson" primary="https://www.forbes.com/profile/leonid-mikhelson/" country="Russia" bucket="sanctioned" tags="russia|energy|gas|chemicals" description="Novatek founder: natural gas + petrochemicals power with art-world patronage." stats="Age:70|Company:Novatek|Tell:GES-2" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/leonid-mikhelson/))
+- **Wealth/control:** Forbes summary describes Novatek and his Sibur stake history. ([Forbes](https://www.forbes.com/profile/leonid-mikhelson/))
+
+## Aliko Dangote <!--meta id=aliko-dangote worth="$26.9B" vibes="🏗️🛢️" vibes_why="Nation-builder industrialist vibe: cement + refinery + ‘build the whole stack’ energy." wiki="https://en.wikipedia.org/wiki/Aliko_Dangote" primary="https://www.forbes.com/profile/aliko-dangote/" country="Nigeria" bucket="public" tags="nigeria|industry|cement|refinery|fertilizer" description="Dangote Group: cement dominance plus the huge refinery bet reshaping Nigeria’s fuel plumbing." stats="Age:68|Stack:Cement+Oil|Mode:Industry" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/aliko-dangote/))
+- **Wealth/control:** Forbes summary describes Dangote Cement and the refinery ramp. ([Forbes](https://www.forbes.com/profile/aliko-dangote/))
+
+## Vladimir Potanin <!--meta id=vladimir-potanin worth="$24.7B" vibes="⛏️🎿" vibes_why="Nickel baron vibe: resource monopoly energy with political adjacency and big projects." wiki="https://en.wikipedia.org/wiki/Vladimir_Potanin" primary="https://www.forbes.com/profile/vladimir-potanin/" country="Russia" bucket="sanctioned" tags="russia|mining|nickel|sanctions" description="Norilsk Nickel stake: metals power plus sanctions-era banking/assets moves." stats="Age:65|Core:Nickel|Tell:Resort" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/vladimir-potanin/))
+- **Wealth/control:** Forbes summary notes his Norilsk stake and U.S. sanctioning (2022). ([Forbes](https://www.forbes.com/profile/vladimir-potanin/))
+
+## Gina Rinehart <!--meta id=gina-rinehart worth="$25.4B" vibes="⛏️🐄" vibes_why="Iron-ore queen vibe: raw materials + land + a very ‘Australia Inc’ power footprint." wiki="https://en.wikipedia.org/wiki/Gina_Rinehart" primary="https://www.forbes.com/profile/gina-rinehart/" country="Australia" bucket="public" tags="australia|mining|iron-ore|cattle|lithium" description="Hancock Prospecting: iron ore wealth plus rare earths/gas and huge pastoral holdings." stats="Age:72|Core:Iron ore|Tell:Cattle" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/gina-rinehart/))
+- **Wealth/control:** Forbes summary describes Roy Hill and her broader resource portfolio. ([Forbes](https://www.forbes.com/profile/gina-rinehart/))
+
+## Gautam Adani <!--meta id=gautam-adani worth="$66.5B" vibes="⚓🏗️" vibes_why="Ports + infrastructure billionaire vibe: build chokepoints, then own the tollbooth." wiki="https://en.wikipedia.org/wiki/Gautam_Adani" primary="https://www.forbes.com/profile/gautam-adani-1" country="India" bucket="public" tags="india|infrastructure|ports|airports|energy" description="Adani Group: ports/airports/power and a reputation built on building infrastructure at scale." stats="Age:63|Stack:Ports+Power|Mode:Infra" -->
+- **Worth:** Forbes real‑time net worth (updates daily). ([Forbes](https://www.forbes.com/profile/gautam-adani-1))
+- **Wealth/control:** Forbes summary describes assets across ports, airports and energy. ([Forbes](https://www.forbes.com/profile/gautam-adani-1))
+
+## Savitri Jindal & family <!--meta id=savitri-jindal worth="$36.7B" vibes="🏗️👪" vibes_why="Mega-industrial family vibe: steel/power/cement empire spread across sons’ control." wiki="https://en.wikipedia.org/wiki/Savitri_Jindal" primary="https://www.forbes.com/profile/savitri-jindal" country="India" bucket="dynasty" tags="india|industry|steel|infrastructure" description="O.P. Jindal Group chair: diversified industrial wealth distributed across family control." stats="Age:75|Stack:Steel+Power|Mode:Family" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/savitri-jindal))
+- **Wealth/control:** Forbes summary describes group structure after O.P. Jindal’s death and sons’ split. ([Forbes](https://www.forbes.com/profile/savitri-jindal))
+
+## Shiv Nadar <!--meta id=shiv-nadar worth="$32.3B" vibes="🧑‍💻🎓" vibes_why="Old-school IT founder vibe with heavy education/philanthropy footprint." wiki="https://en.wikipedia.org/wiki/Shiv_Nadar" primary="https://www.forbes.com/profile/shiv-nadar/" country="India" bucket="public" tags="india|tech|it-services|philanthropy" description="HCL founder: IT services compounding plus large-scale education giving." stats="Age:80|Origin:HCL|Tell:Schools" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/shiv-nadar/))
+- **Wealth/control:** Forbes summary describes HCL and succession planning to his daughter. ([Forbes](https://www.forbes.com/profile/shiv-nadar/))
+
+## Tadashi Yanai & family <!--meta id=tadashi-yanai worth="$63B" vibes="👕🧊" vibes_why="Retail perfectionist vibe: global basics, supply-chain discipline, quiet obsession with scale." wiki="https://en.wikipedia.org/wiki/Tadashi_Yanai" primary="https://www.forbes.com/profile/tadashi-yanai/" country="Japan" bucket="public" tags="japan|retail|brands|uniqlo" description="Fast Retailing/Uniqlo: global clothing scale with family control." stats="Age:76|Brand:Uniqlo|Mode:Retail" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/tadashi-yanai/))
+- **Wealth/control:** Forbes summary describes Fast Retailing’s scale and multi-brand setup. ([Forbes](https://www.forbes.com/profile/tadashi-yanai/))
+
+## R. Budi Hartono <!--meta id=r-budi-hartono worth="$19.6B" vibes="🏦🚬" vibes_why="Bank + tobacco dynasty vibe: quiet compounding inside consumer vices and finance." wiki="https://en.wikipedia.org/wiki/Budi_Hartono" primary="https://www.forbes.com/profile/r-budi-hartono/" country="Indonesia" bucket="dynasty" tags="indonesia|finance|banking|tobacco|private" description="Djarum/BCA: tobacco cashflows → banking power with private family structures." stats="Age:84|Core:BCA|Mode:Family" connections="michael-hartono" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/r-budi-hartono/))
+- **Wealth/control:** Forbes summary describes BCA stake and Djarum origins. ([Forbes](https://www.forbes.com/profile/r-budi-hartono/))
+- **Connections:** Brother/partner: Michael Hartono. ([Forbes](https://www.forbes.com/profile/r-budi-hartono/))
+
+## Michael Hartono <!--meta id=michael-hartono worth="$18.9B" vibes="🏦🚬" vibes_why="Same Hartono ‘quiet compounding’ vibe: a bank stake that behaves like a money machine." wiki="https://en.wikipedia.org/wiki/Michael_Hartono" primary="https://www.forbes.com/profile/michael-hartono/" country="Indonesia" bucket="dynasty" tags="indonesia|finance|banking|tobacco|private" description="Djarum/BCA: banking + tobacco dynasty wealth with long-run private control." stats="Age:85|Core:BCA|Mode:Family" connections="r-budi-hartono" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/michael-hartono/))
+- **Wealth/control:** Forbes summary describes BCA stake and Djarum origins. ([Forbes](https://www.forbes.com/profile/michael-hartono/))
+- **Connections:** Brother/partner: R. Budi Hartono. ([Forbes](https://www.forbes.com/profile/michael-hartono/))
+
+## Low Tuck Kwong <!--meta id=low-tuck-kwong worth="$20.4B" vibes="🪨🧊" vibes_why="Coal king vibe: commodity wealth with quiet, patient control moves." wiki="https://en.wikipedia.org/wiki/Low_Tuck_Kwong" primary="https://www.forbes.com/profile/low-tuck-kwong/" country="Indonesia / Singapore" bucket="quiet" tags="indonesia|singapore|energy|coal|infrastructure" description="Bayan Resources founder: commodity leverage via Indonesian coal and energy interests." stats="Age:76|Core:Coal|Mode:Commodity" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/low-tuck-kwong/))
+- **Wealth/control:** Forbes summary describes Bayan Resources stake and related assets. ([Forbes](https://www.forbes.com/profile/low-tuck-kwong/))
+
+## Lei Jun <!--meta id=lei-jun worth="$29.7B" vibes="📱🚗" vibes_why="Gadget CEO vibe: mass-market devices plus an EV pivot at startup velocity." wiki="https://en.wikipedia.org/wiki/Lei_Jun" primary="https://www.forbes.com/profile/lei-jun/" country="China" bucket="public" tags="china|tech|hardware|smartphones|ev" description="Xiaomi founder/CEO: device ecosystem power with an aggressive EV push." stats="Age:56|Company:Xiaomi|Sidequest:EV" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/lei-jun/))
+- **Wealth/control:** Forbes summary describes Xiaomi’s scale and the EV expansion. ([Forbes](https://www.forbes.com/profile/lei-jun/))
+
+## Wang Chuanfu <!--meta id=wang-chuanfu worth="$21.5B" vibes="🔋🚗" vibes_why="Battery-to-cars builder vibe: manufacturing execution and scale, not vibes-based celebrity." wiki="https://en.wikipedia.org/wiki/Wang_Chuanfu" primary="https://www.forbes.com/profile/wang-chuanfu/" country="China" bucket="public" tags="china|tech|manufacturing|ev|batteries" description="BYD CEO: battery know-how turned into one of the world’s biggest EV platforms." stats="Age:59|Company:BYD|Stack:Batteries" connections="warren-buffett" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/wang-chuanfu/))
+- **Wealth/control:** Forbes summary notes Berkshire Hathaway’s long stake and BYD’s EV scale. ([Forbes](https://www.forbes.com/profile/wang-chuanfu/))
+- **Connections:** Berkshire Hathaway invested early; Warren Buffett is the public face of that stake. ([Forbes](https://www.forbes.com/profile/wang-chuanfu/))
+
+## Cyrus Poonawalla <!--meta id=cyrus-poonawalla worth="$19.5B" vibes="🧫🏭" vibes_why="Vaccine-industrialist vibe: huge ‘doses not headlines’ footprint, with private control." wiki="https://en.wikipedia.org/wiki/Cyrus_Poonawalla" primary="https://www.forbes.com/profile/cyrus-poonawalla/" country="India" bucket="quiet" tags="india|health|vaccines|private-companies" description="Serum Institute: vaccine manufacturing scale with family control and low personal visibility." stats="Age:84|Core:Vaccines|Mode:Private" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/cyrus-poonawalla/))
+- **Wealth/control:** Forbes summary describes Serum’s manufacturing scale and stakes in related assets. ([Forbes](https://www.forbes.com/profile/cyrus-poonawalla/))
+
+## Alisher Usmanov <!--meta id=alisher-usmanov worth="$14.4B" vibes="⛓️📵" vibes_why="Metals + sanctions vibe: wealth tied to heavy industry and political-era risk." wiki="https://en.wikipedia.org/wiki/Alisher_Usmanov" primary="https://www.forbes.com/profile/alisher-usmanov/" country="Russia / Uzbekistan" bucket="sanctioned" tags="russia|uzbekistan|metals|sanctions|investments" description="Metalloinvest: iron ore/steel wealth plus a history of global tech stakes and sanctions exposure." stats="Age:72|Core:Metals|Sanctions:2022+" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/alisher-usmanov/))
+- **Wealth/control:** Forbes summary notes U.S./U.K./EU sanctions and core holdings. ([Forbes](https://www.forbes.com/profile/alisher-usmanov/))
+
+## Mikhail Fridman <!--meta id=mikhail-fridman worth="$16.2B" vibes="🏦🧊" vibes_why="Banking + deals vibe: high leverage, high complexity, and sanctions-era shutdown vibes." wiki="https://en.wikipedia.org/wiki/Mikhail_Fridman" primary="https://www.forbes.com/profile/mikhail-fridman/" country="Russia" bucket="sanctioned" tags="russia|finance|banking|sanctions|commodities" description="Alfa/LetterOne: post‑Soviet banking and commodities wealth with sanctions-era constraints." stats="Age:61|Mode:Finance|Sanctions:2022+" -->
+- **Worth:** Forbes real‑time net worth. ([Forbes](https://www.forbes.com/profile/mikhail-fridman/))
+- **Wealth/control:** Forbes summary describes sanctions impacts and ownership shifts. ([Forbes](https://www.forbes.com/profile/mikhail-fridman/))
+
 ## Jim Ratcliffe <!--meta id=jim-ratcliffe worth="$23.1B" vibes="🏭🧪" vibes_why="Industrial mega-operator vibe: ‘chemicals + deals + control’ more than celebrity." wiki="https://en.wikipedia.org/wiki/Jim_Ratcliffe" primary="https://www.bloomberg.com/billionaires/profiles/jim-ratcliffe/" country="United Kingdom" bucket="public" tags="uk|industry|chemicals|ineos|sports" description="INEOS founder: heavy-industry leverage, dealmaking, and ownership control." stats="Age:73|Group:INEOS|Mode:Industry" -->
 - **Worth:** Bloomberg profile for sorting/rough scale. ([Bloomberg](https://www.bloomberg.com/billionaires/profiles/jim-ratcliffe/))
 - **Wealth/control:** Wikipedia summarises INEOS and his founder ownership/control. ([Wikipedia](https://en.wikipedia.org/wiki/Jim_Ratcliffe))
