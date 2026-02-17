@@ -7,6 +7,12 @@ import MarkdownIt from 'markdown-it';
 const DEFAULT_MD_FILE = 'Billionaire-Database.md';
 const DEFAULT_TEMPLATE_FILE = 'template.html';
 
+// Used only for a rough "how much we don't cover yet" indicator in the UI.
+// Source: Forbes World’s Billionaires 2025 counted 3,028 individuals (as of March 7, 2025).
+const GLOBAL_BILLIONAIRES_ESTIMATE = 3028;
+const GLOBAL_BILLIONAIRES_ESTIMATE_LABEL = '~3,028';
+const GLOBAL_BILLIONAIRES_ESTIMATE_NOTE = 'Forbes World’s Billionaires 2025: 3,028 (as of March 7, 2025)';
+
 const md = new MarkdownIt({ html: false, linkify: true, breaks: false });
 
 function escapeHtml(s) {
@@ -482,8 +488,17 @@ function renderOverflowToggle({ kind, hiddenCount }) {
   return `<button class="chip chip--more" type="button" data-role="overflow-toggle" data-overflow="${escapeHtml(kind)}" data-label-more="${escapeHtml(moreLabel)}" data-label-less="${escapeHtml(lessLabel)}" aria-expanded="false"><span data-role="overflow-label">${escapeHtml(moreLabel)}</span> <span class="chipCount">+${escapeHtml(hiddenCount)}</span></button>`;
 }
 
+function roundToNearest(n, step) {
+  const s = Number(step);
+  const v = Number(n);
+  if (!Number.isFinite(s) || s <= 0) return v;
+  if (!Number.isFinite(v)) return v;
+  return Math.round(v / s) * s;
+}
+
 function buildContent({ title, introHtml, entries }) {
   const count = entries.length;
+  const missingRounded = roundToNearest(Math.max(GLOBAL_BILLIONAIRES_ESTIMATE - count, 0), 50);
 
   const byBucket = new Map();
   const byCountry = new Map();
@@ -522,17 +537,12 @@ function buildContent({ title, introHtml, entries }) {
     </nav>
   </section>
 
-  <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
-    <span class="microCrossLabel">See our other side-quests:</span>
-    <a href="../what-brexit-costs/">What Brexit Costs</a>
-    <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
-    <a href="../labour-screw-ups/">Labour screw-ups</a>
-  </div>
+  <!--bbb:micro-cross-links-->
 </div>
 
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
-  <p class="subtitle">- Not literally, there's probably one doing <em>something</em> good <em>somewhere</em>.</p>
+  <p class="subtitle">- Not literally, there's probably one doing <em>something</em> good <em>somewhere</em>, we'll keep looking.</p>
   <!--<p>Who are they, and How they got rich, how they keep control, and what we can actually say about them with sources.</p>-->
   ${introHtml ? `<div class="intro">${introHtml}</div>` : ''}
   <details class="about">
@@ -549,6 +559,8 @@ function buildContent({ title, introHtml, entries }) {
   </details>
   <div class="metaRow">
     <span data-role="showing">Showing: <strong data-role="showing-count">${escapeHtml(count)}</strong> / ${escapeHtml(count)}</span>
+    <span class="metaHint" title="${escapeHtml(GLOBAL_BILLIONAIRES_ESTIMATE_NOTE)}">Global: <strong>${escapeHtml(GLOBAL_BILLIONAIRES_ESTIMATE_LABEL)}</strong></span>
+    <span class="metaHint" title="Rough estimate: global total minus this database (rounded).">Pending: <strong>~${escapeHtml(missingRounded.toLocaleString())}</strong></span>
     <span class="noJs"><noscript>JavaScript is off: filters won’t work (the cards still load).</noscript></span>
     <div class="sortRow" aria-label="Sorting and receipts">
       <label class="sortControl">Sort:

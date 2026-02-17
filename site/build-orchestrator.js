@@ -17,6 +17,7 @@ const OUTPUT_DIR = path.resolve('docs');
 const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
+const MICROSITE_CROSSLINKS_MARKER_RE = /<!--\s*bbb:micro-cross-links\s*-->/gi;
 
 async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0, rootDir = srcDir) {
 	await fs.mkdir(destDir, { recursive: true });
@@ -56,6 +57,15 @@ function slugify(input) {
 
 const md = new MarkdownIt({ html: true, linkify: true })
 	.use(mdAnchor, { slugify });
+
+function escapeHtml(s) {
+	return String(s ?? '')
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+}
 
 async function loadConfig() {
 	const raw = await fs.readFile(SITE_CONFIG, 'utf8');
@@ -120,6 +130,44 @@ function rewriteMarkdownMdLinksToHtml(markdown) {
 function ensureTrailingSlash(s) {
 	if (!s) return '/';
 	return s.endsWith('/') ? s : s + '/';
+}
+
+function relativeHref(fromDir, toDir) {
+	const from = ensureTrailingSlash(String(fromDir || '/'));
+	const to = ensureTrailingSlash(String(toDir || '/'));
+	const rel = path.posix.relative(from, to) || '';
+	const withSlash = rel.endsWith('/') ? rel : rel + '/';
+	// If we end up with an empty string (same dir), keep it as './' so it still works in HTML.
+	return withSlash || './';
+}
+
+function renderMicrositeCrossLinks({ microsites, selfId, selfPublicPath }) {
+	const list = Array.isArray(microsites) ? microsites : [];
+	const items = list.filter((ms) => !ms?.disabled && String(ms?.id || '') !== String(selfId || ''));
+	if (!items.length) return '';
+	const linksHtml = items.map((ms) => {
+		const label = ms.navTitle || ms.title || ms.slug || ms.id || 'Microsite';
+		const toPath = ms.publicPath ? ensureTrailingSlash(String(ms.publicPath)) : ensureTrailingSlash(`/${String(ms.slug || '').trim()}/`);
+		const href = relativeHref(selfPublicPath, toPath);
+		return `\n    <a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+	}).join('');
+
+	return `
+  <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
+    <span class="microCrossLabel">See our other side-quests:</span>${linksHtml}
+  </div>`.trim();
+}
+
+function injectMicrositeCrossLinks(html, { microsites, microsite, publicPath }) {
+	const s = String(html || '');
+	// NOTE: don't use .test() on the global marker regex (it's stateful via lastIndex).
+	if (!/bbb:micro-cross-links/i.test(s)) return s;
+	const panel = renderMicrositeCrossLinks({
+		microsites,
+		selfId: microsite?.id,
+		selfPublicPath: publicPath
+	});
+	return s.replace(MICROSITE_CROSSLINKS_MARKER_RE, panel);
 }
 
 // Rewrite root-relative URLs (e.g. /assets/...) to include a configurable basePath (e.g. /reports/)
@@ -252,14 +300,15 @@ async function buildMicrosites(config, includeDrafts) {
 			await copyDirRecursive(sourceDir, destDir);
 		}
 
-		const indexPath = path.join(destDir, 'index.html');
-		try {
-			let html = await fs.readFile(indexPath, 'utf8');
-			const canonicalPath = publicPath;
-			const meta = buildMetaTags({
-				title: ms.title || slug,
-				description: ms.description || config.brand?.rootHeading,
-				url: absoluteUrl(config.siteUrl, canonicalPath),
+			const indexPath = path.join(destDir, 'index.html');
+			try {
+				let html = await fs.readFile(indexPath, 'utf8');
+				html = injectMicrositeCrossLinks(html, { microsites, microsite: ms, publicPath });
+				const canonicalPath = publicPath;
+				const meta = buildMetaTags({
+					title: ms.title || slug,
+					description: ms.description || config.brand?.rootHeading,
+					url: absoluteUrl(config.siteUrl, canonicalPath),
 				image: absoluteUrl(config.siteUrl, ms.image ? ms.image : DEFAULT_OG_IMAGE),
 				siteName: config.brand?.siteTitle,
 				logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),

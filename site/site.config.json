@@ -77,6 +77,7 @@
       "slug": "immigrants-vs-billionaires",
       "publicPath": "/immigrants-vs-billionaires/",
       "sourceDir": "site/assets/microsites/immigrants-vs-billionaires",
+      "navTitle": "Immigrants vs Billionaires",
       "title": "Immigrants vs Billionaires",
       "description": "Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.",
       "image": "/assets/ivb-preview.jpg"
@@ -86,6 +87,7 @@
       "slug": "woke-vs-antiwoke",
       "publicPath": "/woke-vs-antiwoke/",
       "sourceDir": "site/assets/microsites/woke-vs-antiwoke",
+      "navTitle": "Woke vs Anti-woke",
       "title": "Woke vs Anti-woke",
       "disabled": true,
       "description": "A blunt “woke or anti-woke” vibe check: what do you believe? or are you just 'normal'?"
@@ -95,6 +97,7 @@
       "slug": "labour-screw-ups",
       "publicPath": "/labour-screw-ups/",
       "sourceDir": "site/assets/microsites/labour-screw-ups",
+      "navTitle": "Labour screw-ups",
       "title": "Labour screw-ups",
       "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — filterable by actor, category, state, and U-turn flags.",
       "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
@@ -107,6 +110,7 @@
       ],
       "publicPath": "/elon-musk-our-least-problematic-billionaire/",
       "sourceDir": "site/assets/microsites/problematic-billionaires",
+      "navTitle": "Billionaire database",
       "title": "Elon Musk is our least problematic billionaire",
       "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources."
     },
@@ -115,6 +119,7 @@
       "slug": "what-brexit-costs",
       "publicPath": "/what-brexit-costs/",
       "sourceDir": "site/assets/microsites/what-brexit-costs",
+      "navTitle": "What Brexit Costs",
       "title": "Brexit: A Trillion Pounds and Counting...",
       "description": "A live counter and “real effects” estimate of the ongoing cost of Brexit.",
       "image": "/what-brexit-costs/brexit-bus-real-nhs-cost.jpg"

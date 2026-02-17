@@ -171,6 +171,7 @@ header.pageHead p.subtitle + p{
   font-size:13px;
 }
 .metaRow strong{color:var(--ink)}
+.metaHint{white-space:nowrap}
 .sortRow{
   margin-left:auto;
   display:flex;

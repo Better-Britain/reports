@@ -1,6 +1,6 @@
 # Elon Musk is our LEAST Problematic Billionaire
 
-He plays video-games and smokes pot, he's cool, supposedly. Let's look at who else is quietly milling around while a handful of showboaters pick-up the headlines.
+He plays video-games and smokes pot, he's cool, supposedly (let's not get distracted by _that_). Let's look at who else is quietly milling around while a handful of showboaters pick-up the headlines because real policy is boring or just not clickable enough.
 
 The more structurally “problematic” billionaires are often the ones you can’t name: they stay private, they sit inside supply-chains, taking their cuts. They can steer whole regions and sectors without ever running for anything, and you couldn't pick most of them out of a crowd.
 

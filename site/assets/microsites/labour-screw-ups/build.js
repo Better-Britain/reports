@@ -290,12 +290,7 @@ function buildContent({ title, entries }) {
     </nav>
   </section>
 
-  <div class="microCrossLinks" aria-label="Other Better Britain side-quests">
-    <span class="microCrossLabel">See our other side-quests:</span>
-    <a href="../what-brexit-costs/">What Brexit Costs</a>
-    <a href="../immigrants-vs-billionaires/">Immigrants vs Billionaires</a>
-    <!-- <a href="../woke-vs-antiwoke/">Woke vs Anti-woke</a> -->
-  </div>
+  <!--bbb:micro-cross-links-->
 </div>
 
 <header class="pageHead">
