@@ -43,8 +43,8 @@ const SERIES_META = [
   { key: "investmentShortfall", label: "Investment shortfall", tone: "investment", color: "#ffb24a", axis: "left", dashed: false, defaultOn: true },
   { key: "sterlingImportHit", label: "Sterling/import-price hit", tone: "sterling", color: "#67bf8d", axis: "left", dashed: false, defaultOn: true },
   { key: "borderAdmin", label: "Border + customs admin", tone: "border", color: "#ff6b6b", axis: "left", dashed: false, defaultOn: true },
-  { key: "exceptionProcurementLeakage", label: "Exception-politics procurement leakage", tone: "leakage", color: "#b08cff", axis: "left", dashed: false, defaultOn: true },
-  { key: "cumulativeGdpShortfall", label: "Cumulative GDP shortfall (right axis)", tone: "cumulative", color: "#3aa1ff", axis: "right", dashed: true, defaultOn: true },
+  { key: "exceptionProcurementLeakage", label: "Procurement leakage", tone: "leakage", color: "#b08cff", axis: "left", dashed: false, defaultOn: true },
+  { key: "cumulativeGdpShortfall", label: "Cumulative", tone: "cumulative", color: "#3aa1ff", axis: "right", dashed: true, defaultOn: true },
 ];
 
 // --- “Here’s what you could have won” prize board
