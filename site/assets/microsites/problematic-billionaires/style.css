@@ -498,6 +498,11 @@ header.pageHead p.subtitle + p{
   letter-spacing:-.01em;
   color:var(--ink);
 }
+.stat[title]{cursor:help}
+.statValue--emoji{
+  font-size:20px;
+  line-height:1.1;
+}
 
 /* Pills inside cards (tags/country/type) should be lighter than filter UI */
 .cardMeta .pill{

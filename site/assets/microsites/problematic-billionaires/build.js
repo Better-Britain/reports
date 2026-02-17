@@ -54,6 +54,23 @@ function parseFirstNumber(s) {
   return Number.isFinite(n) ? n : NaN;
 }
 
+function vibesEmojiFromInt(v) {
+  const n = Number(v);
+  if (n <= -2) return '🟩';
+  if (n === -1) return '🟨';
+  if (n === 0) return '⬜';
+  if (n === 1) return '🟧';
+  return '🟥';
+}
+
+function coerceVibes(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s) return '⬜';
+  // Back-compat: if an editor/LLM sets an int -2..2, convert to an emoji.
+  if (/^-?\d+$/.test(s)) return vibesEmojiFromInt(Number.parseInt(s, 10));
+  return s;
+}
+
 function parseMoneyToUsdNumber(raw) {
   const s = String(raw || '').trim();
   if (!s) return NaN;
@@ -288,6 +305,9 @@ function parseEntriesFromMarkdown(markdownText) {
     const description = String(meta?.description || '').trim();
     const tags = normalizeTags(tagsRaw, country);
 
+    const vibes = coerceVibes(meta?.vibes ?? meta?.vibe);
+    const vibesWhy = String(meta?.vibes_why ?? meta?.vibesWhy ?? meta?.vibes_note ?? meta?.vibesNote ?? '').trim();
+
     entries.push({
       id,
       name,
@@ -298,6 +318,8 @@ function parseEntriesFromMarkdown(markdownText) {
       worthDisplay,
       worthUsd,
       age,
+      vibes,
+      vibesWhy,
       description,
       bodyHtml: bodyMarkdown ? md.render(bodyMarkdown) : '',
       sources,
@@ -332,12 +354,16 @@ function renderCard(entry) {
 
   const rawStats = Array.isArray(entry.stats) ? entry.stats : [];
   const { kept } = stripWorthStats(rawStats);
-  const stats = kept;
+  const vibeTitle = `Vibes ${escapeHtml(entry.vibes)}${entry.vibesWhy ? ` — ${escapeHtml(entry.vibesWhy)}` : ' — no note yet'}`;
+  const stats = [
+    { label: 'Vibes', value: entry.vibes, title: vibeTitle, className: 'stat--vibes', valueClassName: 'statValue--emoji' },
+    ...kept,
+  ];
   const statsHtml = stats.length
     ? `<div class="cardStats" aria-label="Stats">${stats.slice(0, 4).map((st) => `
-  <div class="stat">
+  <div class="stat${st.className ? ` ${escapeHtml(st.className)}` : ''}"${st.title ? ` title="${st.title}"` : ''}>
     <div class="statLabel">${escapeHtml(st.label)}</div>
-    <div class="statValue">${escapeHtml(st.value)}</div>
+    <div class="statValue${st.valueClassName ? ` ${escapeHtml(st.valueClassName)}` : ''}">${escapeHtml(st.value)}</div>
   </div>`).join('')}
 </div>`
     : '';
