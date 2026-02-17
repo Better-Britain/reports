@@ -343,6 +343,9 @@ header.pageHead p{
   .reportPromo{
     grid-template-columns:1fr;
   }
+  .reportPromoArt{
+    display:none;
+  }
   .reportPromoCopy h2{
     font-size:24px;
   }
