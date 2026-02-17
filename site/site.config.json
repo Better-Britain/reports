@@ -100,6 +100,17 @@
       "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
     },
     {
+      "id": "problematic-billionaires",
+      "slug": "elon-musk-our-least-problematic-billionaire",
+      "aliases": [
+        "billionaire-database"
+      ],
+      "publicPath": "/elon-musk-our-least-problematic-billionaire/",
+      "sourceDir": "site/assets/microsites/problematic-billionaires",
+      "title": "Elon Musk is our least problematic billionaire",
+      "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources."
+    },
+    {
       "id": "what-brexit-costs",
       "slug": "what-brexit-costs",
       "publicPath": "/what-brexit-costs/",

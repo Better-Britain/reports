@@ -269,6 +269,24 @@ async function buildMicrosites(config, includeDrafts) {
 			html = applyBasePath(html, config.basePath);
 			await fs.writeFile(indexPath, html, 'utf8');
 		} catch {}
+
+		// Optional aliases: build once, then copy the built output to extra slugs/paths.
+		// This is useful when a microsite is evolving and we want multiple URLs to work.
+		const rawAliases = Array.isArray(ms.aliases) ? ms.aliases : (Array.isArray(ms.slugs) ? ms.slugs : []);
+		const aliasList = rawAliases
+			.map((a) => (typeof a === 'string' ? { slug: a } : a))
+			.filter((a) => a && typeof a === 'object')
+			.map((a) => ({
+				slug: String(a.slug || '').trim(),
+				publicPath: a.publicPath ? ensureTrailingSlash(String(a.publicPath)) : ''
+			}))
+			.filter((a) => a.slug && a.slug !== slug);
+
+		for (const a of aliasList) {
+			const aliasPublicPath = a.publicPath || ensureTrailingSlash(`/${a.slug}/`);
+			const aliasDestDir = path.join(OUTPUT_DIR, aliasPublicPath.replace(/^\/+|\/+$/g, ''));
+			await copyDirRecursive(destDir, aliasDestDir);
+		}
 	}
 }
 
