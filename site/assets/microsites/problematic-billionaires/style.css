@@ -382,6 +382,18 @@ header.pageHead p{
   cursor:pointer;
   font-weight:900;
   user-select:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--muted);
+  font-size:13px;
+}
+.cardDetails summary::marker{color:var(--muted)}
+.receiptCount{
+  font-weight:900;
+  opacity:.75;
+  white-space:nowrap;
 }
 .cardDetailsBody{
   margin-top:8px;
@@ -431,6 +443,13 @@ header.pageHead p{
   font-weight:950;
   letter-spacing:-.01em;
   color:var(--ink);
+}
+
+/* Pills inside cards (tags/country/type) should be lighter than filter UI */
+.cardMeta .pill{
+  border-width:1px;
+  border-color:var(--hair);
+  background:transparent;
 }
 
 footer.pageFoot{

@@ -139,6 +139,22 @@ function parseTags(meta) {
     .filter(Boolean);
 }
 
+function normalizeTags(tags, country) {
+  const cKey = String(country || '').trim().toLowerCase();
+  const seen = new Set();
+  const out = [];
+  for (const t of (Array.isArray(tags) ? tags : [])) {
+    const raw = String(t || '').trim();
+    if (!raw) continue;
+    const key = raw.toLowerCase();
+    if (cKey && key === cKey) continue; // country already has its own filter/pill
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(key);
+  }
+  return out;
+}
+
 function parseStats(meta) {
   const raw = meta?.stats ?? '';
   if (!raw) return [];
@@ -148,9 +164,10 @@ function parseStats(meta) {
       const s = String(part || '').trim();
       if (!s) return null;
       const idx = s.indexOf(':');
-      if (idx < 0) return { label: s, value: '' };
+      if (idx < 0) return null;
       const label = s.slice(0, idx).trim();
       const value = s.slice(idx + 1).trim();
+      if (!label || !value) return null;
       return { label, value };
     })
     .filter(Boolean);
@@ -168,12 +185,6 @@ function stripWorthStats(stats) {
     kept.push(st);
   }
   return { kept, removedWorth };
-}
-
-function hasStatLabel(stats, label) {
-  const target = String(label || '').trim().toLowerCase();
-  if (!target) return false;
-  return (stats || []).some((st) => String(st?.label || '').trim().toLowerCase() === target);
 }
 
 function stripIndent(lines) {
@@ -222,7 +233,7 @@ function parseEntriesFromMarkdown(markdownText) {
       ...extractLinks(bodyMarkdown),
     ]);
 
-    const tags = parseTags(meta);
+    const tagsRaw = parseTags(meta);
     const stats = parseStats(meta);
 
     const worthRaw = String(meta?.worth || meta?.networth || '').trim() || pickWorthFromStats(stats);
@@ -237,6 +248,7 @@ function parseEntriesFromMarkdown(markdownText) {
     const bucket = String(meta?.bucket || '').trim();
     const id = String(meta?.id || slugify(name)).trim();
     const description = String(meta?.description || '').trim();
+    const tags = normalizeTags(tagsRaw, country);
 
     entries.push({
       id,
@@ -279,12 +291,8 @@ function renderCard(entry) {
     : `<div class="pill">No sources listed</div>`;
 
   const rawStats = Array.isArray(entry.stats) ? entry.stats : [];
-  const { kept, removedWorth } = stripWorthStats(rawStats);
-  let stats = removedWorth ? [...kept] : kept;
-  // If a card lost its Worth stat (or is short on stats), top up with a reliable metric.
-  if (stats.length < 4 && !hasStatLabel(stats, 'Sources')) {
-    stats = [...stats, { label: 'Sources', value: String(entry.sourcesCount || 0) }];
-  }
+  const { kept } = stripWorthStats(rawStats);
+  const stats = kept;
   const statsHtml = stats.length
     ? `<div class="cardStats" aria-label="Stats">${stats.slice(0, 4).map((st) => `
   <div class="stat">
@@ -303,7 +311,7 @@ function renderCard(entry) {
   const desc = entry.description ? `<p class="cardDesc">${escapeHtml(entry.description)}</p>` : '';
 
   const details = entry.bodyHtml || entry.sources.length
-    ? `<details class="cardDetails"><summary>Receipts</summary><div class="cardDetailsBody">${entry.bodyHtml}${sourcesHtml}</div></details>`
+    ? `<details class="cardDetails"><summary><span>Receipts</span><span class="receiptCount"># Sources ${escapeHtml(entry.sourcesCount || 0)}</span></summary><div class="cardDetailsBody">${entry.bodyHtml}${sourcesHtml}</div></details>`
     : '';
 
   const tagMeta = entry.tags.length ? `<div class="cardMeta" aria-label="Tags">${bucketPill} ${countryPill} ${tagPills}${moreTag}</div>` : `<div class="cardMeta" aria-label="Tags">${bucketPill} ${countryPill}</div>`;
@@ -418,9 +426,9 @@ function buildContent({ title, introHtml, entries }) {
     <span class="noJs"><noscript>JavaScript is off: filters won’t work (the cards still load).</noscript></span>
     <label class="sortControl">Sort:
       <select class="sortSelect" data-role="sort" aria-label="Sort cards">
-        <option value="name_asc">Name (A–Z)</option>
-        <option value="worth_desc">Worth (high → low)</option>
+        <option value="worth_desc" selected>Worth (high → low)</option>
         <option value="worth_asc">Worth (low → high)</option>
+        <option value="name_asc">Name (A–Z)</option>
         <option value="age_desc">Age (old → young)</option>
         <option value="age_asc">Age (young → old)</option>
         <option value="sources_desc">Sources (many → few)</option>
