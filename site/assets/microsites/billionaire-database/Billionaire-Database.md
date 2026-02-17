@@ -4,7 +4,7 @@ He plays video-games and smokes pot, he's cool, supposedly (let's not get distra
 
 The more structurally “problematic” billionaires are often the ones you can’t name: they stay private, they sit inside supply-chains, taking their cuts. They can steer whole regions and sectors without ever running for anything, and you couldn't pick most of them out of a crowd.
 
-We talk about them a lot, so this is our ongoing attempt to source-link a sticker-book of billionaires. 
+We talk about them a lot, so this is our ongoing attempt to source-link a sticker-book of billionaires.
 
 ## Elon Musk <!--meta id=elon-musk worth="$677B" vibes="🚀🎭" vibes_why="Big vision + big posting: rocket-CEO energy mixed with constant culture-war performance." wiki="https://en.wikipedia.org/wiki/Elon_Musk" primary="https://www.bloomberg.com/billionaires/profiles/elon-musk/" country="United States" bucket="public" tags="tech|tesla|spacex|social-media|ai" description="Serial founder/operator with unusually direct control over platforms, factories, and attention." stats="Age:54|Companies:Tesla/SpaceX|Platform:X" -->
 - **Worth:** Bloomberg’s profile tracks his net worth; this is the number we use for sorting. ([Bloomberg](https://www.bloomberg.com/billionaires/profiles/elon-musk/))
