@@ -80,6 +80,7 @@
       "navTitle": "Immigrants vs Billionaires",
       "title": "Immigrants vs Billionaires",
       "description": "Interactive UK proxy chart comparing immigration costs and benefits with billionaire-linked extraction costs.",
+      "pubDate": "2026-02-12T20:30:00Z",
       "image": "/assets/ivb-preview.jpg"
     },
     {
@@ -100,6 +101,7 @@
       "navTitle": "Labour screw-ups",
       "title": "Labour screw-ups",
       "description": "A source-linked timeline of reversals, broken pledges, and messy climbdowns — filterable by actor, category, state, and U-turn flags.",
+      "pubDate": "2026-02-15T19:40:00Z",
       "image": "/labour-screw-ups/images/labour-screw-ups-preview.jpg"
     },
     {
@@ -118,6 +120,7 @@
       "navTitle": "Billionaire database",
       "title": "Billionaire database",
       "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
+      "pubDate": "2026-02-17T19:40:00Z",
       "image": "/billionaire-database/images/billionaires-database-promo2.jpg"
     },
     {
@@ -128,6 +131,7 @@
       "navTitle": "What Brexit Costs",
       "title": "Brexit: A Trillion Pounds and Counting...",
       "description": "A live counter and “real effects” estimate of the ongoing cost of Brexit.",
+      "pubDate": "2026-02-16T19:40:00Z",
       "image": "/what-brexit-costs/brexit-bus-real-nhs-cost.jpg"
     }
   ]

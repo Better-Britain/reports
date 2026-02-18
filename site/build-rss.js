@@ -19,6 +19,39 @@ function toRssDate(iso) {
   return d.toUTCString();
 }
 
+function ensureLeadingSlash(p) {
+  const s = String(p || '');
+  if (!s) return '/';
+  return s.startsWith('/') ? s : '/' + s;
+}
+
+function ensureTrailingSlash(p) {
+  const s = String(p || '');
+  if (!s) return '/';
+  return s.endsWith('/') ? s : s + '/';
+}
+
+function withBasePath(basePath, pagePath) {
+  const base = ensureTrailingSlash(basePath || '/');
+  const page = ensureLeadingSlash(pagePath || '/');
+  if (base === '/') return page;
+  return base.replace(/\/$/, '') + page;
+}
+
+function guessMimeTypeFromUrl(url) {
+  const s = String(url || '').toLowerCase();
+  const ext = s.split('?')[0].split('#')[0].split('.').pop() || '';
+  if (ext === 'png') return 'image/png';
+  if (ext === 'jpg' || ext === 'jpeg') return 'image/jpeg';
+  if (ext === 'webp') return 'image/webp';
+  if (ext === 'gif') return 'image/gif';
+  return 'application/octet-stream';
+}
+
+function isAbsoluteUrl(url) {
+  return /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(String(url || ''));
+}
+
 function parseFrontMatter(raw) {
   const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!m) return { data: {}, content: raw };
@@ -40,7 +73,9 @@ export async function generateRss(config) {
   const siteTitle = config.brand?.siteTitle || 'Better Britain Bureau';
   const siteDesc = config.brand?.rootHeading || '';
   const siteUrl = (config.siteUrl || '').replace(/\/$/, '');
-  const channelLink = siteUrl || 'https://example.com';
+  const basePath = config.basePath || '/';
+  const channelPath = withBasePath(basePath, '/');
+  const channelLink = siteUrl ? siteUrl + channelPath : channelPath;
   const items = [];
   // Reports with pubDate
   for (const rpt of [...(config.reports?.national || []), ...(config.reports?.local || [])]) {
@@ -49,8 +84,10 @@ export async function generateRss(config) {
     const pub = toRssDate(rpt.pubDate);
     if (!pub) continue;
     const page = '/' + path.basename(rpt.output || '');
-    const link = siteUrl ? siteUrl + page : page;
-    const image = rpt.image ? (siteUrl ? siteUrl + rpt.image : rpt.image) : null;
+    const pageWithBase = withBasePath(basePath, page);
+    const link = siteUrl ? siteUrl + pageWithBase : pageWithBase;
+    const imagePath = rpt.image ? (isAbsoluteUrl(rpt.image) ? rpt.image : withBasePath(basePath, rpt.image)) : null;
+    const image = imagePath ? (isAbsoluteUrl(imagePath) ? imagePath : (siteUrl ? siteUrl + imagePath : imagePath)) : null;
     items.push({
       title: rpt.title,
       link,
@@ -71,8 +108,10 @@ export async function generateRss(config) {
       if (!pub) continue;
       const title = fm.data.title || e.name.replace(/\.md$/i, '');
       const page = '/' + e.name.replace(/\.md$/i, '.html');
-      const link = siteUrl ? siteUrl + page : page;
-      const image = fm.data.image ? (siteUrl ? siteUrl + fm.data.image : fm.data.image) : null;
+      const pageWithBase = withBasePath(basePath, page);
+      const link = siteUrl ? siteUrl + pageWithBase : pageWithBase;
+      const imagePath = fm.data.image ? (isAbsoluteUrl(fm.data.image) ? fm.data.image : withBasePath(basePath, fm.data.image)) : null;
+      const image = imagePath ? (isAbsoluteUrl(imagePath) ? imagePath : (siteUrl ? siteUrl + imagePath : imagePath)) : null;
       items.push({ title, link, guid: link, pubDate: pub, image });
     }
   } catch {}
@@ -89,8 +128,10 @@ export async function generateRss(config) {
       if (!pub) continue;
       const title = fm.data.title || e.name.replace(/\.md$/i, '');
       const page = `/${postsOutBase}/` + e.name.replace(/\.md$/i, '.html');
-      const link = siteUrl ? siteUrl + page : page;
-      const image = fm.data.image ? (siteUrl ? siteUrl + fm.data.image : fm.data.image) : null;
+      const pageWithBase = withBasePath(basePath, page);
+      const link = siteUrl ? siteUrl + pageWithBase : pageWithBase;
+      const imagePath = fm.data.image ? (isAbsoluteUrl(fm.data.image) ? fm.data.image : withBasePath(basePath, fm.data.image)) : null;
+      const image = imagePath ? (isAbsoluteUrl(imagePath) ? imagePath : (siteUrl ? siteUrl + imagePath : imagePath)) : null;
       items.push({ title, link, guid: link, pubDate: pub, image });
     }
   } catch {}
@@ -98,19 +139,23 @@ export async function generateRss(config) {
   // Microsites
   for (const ms of (config.microsites || [])) {
     if (ms.disabled) continue;
-    if (!ms.slug || !ms.pubDate) continue;
-    const pub = toRssDate(ms.pubDate);
+    const dateIso = ms.pubDate || ms.date || ms.published || '';
+    if (!ms.slug || !dateIso) continue;
+    const pub = toRssDate(dateIso);
     if (!pub) continue;
     const title = ms.title || ms.slug;
     const page = ms.publicPath || `/${ms.slug}/`;
-    const link = siteUrl ? siteUrl + page : page;
-    const image = ms.image ? (siteUrl ? siteUrl + ms.image : ms.image) : null;
+    const pageWithBase = withBasePath(basePath, page);
+    const link = siteUrl ? siteUrl + pageWithBase : pageWithBase;
+    const imagePath = ms.image ? (isAbsoluteUrl(ms.image) ? ms.image : withBasePath(basePath, ms.image)) : null;
+    const image = imagePath ? (isAbsoluteUrl(imagePath) ? imagePath : (siteUrl ? siteUrl + imagePath : imagePath)) : null;
     items.push({ title, link, guid: link, pubDate: pub, image });
   }
 
   items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-  const atomSelf = (siteUrl ? siteUrl : '') + '/feed.xml';
+  const atomSelfPath = withBasePath(basePath, '/feed.xml');
+  const atomSelf = (siteUrl ? siteUrl : '') + atomSelfPath;
 
   const rss = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">
@@ -124,7 +169,7 @@ ${items.map(it => `    <item>
       <link>${it.link}</link>
       <guid isPermaLink=\"true\">${it.guid}</guid>
       <pubDate>${it.pubDate}</pubDate>
-${it.image ? `      <enclosure url=\"${it.image}\" type=\"image/jpeg\"/>` : ''}
+${it.image ? `      <enclosure url=\"${it.image}\" type=\"${guessMimeTypeFromUrl(it.image)}\"/>` : ''}
     </item>`).join('\n')}
   </channel>
 </rss>`;

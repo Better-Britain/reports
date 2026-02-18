@@ -170,6 +170,21 @@ function injectMicrositeCrossLinks(html, { microsites, microsite, publicPath }) 
 	return s.replace(MICROSITE_CROSSLINKS_MARKER_RE, panel);
 }
 
+function ensureRssAlternateLink(html, config) {
+	const s = String(html || '');
+	// If the RSS <link rel="alternate"> already exists, don't add another.
+	if (/application\/rss\+xml/i.test(s)) return s;
+
+	const siteTitle = config?.brand?.siteTitle || 'Better Britain Bureau';
+	const linkTag = `<link rel="alternate" type="application/rss+xml" title="${escapeHtml(siteTitle)} RSS" href="/feed.xml">`;
+
+	// Prefer inserting immediately after </title> if present, otherwise after <head>.
+	if (/<\/title>/i.test(s)) return s.replace(/<\/title>/i, `</title>\n${linkTag}`);
+	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${linkTag}`);
+	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${linkTag}\n</head>`);
+	return s;
+}
+
 // Rewrite root-relative URLs (e.g. /assets/...) to include a configurable basePath (e.g. /reports/)
 function applyBasePath(html, basePath) {
 	const base = ensureTrailingSlash(basePath || '/');
@@ -309,15 +324,16 @@ async function buildMicrosites(config, includeDrafts) {
 				await copyDirRecursive(sourceDir, destDir);
 			}
 
-			const indexPath = path.join(destDir, 'index.html');
-			try {
-				let html = await fs.readFile(indexPath, 'utf8');
-				html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
-				const canonicalPath = targetPublicPath;
-				const meta = buildMetaTags({
-					title: microsite.title || effectiveSlug || canonicalSlug,
-					description: microsite.description || config.brand?.rootHeading,
-					url: absoluteUrl(config.siteUrl, canonicalPath),
+				const indexPath = path.join(destDir, 'index.html');
+				try {
+					let html = await fs.readFile(indexPath, 'utf8');
+					html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
+					html = ensureRssAlternateLink(html, config);
+					const canonicalPath = targetPublicPath;
+					const meta = buildMetaTags({
+						title: microsite.title || effectiveSlug || canonicalSlug,
+						description: microsite.description || config.brand?.rootHeading,
+						url: absoluteUrl(config.siteUrl, canonicalPath),
 					image: absoluteUrl(config.siteUrl, microsite.image ? microsite.image : DEFAULT_OG_IMAGE),
 					siteName: config.brand?.siteTitle,
 					logo: absoluteUrl(config.siteUrl, '/assets/better-britain-bee.png'),
