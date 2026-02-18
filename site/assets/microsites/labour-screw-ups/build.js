@@ -284,7 +284,7 @@ function buildContent({ title, entries }) {
     <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
     <nav class="brandLinks" aria-label="Better Britain links">
       <a href="/">Homepage</a>
-      <a href="/year-of-labour.html">Flagship Report</a>
+      <!--<a href="/year-of-labour.html">Flagship Report</a>-->
       <a href="/posts/index.html">Posts</a>
       <a href="/about.html">About BBB</a>
     </nav>
@@ -292,6 +292,26 @@ function buildContent({ title, entries }) {
 
   <!--bbb:micro-cross-links-->
 </div>
+
+<section class="reportPromoWrap" aria-label="A Year of Labour promo">
+  <div class="reportPromo">
+    <div class="reportPromoCopy">
+      <p class="reportPromoEyebrow">There's more to the story...</p>
+      <h2>Read the full <a href="/year-of-labour.html?shortmode">A Year of Labour</a> report</h2>
+      <p class="reportPromoLead">
+        This dashboard is just one lazy slice of mainstream reporting, confirmation bias by design. For a deep-dive on policy and real change, <em>also</em> check out the main report.
+      </p>
+      <div class="reportPromoActions">
+        <a class="reportPromoBtn reportPromoBtnPrimary" href="/year-of-labour.html?shortmode">Read A Year of Labour</a>
+        <!--<a class="reportPromoBtn reportPromoBtnGhost" href="/">Visit BBB Homepage</a>-->
+      </div>
+    </div>
+    <a class="reportPromoArt" href="/year-of-labour.html?shortmode" aria-label="Open A Year of Labour report">
+      <img src="/assets/a-year-of-labour-landing-image.jpg" alt="A Year of Labour report cover artwork" />
+      <span>Flagship report</span>
+    </a>
+  </div>
+</section>
 
 <header class="pageHead">
   <h1>${escapeHtml(title)}</h1>
