@@ -18,6 +18,7 @@ const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 const MICROSITE_CROSSLINKS_MARKER_RE = /<!--\s*bbb:micro-cross-links\s*-->/gi;
+const FAVICONS_MARKER_RE = /<!--\s*bbb:favicons\s*-->/gi;
 
 async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0, rootDir = srcDir) {
 	await fs.mkdir(destDir, { recursive: true });
@@ -92,8 +93,28 @@ async function ensureAssets() {
 	try { await fs.access(appJs); } catch { await fs.writeFile(appJs, `document.addEventListener('DOMContentLoaded',()=>{const links=document.querySelectorAll('a[href^="#"]');links.forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});}}));});`, 'utf8'); }
 	// Copy site assets to docs/assets, excluding microsite sources (published separately).
 	await copyDirRecursive(assetsDir, path.join(OUTPUT_DIR, 'assets'), {
-		excludeTopLevelDirs: new Set(['microsites'])
+		excludeTopLevelDirs: new Set(['microsites', 'icons'])
 	});
+
+	// Copy favicons/manifest to docs/icons so they're available at /icons/* (as expected by browsers/tools).
+	const iconsDir = path.join(assetsDir, 'icons');
+	const iconsOut = path.join(OUTPUT_DIR, 'icons');
+	await copyDirRecursive(iconsDir, iconsOut);
+	// Rewrite manifest icon URLs to be relative to the manifest (works with/without basePath).
+	try {
+		const manifestPath = path.join(iconsOut, 'site.webmanifest');
+		const raw = await fs.readFile(manifestPath, 'utf8');
+		const json = JSON.parse(raw);
+		if (Array.isArray(json.icons)) {
+			json.icons = json.icons.map((ico) => {
+				if (!ico || typeof ico !== 'object') return ico;
+				const src = String(ico.src || '');
+				if (!src.startsWith('/icons/')) return ico;
+				return { ...ico, src: src.replace(/^\/icons\//, '') };
+			});
+		}
+		await fs.writeFile(manifestPath, JSON.stringify(json, null, 2) + '\n', 'utf8');
+	} catch {}
 }
 
 function renderMarkdownString(markdown) {
@@ -168,6 +189,33 @@ function injectMicrositeCrossLinks(html, { microsites, microsite, publicPath }) 
 		selfPublicPath: publicPath
 	});
 	return s.replace(MICROSITE_CROSSLINKS_MARKER_RE, panel);
+}
+
+function renderFaviconsHeadTags() {
+	return [
+		`<link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />`,
+		`<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />`,
+		`<link rel="shortcut icon" href="/icons/favicon.ico" />`,
+		`<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />`,
+		`<meta name="apple-mobile-web-app-title" content="Better Britain" />`,
+		`<link rel="manifest" href="/icons/site.webmanifest" />`
+	].join('\n');
+}
+
+function ensureFavicons(html) {
+	const s = String(html || '');
+	// If there are already icon tags, don't add more.
+	if (/rel=["'](?:shortcut\s+)?icon["']/i.test(s) || /\/icons\/favicon/i.test(s)) return s;
+
+	const tags = renderFaviconsHeadTags();
+
+	if (/bbb:favicons/i.test(s)) {
+		return s.replace(FAVICONS_MARKER_RE, tags);
+	}
+	if (/<\/title>/i.test(s)) return s.replace(/<\/title>/i, `</title>\n${tags}`);
+	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${tags}`);
+	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${tags}\n</head>`);
+	return s;
 }
 
 function ensureRssAlternateLink(html, config) {
@@ -328,6 +376,7 @@ async function buildMicrosites(config, includeDrafts) {
 				try {
 					let html = await fs.readFile(indexPath, 'utf8');
 					html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
+					html = ensureFavicons(html);
 					html = ensureRssAlternateLink(html, config);
 					const canonicalPath = targetPublicPath;
 					const meta = buildMetaTags({
