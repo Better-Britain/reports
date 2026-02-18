@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Better Britain Bureau</title>
-    <link>https://betterbritain.org.uk</link>
+    <link>https://betterbritain.org.uk/</link>
     <atom:link href="https://betterbritain.org.uk/feed.xml" rel="self" type="application/rss+xml" />
     <description>Broken Britain Briefing</description>
     <item>
@@ -13,6 +13,13 @@
 
     </item>
     <item>
+      <title>Billionaire database</title>
+      <link>https://betterbritain.org.uk/billionaire-database/</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/billionaire-database/</guid>
+      <pubDate>Tue, 17 Feb 2026 19:40:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/billionaire-database/images/billionaires-database-promo2.jpg" type="image/jpeg"/>
+    </item>
+    <item>
       <title>New microsite: What Brexit costs</title>
       <link>https://betterbritain.org.uk/posts/2026-02-16-what-brexit-costs.html</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-16-what-brexit-costs.html</guid>
@@ -20,9 +27,23 @@
       <enclosure url="https://betterbritain.org.uk/what-brexit-costs/brexit-bus-real-nhs-cost.jpg" type="image/jpeg"/>
     </item>
     <item>
+      <title>Brexit: A Trillion Pounds and Counting...</title>
+      <link>https://betterbritain.org.uk/what-brexit-costs/</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/what-brexit-costs/</guid>
+      <pubDate>Mon, 16 Feb 2026 19:40:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/what-brexit-costs/brexit-bus-real-nhs-cost.jpg" type="image/jpeg"/>
+    </item>
+    <item>
       <title>New dashboard: Labour screw-ups</title>
       <link>https://betterbritain.org.uk/posts/2026-02-15-labour-screw-ups-dashboard.html</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-15-labour-screw-ups-dashboard.html</guid>
+      <pubDate>Sun, 15 Feb 2026 19:40:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/labour-screw-ups/images/labour-screw-ups-preview.jpg" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Labour screw-ups</title>
+      <link>https://betterbritain.org.uk/labour-screw-ups/</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/labour-screw-ups/</guid>
       <pubDate>Sun, 15 Feb 2026 19:40:00 GMT</pubDate>
       <enclosure url="https://betterbritain.org.uk/labour-screw-ups/images/labour-screw-ups-preview.jpg" type="image/jpeg"/>
     </item>
@@ -38,7 +59,14 @@
       <link>https://betterbritain.org.uk/posts/2026-02-12-immigrants-vs-billionaires.html</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-12-immigrants-vs-billionaires.html</guid>
       <pubDate>Thu, 12 Feb 2026 20:30:00 GMT</pubDate>
-      <enclosure url="https://betterbritain.org.uk/immigrants-vs-billionaires/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" type="image/jpeg"/>
+      <enclosure url="https://betterbritain.org.uk/immigrants-vs-billionaires/images/is-that-billionaire-weighing-you-down-get-an-immigrant-2.png" type="image/png"/>
+    </item>
+    <item>
+      <title>Immigrants vs Billionaires</title>
+      <link>https://betterbritain.org.uk/immigrants-vs-billionaires/</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/immigrants-vs-billionaires/</guid>
+      <pubDate>Thu, 12 Feb 2026 20:30:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/assets/ivb-preview.jpg" type="image/jpeg"/>
     </item>
     <item>
       <title>What is an &apos;AI think tank&apos;?</title>
