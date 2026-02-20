@@ -505,6 +505,83 @@ Whalley Range Labour says Stogia won the “Environment and Sustainability Pione
 Sources:
 - [Whalley Range Labour — national climate award post](https://whalleyrangelabour.org.uk/national-climate-award-2/)
 
+<!--meta id="gd-301" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-31" -->
+Andy Burnham congratulated Stogia on X and said: “I will be there for you whenever you need me.”
+Sources:
+- [BBC — Stogia selected as Labour candidate (includes Burnham X quote)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
+
+<!--meta id="gd-302" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-31" -->
+BBC reported Stogia’s selection event was flanked by Labour chairwoman **Anna Turley** and deputy leader **Lucy Powell**.
+Sources:
+- [BBC — Stogia selected as Labour candidate (selection event description)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
+
+<!--meta id="gd-303" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-31" -->
+Labour’s NEC said allowing Burnham to run could trigger an “unnecessary election” for the Greater Manchester mayoralty.
+Sources:
+- [BBC — Stogia selected as Labour candidate (NEC justification)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
+- [BBC — Starmer defends blocking Burnham (NEC rationale)](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
+
+<!--meta id="gd-304" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-01-29" -->
+Burnham said he wanted to “fight the politics of Reform” and “defend Greater Manchester from being picked apart”.
+Sources:
+- [BBC Sounds — Burnham interview (Radio Manchester)](https://www.bbc.co.uk/sounds/play/p0mxwmp8)
+- [BBC — Stogia selected as Labour candidate (links to the Sounds clip)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
+
+<!--meta id="gd-305" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-31" -->
+BBC reported Stogia stood for Labour in **Chester South and Eddisbury** at the 2024 general election and lost.
+Sources:
+- [BBC — Stogia selected as Labour candidate](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
+
+<!--meta id="gd-306" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-27" -->
+Lucy Powell said Labour members should be “one team” ahead of the Gorton & Denton by-election.
+Sources:
+- [BBC — Lucy Powell focused on Labour unity](https://www.bbc.co.uk/news/articles/cvgxze4ngk7o)
+
+<!--meta id="gd-307" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-27" -->
+Powell said the Labour candidate would be supported by “Andy Burnham” and “Keir Starmer”.
+Sources:
+- [BBC — Lucy Powell focused on Labour unity (quote about support)](https://www.bbc.co.uk/news/articles/cvgxze4ngk7o)
+
+<!--meta id="gd-308" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-27" -->
+BBC reported around 50 Labour MPs wrote to Starmer warning blocking Burnham was a “real gift” to Reform UK.
+Sources:
+- [BBC — Fifty Labour MPs sign letter objecting to Burnham decision](https://www.bbc.co.uk/news/articles/ce3e53e34klo)
+
+<!--meta id="gd-309" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-26" -->
+Starmer said allowing Burnham to run would “divert our resources” and defended the NEC decision.
+Sources:
+- [BBC — Starmer defends blocking Burnham after backlash](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
+
+<!--meta id="gd-310" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-26" -->
+Labour MP Nadia Whittome said blocking Burnham risked “gifting the seat to Reform”.
+Sources:
+- [BBC — Starmer defends blocking Burnham after backlash (Whittome quote)](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
+
+<!--meta id="gd-320" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="jobs-rights" kind="said" date="2026-01-30" -->
+Green leader Zack Polanski joked Parliament needs a plumber and plasterer — and Spencer can do both.
+Sources:
+- [BBC — Greens name Hannah Spencer as by-election pick (Polanski quote)](https://www.bbc.co.uk/news/articles/cvgj5gplpl9o)
+
+<!--meta id="gd-321" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-02-16" -->
+BBC reported Nigel Farage has been “frequently and enthusiastically visible” on the campaign trail.
+Sources:
+- [BBC — Every vote is up for grabs in Gorton and Denton](https://www.bbc.co.uk/news/articles/c62637ddnq8o)
+
+<!--meta id="gd-322" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2026-02-16" -->
+BBC reported George Galloway’s party standing aside for the Greens could prove decisive.
+Sources:
+- [BBC — Every vote is up for grabs in Gorton and Denton](https://www.bbc.co.uk/news/articles/c62637ddnq8o)
+
+<!--meta id="gd-330" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-02-05" -->
+At a Denton campaign launch, Farage said: “By-elections are a chance to make a statement.”
+Sources:
+- [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
+
+<!--meta id="gd-331" candidate="context" candidateName="Context" issue="context" kind="said" date="2026-02-05" -->
+Farage told journalists a Gorton & Denton defeat for Labour “could be the end of Starmer”.
+Sources:
+- [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
+
 <!--meta id="gd-999" draft=1 candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="transport-air" kind="said" date="2026-02-01" -->
 Template / example block (leave draft=1 until sourced).
 Sources:
