@@ -246,35 +246,47 @@ Sources:
 - [Financial Times — Brussels conference report quoting Goodwin](https://www.ft.com/content/871b5f86-83c3-4dc6-b56f-d65f68563d8c)
 
 <!--meta id="gd-140" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-02-13" -->
-At a hustings, Spencer challenged Goodwin over a post she said suggested taxing women without children; Goodwin called it “false information”.
+> “false information”
+
+At a hustings, Not Really Here Media reported Spencer challenged Goodwin over a post she said suggested taxing women without children; Goodwin called it “false information”.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Spencer/Goodwin exchange)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 - [The Guardian — reporting on Goodwin’s comments about women having children later](https://www.theguardian.com/politics/2026/feb/13/reform-matt-goodwin-suggested-taxing-women-without-children)
 
 <!--meta id="gd-150" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="transport-air" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, Stogia said she worked with Burnham on the Bee Network and bringing buses under local control.
+> “champion and deliver actions on the ground”
+
+At the Levenshulme hustings, Not Really Here Media reported Stogia referenced her work with Burnham on the Bee Network and bringing buses under local control, and said she would “champion and deliver actions on the ground”.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Stogia Bee Network line)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
 <!--meta id="gd-160" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-12" -->
-At the MEN hustings, Stogia said Goodwin’s rhetoric made women “afraid to leave their homes”.
+> “they’re scared to leave their house because of the rhetoric that you have been peddling.”
+
+The Guardian reported Stogia said this to Goodwin at a Manchester Evening News hustings.
 Sources:
-- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/politics/2026/feb/12/reform-by-election-candidate-matt-goodwin-told-uk-has-no-border-policy-and-women-are-unsafe)
+- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/uk-news/2026/feb/12/labour-reform-candidates-clash-women-feeling-threatened-far-right-rhetoric)
 
 <!--meta id="gd-161" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-02-12" -->
-At the same event, Goodwin said Labour has “no border policy” and women were unsafe.
+> “running a policy of open borders, which is putting women and girls at risk”
+
+The Guardian reported Goodwin said this at the same Manchester Evening News hustings.
 Sources:
-- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/politics/2026/feb/12/reform-by-election-candidate-matt-goodwin-told-uk-has-no-border-policy-and-women-are-unsafe)
+- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/uk-news/2026/feb/12/labour-reform-candidates-clash-women-feeling-threatened-far-right-rhetoric)
 
 <!--meta id="gd-162" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="culture-war" kind="said" date="2026-02-12" -->
-At the MEN hustings, Spencer described Goodwin as an academic “bussed in from the south”.
+> “an academic, bussed in from the south, spreading that party’s message of division”
+
+The Guardian reported Spencer described Goodwin this way at the Manchester Evening News hustings.
 Sources:
-- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/politics/2026/feb/12/reform-by-election-candidate-matt-goodwin-told-uk-has-no-border-policy-and-women-are-unsafe)
+- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/uk-news/2026/feb/12/labour-reform-candidates-clash-women-feeling-threatened-far-right-rhetoric)
 
 <!--meta id="gd-163" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-02-12" -->
-In the same exchange, Goodwin said: “I’m not a racist, I’m a patriot.”
+> “You spent so long Matt, I think, researching far-right extremism that you did get a little bit confused and thought what you were reading was an instruction manual.”
+
+The Guardian reported Spencer said this to Goodwin at the Manchester Evening News hustings.
 Sources:
-- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/politics/2026/feb/12/reform-by-election-candidate-matt-goodwin-told-uk-has-no-border-policy-and-women-are-unsafe)
+- [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/uk-news/2026/feb/12/labour-reform-candidates-clash-women-feeling-threatened-far-right-rhetoric)
 
 <!--meta id="gd-170" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="homes-streets" kind="documented" date="2026-02-19" -->
 Guardian reported Denton’s “left behind” feeling has created an opening Reform is trying to exploit.
@@ -287,17 +299,23 @@ Sources:
 - [The Guardian — Labour attacks Green drug policy amid vote-splitting fears](https://www.theguardian.com/politics/2026/jan/28/labour-attacks-green-drugs-policy-amid-fears-of-vote-splitting-at-by-election)
 
 <!--meta id="gd-190" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="culture-war" kind="said" date="2026-02-15" -->
-Sir Oink A‑Lot’s election address says: “Stop Trump’s takeover of Iceland’s packing factory in Gorton.”
+> “Stop Trump’s takeover of Iceland’s packing factory in Gorton.”
+
+Sir Oink A‑Lot’s election address included this line.
 Sources:
 - [Official Monster Raving Loony Party — Sir Oink election address](https://www.loonyparty.com/2026/02/15/sir-oink-a-lots-election-address-in-gorton-denton/)
 
 <!--meta id="gd-191" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="jobs-rights" kind="said" date="2026-02-15" -->
-Sir Oink A‑Lot’s election address says: “Bring back the pig iron industry.”
+> “Bring back the pig iron industry.”
+
+Sir Oink A‑Lot’s election address included this line.
 Sources:
 - [Official Monster Raving Loony Party — Sir Oink election address](https://www.loonyparty.com/2026/02/15/sir-oink-a-lots-election-address-in-gorton-denton/)
 
 <!--meta id="gd-192" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="culture-war" kind="said" date="2026-02-15" -->
-Sir Oink A‑Lot’s election address says: “Remove the get out of jail free peerage card.”
+> “Remove the get out of jail free peerage card.”
+
+Sir Oink A‑Lot’s election address included this line.
 Sources:
 - [Official Monster Raving Loony Party — Sir Oink election address](https://www.loonyparty.com/2026/02/15/sir-oink-a-lots-election-address-in-gorton-denton/)
 
@@ -312,7 +330,9 @@ Sources:
 - [UK Parliament — Oldham West and Royton by-election results (2015)](https://members.parliament.uk/constituency/3671/election/370)
 
 <!--meta id="gd-195" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="culture-war" kind="said" date="2023-05-05" -->
-Sir Oink A‑Lot told Mancunian Matters: “every non-voter is a loony voter”.
+> “every non-voter is a loony voter”
+
+Mancunian Matters reported Sir Oink A‑Lot said this.
 Sources:
 - [Mancunian Matters — interview with Sir Oink A‑Lot (2023)](https://www.mancunianmatters.co.uk/news/05052023-every-non-voter-is-a-loony-voter-sir-oink-a-lot-of-the-monster-raving-loony-party/)
 
@@ -322,7 +342,9 @@ Sources:
 - [The Guardian — Tommy Robinson endorsement reporting](https://www.theguardian.com/politics/2026/jan/30/gorton-and-denton-labour-reform-candidate-matthew-goodwin-tommy-robinson-endorsement)
 
 <!--meta id="gd-172" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-01-27" -->
-Goodwin has said: “It takes more than a piece of paper to make somebody ‘British’.”
+> “It takes more than a piece of paper to make somebody ‘British’.”
+
+The Guardian reported Goodwin said this.
 Sources:
 - [The Guardian — Goodwin remarks about Britishness](https://www.theguardian.com/politics/2026/jan/27/matthew-goodwin-gorton-and-denton-reform-uk-minorities)
 
@@ -337,9 +359,11 @@ Sources:
 - [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
 
 <!--meta id="gd-175" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-01-27" -->
-Goodwin said: “This byelection is a referendum on Keir Starmer.”
+> “a referendum on Keir Starmer”
+
+BBC reported Goodwin said the by-election was “a referendum on Keir Starmer”.
 Sources:
-- [The Guardian live blog — Reform announcement quote](https://www.theguardian.com/politics/live/2026/jan/27/uk-politics-latest-news-updates-keir-starmer-leaseholders-andy-burnham-labour-reform?filterKeyEvents=false)
+- [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
 
 <!--meta id="gd-176" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-01-27" -->
 Reform said Goodwin “worked… delivering fast food in the Gorton and Denton area” while at university.
@@ -352,7 +376,9 @@ Sources:
 - [The Guardian live blog — Reform candidate announcement](https://www.theguardian.com/politics/live/2026/jan/27/uk-politics-latest-news-updates-keir-starmer-leaseholders-andy-burnham-labour-reform?filterKeyEvents=false)
 
 <!--meta id="gd-181" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-02" -->
-Launching her campaign, Stogia said: “Manchester is a city united; we are rejecting division.”
+> “Manchester is a city united; we are rejecting division.”
+
+Not Really Here Media reported Stogia said this when launching her campaign.
 Sources:
 - [Not Really Here Media — meet-the-candidates round-up (Stogia quote)](https://www.notreallyheremedia.com/news/all-news/meet-the-candidates-who-will-be-battling-for-your-vote-this-month/)
 
@@ -362,12 +388,16 @@ Sources:
 - [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
 
 <!--meta id="gd-183" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-02-20" -->
-On a local Labour page, Stogia says she has served Whalley Range ward as a councillor since **2012**.
+> “I have had the privilege to serve our vibrant and diverse community since 2012.”
+
+Stogia wrote this on a local Labour profile page.
 Sources:
 - [Whalley Range Labour — Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)
 
 <!--meta id="gd-184" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-20" -->
-On the same page, Stogia says she was born and raised in Greece, and is a British citizen.
+> “I am originally from Greece, but chose to make Manchester my home over thirty years ago (and I’m now a naturalised British citizen).”
+
+Stogia wrote this on the same local Labour profile page.
 Sources:
 - [Whalley Range Labour — Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)
 
@@ -442,7 +472,10 @@ Sources:
 - [Trafford Green Party — group leader announcement](https://trafford.greenparty.org.uk/2025/05/24/green-party-in-trafford-announces-new-leader/)
 
 <!--meta id="gd-215" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="health-care" kind="said" date="2026-02-10" -->
-Spencer told the MEN that some people she visits have kept their boiler off for a year because they can’t afford heating.
+> "I see in my job all the time the way that people are living and struggling. I'll go to do a gas check on a boiler, and that boiler's not been turned on since the person went there a year to do another gas check, because people just cannot afford to have the heating on.
+> "That's people across all ages and all incomes, but it really affects vulnerable people in our communities. And it affects older people, who are people who've paid into the system all their life and then just freezing in their own homes."
+
+The MEN reported Spencer said this at a campaign event.
 Sources:
 - [Yahoo / MEN — story quoting Spencer on heating costs](https://uk.news.yahoo.com/no-hannah-spencer-doesnt-live-183037561.html)
 
@@ -462,12 +495,14 @@ Sources:
 - [Manchester Lib Dems — Pearcey “record of action” list](https://www.mcrlibdems.uk/news/article/jackie-pearcey-s-record-of-action-over-31-years)
 
 <!--meta id="gd-240" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="homes-streets" kind="said" date="2026-02-18" -->
-O’Meachair said creating “mixed communities” could help prevent “ghettoisation”.
+> “ghettoisation”
+
+Not Really Here Media reported O’Meachair used this term while discussing housing and HMOs.
 Sources:
 - [Not Really Here Media — O’Meachair interview (HMOs/regeneration)](https://www.notreallyheremedia.com/news/all-news/rejoin-eu-candidate-sets-out-regeneration-and-youth-plans-ahead-of-gorton-and-denton-by-election/)
 
-<!--meta id="gd-241" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="homes-streets" kind="said" date="2026-02-18" -->
-O’Meachair suggested linking local regeneration schemes to European examples to share expertise and best practice.
+<!--meta id="gd-241" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="homes-streets" kind="documented" date="2026-02-18" -->
+Not Really Here Media reported O’Meachair suggested linking local regeneration schemes to comparable European projects to share expertise and best practice.
 Sources:
 - [Not Really Here Media — O’Meachair interview (regeneration examples)](https://www.notreallyheremedia.com/news/all-news/rejoin-eu-candidate-sets-out-regeneration-and-youth-plans-ahead-of-gorton-and-denton-by-election/)
 
@@ -477,12 +512,16 @@ Sources:
 - [Not Really Here Media — SDP candidate announcement](https://www.notreallyheremedia.com/news/tameside-reporter/social-democratic-party-announce-candidate-for-gorton-and-denton-by-election/)
 
 <!--meta id="gd-251" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="homes-streets" kind="said" date="2026-01-29" -->
-Moore said: “If we want to rebuild Britain… we have to start in places like Gorton and Denton: improving housing…”
+> “If we want to rebuild Britain, we have to start in places like Gorton and Denton: improving housing, strengthening social cohesion, and creating meaningful work, with communities empowered to drive the change that’s needed.”
+
+Not Really Here Media reported Moore said this when announcing his candidacy.
 Sources:
 - [Not Really Here Media — SDP candidate announcement (Moore quote)](https://www.notreallyheremedia.com/news/tameside-reporter/social-democratic-party-announce-candidate-for-gorton-and-denton-by-election/)
 
 <!--meta id="gd-260" candidate="dan-clarke" candidateName="Dan Clarke" party="Libertarian Party UK" issue="jobs-rights" kind="said" date="2026-02-05" -->
-Clarke said he wants to “start lowering taxes” and oppose growth in the size and cost of government.
+> “start lowering taxes”
+
+Tameside Correspondent reported Clarke said he wants to “start lowering taxes” and oppose growth in the size and cost of government.
 Sources:
 - [Tameside Correspondent — Dan Clarke profile/interview](https://www.tamesidecorrespondent.co.uk/2026/02/05/denton-candidate-targets-government-costs-as-full-candidate-list-declared/)
 
@@ -492,12 +531,16 @@ Sources:
 - [Not Really Here Media — Hugo Wils interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
 
 <!--meta id="gd-271" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="homes-streets" kind="said" date="2026-02-11" -->
-Wils called for “a public works programme… [to] provide the housing, schools, hospitals and roads that working people need.”
+> “At the same time, it would provide the housing, schools, hospitals and roads that working people need.”
+
+Not Really Here Media reported Wils said this while calling for a public works programme.
 Sources:
 - [Not Really Here Media — Hugo Wils interview (public works quote)](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
 
 <!--meta id="gd-062" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="said" date="2026-02-20" -->
-Buckley says he “was born and raised” locally and has spent “two decades fixing social problems” across the area.
+> “I have spent two decades fixing social problems in Gorton, Denton, Longsight, Levenshulme and Burnage. I know the area like the back of my hand – I was born and raised there!”
+
+Buckley wrote this on his campaign site.
 Sources:
 - [Nick Buckley campaign site — homepage](https://nickbuckley4parliament.co.uk/)
 
@@ -523,7 +566,9 @@ Sources:
 - [Whalley Range Labour — national climate award post](https://whalleyrangelabour.org.uk/national-climate-award-2/)
 
 <!--meta id="gd-301" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-31" -->
-Andy Burnham congratulated Stogia on X and said: “I will be there for you whenever you need me.”
+> “I will be there for you whenever you need me.”
+
+BBC reported Burnham wrote this in an X post congratulating Stogia.
 Sources:
 - [BBC — Stogia selected as Labour candidate (includes Burnham X quote)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
 
@@ -539,7 +584,9 @@ Sources:
 - [BBC — Starmer defends blocking Burnham (NEC rationale)](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
 
 <!--meta id="gd-304" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-01-29" -->
-Burnham said he wanted to “fight the politics of Reform” and “defend Greater Manchester from being picked apart”.
+> “fight the politics of Reform” and “defend Greater Manchester from being picked apart”
+
+BBC reported Burnham said this in a BBC Radio Manchester interview.
 Sources:
 - [BBC Sounds — Burnham interview (Radio Manchester)](https://www.bbc.co.uk/sounds/play/p0mxwmp8)
 - [BBC — Stogia selected as Labour candidate (links to the Sounds clip)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
@@ -550,12 +597,16 @@ Sources:
 - [BBC — Stogia selected as Labour candidate](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
 
 <!--meta id="gd-306" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-27" -->
-Lucy Powell said Labour members should be “one team” ahead of the Gorton & Denton by-election.
+> “one team”
+
+BBC reported Powell said Labour members should be “one team” ahead of the Gorton & Denton by-election.
 Sources:
 - [BBC — Lucy Powell focused on Labour unity](https://www.bbc.co.uk/news/articles/cvgxze4ngk7o)
 
 <!--meta id="gd-307" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-27" -->
-Powell said the Labour candidate would be supported by “Andy Burnham” and “Keir Starmer”.
+> “Andy Burnham” and “Keir Starmer”
+
+BBC reported Powell said the Labour candidate would be supported by “Andy Burnham” and “Keir Starmer”.
 Sources:
 - [BBC — Lucy Powell focused on Labour unity (quote about support)](https://www.bbc.co.uk/news/articles/cvgxze4ngk7o)
 
@@ -565,17 +616,23 @@ Sources:
 - [BBC — Fifty Labour MPs sign letter objecting to Burnham decision](https://www.bbc.co.uk/news/articles/ce3e53e34klo)
 
 <!--meta id="gd-309" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-26" -->
-Starmer said allowing Burnham to run would “divert our resources” and defended the NEC decision.
+> “divert our resources”
+
+BBC reported Starmer said allowing Burnham to run would “divert our resources”.
 Sources:
 - [BBC — Starmer defends blocking Burnham after backlash](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
 
 <!--meta id="gd-310" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-01-26" -->
-Labour MP Nadia Whittome said blocking Burnham risked “gifting the seat to Reform”.
+> “gifting the seat to Reform”
+
+BBC reported Labour MP Nadia Whittome said blocking Burnham risked “gifting the seat to Reform”.
 Sources:
 - [BBC — Starmer defends blocking Burnham after backlash (Whittome quote)](https://www.bbc.co.uk/news/articles/cjdj8jg4gnyo)
 
 <!--meta id="gd-320" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="jobs-rights" kind="said" date="2026-01-30" -->
-Green leader Zack Polanski joked Parliament needs a plumber and plasterer — and Spencer can do both.
+> “The Houses of Parliament. Leaky roofs, crumbling walls. I think they need a plumber and a plasterer and we've got someone who can do both.”
+
+BBC reported Green leader Zack Polanski said this about Spencer.
 Sources:
 - [BBC — Greens name Hannah Spencer as by-election pick (Polanski quote)](https://www.bbc.co.uk/news/articles/cvgj5gplpl9o)
 
@@ -590,12 +647,16 @@ Sources:
 - [BBC — Every vote is up for grabs in Gorton and Denton](https://www.bbc.co.uk/news/articles/c62637ddnq8o)
 
 <!--meta id="gd-330" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-02-05" -->
-At a Denton campaign launch, Farage said: “By-elections are a chance to make a statement.”
+> “By-elections are a chance to make a statement.”
+
+At a Denton campaign launch, Farage said this (reported by MEN).
 Sources:
 - [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
 
 <!--meta id="gd-331" candidate="context" candidateName="Context" issue="context" kind="said" date="2026-02-05" -->
-Farage told journalists a Gorton & Denton defeat for Labour “could be the end of Starmer”.
+> “could be the end of Starmer”
+
+MEN reported Farage said this to journalists at the same Denton event.
 Sources:
 - [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
 
