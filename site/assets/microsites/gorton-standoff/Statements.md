@@ -127,7 +127,9 @@ Sources:
 - [Yahoo (MEN) — Spencer background + group leader claim](https://uk.news.yahoo.com/no-hannah-spencer-doesnt-live-183037561.html)
 
 <!--meta id="gd-042" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="said" date="2026-02-11" -->
-The Independent wrote Spencer posted on Mumsnet in 2021 calling Levenshulme “money-laundering takeaways” and said she was glad she moved out.
+> “money-laundering takeaways”
+
+The Independent reported Spencer posted on Mumsnet in 2021 describing Levenshulme as being full of this.
 Sources:
 - [The Independent — column quoting the Mumsnet remarks](https://www.independent.co.uk/voices/hannah-spencer-green-party-gorton-denton-levenhulme-b2918231.html)
 
@@ -142,7 +144,9 @@ Sources:
 - [Not Really Here Media — Levenshulme hustings report](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
 <!--meta id="gd-060" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="culture-war" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, Buckley said: “we should have one community…the English, the British community…”.
+> “we should have one community…the English, the British community…”.
+
+Buckley said this at the Levenshulme hustings.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Buckley quote)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
@@ -152,17 +156,21 @@ Sources:
 - [Nick Buckley campaign site — “5 Key Promises”](https://nickbuckley4parliament.co.uk/)
 
 <!--meta id="gd-070" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="culture-war" kind="said" date="2026-01-30" -->
-Pearcey said voters “deserve so much more than… the failing Labour government or the divisive politics of Reform UK.”
+> “Voters in Gorton and Denton deserve so much more than the failing Labour government or the divisive politics of Reform UK.”
+
+Pearcey said this in her Lib Dem candidate announcement.
 Sources:
 - [Lib Dems press release (30 Jan 2026) — Pearcey selected + quote](https://www.libdems.org.uk/press/release/local-campaigner-jackie-pearcey-announced-as-liberal-democrat-candidate-for-gorton-and-denton)
 
 <!--meta id="gd-071" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="transport-air" kind="said" date="2026-02-13" -->
-Pearcey said she monitored pollution outside her home and readings were often in the “danger zone”.
+> “danger zone”
+
+At the Levenshulme hustings, Not Really Here Media reported Pearcey said the pollution readings outside her home were frequently in the “danger zone”.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Pearcey pollution quote)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
-<!--meta id="gd-080" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="transport-air" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, Cadden said Conservatives would scrap carbon taxes and support petrol/diesel vehicles beyond 2030.
+<!--meta id="gd-080" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="transport-air" kind="documented" date="2026-02-13" -->
+Not Really Here Media reported Cadden backed scrapping carbon taxes and supporting petrol and diesel vehicles beyond 2030.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Cadden transport/climate lines)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
@@ -173,7 +181,9 @@ Sources:
 - [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
 
 <!--meta id="gd-082" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="transport-air" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, Cadden said she was “not anti-car”, and referenced the £2 bus fare cap.
+> “not anti-car”
+
+At the Levenshulme hustings, Not Really Here Media reported Cadden said she was “not anti-car”.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Cadden lines)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
@@ -187,46 +197,53 @@ Sex Matters says Cadden is part of the Women’s Rights Network (Greater Manches
 Sources:
 - [Sex Matters — Charlotte Cadden (trustee bio)](https://sex-matters.org/about-us/board/charlotte-cadden/)
 
-<!--meta id="gd-090" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="transport-air" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, O’Meachair argued international standards helped reduce air pollution over decades.
+<!--meta id="gd-090" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="transport-air" kind="documented" date="2026-02-13" -->
+Not Really Here Media reported O’Meachair focused on the role of international standards in reducing air pollution over recent decades.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (O’Meachair standards line)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
 <!--meta id="gd-091" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="culture-war" kind="said" date="2026-02-13" -->
-O’Meachair said: “Our self-respect demands that we rejoin a strong democratic bloc.”
+> “Our self-respect demands that we rejoin a strong democratic bloc.”
+
+Not Really Here Media reported O’Meachair said this in an interview.
 Sources:
 - [Not Really Here Media — Rejoin candidate interview/quote](https://www.notreallyheremedia.com/news/all-news/rejoin-eu-party-names-candidate-for-gorton-and-denton-by-election/)
 
 <!--meta id="gd-100" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="transport-air" kind="said" date="2026-02-13" -->
-At the Levenshulme hustings, Moore backed cycling infrastructure but warned against “punishing car users”.
+> “punishing car users”
+
+At the Levenshulme hustings, Not Really Here Media reported Moore cautioned against “punishing car users”.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Moore quote)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
 <!--meta id="gd-110" candidate="dan-clarke" candidateName="Dan Clarke" party="Libertarian Party UK" issue="culture-war" kind="said" date="2026-02-13" -->
-Clarke said he’s standing because of “ever-increasing encroachment on our civil liberties”.
+> “ever-increasing encroachment on our civil liberties”
+
+Not Really Here Media reported Clarke said this in his candidate profile; it also appears in his statement to voters.
 Sources:
 - [Not Really Here Media — Dan Clarke candidate profile](https://www.notreallyheremedia.com/news/all-news/libertarian-candidate-dan-clarke-calls-for-balance-accountability-and-less-state-interference/)
 - [Who Can I Vote For? — Dan Clarke statement to voters](https://whocanivotefor.co.uk/person/19433/dan-clarke)
 
 <!--meta id="gd-120" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="homes-streets" kind="said" date="2026-02-11" -->
-Wils said the housing crisis will deepen “because we live under class rule… organised for… big business”.
+> “That crisis is going to deepen, not get any better, because we live under class rule, the government and the state are organised for the interests of big business, not working people.”
+
+Not Really Here Media reported Wils said this while discussing housing.
 Sources:
 - [Not Really Here Media — Hugo Wils candidate interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
 
 <!--meta id="gd-121" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="jobs-rights" kind="said" date="2026-02-11" -->
-Wils said: “The root of our problems is the capitalist system.”
-Sources:
-- [Not Really Here Media — Hugo Wils candidate interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
+> “The root of our problems is the capitalist system.”
 
-<!--meta id="gd-122" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="culture-war" kind="said" date="2026-02-11" -->
-Wils argued workers should be able to live and work wherever they want, to unify the working class.
+Not Really Here Media reported Wils said this in an interview.
 Sources:
 - [Not Really Here Media — Hugo Wils candidate interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
 
 <!--meta id="gd-130" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="jobs-rights" kind="said" date="2026-02-20" -->
-FT reported Goodwin said Reform would put public‑sector trade unions “under review”.
+> “[Reform] will place public sector trade unions under review.”
+
+The Financial Times reported Goodwin said this at a Brussels event.
 Sources:
-- [Financial Times — “Unions under review” (Goodwin / Reform)](https://www.ft.com/content/5e33306f-c36e-4017-92ee-5b7fe4ca3a5c)
+- [Financial Times — Brussels conference report quoting Goodwin](https://www.ft.com/content/871b5f86-83c3-4dc6-b56f-d65f68563d8c)
 
 <!--meta id="gd-140" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-02-13" -->
 At a hustings, Spencer challenged Goodwin over a post she said suggested taxing women without children; Goodwin called it “false information”.

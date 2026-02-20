@@ -7,7 +7,7 @@ import MarkdownIt from 'markdown-it';
 const DEFAULT_STATEMENTS_FILE = 'Statements.md';
 const DEFAULT_TEMPLATE_FILE = 'template.html';
 
-const md = new MarkdownIt({ html: false, linkify: true, breaks: false });
+const md = new MarkdownIt({ html: true, linkify: true, breaks: false });
 
 function escapeHtml(s) {
   return String(s ?? '')
@@ -88,13 +88,19 @@ function parseTitle(markdownText) {
   return 'Gorton & Denton Showdown';
 }
 
-function splitFirstParagraph(markdownBlock) {
+function splitQuoteCaptionDetails(markdownBlock) {
   const s = String(markdownBlock || '').trim();
-  if (!s) return { bubble: '', details: '' };
+  if (!s) return { quote: '', caption: '', details: '' };
   const parts = s.split(/\n\s*\n/);
-  const bubble = (parts[0] || '').trim();
-  const details = parts.slice(1).join('\n\n').trim();
-  return { bubble, details };
+  const quote = (parts[0] || '').trim();
+  const caption = (parts[1] || '').trim();
+  const details = parts.slice(2).join('\n\n').trim();
+  return { quote, caption, details };
+}
+
+function isQuoteKind(kind) {
+  const k = String(kind || '').trim().toLowerCase();
+  return k === 'said' || k === 'quote';
 }
 
 function parseStatementsFromMarkdown(markdownText) {
@@ -147,9 +153,12 @@ function parseStatementsFromMarkdown(markdownText) {
     if (!draft && !links.length) {
       throw new Error(`Unsourced statement (add at least one https:// link, or mark draft=1): ${id || '(missing id)'}`);
     }
-    const { bubble, details } = splitFirstParagraph(b.content);
-    if (!draft && (!id || !candidate || !issue || !kind || !bubble)) {
+    const { quote, caption, details } = splitQuoteCaptionDetails(b.content);
+    if (!draft && (!id || !candidate || !issue || !kind || !quote)) {
       throw new Error(`Statement missing required meta/content (need id,candidate,issue,kind + first paragraph): ${id || '(missing id)'}`);
+    }
+    if (!draft && isQuoteKind(kind) && !quote.trimStart().startsWith('>')) {
+      throw new Error(`Quoted statement must start with a markdown blockquote (>): ${id || '(missing id)'}`);
     }
 
     statements.push({
@@ -163,7 +172,9 @@ function parseStatementsFromMarkdown(markdownText) {
       issue,
       kind,
       date,
-      bubbleHtml: bubble ? md.renderInline(bubble) : '',
+      quoteHtml: quote ? md.render(quote) : '',
+      captionHtml: caption ? md.renderInline(caption) : '',
+      detailsMarkdown: details || '',
       detailsHtml: details ? md.render(details) : '',
       sources: links
     });
@@ -204,7 +215,8 @@ function renderReceipts(statements) {
   }
 
   return statements.map((s) => {
-    const sourcesHtml = s.sources.length
+    const shouldRenderSourceList = !/\bSources\s*:/i.test(String(s.detailsMarkdown || ''));
+    const sourcesHtml = shouldRenderSourceList && s.sources.length
       ? `<ul class="receiptSources">${s.sources.map((src) => `<li><a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(src.label)}</a></li>`).join('')}</ul>`
       : '';
 
@@ -228,7 +240,8 @@ function renderReceipts(statements) {
     </div>
     <div class="receiptMeta">${metaBits}</div>
   </div>
-  <p class="receiptLine">${s.bubbleHtml}</p>
+  <div class="receiptQuote">${s.quoteHtml}</div>
+  ${s.captionHtml ? `<p class="receiptCaption">${s.captionHtml}</p>` : ''}
   ${s.detailsHtml || sourcesHtml ? `<details class="receiptDetails"><summary>Receipts / context</summary><div class="receiptDetailsBody">${s.detailsHtml || ''}${sourcesHtml}</div></details>` : ''}
 </article>
     `.trim();

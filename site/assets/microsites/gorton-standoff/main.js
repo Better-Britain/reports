@@ -84,7 +84,11 @@ function makeBubbleForReceipt({ candidateEl, receiptEl }) {
   const x = rect.left + rect.width / 2 - layerRect.left;
   const y = rect.top - layerRect.top;
 
-  const line = receiptEl.querySelector('.receiptLine')?.textContent?.trim() || '';
+  const quoteEl = receiptEl.querySelector('.receiptQuote');
+  const quoteHtml = quoteEl ? quoteEl.innerHTML : '';
+  const quoteText = quoteEl?.textContent?.trim() || '';
+  const captionEl = receiptEl.querySelector('.receiptCaption');
+  const captionHtml = captionEl ? captionEl.innerHTML : '';
   const issue = receiptEl.dataset.issue || '';
   const id = receiptEl.dataset.id || '';
   const sources = Number(receiptEl.dataset.sources || '0') || 0;
@@ -98,10 +102,18 @@ function makeBubbleForReceipt({ candidateEl, receiptEl }) {
   bubble.style.top = `${y}px`;
   bubble.style.transitionDuration = `${seconds}s`;
   bubble.innerHTML = `
-    <p class="bubbleLine"></p>
+    <div class="bubbleQuote"></div>
+    ${captionHtml ? '<p class="bubbleCaption"></p>' : ''}
     <div class="bubbleMeta"></div>
   `;
-  bubble.querySelector('.bubbleLine').textContent = line || '(No statement text)';
+  const quoteTarget = bubble.querySelector('.bubbleQuote');
+  if (quoteTarget) {
+    if (quoteHtml) quoteTarget.innerHTML = quoteHtml;
+    else if (quoteText) quoteTarget.innerHTML = `<p>${escapeForTextFallback(quoteText)}</p>`;
+    else quoteTarget.innerHTML = '<p>(No quote text)</p>';
+  }
+  const captionTarget = bubble.querySelector('.bubbleCaption');
+  if (captionTarget) captionTarget.innerHTML = captionHtml;
 
   const meta = bubble.querySelector('.bubbleMeta');
   const issueText = issueLabel(issue);
@@ -137,6 +149,15 @@ function makeBubbleForReceipt({ candidateEl, receiptEl }) {
   requestAnimationFrame(() => {
     bubble.dataset.open = '1';
   });
+}
+
+function escapeForTextFallback(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function showIssueBubbles(byIssue, issue) {
