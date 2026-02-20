@@ -152,18 +152,59 @@ body{
   justify-content:space-between;
 }
 
-.picker{
+.piePicker{
+  width:min(360px, 100%);
   margin:0 auto;
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
+  position:relative;
+  display:grid;
+  place-items:center;
+  gap:10px;
+  padding:10px 10px 12px;
   background:rgba(244,234,214,.82);
   border:1px solid rgba(34,24,19,.18);
-  border-radius:14px;
-  padding:8px 10px;
+  border-radius:16px;
   box-shadow:0 10px 26px rgba(0,0,0,.18);
 }
+.pieSvg{width:240px;height:240px;display:block;filter:drop-shadow(0 10px 20px rgba(0,0,0,.16))}
+.pieSlice{fill:rgba(18,11,7,.08);stroke:rgba(34,24,19,.16);stroke-width:.7;cursor:pointer;transition:filter .18s ease, opacity .18s ease}
+.pieSlice:hover{filter:saturate(1.1) brightness(1.06)}
+.pieInner{fill:rgba(244,234,214,.92);stroke:rgba(34,24,19,.14);stroke-width:.7}
+.pieSlice--culture-war{fill:rgba(194,59,34,.18)}
+.pieSlice--jobs-rights{fill:rgba(34,24,19,.14)}
+.pieSlice--homes-streets{fill:rgba(217,189,138,.65)}
+.pieSlice--health-care{fill:rgba(47,125,75,.20)}
+.pieSlice--transport-air{fill:rgba(43,94,168,.18)}
+.piePicker[data-active-issue="culture-war"] .pieSlice--culture-war,
+.piePicker[data-active-issue="jobs-rights"] .pieSlice--jobs-rights,
+.piePicker[data-active-issue="homes-streets"] .pieSlice--homes-streets,
+.piePicker[data-active-issue="health-care"] .pieSlice--health-care,
+.piePicker[data-active-issue="transport-air"] .pieSlice--transport-air{
+  filter:saturate(1.15) brightness(1.08);
+  opacity:1;
+  stroke:rgba(34,24,19,.28);
+}
+.piePicker[data-has-active="1"] .pieSlice{opacity:.72}
+.pieCore{
+  position:absolute;
+  width:120px;height:120px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:10px;
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(34,24,19,.16);
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  pointer-events:none;
+}
+.pieCoreLabel{font-weight:950;line-height:1.05}
+.pieCore[data-bounce="1"]{animation:pieBounce .34s ease-out}
+@keyframes pieBounce{
+  0%{transform:translateY(-6px) scale(.98)}
+  60%{transform:translateY(2px) scale(1.02)}
+  100%{transform:translateY(0) scale(1)}
+}
+.pieBtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .pickBtn{
   appearance:none;
   border:1px solid rgba(34,24,19,.22);
@@ -177,6 +218,7 @@ body{
 }
 .pickBtn[aria-pressed="true"]{background:rgba(194,59,34,.12);border-color:rgba(194,59,34,.35)}
 .pickBtn:hover{border-color:rgba(194,59,34,.35)}
+.pickBtn--pie{padding:8px 10px;border-radius:999px}
 
 .candidates{position:relative;flex:1 1 auto;min-height:420px}
 .triangle{
@@ -586,7 +628,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
     -webkit-overflow-scrolling:touch;
   }
   .cand--minor{flex:0 0 auto}
-  .picker{position:sticky;top:10px;z-index:4}
+  .piePicker{position:sticky;top:10px;z-index:4}
 }
 
 /* JS-enhanced ring layout (absolute, Desperados-ish rooftop circle) */
@@ -607,12 +649,38 @@ body.js .cand--minor{
     translate(260px)
     rotate(calc(var(--a, 0deg) * -1))
     translate(-50%,-50%);
+  transition:opacity .18s ease;
 }
+body.js .cand--minor[data-visible="0"]{opacity:0;pointer-events:none}
+body.js .cand--minor[data-visible="1"]{opacity:1}
+.speakerRing{position:absolute;inset:0;pointer-events:none}
+body.js .cand--speaker{
+  position:absolute;
+  left:50%;top:52%;
+  transform:
+    rotate(var(--a, 0deg))
+    translate(328px)
+    rotate(calc(var(--a, 0deg) * -1))
+    translate(-50%,-50%);
+  width:140px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease, transform .22s ease;
+}
+.cand--speaker[data-visible="1"]{opacity:1;pointer-events:auto}
+.candDot--speaker{background:rgba(138,86,55,.92)}
 @media (max-width: 720px){
   body.js .cand--minor{
     transform:
       rotate(var(--a, 0deg))
       translate(214px)
+      rotate(calc(var(--a, 0deg) * -1))
+      translate(-50%,-50%);
+  }
+  body.js .cand--speaker{
+    transform:
+      rotate(var(--a, 0deg))
+      translate(264px)
       rotate(calc(var(--a, 0deg) * -1))
       translate(-50%,-50%);
   }

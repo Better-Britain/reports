@@ -8,11 +8,11 @@
   - `gallery` = used by the flyer-scan/gallery section (usually image-based, not statements)
   - `additional` = sources we acknowledge but didn’t attach to any statement
 - [ ] Add `slot="..."` explicitly to every statement block (optional cleanup).
-- [ ] Keep every statement assigned to exactly one of the 5 issue categories:
+- [x] Enforce allowed issue categories in build (`build.js` validates):
   - `culture-war`, `jobs-rights`, `homes-streets`, `health-care`, `transport-air`
   - (Use `issue="context"` only for housekeeping blocks that never enter the standoff.)
-- [ ] Where `kind="said"` / `kind="quote"` is used:
-  - [ ] First paragraph must start with `>` and must be the speaker’s exact words
+- [x] Enforce quote authoring rules in build:
+  - [x] `kind="said"` / `kind="quote"` blocks must start with `>` (build validates)
   - [ ] Use `<span class="compress">…</span>` inside the quote if trimming non-essential filler
 - [ ] Add `speaker="..."` / `speakerName="..."` when the speaker differs from the candidate.
 
@@ -37,14 +37,17 @@
 
 - [x] Add a tiny always-visible source credit for each receipt (e.g. “— Guardian”, “— BBC”).
 - [x] Add a similar tiny source credit link in the speech bubble UI.
-- [ ] Implement 5choice-picker, triangle of primary candidates and circle of other candidates and other speakers
-- [ ] Identify progression through 'choose an issue genre' pie-slice from the picker (illuminated)
-  - it should when selected, animate back down the centre, 
-  - then show quotes from people pertinent
-    - animating into our out of the scene any supporting figures, 
-    - the 3 main candidates are always visible
-- The speech bubbles will need to be dynamically placed/drawn at runtime, but always AROUND the speaker, just so as to not cramp or overlap. If there are too many speech bubbles, they can shrink to fit, but we probably need a basic placement-system that positions them absolutely within the container (relative) with an appropriate z-index.
-  - The structure/markup for info should basically be genre->said, so all the js is really doing is selecting all the statements that apply to the selected genre (which makes our UI/diagram basically a genre-selector that affects visibility), so our no-js version is basically group panels, and when the user expands via summary/details we get to see what is in that genre for the speakers on the grid. Animations are a monkey patch over that. 
+- [x] Implement a pie-style 5-choice picker + triangle + rings (basic):
+  - SVG pie slices + buttons (clickable, keyboard focusable)
+  - primary-candidate triangle always visible
+  - “other speakers” ring exists and is shown per-issue
+- [x] Basic issue selection progression:
+  - selected slice is highlighted
+  - center label updates + bounces
+  - bubbles update per issue
+- [x] Basic bubble placement system (anchors to speaker, offsets by index)
+- [ ] (Optional polish) Animate “token” dropping to center before bubbles appear
+- [ ] (Optional polish) Better bubble de-overlap / shrink-to-fit for crowded issues
 - [ ] Ensure no‑JS browsing still works:
   - receipts list readable
   - flyer scans open as plain links/images without the modal

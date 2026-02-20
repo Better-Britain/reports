@@ -17,11 +17,22 @@ const PRIMARY_ISSUES = [
   'transport-air'
 ];
 
+const ALLOWED_ISSUES = new Set([...PRIMARY_ISSUES, 'context']);
+const ALLOWED_SLOTS = new Set(['standoff', 'further', 'gallery', 'additional', 'context']);
+
 const TOP_THREE_CANDIDATES = new Set([
   'angeliki-stogia',
   'hannah-spencer',
   'matt-goodwin'
 ]);
+
+const PIE_ISSUES = [
+  { id: 'culture-war', short: 'Culture' },
+  { id: 'jobs-rights', short: 'Jobs' },
+  { id: 'homes-streets', short: 'Homes' },
+  { id: 'health-care', short: 'Health' },
+  { id: 'transport-air', short: 'Transport' }
+];
 
 function escapeHtml(s) {
   return String(s ?? '')
@@ -161,13 +172,21 @@ function isEvidenceKind(kind) {
   return k === 'said' || k === 'quote' || k === 'documented' || k === 'doc' || k === 'voted' || k === 'vote' || k === 'aligned' || k === 'align';
 }
 
+function normalizeKind(kind) {
+  const k = String(kind || '').trim().toLowerCase();
+  if (k === 'doc') return 'documented';
+  if (k === 'vote') return 'voted';
+  if (k === 'align') return 'aligned';
+  return kind;
+}
+
 function inferSlot({ slot, issue, candidate, kind } = {}) {
   const s = String(slot || '').trim().toLowerCase();
   if (s) return s;
   const i = String(issue || '').trim().toLowerCase();
   const c = String(candidate || '').trim().toLowerCase();
   const k = String(kind || '').trim().toLowerCase();
-  if (TOP_THREE_CANDIDATES.has(c) && PRIMARY_ISSUES.includes(i) && isEvidenceKind(k)) return 'standoff';
+  if (c && c !== 'context' && PRIMARY_ISSUES.includes(i) && isEvidenceKind(k)) return 'standoff';
   return 'further';
 }
 
@@ -191,6 +210,97 @@ function shortSourceLabel({ label, url }) {
     if (l.length <= 18) return l;
     return 'Source';
   }
+}
+
+function slugifyKey(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 64);
+}
+
+function polarToCartesian(cx, cy, r, angleDeg) {
+  const a = ((angleDeg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+}
+
+function donutWedgePath({ cx, cy, rOuter, rInner, startDeg, endDeg }) {
+  const startOuter = polarToCartesian(cx, cy, rOuter, startDeg);
+  const endOuter = polarToCartesian(cx, cy, rOuter, endDeg);
+  const startInner = polarToCartesian(cx, cy, rInner, endDeg);
+  const endInner = polarToCartesian(cx, cy, rInner, startDeg);
+  const largeArc = (endDeg - startDeg) % 360 > 180 ? 1 : 0;
+  return [
+    `M ${startOuter.x.toFixed(3)} ${startOuter.y.toFixed(3)}`,
+    `A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${endOuter.x.toFixed(3)} ${endOuter.y.toFixed(3)}`,
+    `L ${startInner.x.toFixed(3)} ${startInner.y.toFixed(3)}`,
+    `A ${rInner} ${rInner} 0 ${largeArc} 0 ${endInner.x.toFixed(3)} ${endInner.y.toFixed(3)}`,
+    'Z'
+  ].join(' ');
+}
+
+function renderIssuePicker() {
+  const cx = 50;
+  const cy = 50;
+  const rOuter = 48;
+  const rInner = 24;
+  const span = 360 / PIE_ISSUES.length;
+  const startAt = -90;
+
+  const paths = PIE_ISSUES.map((iss, idx) => {
+    const a0 = startAt + idx * span;
+    const a1 = a0 + span;
+    const d = donutWedgePath({ cx, cy, rOuter, rInner, startDeg: a0, endDeg: a1 });
+    return `<path class="pieSlice pieSlice--${escapeHtml(iss.id)}" data-role="issue-slice" data-issue="${escapeHtml(iss.id)}" d="${d}" tabindex="0" role="button" aria-label="${escapeHtml(iss.short)}"><title>${escapeHtml(iss.short)}</title></path>`;
+  }).join('\n');
+
+  const buttons = PIE_ISSUES.map((iss) =>
+    `<button class="pickBtn pickBtn--pie" type="button" data-role="issue" data-issue="${escapeHtml(iss.id)}" aria-pressed="false">${escapeHtml(iss.short)}</button>`
+  ).join('\n');
+
+  return `
+<div class="piePicker" data-role="pie" aria-label="Issue picker">
+  <svg class="pieSvg" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    ${paths}
+    <circle class="pieInner" cx="50" cy="50" r="22"></circle>
+  </svg>
+  <div class="pieCore" data-role="pie-core">
+    <span class="pieCoreLabel">Pick an issue</span>
+  </div>
+  <div class="pieBtns" aria-label="Issue buttons">
+    ${buttons}
+  </div>
+</div>
+  `.trim();
+}
+
+function renderSpeakerButtons(statements) {
+  const list = Array.isArray(statements) ? statements : [];
+  const speakers = new Map(); // key -> { key, name }
+  for (const s of list) {
+    if (String(s.slot || '').toLowerCase() !== 'standoff') continue;
+    const speakerName = String(s.speakerName || '').trim();
+    if (!speakerName) continue;
+    const candidateName = String(s.candidateName || s.candidate || '').trim();
+    if (speakerName && candidateName && speakerName === candidateName) continue;
+    const key = slugifyKey(speakerName) || slugifyKey(s.speaker || '') || '';
+    if (!key) continue;
+    if (!speakers.has(key)) speakers.set(key, { key, name: speakerName });
+  }
+  const items = Array.from(speakers.values()).sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  if (!items.length) return '';
+
+  return items.map((sp) => {
+    const initials = sp.name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase?.() || '').join('');
+    return `
+<button class="cand cand--speaker" type="button" data-role="speaker" data-speaker-key="${escapeHtml(sp.key)}" data-speaker-name="${escapeHtml(sp.name)}" aria-pressed="false" data-visible="0">
+  <span class="candDot candDot--speaker">${escapeHtml(initials || '🗣️')}</span>
+  <span class="candMini">${escapeHtml(sp.name)}</span>
+</button>
+    `.trim();
+  }).join('\n');
 }
 
 function parseStatementsFromMarkdown(markdownText) {
@@ -232,7 +342,7 @@ function parseStatementsFromMarkdown(markdownText) {
     const id = String(meta.id || '').trim();
     const candidate = String(meta.candidate || '').trim();
     const issue = String(meta.issue || '').trim();
-    const kind = String(meta.kind || '').trim();
+    const kind = String(normalizeKind(meta.kind || '') || '').trim();
     const date = String(meta.date || '').trim();
     const candidateName = String(meta.candidateName || '').trim();
     const party = String(meta.party || '').trim();
@@ -250,6 +360,21 @@ function parseStatementsFromMarkdown(markdownText) {
     }
     if (!draft && isQuoteKind(kind) && !quote.trimStart().startsWith('>')) {
       throw new Error(`Quoted statement must start with a markdown blockquote (>): ${id || '(missing id)'}`);
+    }
+    if (!draft) {
+      const issueKey = String(issue || '').trim().toLowerCase();
+      if (!ALLOWED_ISSUES.has(issueKey)) {
+        throw new Error(`Invalid issue "${issue}" (allowed: ${Array.from(ALLOWED_ISSUES).join(', ')}): ${id || '(missing id)'}`);
+      }
+      if (!isEvidenceKind(kind)) {
+        throw new Error(`Invalid kind "${kind}" (allowed: said/quote/documented/voted/aligned): ${id || '(missing id)'}`);
+      }
+      if (meta.slot || meta.use || meta.section) {
+        const slotKey = String(slot || '').trim().toLowerCase();
+        if (!ALLOWED_SLOTS.has(slotKey)) {
+          throw new Error(`Invalid slot "${slot}" (allowed: ${Array.from(ALLOWED_SLOTS).join(', ')}): ${id || '(missing id)'}`);
+        }
+      }
     }
 
     statements.push({
@@ -317,6 +442,7 @@ function renderReceipts(statements) {
       : null;
 
     const speakerDisplay = s.speakerName || s.speaker || '';
+    const speakerKey = speakerDisplay ? slugifyKey(speakerDisplay) : '';
     const metaBits = [
       s.party ? `<span class="pill pill--party">${escapeHtml(s.party)}</span>` : '',
       speakerDisplay && speakerDisplay !== (s.candidateName || s.candidate || '') ? `<span class="pill pill--speaker">🗣️ ${escapeHtml(speakerDisplay)}</span>` : '',
@@ -328,7 +454,7 @@ function renderReceipts(statements) {
     const candidateDisplay = s.candidateName || s.candidate || 'Unknown';
 
     return `
-<article class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}" data-primary-source-label="${escapeHtml(primarySource?.label || '')}" data-primary-source-url="${escapeHtml(primarySource?.url || '')}">
+<article class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}" data-primary-source-label="${escapeHtml(primarySource?.label || '')}" data-primary-source-url="${escapeHtml(primarySource?.url || '')}">
   <div class="receiptTop">
     <div class="receiptWho">
       <span class="pill pill--id">#${escapeHtml(s.id)}</span>
@@ -535,6 +661,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
   const standoffHtml = renderReceipts(standoff);
   const furtherHtml = renderReceipts(further);
   const flyerGalleryHtml = renderFlyerGallery(flyers);
+  const speakerButtonsHtml = renderSpeakerButtons(statements);
 
   return `
 <div class="topPanels">
@@ -571,13 +698,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
   <div class="scene" id="scene">
     <img class="sceneBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
     <div class="sceneUi" data-role="scene-ui">
-      <div class="picker" aria-label="Issue picker">
-        <button class="pickBtn" type="button" data-role="issue" data-issue="culture-war" aria-pressed="false">Culture</button>
-        <button class="pickBtn" type="button" data-role="issue" data-issue="jobs-rights" aria-pressed="false">Jobs</button>
-        <button class="pickBtn" type="button" data-role="issue" data-issue="homes-streets" aria-pressed="false">Homes</button>
-        <button class="pickBtn" type="button" data-role="issue" data-issue="health-care" aria-pressed="false">Health</button>
-        <button class="pickBtn" type="button" data-role="issue" data-issue="transport-air" aria-pressed="false">Transport</button>
-      </div>
+      ${renderIssuePicker()}
 
       <div class="candidates" aria-label="Candidates">
         <div class="triangle" aria-hidden="true"></div>
@@ -609,6 +730,10 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
           <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="joseph-omeachair" data-candidate-name="Joseph O’Meachair" data-party="Rejoin"><span class="candDot"></span><span class="candMini">O’Meachair</span></button>
           <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="jackie-pearcey" data-candidate-name="Jackie Pearcey" data-party="Lib Dem"><span class="candDot"></span><span class="candMini">Pearcey</span></button>
           <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="hugo-wils" data-candidate-name="Hugo Wils" data-party="Communist"><span class="candDot"></span><span class="candMini">Wils</span></button>
+        </div>
+
+        <div class="speakerRing" data-role="speaker-ring" aria-label="Other speakers">
+          ${speakerButtonsHtml}
         </div>
 
         <div class="bubbleLayer" data-role="bubbles" aria-hidden="true"></div>
