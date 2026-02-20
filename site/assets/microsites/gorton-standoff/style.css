@@ -80,6 +80,36 @@ body{
 .methodList{margin:0;padding-left:18px;color:var(--muted)}
 .methodList li{margin:4px 0}
 
+.easterEgg{
+  margin-top:12px;
+  background:rgba(244,234,214,.78);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:10px 12px;
+}
+.easterEgg summary{
+  cursor:pointer;
+  color:rgba(34,24,19,.92);
+}
+.easterBody{margin-top:10px;max-width:86ch}
+.easterBody p{margin:0 0 10px;color:rgba(34,24,19,.88)}
+.easterBody p:last-child{margin-bottom:0}
+.easterNote{color:var(--muted)}
+
+.conclusionWrap{margin:14px 0 18px}
+.conclusionCard{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.conclusionCard h2{margin:0 0 8px;font-size:20px}
+.conclusionLead{margin:0 0 10px;max-width:82ch}
+.conclusionBody{margin:0 0 10px;color:rgba(34,24,19,.88);max-width:82ch}
+.conclusionNote{margin:0;color:var(--muted);max-width:82ch}
+
 .pill{
   display:inline-flex;
   gap:6px;
@@ -525,6 +555,19 @@ body.flyerOpen{overflow:hidden}
 .countsTable tbody th{font-weight:850}
 .countsTable tfoot th,.countsTable tfoot td{font-weight:900;background:rgba(244,234,214,.6)}
 .countsTable tr:last-child th,.countsTable tr:last-child td{border-bottom:0}
+
+.democracyWrap{margin-top:22px}
+.democracyCard{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.democracyCard h2{margin:0 0 8px;font-size:20px}
+.democracyBody{margin:0 0 10px;color:rgba(34,24,19,.88);max-width:86ch}
+.democracyNote{margin:0;color:var(--muted);max-width:86ch}
 
 code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.95em}
 

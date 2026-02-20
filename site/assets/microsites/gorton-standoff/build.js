@@ -353,11 +353,54 @@ function renderMethodContext() {
     <p class="methodLead">
       Campaigns are designed to persuade. Parties are not neutral narrators of what their opponents said or did, and commercial media/analysis often optimises for attention and incentives rather than “fair comparison”.
     </p>
+    <p class="methodLead">
+      And media coverage can drift towards the easiest story: the horse‑race (“who’s going to win?”), sometimes framed like betting odds, plus a handful of screenshot‑driven mini scandals — instead of the slower work of explaining what problems constituents actually face, what candidates have done, and what interests they serve.
+    </p>
+    <p class="methodLead">
+      For many voters, the real question isn’t “who will win?”, but: <strong>why should I vote for any of them?</strong> When politics looks like drama-without-results, disengagement and low turnout become predictable outcomes.
+    </p>
     <ul class="methodList">
       <li><strong>We link primary sources</strong> wherever possible, so you can check the original words and context.</li>
       <li><strong>We separate “said” from “documented”.</strong> If we can’t find the exact quote, it shouldn’t be in a speech bubble.</li>
       <li><strong>No-JS still works.</strong> Scroll the receipts: everything the interactive shows is already on the page.</li>
     </ul>
+
+    <details class="easterEgg">
+      <summary><strong>Voters are angry</strong> (a compassionate lens)</summary>
+      <div class="easterBody">
+        <p>
+          It’s easy to look at political opponents and conclude they’re “thick”. Part of that is how social media flattens complex, nuanced trade-offs into tribal “in/out” identities.
+          But most of real life is compromise, timing, and imperfect information.
+        </p>
+        <p>
+          Real people often understand nuance — they just can’t carry the burden of <em>every</em> compromise forever. If it never feels like your turn for an upswing, it’s human to reach for the choice that promises:
+          “at least we’ll get poorer together”, even if (too often) the richest get to get poorer last.
+        </p>
+        <p class="easterNote">
+          This isn’t “excusing everything”. It’s a de-escalation tool: start with the assumption that most people are trying to protect themselves and their families, then argue about facts.
+        </p>
+      </div>
+    </details>
+  </div>
+</section>
+  `.trim();
+}
+
+function renderConclusion() {
+  return `
+<section class="conclusionWrap" aria-labelledby="conclusionTitle">
+  <div class="conclusionCard">
+    <h2 id="conclusionTitle">So… what kind of politics do you want?</h2>
+    <p class="conclusionLead">
+      A fairly simple conclusion: most of the candidates on the ballot are <em>pretty good</em> — even where their objectives, priorities, and politics sharply diverge.
+    </p>
+    <p class="conclusionBody">
+      The question for voters in Gorton, Denton, Levenshulme and Burnage isn’t just “which party?”, but what kind of politics you want in Britain:
+      competence and evidence-driven policymaking, or endless culture war incentives — scapegoating, division, and the slow replacement of hard trade-offs with easy enemies.
+    </p>
+    <p class="conclusionNote">
+      Better Britain Bureau is for competence and evidence-led policymaking. This page is built to make checking claims easier: use the receipts, click through, and decide what you think is fair.
+    </p>
   </div>
 </section>
   `.trim();
@@ -420,6 +463,28 @@ function renderCountsTable(statements) {
         </tr>
       </tfoot>
     </table>
+  </div>
+</section>
+  `.trim();
+}
+
+function renderDemocracyNote() {
+  return `
+<section class="democracyWrap" aria-labelledby="democracyTitle">
+  <div class="democracyCard">
+    <h2 id="democracyTitle">A note on democracy (and tools)</h2>
+    <p class="democracyBody">
+      Real democracy should make finding this kind of information <strong>easy</strong>. Rules about who can (and can’t) send you flyers aren’t enough for voters to make real decisions — and most mainstream media organisations aren’t building these tools, because they cost time, money, effort and care, and they come with legal and exposure risks.
+    </p>
+    <p class="democracyBody">
+      Government should be able to use modern technology to provide oversight and transparency in campaigning, well beyond the UK’s historically poor “balance” instincts that often fail everyone.
+    </p>
+    <p class="democracyBody">
+      A truly progressive government has to own the technology around democracy. We can’t rely on a handful of private monopolies to mediate political reality, because their incentives can run against those of a healthy democracy — especially where the path to profit is attention, persuasion, and asymmetric power.
+    </p>
+    <p class="democracyNote">
+      One of BBB’s longer-term goals is a governance platform built for real people: public-interest information systems, not rage factories and churnalism for clicks.
+    </p>
   </div>
 </section>
   `.trim();
@@ -579,6 +644,8 @@ ${renderMethodContext()}
   </section>
 </section>
 
+${renderConclusion()}
+
 <section class="flyersWrap" aria-labelledby="flyersTitle">
   <div class="flyersHead">
     <h2 id="flyersTitle">Flyer scans</h2>
@@ -611,6 +678,8 @@ ${renderMethodContext()}
 ${renderAdditionalSources(additionalSourcesMarkdown)}
 
 ${renderCountsTable(statements)}
+
+${renderDemocracyNote()}
   `.trim();
 }
 
@@ -637,7 +706,8 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
     const m = stem.match(/^(.*?)(?:[-_](front|back))?$/i);
     const id = String(m?.[1] || stem).trim();
     const side = String(m?.[2] || 'front').toLowerCase();
-    const entry = flyersById.get(id) || { id, title: id, front: '', back: '' };
+    const pretty = id.replace(/[-_]+/g, ' ').trim();
+    const entry = flyersById.get(id) || { id, title: pretty || id, front: '', back: '' };
     const rel = `./images/flyers/${base}`;
     if (side === 'back') entry.back = rel;
     else entry.front = rel;
