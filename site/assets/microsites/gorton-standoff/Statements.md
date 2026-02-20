@@ -170,11 +170,22 @@ Sources:
 BBC reported Cadden is a retired detective chief inspector and a trustee of Sex Matters.
 Sources:
 - [BBC (via Yahoo) — Tory candidate announcement](https://uk.news.yahoo.com/tory-candidate-gorton-election-070842721.html)
+- [Sex Matters — Charlotte Cadden (trustee bio)](https://sex-matters.org/about-us/board/charlotte-cadden/)
 
 <!--meta id="gd-082" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="transport-air" kind="said" date="2026-02-13" -->
 At the Levenshulme hustings, Cadden said she was “not anti-car”, and referenced the £2 bus fare cap.
 Sources:
 - [Not Really Here Media — Levenshulme hustings report (Cadden lines)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
+
+<!--meta id="gd-083" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="documented" date="2026-02-20" -->
+Sex Matters says Cadden set up the “Police SEEN UK” network in **2023**.
+Sources:
+- [Sex Matters — Charlotte Cadden (trustee bio)](https://sex-matters.org/about-us/board/charlotte-cadden/)
+
+<!--meta id="gd-084" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="documented" date="2026-02-20" -->
+Sex Matters says Cadden is part of the Women’s Rights Network (Greater Manchester) and the LGB Alliance Business Forum.
+Sources:
+- [Sex Matters — Charlotte Cadden (trustee bio)](https://sex-matters.org/about-us/board/charlotte-cadden/)
 
 <!--meta id="gd-090" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="transport-air" kind="said" date="2026-02-13" -->
 At the Levenshulme hustings, O’Meachair argued international standards helped reduce air pollution over decades.
@@ -272,6 +283,227 @@ Sources:
 Sir Oink A‑Lot’s election address says: “Remove the get out of jail free peerage card.”
 Sources:
 - [Official Monster Raving Loony Party — Sir Oink election address](https://www.loonyparty.com/2026/02/15/sir-oink-a-lots-election-address-in-gorton-denton/)
+
+<!--meta id="gd-193" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="context" kind="documented" date="2023-05-04" -->
+In the 2023 Manchester local election (Northenden), Sir Oink A‑Lot received **57 votes**.
+Sources:
+- [Manchester City Council — Local elections 2023 (Northenden results)](https://www.manchester.gov.uk/directory_record/452258/local_elections_2023)
+
+<!--meta id="gd-194" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="context" kind="documented" date="2015-12-03" -->
+In the 2015 Oldham West & Royton by-election, Sir Oink A‑Lot received **141 votes**.
+Sources:
+- [UK Parliament — Oldham West and Royton by-election results (2015)](https://members.parliament.uk/constituency/3671/election/370)
+
+<!--meta id="gd-195" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="culture-war" kind="said" date="2023-05-05" -->
+Sir Oink A‑Lot told Mancunian Matters: “every non-voter is a loony voter”.
+Sources:
+- [Mancunian Matters — interview with Sir Oink A‑Lot (2023)](https://www.mancunianmatters.co.uk/news/05052023-every-non-voter-is-a-loony-voter-sir-oink-a-lot-of-the-monster-raving-loony-party/)
+
+<!--meta id="gd-171" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="documented" date="2026-01-30" -->
+Guardian reported Tommy Robinson publicly endorsed Goodwin, and Reform said Robinson is not welcome in the party.
+Sources:
+- [The Guardian — Tommy Robinson endorsement reporting](https://www.theguardian.com/politics/2026/jan/30/gorton-and-denton-labour-reform-candidate-matthew-goodwin-tommy-robinson-endorsement)
+
+<!--meta id="gd-172" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-01-27" -->
+Goodwin has said: “It takes more than a piece of paper to make somebody ‘British’.”
+Sources:
+- [The Guardian — Goodwin remarks about Britishness](https://www.theguardian.com/politics/2026/jan/27/matthew-goodwin-gorton-and-denton-reform-uk-minorities)
+
+<!--meta id="gd-173" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="documented" date="2026-02-13" -->
+Guardian reported Goodwin previously suggested taxing people without children, and removing income tax for women with 2+ children.
+Sources:
+- [The Guardian — fertility comments + “taxing people without children” reporting](https://www.theguardian.com/politics/2026/feb/13/reform-matt-goodwin-fertility-comments-outcry-handmaids-tale)
+
+<!--meta id="gd-174" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-02-03" -->
+Goodwin’s nomination notice lists his home address area as the **Hitchin constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-175" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-01-27" -->
+Goodwin said: “This byelection is a referendum on Keir Starmer.”
+Sources:
+- [The Guardian live blog — Reform announcement quote](https://www.theguardian.com/politics/live/2026/jan/27/uk-politics-latest-news-updates-keir-starmer-leaseholders-andy-burnham-labour-reform?filterKeyEvents=false)
+
+<!--meta id="gd-176" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-01-27" -->
+Reform said Goodwin “worked… delivering fast food in the Gorton and Denton area” while at university.
+Sources:
+- [The Guardian live blog — Reform news release excerpt](https://www.theguardian.com/politics/live/2026/jan/27/uk-politics-latest-news-updates-keir-starmer-leaseholders-andy-burnham-labour-reform?filterKeyEvents=false)
+
+<!--meta id="gd-177" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-01-27" -->
+Guardian described Goodwin as a GB News presenter and former academic.
+Sources:
+- [The Guardian live blog — Reform candidate announcement](https://www.theguardian.com/politics/live/2026/jan/27/uk-politics-latest-news-updates-keir-starmer-leaseholders-andy-burnham-labour-reform?filterKeyEvents=false)
+
+<!--meta id="gd-181" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-02" -->
+Launching her campaign, Stogia said: “Manchester is a city united; we are rejecting division.”
+Sources:
+- [Not Really Here Media — meet-the-candidates round-up (Stogia quote)](https://www.notreallyheremedia.com/news/all-news/meet-the-candidates-who-will-be-battling-for-your-vote-this-month/)
+
+<!--meta id="gd-182" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-02-03" -->
+Stogia’s nomination notice lists her home address area as the **Manchester Rusholme constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-183" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="said" date="2026-02-20" -->
+On a local Labour page, Stogia says she has served Whalley Range ward as a councillor since **2012**.
+Sources:
+- [Whalley Range Labour — Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)
+
+<!--meta id="gd-184" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-20" -->
+On the same page, Stogia says she was born and raised in Greece, and is a British citizen.
+Sources:
+- [Whalley Range Labour — Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)
+
+<!--meta id="gd-200" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="documented" date="2026-02-03" -->
+Buckley’s nomination notice lists his home address area as the **district of Manchester**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-201" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="context" kind="documented" date="2026-02-03" -->
+Cadden’s nomination notice lists her home address area as the **Bolton North East constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-202" candidate="dan-clarke" candidateName="Dan Clarke" party="Libertarian Party UK" issue="context" kind="documented" date="2026-02-03" -->
+Clarke’s nomination notice lists his home address area as **Runcorn**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-203" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="context" kind="documented" date="2026-02-03" -->
+Moore’s nomination notice lists his home address area as the **Manchester Central constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-204" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="documented" date="2026-02-03" -->
+O’Meachair’s nomination notice lists his home address area as the **district of Preston**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-205" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2026-02-03" -->
+Spencer’s nomination notice lists her home address area as the **district of Trafford**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-206" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="context" kind="documented" date="2026-02-03" -->
+Wils’ nomination notice lists his home address area as the **Manchester Withington constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-207" candidate="sir-oink-a-lot" candidateName="Sir Oink A‑Lot" party="The Official Monster Raving Loony Party" issue="context" kind="documented" date="2026-02-03" -->
+Sir Oink A‑Lot’s nomination notice lists his home address area as the **Wythenshawe and Sale East constituency**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-208" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="context" kind="documented" date="2026-02-03" -->
+Pearcey’s nomination notice lists her home address area as **Gorton and Denton**.
+Sources:
+- [Manchester City Council — statement of persons nominated (PDF)](https://www.manchester.gov.uk/download/downloads/id/30373/statement_of_persons_nominated_and_notice_of_poll_gorton_and_denton_parliamentary_by-election_26_february_2026.pdf)
+
+<!--meta id="gd-210" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="culture-war" kind="documented" date="2020-07-27" -->
+Keystone Law says Buckley was dismissed from Mancunian Way after a LinkedIn post on the Black Lives Matter manifesto, then reinstated.
+Sources:
+- [Keystone Law — reinstatement summary](https://www.keystonelaw.com/news/keystone-law-advises-nick-buckley-mbe-on-successful-reinstatement-at-award-winning-charity-mancunian-way)
+
+<!--meta id="gd-211" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="context" kind="documented" date="2024-05-02" -->
+In the 2024 Greater Manchester mayor election, Nick Buckley (Independent) received **50,304 votes**.
+Sources:
+- [GM Elects — GMCA Mayoral Election result (2024)](https://gmelects.org.uk/result-2024/)
+
+<!--meta id="gd-212" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2024-05-02" -->
+In the 2024 Greater Manchester mayor election, Hannah Spencer (Green) received **45,905 votes**.
+Sources:
+- [GM Elects — GMCA Mayoral Election result (2024)](https://gmelects.org.uk/result-2024/)
+
+<!--meta id="gd-213" candidate="nick-buckley" candidateName="Nick Buckley" party="Reform UK" issue="context" kind="documented" date="2021-05-08" -->
+In the 2021 Greater Manchester mayor election, Nick Buckley (Reform UK) received **18,910 votes**.
+Sources:
+- [Bolton Council — Greater Manchester Mayoral Election results (2021)](https://www.bolton.gov.uk/election2021)
+
+<!--meta id="gd-214" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2025-05-24" -->
+Trafford Greens announced Spencer as their Trafford council group leader in **May 2025**.
+Sources:
+- [Trafford Green Party — group leader announcement](https://trafford.greenparty.org.uk/2025/05/24/green-party-in-trafford-announces-new-leader/)
+
+<!--meta id="gd-215" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="health-care" kind="said" date="2026-02-10" -->
+Spencer told the MEN that some people she visits have kept their boiler off for a year because they can’t afford heating.
+Sources:
+- [Yahoo / MEN — story quoting Spencer on heating costs](https://uk.news.yahoo.com/no-hannah-spencer-doesnt-live-183037561.html)
+
+<!--meta id="gd-216" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2026-01-30" -->
+Guardian reported Spencer was the Greens’ 2024 Greater Manchester mayoral candidate.
+Sources:
+- [The Guardian — Greens select Spencer for by-election](https://www.theguardian.com/politics/2026/jan/30/greens-select-former-mayoral-candidate-hannah-spencer-to-run-in-gorton-and-denton-byelection)
+
+<!--meta id="gd-230" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="context" kind="documented" date="2023-04-07" -->
+WhoCanIVoteFor says Pearcey was a Manchester City Councillor for Gorton North (1991–2012).
+Sources:
+- [WhoCanIVoteFor — Jackie Pearcey statement](https://whocanivotefor.co.uk/person/5092/jackie-pearcey)
+
+<!--meta id="gd-231" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="homes-streets" kind="documented" date="2019-04-15" -->
+Manchester Lib Dems list Pearcey’s past local campaigns, including saving Gorton Monastery and redevelopment of old Gorton Market.
+Sources:
+- [Manchester Lib Dems — Pearcey “record of action” list](https://www.mcrlibdems.uk/news/article/jackie-pearcey-s-record-of-action-over-31-years)
+
+<!--meta id="gd-240" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="homes-streets" kind="said" date="2026-02-18" -->
+O’Meachair said creating “mixed communities” could help prevent “ghettoisation”.
+Sources:
+- [Not Really Here Media — O’Meachair interview (HMOs/regeneration)](https://www.notreallyheremedia.com/news/all-news/rejoin-eu-candidate-sets-out-regeneration-and-youth-plans-ahead-of-gorton-and-denton-by-election/)
+
+<!--meta id="gd-241" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="homes-streets" kind="said" date="2026-02-18" -->
+O’Meachair suggested linking local regeneration schemes to European examples to share expertise and best practice.
+Sources:
+- [Not Really Here Media — O’Meachair interview (regeneration examples)](https://www.notreallyheremedia.com/news/all-news/rejoin-eu-candidate-sets-out-regeneration-and-youth-plans-ahead-of-gorton-and-denton-by-election/)
+
+<!--meta id="gd-250" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="jobs-rights" kind="documented" date="2026-01-29" -->
+Not Really Here Media said Moore worked in education and volunteers at Burnage food bank.
+Sources:
+- [Not Really Here Media — SDP candidate announcement](https://www.notreallyheremedia.com/news/tameside-reporter/social-democratic-party-announce-candidate-for-gorton-and-denton-by-election/)
+
+<!--meta id="gd-251" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="homes-streets" kind="said" date="2026-01-29" -->
+Moore said: “If we want to rebuild Britain… we have to start in places like Gorton and Denton: improving housing…”
+Sources:
+- [Not Really Here Media — SDP candidate announcement (Moore quote)](https://www.notreallyheremedia.com/news/tameside-reporter/social-democratic-party-announce-candidate-for-gorton-and-denton-by-election/)
+
+<!--meta id="gd-260" candidate="dan-clarke" candidateName="Dan Clarke" party="Libertarian Party UK" issue="jobs-rights" kind="said" date="2026-02-05" -->
+Clarke said he wants to “start lowering taxes” and oppose growth in the size and cost of government.
+Sources:
+- [Tameside Correspondent — Dan Clarke profile/interview](https://www.tamesidecorrespondent.co.uk/2026/02/05/denton-candidate-targets-government-costs-as-full-candidate-list-declared/)
+
+<!--meta id="gd-270" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="jobs-rights" kind="documented" date="2026-02-11" -->
+Not Really Here Media described Wils as an aerospace worker, and a member of Unite the Union.
+Sources:
+- [Not Really Here Media — Hugo Wils interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
+
+<!--meta id="gd-271" candidate="hugo-wils" candidateName="Hugo Wils" party="Communist League" issue="homes-streets" kind="said" date="2026-02-11" -->
+Wils called for “a public works programme… [to] provide the housing, schools, hospitals and roads that working people need.”
+Sources:
+- [Not Really Here Media — Hugo Wils interview (public works quote)](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)
+
+<!--meta id="gd-062" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="said" date="2026-02-20" -->
+Buckley says he “was born and raised” locally and has spent “two decades fixing social problems” across the area.
+Sources:
+- [Nick Buckley campaign site — homepage](https://nickbuckley4parliament.co.uk/)
+
+<!--meta id="gd-209" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="documented" date="2020-07-27" -->
+Keystone Law says Buckley founded the charity Mancunian Way in **2011**.
+Sources:
+- [Keystone Law — reinstatement summary](https://www.keystonelaw.com/news/keystone-law-advises-nick-buckley-mbe-on-successful-reinstatement-at-award-winning-charity-mancunian-way)
+
+<!--meta id="gd-217" candidate="nick-buckley" candidateName="Nick Buckley" issue="context" kind="documented" date="2019-12-27" -->
+The Cabinet Office’s New Year Honours List 2020 (transparency data) lists “Nicholas Brendan BUCKLEY” as appointed MBE.
+Sources:
+- [GOV.UK — New Year Honours list 2020 publication](https://www.gov.uk/government/publications/new-year-honours-list-2020)
+- [GOV.UK — New Year Honours List 2020 transparency CSV (entry includes BUCKLEY)](https://www.gov.uk/csv-preview/5e14ad7440f0b65dbd0ffcc7/New_Year_Honours_List_2020_transparency.csv)
+
+<!--meta id="gd-218" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2023-05-01" -->
+Trafford Greens say Spencer was elected as a Hale councillor in **May 2023**.
+Sources:
+- [Trafford Green Party — group leader announcement (includes election date)](https://trafford.greenparty.org.uk/2025/05/24/green-party-in-trafford-announces-new-leader/)
+
+<!--meta id="gd-186" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="transport-air" kind="documented" date="2021-12-03" -->
+Whalley Range Labour says Stogia won the “Environment and Sustainability Pioneer” award at the 2021 Councillor Awards.
+Sources:
+- [Whalley Range Labour — national climate award post](https://whalleyrangelabour.org.uk/national-climate-award-2/)
 
 <!--meta id="gd-999" draft=1 candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="transport-air" kind="said" date="2026-02-01" -->
 Template / example block (leave draft=1 until sourced).
