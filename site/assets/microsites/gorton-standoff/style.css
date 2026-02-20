@@ -66,6 +66,20 @@ body{
 .heroLead{margin:0 0 8px;max-width:68ch}
 .heroFine{margin:0;color:var(--muted);font-size:13px}
 
+.methodWrap{margin:14px 0 18px}
+.methodCard{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.methodCard h2{margin:0 0 8px;font-size:20px}
+.methodLead{margin:0 0 10px;color:rgba(34,24,19,.88);max-width:80ch}
+.methodList{margin:0;padding-left:18px;color:var(--muted)}
+.methodList li{margin:4px 0}
+
 .pill{
   display:inline-flex;
   gap:6px;
@@ -242,6 +256,7 @@ body{
 }
 .bubble{
   position:absolute;
+  pointer-events:auto;
   max-width:220px;
   background:rgba(244,234,214,.93);
   border:1px solid rgba(34,24,19,.22);
@@ -301,6 +316,9 @@ body{
 .receiptsHead h2{margin:0 0 6px;font-size:20px}
 .receiptsHead p{margin:0;color:var(--muted)}
 
+.receiptsGroup{margin-top:12px}
+.receiptsGroup h3{margin:12px 2px 8px;font-size:16px;color:rgba(34,24,19,.88)}
+
 .receiptsList{margin-top:12px;display:grid;gap:10px}
 .receipt{
   background:rgba(255,255,255,.76);
@@ -316,6 +334,9 @@ body{
 .receiptQuote blockquote{margin:0;padding-left:12px;border-left:3px solid rgba(194,59,34,.22)}
 .receiptQuote p{margin:0}
 .receiptCaption{margin:8px 0 0;color:rgba(34,24,19,.84)}
+.receiptCredit{margin:6px 0 0;font-size:13px}
+.receiptCredit a{color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(34,24,19,.24)}
+.receiptCredit a:hover{border-bottom-color:var(--accent);color:var(--ink)}
 .receiptDetails{margin-top:8px}
 .receiptDetails summary{cursor:pointer;font-weight:800;color:var(--muted)}
 .receiptDetailsBody{margin-top:8px}
@@ -323,6 +344,187 @@ body{
 .receiptSources li{margin:2px 0}
 .receiptSources a{color:var(--ink)}
 .emptyReceipts{padding:16px}
+
+.flyersWrap{margin-top:22px}
+.flyersHead{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.flyersHead h2{margin:0 0 6px;font-size:20px}
+.flyersHead p{margin:0;color:var(--muted)}
+
+.flyerGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+  gap:10px;
+}
+.flyerThumb{
+  position:relative;
+  display:block;
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(34,24,19,.14);
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+  text-decoration:none;
+  color:inherit;
+}
+.flyerThumb img{
+  display:block;
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  filter:saturate(.98) contrast(.98);
+}
+.flyerCap{
+  display:block;
+  padding:8px 10px;
+  font-weight:850;
+  font-size:13px;
+  color:rgba(34,24,19,.88);
+}
+.flyerBackTag{
+  position:absolute;
+  top:10px;right:10px;
+  background:rgba(18,11,7,.78);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+}
+.flyerEmpty{grid-column:1 / -1;margin:0;color:var(--muted)}
+
+.flyerModal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+}
+.flyerModalBackdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.56);
+}
+.flyerModalPanel{
+  position:relative;
+  max-width:min(1100px, calc(100vw - 24px));
+  max-height:calc(100vh - 24px);
+  margin:12px auto 0;
+  background:rgba(244,234,214,.96);
+  border:1px solid rgba(34,24,19,.22);
+  border-radius:16px;
+  box-shadow:0 22px 80px rgba(0,0,0,.35);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.flyerModalBar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 10px;
+  border-bottom:1px solid rgba(34,24,19,.14);
+  background:rgba(255,255,255,.5);
+}
+.flyerModalControls{display:flex;gap:8px;align-items:center}
+.flyerBtn{
+  appearance:none;
+  border:1px solid rgba(34,24,19,.22);
+  background:rgba(255,255,255,.7);
+  color:var(--ink);
+  padding:8px 10px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:850;
+  font-size:13px;
+}
+.flyerBtn:disabled{opacity:.5;cursor:not-allowed}
+.flyerBtn:hover{border-color:rgba(194,59,34,.35)}
+.flyerViewport{
+  position:relative;
+  flex:1 1 auto;
+  min-height:50vh;
+  background:linear-gradient(180deg, rgba(18,11,7,.08), rgba(18,11,7,.02));
+  overflow:hidden;
+  touch-action:none;
+  cursor:grab;
+}
+.flyerViewport:active{cursor:grabbing}
+.flyerImg{
+  --tx: 0px;
+  --ty: 0px;
+  --scale: 1;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) translate(var(--tx), var(--ty)) scale(var(--scale));
+  transform-origin:50% 50%;
+  max-width:none;
+  max-height:none;
+  width:auto;
+  height:auto;
+  user-select:none;
+  -webkit-user-drag:none;
+  box-shadow:0 12px 36px rgba(0,0,0,.25);
+}
+.flyerHint{
+  margin:0;
+  padding:8px 12px 10px;
+  font-size:13px;
+  color:var(--muted);
+  background:rgba(255,255,255,.55);
+  border-top:1px solid rgba(34,24,19,.14);
+}
+body.flyerOpen{overflow:hidden}
+
+.additionalWrap{margin-top:22px}
+.additionalWrap h2{margin:0 0 6px;font-size:20px}
+.additionalWrap{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.additionalBody :is(p,ul,ol){margin:8px 0 0}
+.additionalBody a{color:var(--ink)}
+.additionalNote{margin:0;color:var(--muted)}
+
+.countsWrap{margin-top:22px}
+.countsWrap h2{margin:0 0 6px;font-size:20px}
+.countsNote{margin:0;color:var(--muted);max-width:75ch}
+.countsTableWrap{margin-top:10px;overflow:auto}
+.countsTable{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+}
+.countsTable th,.countsTable td{
+  padding:10px 12px;
+  border-bottom:1px solid rgba(34,24,19,.10);
+  text-align:left;
+  font-size:14px;
+}
+.countsTable thead th{
+  background:rgba(244,234,214,.9);
+  font-weight:900;
+}
+.countsTable tbody th{font-weight:850}
+.countsTable tfoot th,.countsTable tfoot td{font-weight:900;background:rgba(244,234,214,.6)}
+.countsTable tr:last-child th,.countsTable tr:last-child td{border-bottom:0}
 
 code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.95em}
 

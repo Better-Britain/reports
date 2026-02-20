@@ -5,7 +5,11 @@ This Markdown file is the **source of truth** for the microsite.
 - Each statement/claim is a **single block** under `## Statements`.
 - Each block **must** start with a `<!--meta ...-->` line.
 - Every non-draft statement must include **at least one** fully-qualified source link (`https://...`).
-- Keep the first paragraph short: it becomes the “speech bubble” line in the interactive view.
+- The first paragraph is the “headline” used in the interactive view.
+  - If `kind="said"` or `kind="quote"`, that first paragraph **must** be a `>` markdown blockquote and must be the speaker’s **exact words**.
+- Optional authoring meta:
+  - `slot="standoff"` (powers the interactive) or `slot="further"` (shown only in “Further claims & evidence”). If omitted, the build tries to infer a sensible default.
+  - `speaker="..."` / `speakerName="..."` when the speaker is not the candidate (e.g. party leadership, other politicians, etc).
 
 ## Statements
 
@@ -671,7 +675,9 @@ Sources:
 - [Yahoo (Press Association) — fact check on edited Goodwin quote image](https://malaysia.news.yahoo.com/fact-check-image-reform-election-141653837.html)
 
 <!--meta id="gd-342" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="said" date="2026-02-04" -->
-Buckley said: “We are a brand new party and hoping to make a difference in the country and in Gorton and Denton.”
+> “We are a brand new party and hoping to make a difference in the country and in Gorton and Denton.”
+
+BBC reported Buckley said this when Advance UK announced him as its candidate.
 Sources:
 - [BBC — Advance UK unveils Nick Buckley as by-election candidate](https://www.bbc.co.uk/news/articles/c4g31g59y73o)
 
@@ -681,42 +687,58 @@ Sources:
 - [BBC — Advance UK unveils Nick Buckley as by-election candidate](https://www.bbc.co.uk/news/articles/c4g31g59y73o)
 
 <!--meta id="gd-344" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="said" speakerName="Kevin Hollinrake" date="2026-02-01" -->
-Conservative Party chairman Kevin Hollinrake said Cadden is a “fierce campaigner on grooming gangs and single-sex spaces”.
+> “Charlotte has been a fierce campaigner on grooming gangs and single-sex spaces and her campaign will give her the opportunity to stand up for vulnerable girls, plain and simple.”
+
+BBC reported Conservative Party chairman Kevin Hollinrake said this about Cadden.
 Sources:
 - [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
 
 <!--meta id="gd-345" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="said" date="2026-02-01" -->
-Cadden said: “We’ve seen social justice theories infiltrate our public services and women and girls are no longer safe…”.
+> “We've seen social justice theories infiltrate our public services and women and girls are no longer safe in some of those services,”
+
+BBC reported Cadden said this while discussing her priorities.
 Sources:
 - [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
 
 <!--meta id="gd-346" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-01-27" -->
-At a press conference, Goodwin said he was “not part of the establishment” or the “Westminster blob”.
+> “not part of the establishment” or the “Westminster blob”
+
+BBC reported Goodwin said this at a press conference.
 Sources:
 - [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
 
 <!--meta id="gd-347" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-01-27" -->
-BBC reported Goodwin told Nick Robinson that many academics decided “half of the country were racists and ignorant thickos” after the Brexit vote.
+> “I saw essentially many people around me, 90% of people in universities decide that half of the country were racists and ignorant thickos… because they happened to vote for something that the elite class didn't believe in,”
+
+BBC reported Goodwin said this on Political Thinking with Nick Robinson.
 Sources:
 - [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
 
 <!--meta id="gd-348" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Keir Starmer" date="2026-01-28" -->
-Starmer said: “You can see from their [Reform’s] candidate what politics they’re going to bring… the politics of division, of toxic division…”.
+> “the politics of division, of toxic division, of tearing people apart,”
+
+BBC reported Starmer said this while criticising Reform’s politics in Gorton & Denton.
 Sources:
 - [BBC — Starmer speaks to Burnham after by-election row](https://www.bbc.co.uk/news/articles/cp3zp2p8qwzo)
 
 <!--meta id="gd-349" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Labour spokesperson" date="2026-02-13" -->
-A Labour spokesperson said Reform was “full of the same old failed Tories that did it all before”.
+> “Because it's full of the same old failed Tories that did it all before. You simply can't trust them.”
+
+BBC reported a Labour spokesperson said this about Reform.
 Sources:
 - [BBC — Farage says Reform is replacing “old fuddy duddy” Tories](https://www.bbc.co.uk/news/articles/ckg8r43zpv2o)
 
 <!--meta id="gd-351" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="said" speakerName="Rejoin EU Party" date="2026-01-31" -->
-Rejoin EU said Labour denying Burnham permission to stand “appears to have thrown the contest wide open”.
+> “appears to have thrown the contest wide open”
+
+BBC reported Rejoin EU said Labour denying Burnham permission to stand “appears to have thrown the contest wide open”.
 Sources:
 - [BBC — Rejoin EU choose Joseph O’Meachair](https://www.bbc.co.uk/news/articles/cvgxwz5epz7o)
 
 <!--meta id="gd-352" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="said" speakerName="Rejoin EU Party" date="2026-01-31" -->
-Rejoin EU said it wanted to offer voters “a clear pro-EU alternative” to other major parties’ stances on Europe.
+> “offer voters a clear pro-EU alternative”
+
+BBC reported Rejoin EU said it wanted to “offer voters a clear pro-EU alternative”.
 Sources:
 - [BBC — Rejoin EU choose Joseph O’Meachair](https://www.bbc.co.uk/news/articles/cvgxwz5epz7o)
 
@@ -736,7 +758,9 @@ Sources:
 - [BBC — Sebastian Moore named SDP by-election candidate](https://www.bbc.co.uk/news/articles/c3dm39l254do)
 
 <!--meta id="gd-356" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="jobs-rights" kind="said" speakerName="William Clouston" date="2026-01-30" -->
-SDP leader William Clouston said Moore “understands the concerns of working people… on housing, on jobs, on the cost of living.”
+> “Sebastian has been tireless in building our party across the North West. He understands the concerns of working people in constituencies like Gorton & Denton – on housing, on jobs, on the cost of living. He provides a serious alternative.”
+
+BBC reported SDP leader William Clouston said this about Moore.
 Sources:
 - [BBC — Sebastian Moore named SDP by-election candidate](https://www.bbc.co.uk/news/articles/c3dm39l254do)
 
@@ -751,22 +775,28 @@ Sources:
 - [BBC — Lib Dems name Jackie Pearcey as by-election candidate](https://www.bbc.co.uk/news/articles/c62w1202jj6o)
 
 <!--meta id="gd-359" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="health-care" kind="said" date="2026-01-30" -->
-Pearcey said: “We have a golden opportunity to champion… the cost of living, fixing the NHS and supporting our local high streets…”.
+> “We have a golden opportunity to champion the issues that matter most to people - the cost of living, fixing the NHS and supporting our local high streets and businesses,”
+
+BBC reported Pearcey said this when announcing her candidacy.
 Sources:
 - [BBC — Lib Dems name Jackie Pearcey as by-election candidate](https://www.bbc.co.uk/news/articles/c62w1202jj6o)
 
 <!--meta id="gd-360" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="context" kind="said" date="2024-04-13" -->
+> “puppet masters”
+
 In the 2024 Greater Manchester mayor race, BBC reported Buckley said he was standing as an independent because he did not want any “puppet masters”.
 Sources:
 - [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
 
 <!--meta id="gd-361" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="homes-streets" kind="said" date="2024-04-13" -->
+> “hammer criminals, increase stop-and-search, and reclaim the streets”
+
 BBC reported Buckley said police need to “hammer criminals, increase stop-and-search, and reclaim the streets”.
 Sources:
 - [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
 
-<!--meta id="gd-362" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="transport-air" kind="said" date="2024-04-13" -->
-BBC reported Buckley said he opposed plans for a Clear Air Zone, congestion charges, “15 minute cities”, and pay-per-mile schemes.
+<!--meta id="gd-362" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="transport-air" kind="documented" date="2024-04-13" -->
+BBC reported Buckley opposed plans for a Clear Air Zone, congestion charges, “15 minute cities”, and pay-per-mile schemes.
 Sources:
 - [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
 
@@ -776,17 +806,19 @@ Sources:
 - [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
 
 <!--meta id="gd-364" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="said" date="2024-04-13" -->
-BBC reported Spencer proposed a mass home insulation scheme to end “the… choice between heating and eating”.
+> “ending for many the inhumane 'choice' between heating and eating”
+
+BBC reported Spencer proposed a mass home insulation scheme “ending for many the inhumane 'choice' between heating and eating”.
 Sources:
 - [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
 
-<!--meta id="gd-365" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="transport-air" kind="said" date="2024-04-13" -->
-BBC reported Spencer said she wanted London-style control over local rail services, and promised to draw up plans for underground links.
+<!--meta id="gd-365" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="transport-air" kind="documented" date="2024-04-13" -->
+BBC reported Spencer wanted London-style control over local and suburban rail services, and promised to draw up plans for underground links.
 Sources:
 - [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
 
-<!--meta id="gd-366" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="said" date="2024-04-13" -->
-BBC reported Spencer said she would reinstate a Serious Sexual Offences Unit and create an independent commissioner.
+<!--meta id="gd-366" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="documented" date="2024-04-13" -->
+BBC reported Spencer would reinstate the Serious Sexual Offences Unit and put in place an independent commissioner.
 Sources:
 - [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
 
@@ -794,3 +826,9 @@ Sources:
 Template / example block (leave draft=1 until sourced).
 Sources:
 - [Example source](https://example.com)
+
+## Additional sources
+
+This section is for sources we looked at (or want to acknowledge) that are **not yet attached to a specific statement block** above.
+
+- (Add links here.)
