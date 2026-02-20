@@ -133,6 +133,17 @@
       "description": "A live counter and “real effects” estimate of the ongoing cost of Brexit.",
       "pubDate": "2026-02-16T19:40:00Z",
       "image": "/what-brexit-costs/brexit-bus-real-nhs-cost.jpg"
+    },
+    {
+      "id": "gorton-standoff",
+      "slug": "gorton-standoff",
+      "publicPath": "/gorton-standoff/",
+      "sourceDir": "site/assets/microsites/gorton-standoff",
+      "navTitle": "Gorton standoff",
+      "title": "Gorton & Denton Showdown",
+      "description": "A Desperados-style interactive standoff: pick an issue, see what candidates said/did, then open the receipts.",
+      "pubDate": "2026-02-20T20:30:00Z",
+      "image": "/gorton-standoff/images/town-square-placeholder.png"
     }
   ]
 }

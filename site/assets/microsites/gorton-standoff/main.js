@@ -1,0 +1,205 @@
+function qsa(root, sel) {
+  return Array.from((root || document).querySelectorAll(sel));
+}
+
+function cssEscape(s) {
+  if (globalThis.CSS && typeof globalThis.CSS.escape === 'function') return globalThis.CSS.escape(String(s || ''));
+  return String(s || '').replace(/["\\]/g, '\\$&');
+}
+
+function clamp(n, a, b) {
+  return Math.max(a, Math.min(b, n));
+}
+
+function issueLabel(issue) {
+  switch (String(issue || '')) {
+    case 'culture-war': return 'Culture war / cohesion';
+    case 'jobs-rights': return 'Jobs / pay / rights';
+    case 'homes-streets': return 'Homes / rents / streets';
+    case 'health-care': return 'Health / care / harm';
+    case 'transport-air': return 'Transport / air / infrastructure';
+    default: return String(issue || 'Other');
+  }
+}
+
+function layoutRing() {
+  const ring = document.querySelector('[data-role="ring"]');
+  if (!ring) return;
+  const nodes = qsa(ring, '[data-role="candidate"]');
+  if (!nodes.length) return;
+
+  const step = 360 / nodes.length;
+  const start = -90;
+  nodes.forEach((el, i) => {
+    const angle = start + i * step;
+    el.style.setProperty('--a', `${angle}deg`);
+  });
+}
+
+function groupReceiptsByIssueAndCandidate() {
+  const receipts = qsa(document, '[data-role="receipt"]');
+  const byIssue = new Map();
+  for (const el of receipts) {
+    const issue = el.dataset.issue || '';
+    const candidate = el.dataset.candidate || '';
+    if (!issue || !candidate) continue;
+    const listForIssue = byIssue.get(issue) || new Map();
+    const list = listForIssue.get(candidate) || [];
+    list.push(el);
+    listForIssue.set(candidate, list);
+    byIssue.set(issue, listForIssue);
+  }
+  return byIssue;
+}
+
+function updateReceiptCounts(byIssue) {
+  const candidates = qsa(document, '[data-role="candidate"]');
+  const totals = new Map();
+  for (const [issue, perCandidate] of byIssue.entries()) {
+    for (const [cand, list] of perCandidate.entries()) {
+      totals.set(cand, (totals.get(cand) || 0) + (list.length || 0));
+    }
+  }
+  for (const candEl of candidates) {
+    const cand = candEl.dataset.candidate || '';
+    const count = totals.get(cand) || 0;
+    const target = candEl.querySelector('[data-role="receipt-count"]');
+    if (target) target.textContent = String(count);
+    candEl.toggleAttribute('data-has-receipts', count > 0);
+  }
+}
+
+function clearBubbles() {
+  const layer = document.querySelector('[data-role="bubbles"]');
+  if (!layer) return;
+  layer.innerHTML = '';
+}
+
+function makeBubbleForReceipt({ candidateEl, receiptEl }) {
+  const layer = document.querySelector('[data-role="bubbles"]');
+  if (!layer || !candidateEl || !receiptEl) return;
+
+  const rect = candidateEl.getBoundingClientRect();
+  const layerRect = layer.getBoundingClientRect();
+  const x = rect.left + rect.width / 2 - layerRect.left;
+  const y = rect.top - layerRect.top;
+
+  const line = receiptEl.querySelector('.receiptLine')?.textContent?.trim() || '';
+  const issue = receiptEl.dataset.issue || '';
+  const id = receiptEl.dataset.id || '';
+  const sources = Number(receiptEl.dataset.sources || '0') || 0;
+  const seconds = clamp(0.26 + sources * 0.06, 0.28, 0.9);
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.style.left = `${x}px`;
+  bubble.style.top = `${y}px`;
+  bubble.style.transitionDuration = `${seconds}s`;
+  bubble.innerHTML = `
+    <p class="bubbleLine"></p>
+    <div class="bubbleMeta"></div>
+  `;
+  bubble.querySelector('.bubbleLine').textContent = line || '(No statement text)';
+
+  const meta = bubble.querySelector('.bubbleMeta');
+  const issueText = issueLabel(issue);
+  const receiptLink = document.querySelector('#receiptsTitle') ? '#receiptsTitle' : '';
+  meta.innerHTML = `
+    <span>${issueText}</span>
+    <span>·</span>
+    <a href="${receiptLink}" data-jump="${id}">open receipts (${sources})</a>
+  `;
+
+  layer.appendChild(bubble);
+
+  requestAnimationFrame(() => {
+    bubble.dataset.open = '1';
+  });
+}
+
+function showIssueBubbles(byIssue, issue) {
+  clearBubbles();
+  const perCandidate = byIssue.get(issue);
+  if (!perCandidate) return;
+
+  for (const [candidate, list] of perCandidate.entries()) {
+    const candEl = document.querySelector(`[data-role="candidate"][data-candidate="${cssEscape(candidate)}"]`);
+    const receiptEl = list[0];
+    if (!candEl || !receiptEl) continue;
+    makeBubbleForReceipt({ candidateEl: candEl, receiptEl });
+  }
+}
+
+function setActiveIssue(issue) {
+  const btns = qsa(document, '[data-role="issue"]');
+  for (const b of btns) {
+    const on = (b.dataset.issue || '') === issue;
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
+}
+
+function hookIssuePicker(byIssue) {
+  const btns = qsa(document, '[data-role="issue"]');
+  if (!btns.length) return;
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const issue = btn.dataset.issue || '';
+      setActiveIssue(issue);
+      showIssueBubbles(byIssue, issue);
+    });
+  });
+
+  // Default selection: first issue with any receipts, otherwise first button.
+  const firstWithReceipts = btns.map(b => b.dataset.issue).find((i) => (byIssue.get(i) && byIssue.get(i).size));
+  const initial = firstWithReceipts || btns[0].dataset.issue;
+  if (initial) {
+    setActiveIssue(initial);
+    showIssueBubbles(byIssue, initial);
+  }
+}
+
+function hookReceiptJump() {
+  document.addEventListener('click', (e) => {
+    const a = e.target?.closest?.('a[data-jump]');
+    if (!a) return;
+    const id = a.getAttribute('data-jump');
+    if (!id) return;
+    const target = document.querySelector(`[data-role="receipt"][data-id="${cssEscape(id)}"]`);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.style.outline = '3px solid rgba(194,59,34,.35)';
+    target.style.outlineOffset = '3px';
+    window.setTimeout(() => {
+      target.style.outline = '';
+      target.style.outlineOffset = '';
+    }, 1200);
+  });
+}
+
+function main() {
+  document.body.classList.add('js');
+  layoutRing();
+  const byIssue = groupReceiptsByIssueAndCandidate();
+  updateReceiptCounts(byIssue);
+  hookIssuePicker(byIssue);
+  hookReceiptJump();
+
+  // Keep bubbles vaguely anchored after resize.
+  let raf = 0;
+  window.addEventListener('resize', () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      layoutRing();
+      const active = document.querySelector('[data-role="issue"][aria-pressed="true"]')?.dataset?.issue;
+      if (active) showIssueBubbles(byIssue, active);
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', main);
+} else {
+  main();
+}
