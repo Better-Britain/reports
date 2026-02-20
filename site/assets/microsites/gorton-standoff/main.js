@@ -88,6 +88,8 @@ function makeBubbleForReceipt({ candidateEl, receiptEl }) {
   const issue = receiptEl.dataset.issue || '';
   const id = receiptEl.dataset.id || '';
   const sources = Number(receiptEl.dataset.sources || '0') || 0;
+  const speakerName = (receiptEl.dataset.speakerName || '').trim();
+  const candidateName = (receiptEl.dataset.candidateName || '').trim();
   const seconds = clamp(0.26 + sources * 0.06, 0.28, 0.9);
 
   const bubble = document.createElement('div');
@@ -104,11 +106,31 @@ function makeBubbleForReceipt({ candidateEl, receiptEl }) {
   const meta = bubble.querySelector('.bubbleMeta');
   const issueText = issueLabel(issue);
   const receiptLink = document.querySelector('#receiptsTitle') ? '#receiptsTitle' : '';
-  meta.innerHTML = `
-    <span>${issueText}</span>
-    <span>·</span>
-    <a href="${receiptLink}" data-jump="${id}">open receipts (${sources})</a>
-  `;
+  meta.innerHTML = '';
+
+  const issueSpan = document.createElement('span');
+  issueSpan.textContent = issueText;
+  meta.appendChild(issueSpan);
+
+  if (speakerName && speakerName !== candidateName) {
+    const dot = document.createElement('span');
+    dot.textContent = '·';
+    meta.appendChild(dot);
+
+    const speakerSpan = document.createElement('span');
+    speakerSpan.textContent = `🗣️ ${speakerName}`;
+    meta.appendChild(speakerSpan);
+  }
+
+  const dot2 = document.createElement('span');
+  dot2.textContent = '·';
+  meta.appendChild(dot2);
+
+  const a = document.createElement('a');
+  a.href = receiptLink;
+  a.setAttribute('data-jump', id);
+  a.textContent = `open receipts (${sources})`;
+  meta.appendChild(a);
 
   layer.appendChild(bubble);
 

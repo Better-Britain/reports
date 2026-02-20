@@ -167,10 +167,10 @@ Sources:
 - [Not Really Here Media — Levenshulme hustings report (Cadden transport/climate lines)](https://www.notreallyheremedia.com/news/all-news/boos-and-sharp-exchanges-at-levenshulme-hustings-ahead-of-gorton-and-denton-vote/)
 
 <!--meta id="gd-081" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="documented" date="2026-02-01" -->
-BBC reported Cadden is a retired detective chief inspector and a trustee of Sex Matters.
+Sex Matters says Cadden was a police officer for 30 years and retired as a Detective Chief Inspector in the Metropolitan Police Service; and she is a trustee of Sex Matters.
 Sources:
-- [BBC (via Yahoo) — Tory candidate announcement](https://uk.news.yahoo.com/tory-candidate-gorton-election-070842721.html)
 - [Sex Matters — Charlotte Cadden (trustee bio)](https://sex-matters.org/about-us/board/charlotte-cadden/)
+- [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
 
 <!--meta id="gd-082" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="transport-air" kind="said" date="2026-02-13" -->
 At the Levenshulme hustings, Cadden said she was “not anti-car”, and referenced the £2 bus fare cap.
@@ -581,6 +581,136 @@ Sources:
 Farage told journalists a Gorton & Denton defeat for Labour “could be the end of Starmer”.
 Sources:
 - [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
+
+<!--meta id="gd-340" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="culture-war" kind="documented" speakerName="Press Association" date="2026-02-19" -->
+Press Association reported Buckley reposted a claim alleging Reform candidate Matt Goodwin said he “hated” living in Manchester.
+Sources:
+- [Yahoo (Press Association) — fact check on edited Goodwin quote image](https://malaysia.news.yahoo.com/fact-check-image-reform-election-141653837.html)
+
+<!--meta id="gd-341" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="documented" speakerName="Press Association" date="2026-02-19" -->
+Press Association said the “I hated it… locals are all chavs” quote was not in the underlying newspaper interview, and appears to be a falsified edit.
+Sources:
+- [Yahoo (Press Association) — fact check on edited Goodwin quote image](https://malaysia.news.yahoo.com/fact-check-image-reform-election-141653837.html)
+
+<!--meta id="gd-342" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="context" kind="said" date="2026-02-04" -->
+Buckley said: “We are a brand new party and hoping to make a difference in the country and in Gorton and Denton.”
+Sources:
+- [BBC — Advance UK unveils Nick Buckley as by-election candidate](https://www.bbc.co.uk/news/articles/c4g31g59y73o)
+
+<!--meta id="gd-343" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="homes-streets" kind="documented" date="2026-02-04" -->
+BBC reported Buckley said he wants to clamp down on knife crime and anti-social behaviour.
+Sources:
+- [BBC — Advance UK unveils Nick Buckley as by-election candidate](https://www.bbc.co.uk/news/articles/c4g31g59y73o)
+
+<!--meta id="gd-344" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="said" speakerName="Kevin Hollinrake" date="2026-02-01" -->
+Conservative Party chairman Kevin Hollinrake said Cadden is a “fierce campaigner on grooming gangs and single-sex spaces”.
+Sources:
+- [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
+
+<!--meta id="gd-345" candidate="charlotte-cadden" candidateName="Charlotte Anne Cadden" party="Conservative" issue="culture-war" kind="said" date="2026-02-01" -->
+Cadden said: “We’ve seen social justice theories infiltrate our public services and women and girls are no longer safe…”.
+Sources:
+- [BBC — Charlotte Cadden chosen as Tory candidate](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)
+
+<!--meta id="gd-346" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="said" date="2026-01-27" -->
+At a press conference, Goodwin said he was “not part of the establishment” or the “Westminster blob”.
+Sources:
+- [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
+
+<!--meta id="gd-347" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" date="2026-01-27" -->
+BBC reported Goodwin told Nick Robinson that many academics decided “half of the country were racists and ignorant thickos” after the Brexit vote.
+Sources:
+- [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
+
+<!--meta id="gd-348" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Keir Starmer" date="2026-01-28" -->
+Starmer said: “You can see from their [Reform’s] candidate what politics they’re going to bring… the politics of division, of toxic division…”.
+Sources:
+- [BBC — Starmer speaks to Burnham after by-election row](https://www.bbc.co.uk/news/articles/cp3zp2p8qwzo)
+
+<!--meta id="gd-349" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Labour spokesperson" date="2026-02-13" -->
+A Labour spokesperson said Reform was “full of the same old failed Tories that did it all before”.
+Sources:
+- [BBC — Farage says Reform is replacing “old fuddy duddy” Tories](https://www.bbc.co.uk/news/articles/ckg8r43zpv2o)
+
+<!--meta id="gd-351" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="said" speakerName="Rejoin EU Party" date="2026-01-31" -->
+Rejoin EU said Labour denying Burnham permission to stand “appears to have thrown the contest wide open”.
+Sources:
+- [BBC — Rejoin EU choose Joseph O’Meachair](https://www.bbc.co.uk/news/articles/cvgxwz5epz7o)
+
+<!--meta id="gd-352" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="said" speakerName="Rejoin EU Party" date="2026-01-31" -->
+Rejoin EU said it wanted to offer voters “a clear pro-EU alternative” to other major parties’ stances on Europe.
+Sources:
+- [BBC — Rejoin EU choose Joseph O’Meachair](https://www.bbc.co.uk/news/articles/cvgxwz5epz7o)
+
+<!--meta id="gd-353" candidate="joseph-omeachair" candidateName="Joseph O’Meachair" party="Rejoin EU Party" issue="context" kind="documented" date="2026-01-31" -->
+BBC reported O’Meachair stood in Preston in 2024 for Rejoin EU and received **216 votes**.
+Sources:
+- [BBC — Rejoin EU choose Joseph O’Meachair](https://www.bbc.co.uk/news/articles/cvgxwz5epz7o)
+
+<!--meta id="gd-354" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="context" kind="documented" date="2026-01-30" -->
+BBC reported Moore returned to the UK in **2022** after working abroad, and made Manchester his home.
+Sources:
+- [BBC — Sebastian Moore named SDP by-election candidate](https://www.bbc.co.uk/news/articles/c3dm39l254do)
+
+<!--meta id="gd-355" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="context" kind="documented" date="2026-01-30" -->
+BBC reported Moore stood for the SDP in Manchester Central at the 2024 general election and polled **240 votes**.
+Sources:
+- [BBC — Sebastian Moore named SDP by-election candidate](https://www.bbc.co.uk/news/articles/c3dm39l254do)
+
+<!--meta id="gd-356" candidate="sebastian-moore" candidateName="Sebastian Moore" party="Social Democratic Party" issue="jobs-rights" kind="said" speakerName="William Clouston" date="2026-01-30" -->
+SDP leader William Clouston said Moore “understands the concerns of working people… on housing, on jobs, on the cost of living.”
+Sources:
+- [BBC — Sebastian Moore named SDP by-election candidate](https://www.bbc.co.uk/news/articles/c3dm39l254do)
+
+<!--meta id="gd-357" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="context" kind="documented" date="2026-01-30" -->
+BBC reported Pearcey has served as a governor at Oasis Academy Aspinal in Gorton for more than **20 years**.
+Sources:
+- [BBC — Lib Dems name Jackie Pearcey as by-election candidate](https://www.bbc.co.uk/news/articles/c62w1202jj6o)
+
+<!--meta id="gd-358" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="context" kind="documented" date="2026-01-30" -->
+BBC reported Pearcey has a doctorate in nuclear physics.
+Sources:
+- [BBC — Lib Dems name Jackie Pearcey as by-election candidate](https://www.bbc.co.uk/news/articles/c62w1202jj6o)
+
+<!--meta id="gd-359" candidate="jackie-pearcey" candidateName="Jackie Pearcey" party="Liberal Democrats" issue="health-care" kind="said" date="2026-01-30" -->
+Pearcey said: “We have a golden opportunity to champion… the cost of living, fixing the NHS and supporting our local high streets…”.
+Sources:
+- [BBC — Lib Dems name Jackie Pearcey as by-election candidate](https://www.bbc.co.uk/news/articles/c62w1202jj6o)
+
+<!--meta id="gd-360" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="context" kind="said" date="2024-04-13" -->
+In the 2024 Greater Manchester mayor race, BBC reported Buckley said he was standing as an independent because he did not want any “puppet masters”.
+Sources:
+- [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
+
+<!--meta id="gd-361" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="homes-streets" kind="said" date="2024-04-13" -->
+BBC reported Buckley said police need to “hammer criminals, increase stop-and-search, and reclaim the streets”.
+Sources:
+- [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
+
+<!--meta id="gd-362" candidate="nick-buckley" candidateName="Nick Buckley" party="Independent" issue="transport-air" kind="said" date="2024-04-13" -->
+BBC reported Buckley said he opposed plans for a Clear Air Zone, congestion charges, “15 minute cities”, and pay-per-mile schemes.
+Sources:
+- [BBC — Greater Manchester mayor: Nick Buckley (independent candidate profile)](https://www.bbc.co.uk/news/articles/cqenrn32y1jo)
+
+<!--meta id="gd-363" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="transport-air" kind="documented" date="2024-04-13" -->
+BBC reported Spencer is a plumber and works on retro-fitting houses to become more energy efficient.
+Sources:
+- [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
+
+<!--meta id="gd-364" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="said" date="2024-04-13" -->
+BBC reported Spencer proposed a mass home insulation scheme to end “the… choice between heating and eating”.
+Sources:
+- [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
+
+<!--meta id="gd-365" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="transport-air" kind="said" date="2024-04-13" -->
+BBC reported Spencer said she wanted London-style control over local rail services, and promised to draw up plans for underground links.
+Sources:
+- [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
+
+<!--meta id="gd-366" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="homes-streets" kind="said" date="2024-04-13" -->
+BBC reported Spencer said she would reinstate a Serious Sexual Offences Unit and create an independent commissioner.
+Sources:
+- [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
 
 <!--meta id="gd-999" draft=1 candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="transport-air" kind="said" date="2026-02-01" -->
 Template / example block (leave draft=1 until sourced).

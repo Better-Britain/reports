@@ -140,6 +140,8 @@ function parseStatementsFromMarkdown(markdownText) {
     const date = String(meta.date || '').trim();
     const candidateName = String(meta.candidateName || '').trim();
     const party = String(meta.party || '').trim();
+    const speaker = String(meta.speaker || '').trim();
+    const speakerName = String(meta.speakerName || '').trim();
 
     const links = uniqLinks(extractLinks(b.content));
     if (!draft && !links.length) {
@@ -156,6 +158,8 @@ function parseStatementsFromMarkdown(markdownText) {
       candidate,
       candidateName,
       party,
+      speaker,
+      speakerName,
       issue,
       kind,
       date,
@@ -204,8 +208,10 @@ function renderReceipts(statements) {
       ? `<ul class="receiptSources">${s.sources.map((src) => `<li><a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(src.label)}</a></li>`).join('')}</ul>`
       : '';
 
+    const speakerDisplay = s.speakerName || s.speaker || '';
     const metaBits = [
       s.party ? `<span class="pill pill--party">${escapeHtml(s.party)}</span>` : '',
+      speakerDisplay && speakerDisplay !== (s.candidateName || s.candidate || '') ? `<span class="pill pill--speaker">🗣️ ${escapeHtml(speakerDisplay)}</span>` : '',
       s.issue ? `<span class="pill">${escapeHtml(issueLabel(s.issue))}</span>` : '',
       s.kind ? `<span class="pill pill--kind" title="Evidence type">${escapeHtml(kindIcon(s.kind))} ${escapeHtml(s.kind)}</span>` : '',
       s.date ? `<span class="pill pill--date"><time datetime="${escapeHtml(s.date)}">${escapeHtml(s.date)}</time></span>` : ''
@@ -214,7 +220,7 @@ function renderReceipts(statements) {
     const candidateDisplay = s.candidateName || s.candidate || 'Unknown';
 
     return `
-<article class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}">
+<article class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}">
   <div class="receiptTop">
     <div class="receiptWho">
       <span class="pill pill--id">#${escapeHtml(s.id)}</span>
@@ -368,4 +374,3 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     process.exit(1);
   });
 }
-
