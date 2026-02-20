@@ -19,6 +19,11 @@ const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 const MICROSITE_CROSSLINKS_MARKER_RE = /<!--\s*bbb:micro-cross-links\s*-->/gi;
 const FAVICONS_MARKER_RE = /<!--\s*bbb:favicons\s*-->/gi;
+const SUPPORT_PANEL_CSS_HREF = '/assets/merch/support-panel.css';
+const MERCH_DIR = path.resolve('site/assets/merch');
+const MERCH_DATA_FILE = path.join(MERCH_DIR, 'items.md');
+const MERCH_IMAGES_DIR = path.join(MERCH_DIR, 'images');
+const KO_FI_URL = 'https://ko-fi.com/betterbritain';
 
 async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0, rootDir = srcDir) {
 	await fs.mkdir(destDir, { recursive: true });
@@ -115,6 +120,7 @@ async function ensureAssets() {
 		}
 		await fs.writeFile(manifestPath, JSON.stringify(json, null, 2) + '\n', 'utf8');
 	} catch {}
+
 }
 
 function renderMarkdownString(markdown) {
@@ -233,6 +239,116 @@ function ensureRssAlternateLink(html, config) {
 	return s;
 }
 
+function parseMerchItemsMarkdown(raw) {
+	const lines = String(raw || '').split(/\r?\n/);
+	const items = [];
+	for (const line of lines) {
+		const m = line.match(/^\s*-\s*\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)\s*\|\s*([A-Za-z0-9][A-Za-z0-9._/-]*)\s*$/i);
+		if (!m) continue;
+		const title = m[1].trim();
+		const href = m[2].trim();
+		const image = m[3].trim().replace(/\\/g, '/').replace(/^\/+/, '');
+		if (!title || !href || !image) continue;
+		items.push({ title, href, image });
+	}
+	return items;
+}
+
+function toPublicMerchImageSrc(imagePath) {
+	const cleaned = String(imagePath || '')
+		.split('/')
+		.filter(Boolean)
+		.map((segment) => encodeURIComponent(segment))
+		.join('/');
+	return cleaned ? `/assets/merch/images/${cleaned}` : '';
+}
+
+async function loadSupportPanelData() {
+	let raw = '';
+	try {
+		raw = await fs.readFile(MERCH_DATA_FILE, 'utf8');
+	} catch {
+		return { merchItems: [] };
+	}
+
+	const parsed = parseMerchItemsMarkdown(raw).slice(0, 4);
+	const merchItems = [];
+	for (const item of parsed) {
+		const imgPath = path.join(MERCH_IMAGES_DIR, item.image);
+		let hasImage = false;
+		try {
+			await fs.access(imgPath);
+			hasImage = true;
+		} catch {}
+		merchItems.push({
+			title: item.title,
+			href: item.href,
+			image: item.image,
+			imageSrc: hasImage ? toPublicMerchImageSrc(item.image) : ''
+		});
+	}
+	return { merchItems };
+}
+
+function renderSupportPanel({ merchItems } = {}) {
+	const items = Array.isArray(merchItems) ? merchItems.slice(0, 4) : [];
+	const cards = items.map((item) => {
+		const title = escapeHtml(item.title);
+		const href = escapeHtml(item.href);
+		if (!item.imageSrc) {
+			return `
+        <a class="bbbSupportMerchCard" href="${href}" target="_blank" rel="noopener">
+          <span class="bbbSupportMerchMissing" aria-hidden="true">Preview soon</span>
+          <span class="bbbSupportMerchTitle">${title}</span>
+        </a>`;
+		}
+		return `
+        <a class="bbbSupportMerchCard" href="${href}" target="_blank" rel="noopener">
+          <img src="${escapeHtml(item.imageSrc)}" alt="${title} preview" loading="lazy" decoding="async">
+          <span class="bbbSupportMerchTitle">${title}</span>
+        </a>`;
+	});
+
+	while (cards.length < 4) {
+		cards.push(`
+        <div class="bbbSupportMerchCard bbbSupportMerchCard--placeholder" aria-hidden="true">
+          <span class="bbbSupportMerchMissing">Merch soon</span>
+        </div>`);
+	}
+
+	return `
+<section class="bbbSupportPanel" aria-label="Support Better Britain">
+  <div class="bbbSupportPanelInner">
+    <div class="bbbSupportTip">
+      <h3>Support Better Britain</h3>
+      <p>Two low-key ways to back our work:</p>
+      <a class="bbbSupportKofi" href="${KO_FI_URL}" target="_blank" rel="noopener">Drop a tip on Ko-fi</a>
+    </div>
+    <div class="bbbSupportMerch" aria-label="Merch previews">
+      <div class="bbbSupportMerchGrid">${cards.join('')}
+      </div>
+    </div>
+  </div>
+</section>`.trim();
+}
+
+function ensureSupportPanelStylesheet(html) {
+	const s = String(html || '');
+	if (/\/assets\/merch\/support-panel\.css/i.test(s)) return s;
+	const linkTag = `<link rel="stylesheet" href="${SUPPORT_PANEL_CSS_HREF}">`;
+	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${linkTag}\n</head>`);
+	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${linkTag}`);
+	return s;
+}
+
+function injectSupportPanelAtBodyEnd(html, supportPanelHtml) {
+	const s = String(html || '');
+	if (!supportPanelHtml) return s;
+	if (/bbbSupportPanel/.test(s)) return s;
+	if (/<\/body>/i.test(s)) return s.replace(/<\/body>/i, `${supportPanelHtml}\n</body>`);
+	return s + supportPanelHtml;
+}
+
 // Rewrite root-relative URLs (e.g. /assets/...) to include a configurable basePath (e.g. /reports/)
 function applyBasePath(html, basePath) {
 	const base = ensureTrailingSlash(basePath || '/');
@@ -327,9 +443,10 @@ async function writePostsIndex(config, outDir) {
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
 }
 
-async function buildMicrosites(config, includeDrafts) {
+async function buildMicrosites(config, includeDrafts, supportData) {
 	const microsites = config.microsites || [];
 	const allMicrosites = microsites.filter(ms => includeDrafts ? true : !ms.disabled);
+	const supportPanelHtml = renderSupportPanel({ merchItems: supportData?.merchItems });
 	for (const ms of allMicrosites) {
 		const canonicalSlug = String(ms.slug || '').trim();
 		if (!canonicalSlug) continue;
@@ -372,12 +489,14 @@ async function buildMicrosites(config, includeDrafts) {
 				await copyDirRecursive(sourceDir, destDir);
 			}
 
-				const indexPath = path.join(destDir, 'index.html');
-				try {
-					let html = await fs.readFile(indexPath, 'utf8');
-					html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
-					html = ensureFavicons(html);
-					html = ensureRssAlternateLink(html, config);
+					const indexPath = path.join(destDir, 'index.html');
+					try {
+						let html = await fs.readFile(indexPath, 'utf8');
+						html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
+						html = injectSupportPanelAtBodyEnd(html, supportPanelHtml);
+						html = ensureSupportPanelStylesheet(html);
+						html = ensureFavicons(html);
+						html = ensureRssAlternateLink(html, config);
 					const canonicalPath = targetPublicPath;
 					const meta = buildMetaTags({
 						title: microsite.title || effectiveSlug || canonicalSlug,
@@ -438,7 +557,7 @@ async function buildMicrosites(config, includeDrafts) {
 }
 
 
-async function buildHomepage(config) {
+async function buildHomepage(config, supportData) {
 	const isCi = Boolean(process.env.GITHUB_ACTIONS);
 	const forceComingSoon = String(process.env.BBB_COMING_SOON || '').toLowerCase() === 'true' || String(process.env.BBB_COMING_SOON || '') === '1';
 	const isLive = config.live === true; // only go live when explicitly true
@@ -458,6 +577,7 @@ async function buildHomepage(config) {
 	const local = config.reports?.local || [];
 	const microsites = (config.microsites || []).filter(ms => !ms.disabled);
 	const brand = config.brand || { siteTitle: 'Better Britain Bureau', rootHeading: 'Broken Britain Briefing' };
+	const supportPanelHtml = renderSupportPanel({ merchItems: supportData?.merchItems });
 
 	// Detect optional large logo asset
 	const logoRel = '/assets/better-britain-bee.png';
@@ -527,15 +647,17 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 		</div>
 	</section>
 
-<section class="subscribe" aria-labelledby="stay-up-to-date">
-	<h3 id="stay-up-to-date">Stay up to date</h3>
+	<section class="subscribe" aria-labelledby="stay-up-to-date">
+		<h3 id="stay-up-to-date">Stay up to date</h3>
 	<p class="muted">Our reports and posts will be added to our RSS feed as they go live, and occasionally cover simpler topics or calls for contributors. Subscribe or follow to keep up to date.</p>
 	<p>
 		<a class="rss-link" href="/feed.xml"><img class="rss-icon" src="/assets/rss.png" alt="RSS">Subscribe via RSS</a>
 		 &nbsp;·&nbsp; <a href="https://bsky.app/profile/betterbritain.bsky.social" target="_blank" rel="noopener">Better Britain on Bluesky</a>
-	</p>
-</section>
-`;
+		</p>
+	</section>
+
+	${supportPanelHtml}
+	`;
 
 	const template = await fs.readFile(TEMPLATE_FILE, 'utf8');
 	const pagePath = '/index.html';
@@ -549,6 +671,7 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', content).replace('{{bodyClass}}', 'page-home'), meta);
+	html = ensureSupportPanelStylesheet(html);
 	html = applyBasePath(html, config.basePath);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 	await fs.writeFile(path.join(OUTPUT_DIR, 'index.html'), html, 'utf8');
@@ -558,6 +681,7 @@ async function build() {
 	await ensureTemplate();
 	await ensureAssets();
 	const config = await loadConfig();
+	const supportData = await loadSupportPanelData();
 	const isCi = Boolean(process.env.GITHUB_ACTIONS);
 	const includeDrafts = !isCi && (String(process.env.BBB_INCLUDE_DRAFTS || '').toLowerCase() === 'true' || String(process.env.BBB_INCLUDE_DRAFTS || '') === '1');
 	const allReports = [...(config.reports?.national || []), ...(config.reports?.local || [])]
@@ -590,8 +714,8 @@ async function build() {
 	const postsOut = path.resolve(config.postsOut || 'docs/posts');
 	await compilePages(config.postsDir || 'posts', postsOut, config);
 	await writePostsIndex(config, postsOut);
-	await buildHomepage(config);
-	await buildMicrosites(config, includeDrafts);
+	await buildHomepage(config, supportData);
+	await buildMicrosites(config, includeDrafts, supportData);
 	await generateRss(config);
 }
 
