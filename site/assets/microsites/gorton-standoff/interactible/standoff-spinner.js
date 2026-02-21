@@ -39,17 +39,17 @@
   };
 
   const CANDIDATE_META = new Map([
-    ['angeliki-stogia', { name: 'Angeliki Stogia', image: './images/candidate-labour.png' }],
-    ['hannah-spencer', { name: 'Hannah Spencer', image: './images/candidate-green.png' }],
-    ['matt-goodwin', { name: 'Matt Goodwin', image: './images/candidate-reform.png' }],
-    ['sir-oink-a-lot', { name: 'Sir Oink A-Lot' }],
-    ['nick-buckley', { name: 'Nick Buckley' }],
-    ['charlotte-cadden', { name: 'Charlotte Cadden' }],
-    ['dan-clarke', { name: 'Dan Clarke' }],
-    ['sebastian-moore', { name: 'Sebastian Moore' }],
-    ['joseph-omeachair', { name: 'Joseph O’Meachair' }],
-    ['jackie-pearcey', { name: 'Jackie Pearcey' }],
-    ['hugo-wils', { name: 'Hugo Wils' }]
+    ['angeliki-stogia', { name: 'Angeliki Stogia', image: './images/headshots/angeliki-stogia.jpg' }],
+    ['hannah-spencer', { name: 'Hannah Spencer', image: './images/headshots/hannah-spencer.jpg' }],
+    ['matt-goodwin', { name: 'Matt Goodwin', image: './images/headshots/matt-goodwin.jpg' }],
+    ['sir-oink-a-lot', { name: 'Sir Oink A-Lot', image: './images/headshots/sir-oink-a-lot.jpg' }],
+    ['nick-buckley', { name: 'Nick Buckley', image: './images/headshots/nick-buckley.jpg' }],
+    ['charlotte-cadden', { name: 'Charlotte Cadden', image: './images/headshots/charlotte-anne-cadden.jpg' }],
+    ['dan-clarke', { name: 'Dan Clarke', image: './images/headshots/dan-clarke.jpg' }],
+    ['sebastian-moore', { name: 'Sebastian Moore', image: './images/headshots/sebastian-moore.jpg' }],
+    ['joseph-omeachair', { name: 'Joseph O’Meachair', image: './images/headshots/joseph-omeachair.jpg' }],
+    ['jackie-pearcey', { name: 'Jackie Pearcey', image: './images/headshots/jackie-pearcey.jpg' }],
+    ['hugo-wils', { name: 'Hugo Wils', image: './images/headshots/hugo-wils.jpg' }]
   ]);
 
   function applyHeadshotManifest() {
