@@ -8,6 +8,8 @@
   const WHEEL_DURATION_MS = 4200;
   const WHEEL_SPINS = 10;
   const GLOW_AFTER_MS = 2200;
+  const MID_SPIN_MUTATION_AT = 0.62;
+  const BADGE_ANGLES = [-54, 18, 90, 162, 234];
 
   const ISSUE_SLICES = [
     { id: 'culture-war', label: 'Culture', color: '#ff4e43' },
@@ -17,7 +19,23 @@
     { id: 'transport-air', label: 'Transit', color: '#9c4ddc' }
   ];
 
+  const ISSUE_INDEX = new Map(ISSUE_SLICES.map((s, i) => [s.id, i]));
   const TOP_THREE = ['angeliki-stogia', 'hannah-spencer', 'matt-goodwin'];
+
+  // Political proximity lanes for supplemental speakers/candidates.
+  const LANE_BY_CANDIDATE = {
+    'angeliki-stogia': 'labour',
+    'hannah-spencer': 'green',
+    'matt-goodwin': 'reform',
+    'jackie-pearcey': 'labour',
+    'hugo-wils': 'labour',
+    'joseph-omeachair': 'green',
+    'sebastian-moore': 'green',
+    'nick-buckley': 'reform',
+    'charlotte-cadden': 'reform',
+    'dan-clarke': 'reform',
+    'sir-oink-a-lot': 'swing'
+  };
 
   const CANDIDATE_META = new Map([
     ['angeliki-stogia', { name: 'Angeliki Stogia', image: './images/candidate-labour.png' }],
@@ -42,7 +60,9 @@
   }
 
   function setAttrs(el, attrs) {
-    Object.entries(attrs || {}).forEach(function ([k, v]) { el.setAttribute(k, String(v)); });
+    Object.entries(attrs || {}).forEach(function ([k, v]) {
+      el.setAttribute(k, String(v));
+    });
   }
 
   function normalizeAngle(deg) {
@@ -113,6 +133,23 @@
     return byIssue;
   }
 
+  function buildCountsByCandidateIssue(byIssue) {
+    const out = new Map();
+    Array.from(byIssue.entries()).forEach(([issue, byCandidate]) => {
+      Array.from(byCandidate.entries()).forEach(([candidate, list]) => {
+        const row = out.get(candidate) || new Map();
+        row.set(issue, list.length);
+        out.set(candidate, row);
+      });
+    });
+    return out;
+  }
+
+  function scoreForIssue(state, issue, candidateId) {
+    const byCandidate = state.byIssue.get(issue) || new Map();
+    return (byCandidate.get(candidateId) || []).length;
+  }
+
   function collectAllCandidates(byIssue) {
     const set = new Set();
     Array.from(byIssue.values()).forEach((byCandidate) => {
@@ -141,7 +178,51 @@
     groupEl.appendChild(rim);
   }
 
-  function drawAvatar(groupEl, candidateId, radius, isMajor) {
+  function drawBadges(avatar, state, onBadgeClick) {
+    if (!TOP_THREE.includes(avatar.candidateId)) return;
+    const badgeGroup = createSvg('g');
+    badgeGroup.classList.add('spinnerBadges');
+    const counts = state.countsByCandidateIssue.get(avatar.candidateId) || new Map();
+    const badgeRadius = avatar.radius + 6;
+
+    ISSUE_SLICES.forEach((slice, idx) => {
+      const count = Number(counts.get(slice.id) || 0);
+      if (!count) return;
+      const p = polar(0, 0, badgeRadius, BADGE_ANGLES[idx]);
+      const item = createSvg('g');
+      item.classList.add('spinnerBadge');
+      item.dataset.issue = slice.id;
+      item.dataset.candidate = avatar.candidateId;
+      setAttrs(item, { transform: 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ')' });
+
+      const circle = createSvg('circle');
+      setAttrs(circle, { cx: 0, cy: 0, r: 13.5, fill: slice.color, stroke: 'rgba(25,18,13,.82)', 'stroke-width': 2.2 });
+      item.appendChild(circle);
+
+      const text = createSvg('text');
+      text.textContent = String(count);
+      setAttrs(text, {
+        x: 0, y: 1, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
+        'font-size': 9.8, 'font-weight': 900, fill: 'rgba(20,16,12,.95)'
+      });
+      item.appendChild(text);
+
+      const title = createSvg('title');
+      title.textContent = String(count) + ' ' + slice.label + ' quotes';
+      item.appendChild(title);
+
+      item.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        onBadgeClick(avatar.candidateId, slice.id);
+      });
+
+      badgeGroup.appendChild(item);
+    });
+
+    avatar.inner.appendChild(badgeGroup);
+  }
+
+  function drawAvatar(groupEl, candidateId, radius, isMajor, state, onBadgeClick) {
     const meta = CANDIDATE_META.get(candidateId) || { name: candidateId };
     const g = createSvg('g');
     g.classList.add('spinnerAvatar');
@@ -174,6 +255,7 @@
       const fill = createSvg('circle');
       setAttrs(fill, { cx: 0, cy: 0, r: radius, fill: 'rgba(31,22,16,.84)' });
       inner.appendChild(fill);
+
       const txt = createSvg('text');
       txt.textContent = initials(meta.name);
       setAttrs(txt, { x: 0, y: 5, 'text-anchor': 'middle', 'font-size': radius > 40 ? 24 : 16, 'font-weight': 900, fill: 'rgba(255,246,224,.9)' });
@@ -193,21 +275,35 @@
     setAttrs(name, { x: 0, y: radius + 29, 'text-anchor': 'middle', 'font-size': isMajor ? 12 : 11, 'font-weight': 800, fill: 'rgba(255,247,226,.92)' });
     inner.appendChild(name);
 
+    const avatar = { group: g, inner, radius, candidateId, isMajor, baseAngle: 0, angle: 0, center: { x: CX, y: CY } };
+    drawBadges(avatar, state, onBadgeClick);
+
     g.appendChild(inner);
     groupEl.appendChild(g);
-
-    return { group: g, inner: inner, radius, candidateId, angle: 0, center: { x: CX, y: CY } };
+    return avatar;
   }
 
-  function setAvatarPosition(avatar, center, angle, animated) {
+  function applyAvatarTransform(state, avatar, animated) {
+    const ringRadius = avatar.isMajor ? INNER_RING_RADIUS : OUTER_RING_RADIUS;
+    const visualAngle = normalizeAngle(avatar.baseAngle + state.spinOffset);
+    const center = polar(CX, CY, ringRadius, visualAngle);
     avatar.center = center;
-    avatar.angle = angle;
-    if (animated) {
-      avatar.group.style.transition = 'transform 900ms cubic-bezier(.23,.84,.32,1), opacity 720ms ease';
-    } else {
-      avatar.group.style.transition = 'none';
-    }
+    avatar.angle = visualAngle;
+    avatar.group.style.transition = animated
+      ? 'transform 900ms cubic-bezier(.23,.84,.32,1), opacity 720ms ease'
+      : 'none';
     avatar.group.setAttribute('transform', 'translate(' + center.x.toFixed(1) + ' ' + center.y.toFixed(1) + ')');
+  }
+
+  function setAvatarPosition(state, avatar, angle, animated) {
+    avatar.baseAngle = normalizeAngle(angle);
+    applyAvatarTransform(state, avatar, animated);
+  }
+
+  function renderAllAvatars(state, animated) {
+    state.avatars.forEach((avatar) => {
+      applyAvatarTransform(state, avatar, animated);
+    });
   }
 
   function setSliceState(pieGroup, issueId, opts) {
@@ -233,12 +329,10 @@
       wedge.dataset.issue = slice.id;
       setAttrs(wedge, { d: wedgePath(150, start, end), fill: slice.color, stroke: 'rgba(40,28,20,.76)', 'stroke-width': 10 });
 
-      const bringFront = () => {
-        if (wedge.parentNode) wedge.parentNode.appendChild(wedge);
-      };
+      const bringFront = () => wedge.parentNode && wedge.parentNode.appendChild(wedge);
       wedge.addEventListener('mouseenter', bringFront);
       wedge.addEventListener('focus', bringFront);
-      wedge.addEventListener('click', () => onPickIssue(slice.id));
+      wedge.addEventListener('click', () => onPickIssue(slice.id, 'slice'));
       pieGroup.appendChild(wedge);
 
       const p = polar(CX, CY, 88, start + span / 2);
@@ -268,60 +362,163 @@
     pieGroup.appendChild(text);
   }
 
-  function pickWinner(state, candidates, rotationDeg) {
-    const target = normalizeAngle(-rotationDeg + POINTER_ANGLE + 90);
+  function pickWinner(state, candidates) {
+    const target = normalizeAngle(POINTER_ANGLE);
     let winner = null;
     let best = Infinity;
     candidates.forEach((id) => {
       const avatar = state.avatars.get(id);
       if (!avatar) return;
       const d = angleDistance(avatar.angle, target);
-      if (d < best) { best = d; winner = id; }
+      if (d < best) {
+        best = d;
+        winner = id;
+      }
     });
     return winner;
   }
 
-  function layoutOuterAvatars(state, animated) {
-    const ids = state.outerActive.slice();
-    const step = ids.length ? 360 / ids.length : 360;
-    ids.forEach((id, idx) => {
-      const avatar = state.avatars.get(id);
-      if (!avatar) return;
-      const angle = -90 + idx * step;
-      const center = polar(CX, CY, OUTER_RING_RADIUS, angle);
-      setAvatarPosition(avatar, center, angle, animated);
-      avatar.group.style.opacity = '1';
+  function laneFor(candidateId) {
+    return LANE_BY_CANDIDATE[candidateId] || 'swing';
+  }
+
+  function laneAnchorAngles(state) {
+    const map = {};
+    TOP_THREE.forEach((id) => {
+      const lane = laneFor(id);
+      const av = state.avatars.get(id);
+      if (av) map[lane] = av.baseAngle;
+    });
+    map.swing = normalizeAngle(((map.labour ?? 210) + (map.green ?? 330) + (map.reform ?? 90)) / 3);
+    return map;
+  }
+
+  function layoutOuterAvatars(state, issue, animated) {
+    const anchors = laneAnchorAngles(state);
+    const byLane = { labour: [], green: [], reform: [], swing: [] };
+    state.outerActive.forEach((id) => byLane[laneFor(id)]?.push(id));
+
+    Object.keys(byLane).forEach((lane) => {
+      byLane[lane].sort((a, b) => scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a));
+    });
+
+    const laneSlots = [-34, 0, 34, -68, 68];
+    const placements = [];
+    ['labour', 'green', 'reform', 'swing'].forEach((lane) => {
+      const base = anchors[lane] ?? 0;
+      byLane[lane].forEach((id, i) => {
+        const offset = laneSlots[i] ?? (i * 24);
+        placements.push({ id, angle: normalizeAngle(base + offset) });
+      });
+    });
+
+    placements.forEach((p) => {
+      const av = state.avatars.get(p.id);
+      if (!av) return;
+      setAvatarPosition(state, av, p.angle, animated);
+      av.group.style.opacity = '1';
     });
   }
 
-  function maybeMutateOuterSet(state, issue) {
-    const issueCandidates = state.byIssue.get(issue) || new Map();
-    const issueOuter = Array.from(issueCandidates.keys()).filter((id) => !TOP_THREE.includes(id));
-    const pool = Array.from(new Set(state.outerPool.concat(issueOuter)));
-    const active = state.outerActive.slice();
-    const inactive = pool.filter((id) => !active.includes(id));
+  function chooseMutationAction(state) {
+    const mode = state.spinCount % 3;
+    if (mode === 0) return 'add';
+    if (mode === 1) return 'remove';
+    return 'replace';
+  }
 
-    let action = 'replace';
-    if (!active.length) action = 'add';
-    else if (!inactive.length) action = 'remove';
-    else {
-      const roll = Math.random();
-      if (roll < 0.34) action = 'add';
-      else if (roll < 0.67) action = 'remove';
-      else action = 'replace';
+  function ensureAvatar(state, avatarsGroup, id, onBadgeClick) {
+    if (state.avatars.has(id)) return state.avatars.get(id);
+    const av = drawAvatar(avatarsGroup, id, 38, false, state, onBadgeClick);
+    av.group.style.opacity = '0';
+    state.avatars.set(id, av);
+    return av;
+  }
+
+  function planMutation(state, issue) {
+    const action = chooseMutationAction(state);
+    const inactive = state.outerPool.filter((id) => !state.outerActive.includes(id));
+    inactive.sort((a, b) => scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a));
+
+    const removable = state.outerActive.slice().sort((a, b) => scoreForIssue(state, issue, a) - scoreForIssue(state, issue, b));
+    const plan = { action, addId: '', removeId: '' };
+
+    if ((action === 'add' || action === 'replace') && inactive.length) {
+      plan.addId = inactive[0];
+    }
+    if ((action === 'remove' || action === 'replace') && removable.length > 1) {
+      plan.removeId = removable[0];
     }
 
-    if (action === 'add' && inactive.length) {
-      active.push(inactive[Math.floor(Math.random() * inactive.length)]);
-    } else if (action === 'remove' && active.length > 1) {
-      active.splice(Math.floor(Math.random() * active.length), 1);
-    } else if (action === 'replace' && active.length && inactive.length) {
-      active.splice(Math.floor(Math.random() * active.length), 1);
-      active.push(inactive[Math.floor(Math.random() * inactive.length)]);
+    if (action === 'add' && !plan.addId) plan.action = 'remove';
+    if (plan.action === 'remove' && !plan.removeId) plan.action = 'add';
+    if (plan.action === 'replace' && (!plan.addId || !plan.removeId)) {
+      plan.action = plan.addId ? 'add' : (plan.removeId ? 'remove' : 'none');
     }
+    return plan;
+  }
 
-    state.outerActive = Array.from(new Set(active));
-    layoutOuterAvatars(state, true);
+  function applyMutation(state, issue, avatarsGroup, onBadgeClick, plan) {
+    if (!plan || plan.action === 'none') return;
+    if (plan.removeId) {
+      const idx = state.outerActive.indexOf(plan.removeId);
+      if (idx >= 0) state.outerActive.splice(idx, 1);
+      const av = state.avatars.get(plan.removeId);
+      if (av) {
+        av.group.style.opacity = '0';
+      }
+    }
+    if (plan.addId) {
+      ensureAvatar(state, avatarsGroup, plan.addId, onBadgeClick);
+      if (!state.outerActive.includes(plan.addId)) state.outerActive.push(plan.addId);
+    }
+    layoutOuterAvatars(state, issue, true);
+  }
+
+  function showIssueSpeech(state, panel, svg, bubbles, issue, winnerId) {
+    const byCandidate = state.byIssue.get(issue) || new Map();
+    const panelRect = panel.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
+    const scaleX = panelRect.width / svgRect.width;
+    const scaleY = panelRect.height / svgRect.height;
+
+    const ids = Array.from(byCandidate.keys())
+      .filter((id) => state.avatars.has(id))
+      .sort((a, b) => {
+        if (a === winnerId) return -1;
+        if (b === winnerId) return 1;
+        return scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a);
+      })
+      .slice(0, 6);
+
+    const items = ids.map((candidateId) => {
+      const av = state.avatars.get(candidateId);
+      const receipts = byCandidate.get(candidateId) || [];
+      const pick = receipts[Math.floor(Math.random() * receipts.length)];
+      const quote = pick?.querySelector('.receiptQuote')?.textContent?.trim() || 'No quote available yet.';
+      const anchorRadius = (Number(av?.radius || 0) + 7) * Math.min(scaleX, scaleY);
+      return {
+        label: CANDIDATE_META.get(candidateId)?.name || candidateId,
+        text: quote,
+        anchor: { x: av.center.x * scaleX, y: av.center.y * scaleY },
+        anchorRadius,
+        priority: candidateId === winnerId ? 10 : scoreForIssue(state, issue, candidateId)
+      };
+    });
+
+    const speakerAnchors = Array.from(state.avatars.values()).map((av) => ({
+      x: av.center.x * scaleX,
+      y: av.center.y * scaleY
+    }));
+
+    bubbles?.render?.(items, {
+      speakerAnchors,
+      noGoCircle: {
+        x: CX * scaleX,
+        y: CY * scaleY,
+        r: 176 * Math.min(scaleX, scaleY)
+      }
+    });
   }
 
   function init() {
@@ -336,38 +533,50 @@
     if (!wheelRing || !pieGroup || !avatarsGroup) return;
 
     const byIssue = collectReceiptsByIssue();
+    const counts = buildCountsByCandidateIssue(byIssue);
     const allCandidates = collectAllCandidates(byIssue);
     const allOuter = allCandidates.filter((id) => !TOP_THREE.includes(id));
-
-    drawWheelRing(wheelRing);
+    const bubbles = window.GortonSpeechBubbles?.create?.(panel, speechHost);
 
     const state = {
       byIssue,
+      countsByCandidateIssue: counts,
       issue: '',
       spinning: false,
       rotation: 0,
+      spinOffset: 0,
+      spinCount: 0,
       glowTimer: 0,
       avatars: new Map(),
       outerPool: allOuter.slice(),
       outerActive: allOuter.slice(0, Math.min(6, allOuter.length))
     };
 
+    function onBadgeClick(candidateId, issueId) {
+      runIssue(issueId, { forcedWinner: candidateId, source: 'badge' });
+    }
+
+    drawWheelRing(wheelRing);
     TOP_THREE.forEach((id, idx) => {
       if (!allCandidates.includes(id)) return;
-      const avatar = drawAvatar(avatarsGroup, id, 52, true);
+      const av = drawAvatar(avatarsGroup, id, 52, true, state, onBadgeClick);
       const angle = -90 + idx * 120;
-      const center = polar(CX, CY, INNER_RING_RADIUS, angle);
-      setAvatarPosition(avatar, center, angle, false);
-      state.avatars.set(id, avatar);
+      setAvatarPosition(state, av, angle, false);
+      state.avatars.set(id, av);
     });
 
     state.outerActive.forEach((id) => {
-      const avatar = drawAvatar(avatarsGroup, id, 38, false);
-      state.avatars.set(id, avatar);
+      const av = drawAvatar(avatarsGroup, id, 38, false, state, onBadgeClick);
+      state.avatars.set(id, av);
     });
-    layoutOuterAvatars(state, false);
+    layoutOuterAvatars(state, ISSUE_SLICES[0].id, false);
 
-    const bubbles = window.GortonSpeechBubbles?.create?.(panel, speechHost);
+    function setRotation(deg, animatedAvatars) {
+      state.rotation = deg;
+      state.spinOffset = deg;
+      wheelRing.setAttribute('transform', 'rotate(' + deg.toFixed(3) + ' ' + CX + ' ' + CY + ')');
+      renderAllAvatars(state, Boolean(animatedAvatars));
+    }
 
     function clearWinner() {
       qsa(avatarsGroup, '.spinnerAvatar').forEach((node) => node.classList.remove('is-winner'));
@@ -377,48 +586,12 @@
       qsa(avatarsGroup, '.spinnerAvatarInner').forEach((node) => node.classList.toggle('rattling', on));
     }
 
-    function setRotation(deg) {
-      state.rotation = deg;
-      wheelRing.setAttribute('transform', 'rotate(' + deg.toFixed(3) + ' ' + CX + ' ' + CY + ')');
-    }
-
-    function showIssueSpeech(issue, winnerId) {
-      const byCandidate = state.byIssue.get(issue) || new Map();
-      const panelRect = panel.getBoundingClientRect();
-      const svgRect = svg.getBoundingClientRect();
-      const scaleX = panelRect.width / svgRect.width;
-      const scaleY = panelRect.height / svgRect.height;
-
-      const items = [];
-      const ordered = Array.from(byCandidate.keys())
-        .filter((id) => state.avatars.has(id))
-        .sort((a, b) => (a === winnerId ? -1 : b === winnerId ? 1 : 0))
-        .slice(0, 5);
-
-      ordered.forEach((candidateId) => {
-        const avatar = state.avatars.get(candidateId);
-        const receipts = byCandidate.get(candidateId) || [];
-        if (!avatar || !receipts.length) return;
-        const pick = receipts[Math.floor(Math.random() * receipts.length)];
-        const quote = pick.querySelector('.receiptQuote')?.textContent?.trim() || 'No quote available yet.';
-        const label = CANDIDATE_META.get(candidateId)?.name || candidateId;
-        items.push({
-          label,
-          text: quote,
-          anchor: {
-            x: avatar.center.x * scaleX,
-            y: avatar.center.y * scaleY
-          }
-        });
-      });
-
-      bubbles?.render?.(items);
-    }
-
-    function runIssue(issue) {
+    function runIssue(issue, options) {
+      const opts = options || {};
       if (state.spinning) return;
       const byCandidate = state.byIssue.get(issue);
       if (!byCandidate || !byCandidate.size) return;
+
       state.issue = issue;
       bubbles?.clear?.();
       clearWinner();
@@ -431,12 +604,21 @@
         return;
       }
 
+      // Meaningful target first, randomness only in full revolutions feel.
+      const sortedByScore = candidates.slice().sort((a, b) => scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a));
+      const targetId = opts.forcedWinner && sortedByScore.includes(opts.forcedWinner)
+        ? opts.forcedWinner
+        : sortedByScore[Math.min(state.spinCount % Math.max(1, sortedByScore.length), sortedByScore.length - 1)];
+
+      const mutationPlan = planMutation(state, issue);
       state.spinning = true;
       setRattle(true);
+
+      const targetBaseAngle = state.avatars.get(targetId).baseAngle;
       const from = state.rotation;
-      const targetId = candidates[Math.floor(Math.random() * candidates.length)];
-      const targetAngle = state.avatars.get(targetId).angle;
-      const delta = normalizeAngle(POINTER_ANGLE - targetAngle);
+      const desiredOffset = normalizeAngle(POINTER_ANGLE - targetBaseAngle);
+      const fromOffset = normalizeAngle(state.spinOffset);
+      const delta = normalizeAngle(desiredOffset - fromOffset);
       const to = from + WHEEL_SPINS * 360 + delta;
       const start = performance.now();
       let mutated = false;
@@ -444,18 +626,19 @@
       function frame(now) {
         const t = Math.min(1, (now - start) / WHEEL_DURATION_MS);
         const eased = easeOutQuint(t);
-        setRotation(from + (to - from) * eased);
+        setRotation(from + (to - from) * eased, false);
 
-        // Grok-style dynamic outer ring mutation mid-spin.
-        if (!mutated && t > 0.62) {
+        if (!mutated && t > MID_SPIN_MUTATION_AT) {
           mutated = true;
-          maybeMutateOuterSet(state, issue);
+          applyMutation(state, issue, avatarsGroup, onBadgeClick, mutationPlan);
         }
 
         if (t < 1) {
           requestAnimationFrame(frame);
           return;
         }
+
+        state.spinCount += 1;
         state.spinning = false;
         setRattle(false);
         setSliceState(pieGroup, issue, { flashing: false, softGlow: true });
@@ -463,11 +646,11 @@
           setSliceState(pieGroup, issue, { flashing: false, softGlow: false });
         }, GLOW_AFTER_MS);
 
-        const currentCandidates = Array.from((state.byIssue.get(issue) || new Map()).keys()).filter((id) => state.avatars.has(id));
-        const winner = pickWinner(state, currentCandidates, state.rotation) || targetId;
-        const winnerAvatar = state.avatars.get(winner);
-        if (winnerAvatar) winnerAvatar.group.classList.add('is-winner');
-        showIssueSpeech(issue, winner);
+        const finalCandidates = Array.from((state.byIssue.get(issue) || new Map()).keys()).filter((id) => state.avatars.has(id));
+        const winner = pickWinner(state, finalCandidates) || targetId;
+        const winAv = state.avatars.get(winner);
+        if (winAv) winAv.group.classList.add('is-winner');
+        showIssueSpeech(state, panel, svg, bubbles, issue, winner);
       }
 
       requestAnimationFrame(frame);
@@ -481,11 +664,13 @@
     if (initial) {
       state.issue = initial.id;
       setSliceState(pieGroup, initial.id, { flashing: false, softGlow: true });
-      showIssueSpeech(initial.id, '');
+      showIssueSpeech(state, panel, svg, bubbles, initial.id, '');
     }
 
     window.addEventListener('resize', () => {
-      if (state.issue && !state.spinning) showIssueSpeech(state.issue, '');
+      if (state.issue && !state.spinning) {
+        showIssueSpeech(state, panel, svg, bubbles, state.issue, '');
+      }
     });
   }
 
