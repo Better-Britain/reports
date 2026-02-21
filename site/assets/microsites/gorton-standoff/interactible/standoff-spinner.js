@@ -3,8 +3,8 @@
   const CX = 460;
   const CY = 460;
   const POINTER_ANGLE = -90;
-  const INNER_RING_RADIUS = 235;
-  const OUTER_RING_RADIUS = 379;
+  const INNER_RING_RADIUS = 255;
+  const OUTER_RING_RADIUS = 420;
   const WHEEL_DURATION_MS = 4200;
   const WHEEL_SPINS = 5;
   const GLOW_AFTER_MS = 2200;
