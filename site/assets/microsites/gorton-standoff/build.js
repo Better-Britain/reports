@@ -617,12 +617,8 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
       <g data-role="wheel-ring"></g>
       <g data-role="pie-group"></g>
       <g data-role="avatars-group"></g>
-      <g data-role="speech-bubble" class="speechBubble" opacity="0">
-        <rect data-role="speech-box" x="0" y="0" width="260" height="112" rx="20" ry="20" fill="rgba(255,255,255,.95)" stroke="#2a1b14" stroke-width="6"></rect>
-        <text data-role="speech-text" x="130" y="56" text-anchor="middle" dominant-baseline="middle" font-size="17" font-weight="800" fill="#2a1b14"></text>
-        <polygon data-role="speech-tail" points="" fill="rgba(255,255,255,.95)" stroke="#2a1b14" stroke-width="5"></polygon>
-      </g>
     </svg>
+    <div class="speechHost" data-role="speech-host" aria-live="polite"></div>
     <p class="privacyLine">This page doesn’t send your choices anywhere. No tracking, no storage. It runs in your browser.</p>
     <noscript>
       <p class="noJsNote"><strong>JavaScript is off.</strong> The interactive bit won’t run, but the receipts below still load.</p>

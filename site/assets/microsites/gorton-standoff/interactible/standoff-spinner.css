@@ -37,7 +37,7 @@
 }
 
 .spinnerSlice:hover {
-  filter: brightness(1.18) saturate(1.24);
+  filter: brightness(1.32) saturate(1.5) drop-shadow(0 0 8px rgba(255, 244, 214, 0.35));
 }
 
 .spinnerSlice.is-selected {
@@ -50,6 +50,10 @@
 
 .spinnerSlice.is-flashing {
   animation: spinnerSliceFlash 0.5s ease-in-out infinite;
+}
+
+.spinnerSlice.is-soft-glow {
+  filter: brightness(1.16) saturate(1.22) drop-shadow(0 0 12px rgba(255, 244, 214, 0.4));
 }
 
 @keyframes spinnerSliceFlash {
@@ -81,6 +85,52 @@
 .speechBubble {
   pointer-events: none;
   transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.speechHost {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.speechConnectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.speechConnectorPath {
+  stroke: rgba(255, 250, 236, 0.86);
+  stroke-width: 2.4;
+  fill: none;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
+}
+
+.speechBubbleCard {
+  position: absolute;
+  width: min(260px, calc(100% - 24px));
+  border-radius: 14px;
+  padding: 10px 12px 9px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(42, 27, 20, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  color: #2a1b14;
+}
+
+.speechBubbleText {
+  font-size: 14px;
+  line-height: 1.28;
+  font-weight: 750;
+}
+
+.speechBubbleMeta {
+  margin-top: 7px;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 .privacyLine {
