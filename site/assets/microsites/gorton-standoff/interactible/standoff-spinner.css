@@ -1,0 +1,91 @@
+.scene {
+  --wheel-rotation: 0deg;
+}
+
+.candidates {
+  isolation: isolate;
+}
+
+.wheelBackdrop {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(92%, 760px);
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wheelTrack {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 12px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 36px rgba(18, 11, 7, 0.22), 0 14px 42px rgba(0, 0, 0, 0.3);
+  transform: rotate(var(--wheel-rotation));
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 107, 0, 0.24) 0deg 12deg,
+      rgba(47, 125, 75, 0.2) 12deg 24deg,
+      rgba(43, 94, 168, 0.21) 24deg 36deg,
+      rgba(194, 59, 34, 0.2) 36deg 48deg
+    );
+}
+
+.wheelPointer {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 0;
+  border-bottom: 26px solid rgba(255, 235, 184, 0.95);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.cand,
+.speakerRing .cand--speaker {
+  z-index: 2;
+}
+
+.scene[data-spinning="1"] .cand .candImg,
+.scene[data-spinning="1"] .cand .candDot,
+.scene[data-spinning="1"] .speakerRing .cand--speaker .candDot {
+  animation: candRattle 0.2s linear infinite;
+}
+
+@keyframes candRattle {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1px, 1px) rotate(-0.8deg); }
+  50% { transform: translate(1px, -1px) rotate(0.8deg); }
+  75% { transform: translate(-1px, -1px) rotate(-0.6deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.cand[data-winner="1"] .candImg,
+.cand[data-winner="1"] .candDot {
+  box-shadow: 0 0 0 3px rgba(255, 235, 184, 0.7), 0 0 24px rgba(255, 235, 184, 0.55);
+}
+
+.pieSlice {
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.pieSlice:hover {
+  filter: brightness(1.12) saturate(1.2);
+}
+
+.pieSlice.is-selected {
+  filter: brightness(1.24) saturate(1.3);
+  stroke: rgba(255, 245, 214, 0.9);
+  stroke-width: 1.2;
+}
+
+.pieSlice.is-dim {
+  opacity: 0.56;
+}

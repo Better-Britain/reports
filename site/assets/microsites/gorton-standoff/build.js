@@ -701,6 +701,10 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
       ${renderIssuePicker()}
 
       <div class="candidates" aria-label="Candidates">
+        <div class="wheelBackdrop" data-role="wheel-backdrop" aria-hidden="true">
+          <div class="wheelPointer"></div>
+          <div class="wheelTrack" data-role="wheel-track"></div>
+        </div>
         <div class="triangle" aria-hidden="true"></div>
 
         <button class="cand cand--main cand--labour" type="button" data-role="candidate" data-candidate="angeliki-stogia" data-candidate-name="Angeliki Stogia" data-party="Labour" style="--x:22%; --y:68%;">

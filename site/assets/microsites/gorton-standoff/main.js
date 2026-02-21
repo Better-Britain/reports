@@ -1,7 +1,7 @@
 (function () {
   function main() {
     document.body.classList.add('js');
-    window.GortonStandoff?.init?.();
+    window.GortonStandoffInteractible?.init?.();
     window.GortonFlyers?.init?.();
   }
 
