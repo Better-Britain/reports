@@ -26,14 +26,6 @@ const TOP_THREE_CANDIDATES = new Set([
   'matt-goodwin'
 ]);
 
-const PIE_ISSUES = [
-  { id: 'culture-war', short: 'Culture' },
-  { id: 'jobs-rights', short: 'Jobs' },
-  { id: 'homes-streets', short: 'Homes' },
-  { id: 'health-care', short: 'Health' },
-  { id: 'transport-air', short: 'Transport' }
-];
-
 function escapeHtml(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -219,88 +211,6 @@ function slugifyKey(s) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 64);
-}
-
-function polarToCartesian(cx, cy, r, angleDeg) {
-  const a = ((angleDeg - 90) * Math.PI) / 180;
-  return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
-}
-
-function donutWedgePath({ cx, cy, rOuter, rInner, startDeg, endDeg }) {
-  const startOuter = polarToCartesian(cx, cy, rOuter, startDeg);
-  const endOuter = polarToCartesian(cx, cy, rOuter, endDeg);
-  const startInner = polarToCartesian(cx, cy, rInner, endDeg);
-  const endInner = polarToCartesian(cx, cy, rInner, startDeg);
-  const largeArc = (endDeg - startDeg) % 360 > 180 ? 1 : 0;
-  return [
-    `M ${startOuter.x.toFixed(3)} ${startOuter.y.toFixed(3)}`,
-    `A ${rOuter} ${rOuter} 0 ${largeArc} 1 ${endOuter.x.toFixed(3)} ${endOuter.y.toFixed(3)}`,
-    `L ${startInner.x.toFixed(3)} ${startInner.y.toFixed(3)}`,
-    `A ${rInner} ${rInner} 0 ${largeArc} 0 ${endInner.x.toFixed(3)} ${endInner.y.toFixed(3)}`,
-    'Z'
-  ].join(' ');
-}
-
-function renderIssuePicker() {
-  const cx = 50;
-  const cy = 50;
-  const rOuter = 48;
-  const rInner = 24;
-  const span = 360 / PIE_ISSUES.length;
-  const startAt = -90;
-
-  const paths = PIE_ISSUES.map((iss, idx) => {
-    const a0 = startAt + idx * span;
-    const a1 = a0 + span;
-    const d = donutWedgePath({ cx, cy, rOuter, rInner, startDeg: a0, endDeg: a1 });
-    return `<path class="pieSlice pieSlice--${escapeHtml(iss.id)}" data-role="issue-slice" data-issue="${escapeHtml(iss.id)}" d="${d}" tabindex="0" role="button" aria-label="${escapeHtml(iss.short)}"><title>${escapeHtml(iss.short)}</title></path>`;
-  }).join('\n');
-
-  const buttons = PIE_ISSUES.map((iss) =>
-    `<button class="pickBtn pickBtn--pie" type="button" data-role="issue" data-issue="${escapeHtml(iss.id)}" aria-pressed="false">${escapeHtml(iss.short)}</button>`
-  ).join('\n');
-
-  return `
-<div class="piePicker" data-role="pie" aria-label="Issue picker">
-  <svg class="pieSvg" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-    ${paths}
-    <circle class="pieInner" cx="50" cy="50" r="22"></circle>
-  </svg>
-  <div class="pieCore" data-role="pie-core">
-    <span class="pieCoreLabel">Pick an issue</span>
-  </div>
-  <div class="pieBtns" aria-label="Issue buttons">
-    ${buttons}
-  </div>
-</div>
-  `.trim();
-}
-
-function renderSpeakerButtons(statements) {
-  const list = Array.isArray(statements) ? statements : [];
-  const speakers = new Map(); // key -> { key, name }
-  for (const s of list) {
-    if (String(s.slot || '').toLowerCase() !== 'standoff') continue;
-    const speakerName = String(s.speakerName || '').trim();
-    if (!speakerName) continue;
-    const candidateName = String(s.candidateName || s.candidate || '').trim();
-    if (speakerName && candidateName && speakerName === candidateName) continue;
-    const key = slugifyKey(speakerName) || slugifyKey(s.speaker || '') || '';
-    if (!key) continue;
-    if (!speakers.has(key)) speakers.set(key, { key, name: speakerName });
-  }
-  const items = Array.from(speakers.values()).sort((a, b) => String(a.name).localeCompare(String(b.name)));
-  if (!items.length) return '';
-
-  return items.map((sp) => {
-    const initials = sp.name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase?.() || '').join('');
-    return `
-<button class="cand cand--speaker" type="button" data-role="speaker" data-speaker-key="${escapeHtml(sp.key)}" data-speaker-name="${escapeHtml(sp.name)}" aria-pressed="false" data-visible="0">
-  <span class="candDot candDot--speaker">${escapeHtml(initials || '🗣️')}</span>
-  <span class="candMini">${escapeHtml(sp.name)}</span>
-</button>
-    `.trim();
-  }).join('\n');
 }
 
 function parseStatementsFromMarkdown(markdownText) {
@@ -661,94 +571,36 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
   const standoffHtml = renderReceipts(standoff);
   const furtherHtml = renderReceipts(further);
   const flyerGalleryHtml = renderFlyerGallery(flyers);
-  const speakerButtonsHtml = renderSpeakerButtons(statements);
 
   return `
-<div class="topPanels">
-  <section class="brandPanel" aria-label="Better Britain Bureau">
-    <a class="brandMark" href="/" aria-label="Better Britain homepage">
-      <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
-      <span class="brandWordmark">Better Britain Bureau</span>
-    </a>
-    <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
-    <nav class="brandLinks" aria-label="Better Britain links">
-      <a href="/">Homepage</a>
-      <a href="/year-of-labour.html">Flagship Report</a>
-      <a href="/posts/index.html">Posts</a>
-      <a href="/about.html">About BBB</a>
-    </nav>
-  </section>
-
-  <!--bbb:micro-cross-links-->
-</div>
-
-<header class="hero">
-  <div class="heroCopy">
-    <h1>${escapeHtml(title)}</h1>
-    <p class="heroLead">
-      A Mexican standoff, but it’s Gorton &amp; Denton: pick an issue, see what candidates actually said/did, then check the receipts.
-    </p>
-    <p class="heroFine">
-      Evidence icons: <span class="pill pill--kind">🎤 said</span> <span class="pill pill--kind">🧾 documented</span> <span class="pill pill--kind">🗳️ voted</span> <span class="pill pill--kind">🧩 aligned</span>
-    </p>
-  </div>
-</header>
-
 <section class="sceneWrap" aria-label="Interactive standoff scene">
-  <div class="scene" id="scene">
-    <img class="sceneBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
-    <div class="sceneUi" data-role="scene-ui">
-      ${renderIssuePicker()}
-
-      <div class="candidates" aria-label="Candidates">
-        <div class="wheelBackdrop" data-role="wheel-backdrop" aria-hidden="true">
-          <div class="wheelPointer"></div>
-          <div class="wheelTrack" data-role="wheel-track"></div>
-        </div>
-        <div class="triangle" aria-hidden="true"></div>
-
-        <button class="cand cand--main cand--labour" type="button" data-role="candidate" data-candidate="angeliki-stogia" data-candidate-name="Angeliki Stogia" data-party="Labour" style="--x:22%; --y:68%;">
-          <span class="candImg"><img src="./images/candidate-labour.png" alt="" aria-hidden="true" /></span>
-          <span class="candLabel"><span class="candName">Angeliki Stogia</span><span class="candParty">Labour</span></span>
-          <span class="candReceipts" data-role="receipt-count">0</span>
-        </button>
-
-        <button class="cand cand--main cand--green" type="button" data-role="candidate" data-candidate="hannah-spencer" data-candidate-name="Hannah Spencer" data-party="Green" style="--x:50%; --y:16%;">
-          <span class="candImg"><img src="./images/candidate-green.png" alt="" aria-hidden="true" /></span>
-          <span class="candLabel"><span class="candName">Hannah Spencer</span><span class="candParty">Green</span></span>
-          <span class="candReceipts" data-role="receipt-count">0</span>
-        </button>
-
-        <button class="cand cand--main cand--reform" type="button" data-role="candidate" data-candidate="matt-goodwin" data-candidate-name="Matt Goodwin" data-party="Reform" style="--x:78%; --y:68%;">
-          <span class="candImg"><img src="./images/candidate-reform.png" alt="" aria-hidden="true" /></span>
-          <span class="candLabel"><span class="candName">Matt Goodwin</span><span class="candParty">Reform</span></span>
-          <span class="candReceipts" data-role="receipt-count">0</span>
-        </button>
-
-        <div class="ring" data-role="ring" aria-label="Other candidates">
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="sir-oink-a-lot" data-candidate-name="Sir Oink A-Lot" data-party="Loony"><span class="candDot"></span><span class="candMini">Sir Oink</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="nick-buckley" data-candidate-name="Nick Buckley" data-party="Advance UK"><span class="candDot"></span><span class="candMini">Buckley</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="charlotte-cadden" data-candidate-name="Charlotte Anne Cadden" data-party="Conservative"><span class="candDot"></span><span class="candMini">Cadden</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="dan-clarke" data-candidate-name="Dan Clarke" data-party="Libertarian"><span class="candDot"></span><span class="candMini">Clarke</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="sebastian-moore" data-candidate-name="Sebastian Moore" data-party="SDP"><span class="candDot"></span><span class="candMini">Moore</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="joseph-omeachair" data-candidate-name="Joseph O’Meachair" data-party="Rejoin"><span class="candDot"></span><span class="candMini">O’Meachair</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="jackie-pearcey" data-candidate-name="Jackie Pearcey" data-party="Lib Dem"><span class="candDot"></span><span class="candMini">Pearcey</span></button>
-          <button class="cand cand--minor" type="button" data-role="candidate" data-candidate="hugo-wils" data-candidate-name="Hugo Wils" data-party="Communist"><span class="candDot"></span><span class="candMini">Wils</span></button>
-        </div>
-
-        <div class="speakerRing" data-role="speaker-ring" aria-label="Other speakers">
-          ${speakerButtonsHtml}
-        </div>
-
-        <div class="bubbleLayer" data-role="bubbles" aria-hidden="true"></div>
-      </div>
-
-      <p class="privacyLine">This page doesn’t send your choices anywhere. No tracking, no storage. It runs in your browser.</p>
-
-      <noscript>
-        <p class="noJsNote"><strong>JavaScript is off.</strong> The interactive bit won’t run, but the receipts below still load.</p>
-      </noscript>
-    </div>
+  <div class="spinnerPanel" data-role="spinner-panel">
+    <img class="spinnerBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
+    <svg class="spinnerSvg" data-role="spinner-svg" viewBox="0 0 920 920" aria-label="${escapeHtml(title)} spinner interactive">
+      <defs>
+        <clipPath id="spinnerAvatarClip">
+          <circle r="42"></circle>
+        </clipPath>
+      </defs>
+      <circle cx="460" cy="460" r="410" fill="none" stroke="rgba(30,22,16,.58)" stroke-width="68"></circle>
+      <circle cx="460" cy="460" r="410" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="8"></circle>
+      <g data-role="wheel-ring"></g>
+      <g data-role="pie-group"></g>
+      <g data-role="avatars-group"></g>
+      <g class="spinnerPointer" aria-hidden="true">
+        <line x1="460" y1="36" x2="460" y2="78" stroke="#fbe7be" stroke-width="22" stroke-linecap="round"></line>
+        <polygon points="424,78 460,124 496,78" fill="#fbe7be" stroke="#2a1b14" stroke-width="8"></polygon>
+      </g>
+      <g data-role="speech-bubble" class="speechBubble" opacity="0">
+        <rect data-role="speech-box" x="0" y="0" width="260" height="112" rx="20" ry="20" fill="rgba(255,255,255,.95)" stroke="#2a1b14" stroke-width="6"></rect>
+        <text data-role="speech-text" x="130" y="56" text-anchor="middle" dominant-baseline="middle" font-size="17" font-weight="800" fill="#2a1b14"></text>
+        <polygon data-role="speech-tail" points="" fill="rgba(255,255,255,.95)" stroke="#2a1b14" stroke-width="5"></polygon>
+      </g>
+    </svg>
+    <p class="privacyLine">This page doesn’t send your choices anywhere. No tracking, no storage. It runs in your browser.</p>
+    <noscript>
+      <p class="noJsNote"><strong>JavaScript is off.</strong> The interactive bit won’t run, but the receipts below still load.</p>
+    </noscript>
   </div>
 </section>
 
