@@ -179,7 +179,8 @@
       r: 66,
       fill: 'rgba(245,235,219,.88)',
       stroke: 'rgba(42,27,20,.36)',
-      'stroke-width': 2
+      'stroke-width': 2,
+      'pointer-events': 'none'
     });
     groupEl.appendChild(innerCore);
 
@@ -236,6 +237,9 @@
     if (isMajor) g.classList.add('spinnerAvatarMajor');
     setAttrs(g, { transform: 'translate(' + center.x.toFixed(1) + ' ' + center.y.toFixed(1) + ')' });
 
+    const inner = createSvg('g');
+    inner.classList.add('spinnerAvatarInner');
+
     const frame = createSvg('circle');
     frame.classList.add('spinnerAvatarFrame');
     setAttrs(frame, {
@@ -244,7 +248,7 @@
       stroke: 'rgba(255,239,194,.72)',
       'stroke-width': isMajor ? 4 : 3
     });
-    g.appendChild(frame);
+    inner.appendChild(frame);
 
     if (meta.image) {
       const image = createSvg('image');
@@ -256,11 +260,11 @@
         height: radius * 2,
         'clip-path': 'url(#spinnerAvatarClip)'
       });
-      g.appendChild(image);
+      inner.appendChild(image);
     } else {
       const fill = createSvg('circle');
       setAttrs(fill, { cx: 0, cy: 0, r: radius, fill: 'rgba(31,22,16,.84)' });
-      g.appendChild(fill);
+      inner.appendChild(fill);
       const text = createSvg('text');
       text.textContent = initials(meta.name);
       setAttrs(text, {
@@ -270,7 +274,7 @@
         'font-weight': 900,
         fill: 'rgba(255,246,224,.9)'
       });
-      g.appendChild(text);
+      inner.appendChild(text);
     }
 
     const namePlate = createSvg('rect');
@@ -296,10 +300,12 @@
       'font-weight': 800,
       fill: 'rgba(255,247,226,.92)'
     });
-    g.appendChild(nameText);
+    inner.appendChild(nameText);
+
+    g.appendChild(inner);
 
     groupEl.appendChild(g);
-    return { group: g, center: center, radius: radius };
+    return { group: g, inner: inner, center: center, radius: radius };
   }
 
   function setSliceState(pieGroup, selectedIssue, flashing) {
@@ -387,7 +393,7 @@
     }
 
     function setRattle(on) {
-      qsa(avatarsGroup, '.spinnerAvatar').forEach(function (node) {
+      qsa(avatarsGroup, '.spinnerAvatarInner').forEach(function (node) {
         node.classList.toggle('rattling', on);
       });
     }

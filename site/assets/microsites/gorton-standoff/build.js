@@ -617,10 +617,6 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
       <g data-role="wheel-ring"></g>
       <g data-role="pie-group"></g>
       <g data-role="avatars-group"></g>
-      <g class="spinnerPointer" aria-hidden="true">
-        <line x1="460" y1="36" x2="460" y2="78" stroke="#fbe7be" stroke-width="22" stroke-linecap="round"></line>
-        <polygon points="424,78 460,124 496,78" fill="#fbe7be" stroke="#2a1b14" stroke-width="8"></polygon>
-      </g>
       <g data-role="speech-bubble" class="speechBubble" opacity="0">
         <rect data-role="speech-box" x="0" y="0" width="260" height="112" rx="20" ry="20" fill="rgba(255,255,255,.95)" stroke="#2a1b14" stroke-width="6"></rect>
         <text data-role="speech-text" x="130" y="56" text-anchor="middle" dominant-baseline="middle" font-size="17" font-weight="800" fill="#2a1b14"></text>

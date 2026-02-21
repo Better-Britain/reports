@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.spinnerAvatar.rattling {
+.spinnerAvatarInner.rattling {
   animation: spinnerRattle 0.16s linear infinite;
 }
 
@@ -92,4 +92,8 @@
 .noJsNote {
   position: relative;
   z-index: 1;
+}
+
+.triangle {
+  display: none !important;
 }
