@@ -3,8 +3,8 @@
   const CX = 460;
   const CY = 460;
   const POINTER_ANGLE = -90;
-  const INNER_RING_RADIUS = 196;
-  const OUTER_RING_RADIUS = 316;
+  const INNER_RING_RADIUS = 235;
+  const OUTER_RING_RADIUS = 379;
   const WHEEL_DURATION_MS = 4200;
   const WHEEL_SPINS = 5;
   const GLOW_AFTER_MS = 2200;
@@ -22,6 +22,11 @@
   const ISSUE_INDEX = new Map(ISSUE_SLICES.map((s, i) => [s.id, i]));
   const ISSUE_META = new Map(ISSUE_SLICES.map((s) => [s.id, { label: s.label, color: s.color }]));
   const TOP_THREE = ['angeliki-stogia', 'hannah-spencer', 'matt-goodwin'];
+  const PARTY_BORDER_BY_CANDIDATE = {
+    'angeliki-stogia': '#E4003B', // Labour
+    'hannah-spencer': '#008066', // Green Party
+    'matt-goodwin': '#12B6CF' // Reform UK
+  };
 
   // Political proximity lanes for supplemental speakers/candidates.
   const LANE_BY_CANDIDATE = {
@@ -187,6 +192,19 @@
     return Array.from(set);
   }
 
+  function issueTotals(byIssue) {
+    const totals = new Map();
+    ISSUE_SLICES.forEach((s) => totals.set(s.id, 0));
+    Array.from(byIssue.entries()).forEach(([issue, byCandidate]) => {
+      let sum = 0;
+      Array.from(byCandidate.values()).forEach((list) => {
+        sum += Array.isArray(list) ? list.length : 0;
+      });
+      totals.set(issue, sum);
+    });
+    return totals;
+  }
+
   function candidateIssues(state, candidateId) {
     const out = [];
     Array.from(state.byIssue.entries()).forEach(([issue, byCandidate]) => {
@@ -277,29 +295,44 @@
 
     const inner = createSvg('g');
     inner.classList.add('spinnerAvatarInner');
+    const photoRadius = radius + (isMajor ? 4 : 4);
 
     const frame = createSvg('circle');
     frame.classList.add('spinnerAvatarFrame');
+    const partyBorder = PARTY_BORDER_BY_CANDIDATE[candidateId] || 'rgba(255,239,194,.72)';
     setAttrs(frame, {
       cx: 0, cy: 0, r: radius + 6,
       fill: 'rgba(38,27,20,.72)',
-      stroke: 'rgba(255,239,194,.72)',
+      stroke: partyBorder,
       'stroke-width': isMajor ? 4 : 3
     });
     inner.appendChild(frame);
 
     if (meta.image) {
+      const defs = groupEl.ownerSVGElement?.querySelector?.('defs');
+      const clipId = 'spinner-avatar-clip-' + String(candidateId).replace(/[^a-z0-9_-]/gi, '-');
+      if (defs && !defs.querySelector('#' + clipId)) {
+        const cp = createSvg('clipPath');
+        cp.id = clipId;
+        const c = createSvg('circle');
+        setAttrs(c, { cx: 0, cy: 0, r: photoRadius });
+        cp.appendChild(c);
+        defs.appendChild(cp);
+      }
+      const zoom = isMajor ? 1.1 : 1.08;
+      const imageRadius = photoRadius * zoom;
       const image = createSvg('image');
       setAttrs(image, {
         href: meta.image,
-        x: -radius, y: -radius,
-        width: radius * 2, height: radius * 2,
-        'clip-path': 'url(#spinnerAvatarClip)'
+        x: -imageRadius, y: -imageRadius,
+        width: imageRadius * 2, height: imageRadius * 2,
+        preserveAspectRatio: 'xMidYMid slice',
+        'clip-path': 'url(#' + clipId + ')'
       });
       inner.appendChild(image);
     } else {
       const fill = createSvg('circle');
-      setAttrs(fill, { cx: 0, cy: 0, r: radius, fill: 'rgba(31,22,16,.84)' });
+      setAttrs(fill, { cx: 0, cy: 0, r: photoRadius, fill: 'rgba(31,22,16,.84)' });
       inner.appendChild(fill);
 
       const txt = createSvg('text');
@@ -356,6 +389,7 @@
     const options = opts || {};
     const slices = qsa(pieGroup, '.spinnerSlice');
     const labels = qsa(pieGroup, '.spinnerSliceLabel');
+    const counts = qsa(pieGroup, '.spinnerSliceCount');
     slices.forEach((slice) => {
       const on = slice.dataset.issue === issueId;
       slice.classList.toggle('is-selected', on);
@@ -368,17 +402,15 @@
       label.classList.toggle('is-selected', on);
       label.classList.toggle('is-dim', Boolean(issueId) && !on);
     });
+    counts.forEach((count) => {
+      const on = count.dataset.issue === issueId;
+      count.classList.toggle('is-selected', on);
+      count.classList.toggle('is-dim', Boolean(issueId) && !on);
+    });
   }
 
-  function buildPie(pieGroup, onPickIssue) {
+  function buildPie(pieGroup, onPickIssue, totals) {
     const span = 360 / ISSUE_SLICES.length;
-    const promptVariants = [
-      "What's on your mind?",
-      'What matters most today?',
-      'What are you weighing up?',
-      'What feels urgent right now?'
-    ];
-    const promptText = promptVariants[Math.floor(Math.random() * promptVariants.length)];
     ISSUE_SLICES.forEach((slice, idx) => {
       const start = -90 + idx * span;
       const end = start + span;
@@ -413,6 +445,38 @@
         'font-size': 16, 'font-weight': 900, fill: 'rgba(30,22,16,.86)', 'pointer-events': 'none'
       });
       sliceWrap.appendChild(label);
+
+      const badge = createSvg('g');
+      badge.classList.add('spinnerSliceCount');
+      badge.dataset.issue = slice.id;
+      const mid = start + span / 2;
+      const radial = polar(0, 0, 1, mid);
+      const tangent = { x: -radial.y, y: radial.x };
+      const badgeX = p.x + radial.x * 24 + tangent.x * 8;
+      const badgeY = p.y + radial.y * 24 + tangent.y * 8;
+      setAttrs(badge, {
+        transform: 'translate(' + badgeX.toFixed(1) + ' ' + badgeY.toFixed(1) + ')',
+        'pointer-events': 'none'
+      });
+      const badgePlate = createSvg('rect');
+      setAttrs(badgePlate, {
+        x: -12, y: -9, width: 24, height: 18, rx: 8,
+        fill: 'rgba(255,250,236,.86)', stroke: 'rgba(42,27,20,.2)', 'stroke-width': 1
+      });
+      badge.appendChild(badgePlate);
+      const badgeText = createSvg('text');
+      badgeText.textContent = String(Number(totals?.get?.(slice.id) || 0));
+      setAttrs(badgeText, {
+        x: 0, y: 1,
+        'text-anchor': 'middle',
+        'dominant-baseline': 'middle',
+        'font-size': 11,
+        'font-weight': 900,
+        fill: 'rgba(42,27,20,.88)'
+      });
+      badge.appendChild(badgeText);
+      sliceWrap.appendChild(badge);
+
       pieGroup.appendChild(sliceWrap);
     });
 
@@ -426,7 +490,7 @@
 
     const text = createSvg('text');
     text.classList.add('spinnerPromptText');
-    text.textContent = promptText;
+    text.innerHTML = '<tspan x="' + CX + '" y="' + (CY - 3) + '">Pick</tspan><tspan x="' + CX + '" y="' + (CY + 17) + '">One</tspan>';
     setAttrs(text, {
       x: CX, y: CY + 5, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 900,
       fill: 'rgba(42,27,20,.88)', 'pointer-events': 'none'
@@ -645,6 +709,7 @@
     if (!wheelRing || !pieGroup || !avatarsGroup) return;
 
     const byIssue = collectReceiptsByIssue();
+    const totals = issueTotals(byIssue);
     const counts = buildCountsByCandidateIssue(byIssue);
     const allCandidates = collectAllCandidates(byIssue);
     const allOuter = allCandidates.filter((id) => !TOP_THREE.includes(id));
@@ -780,7 +845,12 @@
       state.issue = issue;
       if (!state.promptDismissed) {
         state.promptDismissed = true;
-        pieGroup.classList.add('has-picked');
+        pieGroup.classList.add('has-picked', 'prompt-removing');
+        window.setTimeout(() => {
+          pieGroup.querySelector('.spinnerPromptCore')?.remove?.();
+          pieGroup.querySelector('.spinnerPromptText')?.remove?.();
+          pieGroup.classList.remove('prompt-removing');
+        }, 520);
       }
       state.userPickedIssue = true;
       bubbles?.clear?.();
@@ -846,7 +916,7 @@
       requestAnimationFrame(frame);
     }
 
-    buildPie(pieGroup, runIssue);
+    buildPie(pieGroup, runIssue, totals);
     const initial = ISSUE_SLICES.find((slice) => {
       const byCandidate = state.byIssue.get(slice.id);
       return byCandidate && byCandidate.size;

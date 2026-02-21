@@ -68,6 +68,18 @@
   opacity: 0.64;
 }
 
+.spinnerSliceCount {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.spinnerSliceCount.is-selected {
+  transform: scale(1.05);
+}
+
+.spinnerSliceCount.is-dim {
+  opacity: 0.62;
+}
+
 @keyframes spinnerSliceFlash {
   0% { filter: brightness(1); }
   50% { filter: brightness(1.35); }
@@ -180,12 +192,40 @@
 
 .spinnerPromptCore,
 .spinnerPromptText {
-  transition: opacity 0.34s ease;
+  transition: opacity 0.34s ease, transform 0.34s ease;
+  animation: promptPulse 1.8s ease-in-out infinite;
+}
+
+.spinnerPromptCore {
+  opacity: 0.97;
+}
+
+.spinnerPromptText {
+  letter-spacing: 0.2px;
 }
 
 .has-picked .spinnerPromptCore,
 .has-picked .spinnerPromptText {
   opacity: 0;
+  animation: none;
+}
+
+.spinnerSliceWrap:hover ~ .spinnerPromptCore,
+.spinnerSliceWrap:hover ~ .spinnerPromptText,
+.spinnerSliceWrap:focus-within ~ .spinnerPromptCore,
+.spinnerSliceWrap:focus-within ~ .spinnerPromptText {
+  opacity: 0.34;
+}
+
+.prompt-removing .spinnerPromptCore,
+.prompt-removing .spinnerPromptText {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+@keyframes promptPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
 }
 
 .privacyLine {
