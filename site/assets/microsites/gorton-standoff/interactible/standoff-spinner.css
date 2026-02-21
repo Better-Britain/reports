@@ -36,12 +36,16 @@
   transition: filter 0.18s ease, opacity 0.18s ease;
 }
 
-.spinnerSlice:hover {
-  filter: brightness(1.32) saturate(1.5) drop-shadow(0 0 8px rgba(255, 244, 214, 0.35));
+.spinnerSlice.is-selected {
+  filter: brightness(1.4) saturate(1.6) drop-shadow(0 0 12px rgba(255, 244, 214, 0.52));
 }
 
-.spinnerSlice.is-selected {
-  filter: brightness(1.25) saturate(1.35) drop-shadow(0 0 12px rgba(255, 244, 214, 0.48));
+.spinnerSlice:hover,
+.spinnerSlice:focus,
+.spinnerSlice.is-hover,
+.spinnerSliceWrap:hover .spinnerSlice,
+.spinnerSliceWrap:focus-within .spinnerSlice {
+  filter: brightness(1.33) saturate(1.5) drop-shadow(0 0 9px rgba(255, 244, 214, 0.4));
 }
 
 .spinnerSlice.is-dim {
@@ -60,6 +64,10 @@
   transition: opacity 0.18s ease, fill 0.18s ease;
 }
 
+.spinnerSliceLabel.is-hover {
+  fill: rgba(24, 18, 14, 0.95);
+}
+
 .spinnerSliceLabel.is-selected {
   fill: rgba(24, 18, 14, 0.97);
 }
@@ -70,6 +78,10 @@
 
 .spinnerSliceCount {
   transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.spinnerSliceCount.is-hover {
+  transform: scale(1.04);
 }
 
 .spinnerSliceCount.is-selected {
@@ -176,6 +188,19 @@
   margin-top: 7px;
   font-size: 12px;
   opacity: 0.7;
+  pointer-events: auto;
+}
+
+.speechBubbleMetaLink {
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.speechBubbleMetaLink:hover {
+  opacity: 1;
 }
 
 .speechBubbleTail {

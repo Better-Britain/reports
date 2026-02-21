@@ -27,6 +27,15 @@
     'hannah-spencer': '#008066', // Green Party
     'matt-goodwin': '#12B6CF' // Reform UK
   };
+  const AFFILIATION_FALLBACK_BY_LANE = {
+    labour: 'Labour',
+    green: 'Green Party',
+    reform: 'Reform UK',
+    swing: 'Independent'
+  };
+  const EXPLICIT_NO_TOP_TAG = new Set([
+    'labour-party-spokesperson'
+  ]);
 
   // Political proximity lanes for supplemental speakers/candidates.
   const LANE_BY_CANDIDATE = {
@@ -151,6 +160,11 @@
     return 1 - Math.pow(1 - t, 5);
   }
 
+  function easeInOutCubic(t) {
+    const x = Math.max(0, Math.min(1, Number(t || 0)));
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
   function collectReceiptsByIssue() {
     const byIssue = new Map();
     qsa(document, '[data-role="receipt"]').forEach(function (el) {
@@ -190,6 +204,55 @@
       Array.from(byCandidate.keys()).forEach((id) => set.add(id));
     });
     return Array.from(set);
+  }
+
+  function collectAffiliationByCandidate(byIssue) {
+    const counts = new Map();
+    Array.from(byIssue.values()).forEach((byCandidate) => {
+      Array.from(byCandidate.entries()).forEach(([candidateId, list]) => {
+        const byAffiliation = counts.get(candidateId) || new Map();
+        (Array.isArray(list) ? list : []).forEach((receipt) => {
+          const party = String(receipt?.dataset?.party || '').trim();
+          if (!party) return;
+          byAffiliation.set(party, Number(byAffiliation.get(party) || 0) + 1);
+        });
+        counts.set(candidateId, byAffiliation);
+      });
+    });
+    const out = new Map();
+    counts.forEach((byAffiliation, candidateId) => {
+      const sorted = Array.from(byAffiliation.entries()).sort((a, b) => b[1] - a[1]);
+      if (sorted.length && sorted[0][0]) out.set(candidateId, sorted[0][0]);
+    });
+    return out;
+  }
+
+  function colorForAffiliation(label) {
+    const party = String(label || '').toLowerCase();
+    if (party.includes('labour')) return '#E4003B';
+    if (party.includes('green') || party.includes('rejoin eu')) return '#00A95A';
+    if (party.includes('reform')) return '#12B6CF';
+    if (party.includes('liberal democrat')) return '#FAA61A';
+    if (party.includes('conservative')) return '#0B5EA8';
+    if (party.includes('libertarian')) return '#F4C542';
+    if (party.includes('social democratic')) return '#C62828';
+    if (party.includes('communist')) return '#C1121F';
+    if (party.includes('loony')) return '#8E24AA';
+    if (party.includes('independent')) return '#9EA7B3';
+    return '#6E7681';
+  }
+
+  function contrastTextColor(hexColor) {
+    const hex = String(hexColor || '').replace('#', '').trim();
+    const normalized = hex.length === 3
+      ? hex.split('').map((c) => c + c).join('')
+      : hex;
+    if (!/^[0-9a-fA-F]{6}$/.test(normalized)) return '#F7F4EB';
+    const r = parseInt(normalized.slice(0, 2), 16);
+    const g = parseInt(normalized.slice(2, 4), 16);
+    const b = parseInt(normalized.slice(4, 6), 16);
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 152 ? '#12202A' : '#F7F4EB';
   }
 
   function issueTotals(byIssue) {
@@ -288,6 +351,13 @@
 
   function drawAvatar(groupEl, candidateId, radius, isMajor, state, onBadgeClick) {
     const meta = CANDIDATE_META.get(candidateId) || { name: candidateId };
+    const affiliation = String(
+      state?.affiliationByCandidate?.get?.(candidateId)
+      || AFFILIATION_FALLBACK_BY_LANE[laneFor(candidateId)]
+      || ''
+    ).trim();
+    const partyColor = PARTY_BORDER_BY_CANDIDATE[candidateId] || colorForAffiliation(affiliation);
+    const labelTextColor = contrastTextColor(partyColor);
     const g = createSvg('g');
     g.classList.add('spinnerAvatar');
     if (isMajor) g.classList.add('spinnerAvatarMajor');
@@ -299,7 +369,7 @@
 
     const frame = createSvg('circle');
     frame.classList.add('spinnerAvatarFrame');
-    const partyBorder = PARTY_BORDER_BY_CANDIDATE[candidateId] || 'rgba(255,239,194,.72)';
+    const partyBorder = partyColor || 'rgba(255,239,194,.72)';
     setAttrs(frame, {
       cx: 0, cy: 0, r: radius + 6,
       fill: 'rgba(38,27,20,.72)',
@@ -341,20 +411,68 @@
       inner.appendChild(txt);
     }
 
+    const showTopTag = Boolean(affiliation)
+      && !/spokesperson/i.test(affiliation)
+      && !EXPLICIT_NO_TOP_TAG.has(candidateId);
+    if (showTopTag) {
+      const tagText = affiliation.replace(/^the\s+/i, '');
+      const tagW = Math.max(76, Math.min(isMajor ? 196 : 168, tagText.length * 6.5 + 20));
+      const tagY = -(radius + (isMajor ? 26 : 23));
+      const tagPlate = createSvg('rect');
+      setAttrs(tagPlate, {
+        x: -(tagW / 2),
+        y: tagY,
+        width: tagW,
+        height: 20,
+        rx: 10,
+        fill: partyBorder,
+        stroke: 'rgba(18,11,7,.34)',
+        'stroke-width': 1
+      });
+      inner.appendChild(tagPlate);
+
+      const tag = createSvg('text');
+      tag.textContent = tagText;
+      setAttrs(tag, {
+        x: 0,
+        y: tagY + 14,
+        'text-anchor': 'middle',
+        'font-size': tagText.length > 24 ? 9.2 : (isMajor ? 10.5 : 10),
+        'font-weight': 900,
+        fill: labelTextColor
+      });
+      inner.appendChild(tag);
+    }
+
     const plateW = isMajor ? 164 : 116;
     const plate = createSvg('rect');
     setAttrs(plate, {
-      x: -plateW / 2, y: radius + 12, width: plateW, height: 24, rx: 12,
-      fill: 'rgba(18,11,7,.72)', stroke: 'rgba(255,255,255,.22)', 'stroke-width': 1
+      x: -plateW / 2, y: radius + 8, width: plateW, height: 24, rx: 12,
+      fill: partyBorder, stroke: 'rgba(18,11,7,.34)', 'stroke-width': 1
     });
     inner.appendChild(plate);
 
     const name = createSvg('text');
     name.textContent = meta.name;
-    setAttrs(name, { x: 0, y: radius + 29, 'text-anchor': 'middle', 'font-size': isMajor ? 12 : 11, 'font-weight': 800, fill: 'rgba(255,247,226,.92)' });
+    setAttrs(name, {
+      x: 0, y: radius + 25, 'text-anchor': 'middle',
+      'font-size': isMajor ? 13 : 12, 'font-weight': 800, fill: labelTextColor
+    });
     inner.appendChild(name);
 
-    const avatar = { group: g, inner, radius, candidateId, isMajor, baseAngle: 0, angle: 0, center: { x: CX, y: CY } };
+    const avatar = {
+      group: g,
+      inner,
+      radius,
+      candidateId,
+      isMajor,
+      baseAngle: 0,
+      angle: 0,
+      center: { x: CX, y: CY },
+      motion: null,
+      hidden: false,
+      pendingEnter: false
+    };
     drawBadges(avatar, state, onBadgeClick);
 
     g.appendChild(inner);
@@ -362,16 +480,51 @@
     return avatar;
   }
 
+  function readAvatarMotion(avatar, nowMs) {
+    const m = avatar.motion;
+    if (!m) return null;
+    const elapsed = nowMs - Number(m.startedAt || 0);
+    const p = Math.max(0, Math.min(1, elapsed / Math.max(1, Number(m.duration || 1))));
+    const e = easeInOutCubic(p);
+    const radial = Number(m.fromRadial || 0) + (Number(m.toRadial || 0) - Number(m.fromRadial || 0)) * e;
+    const tangent = Number(m.fromTangent || 0) + (Number(m.toTangent || 0) - Number(m.fromTangent || 0)) * e;
+    const opacity = Number(m.fromOpacity ?? 1) + (Number(m.toOpacity ?? 1) - Number(m.fromOpacity ?? 1)) * e;
+    if (p >= 1) {
+      if (m.onDone === 'hide') {
+        avatar.hidden = true;
+        avatar.group.style.display = 'none';
+      }
+      avatar.motion = null;
+    }
+    return { radial, tangent, opacity };
+  }
+
   function applyAvatarTransform(state, avatar, animated) {
+    if (avatar.hidden && !avatar.motion) return;
+    if (!avatar.hidden) avatar.group.style.display = '';
+    const nowMs = performance.now();
     const ringRadius = avatar.isMajor ? INNER_RING_RADIUS : OUTER_RING_RADIUS;
     const visualAngle = normalizeAngle(avatar.baseAngle + state.spinOffset);
-    const center = polar(CX, CY, ringRadius, visualAngle);
+    const motion = readAvatarMotion(avatar, nowMs);
+    const radialOffset = motion ? motion.radial : 0;
+    const tangentOffset = motion ? motion.tangent : 0;
+    const center = polar(CX, CY, ringRadius + radialOffset, visualAngle);
+    const rad = (visualAngle - 90) * Math.PI / 180;
+    const tangentX = -Math.sin(rad);
+    const tangentY = Math.cos(rad);
+    center.x += tangentX * tangentOffset;
+    center.y += tangentY * tangentOffset;
     avatar.center = center;
     avatar.angle = visualAngle;
     avatar.group.style.transition = animated
       ? 'transform 900ms cubic-bezier(.23,.84,.32,1), opacity 720ms ease'
       : 'none';
     avatar.group.setAttribute('transform', 'translate(' + center.x.toFixed(1) + ' ' + center.y.toFixed(1) + ')');
+    if (motion) {
+      avatar.group.style.opacity = String(motion.opacity);
+    } else if (!avatar.hidden) {
+      avatar.group.style.opacity = '1';
+    }
   }
 
   function setAvatarPosition(state, avatar, angle, animated) {
@@ -406,6 +559,21 @@
       const on = count.dataset.issue === issueId;
       count.classList.toggle('is-selected', on);
       count.classList.toggle('is-dim', Boolean(issueId) && !on);
+    });
+  }
+
+  function setSliceHoverState(pieGroup, issueId) {
+    const slices = qsa(pieGroup, '.spinnerSlice');
+    const labels = qsa(pieGroup, '.spinnerSliceLabel');
+    const counts = qsa(pieGroup, '.spinnerSliceCount');
+    slices.forEach((slice) => {
+      slice.classList.toggle('is-hover', Boolean(issueId) && slice.dataset.issue === issueId);
+    });
+    labels.forEach((label) => {
+      label.classList.toggle('is-hover', Boolean(issueId) && label.dataset.issue === issueId);
+    });
+    counts.forEach((count) => {
+      count.classList.toggle('is-hover', Boolean(issueId) && count.dataset.issue === issueId);
     });
   }
 
@@ -538,6 +706,13 @@
     return LANE_BY_CANDIDATE[candidateId] || 'swing';
   }
 
+  function isAvatarVisible(state, candidateId) {
+    const av = state.avatars.get(candidateId);
+    if (!av || av.hidden) return false;
+    if (av.isMajor) return true;
+    return state.outerActive.includes(candidateId);
+  }
+
   function laneAnchorAngles(state) {
     const map = {};
     TOP_THREE.forEach((id) => {
@@ -572,19 +747,33 @@
       const av = state.avatars.get(p.id);
       if (!av) return;
       setAvatarPosition(state, av, p.angle, animated);
-      av.group.style.opacity = '1';
+      if (av.pendingEnter) {
+        const tangentSign = Math.random() < 0.5 ? -1 : 1;
+        av.motion = {
+          startedAt: performance.now(),
+          duration: 900,
+          fromRadial: 135,
+          toRadial: 0,
+          fromTangent: -66 * tangentSign,
+          toTangent: 0,
+          fromOpacity: 0,
+          toOpacity: 1,
+          onDone: 'show'
+        };
+        av.pendingEnter = false;
+      } else if (!av.motion) {
+        av.group.style.opacity = '1';
+      }
     });
   }
 
-  function chooseMutationAction(state) {
-    const mode = state.spinCount % 3;
-    if (mode === 0) return 'add';
-    if (mode === 1) return 'remove';
-    return 'replace';
-  }
-
   function ensureAvatar(state, avatarsGroup, id, onBadgeClick, onAvatarClick) {
-    if (state.avatars.has(id)) return state.avatars.get(id);
+    if (state.avatars.has(id)) {
+      const existing = state.avatars.get(id);
+      existing.hidden = false;
+      existing.group.style.display = '';
+      return existing;
+    }
     const av = drawAvatar(avatarsGroup, id, 38, false, state, onBadgeClick);
     av.group.style.opacity = '0';
     if (typeof onAvatarClick === 'function') {
@@ -598,40 +787,48 @@
   }
 
   function planMutation(state, issue) {
-    const action = chooseMutationAction(state);
-    const inactive = state.outerPool.filter((id) => !state.outerActive.includes(id));
-    inactive.sort((a, b) => scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a));
+    const inactive = state.outerPool
+      .filter((id) => !state.outerActive.includes(id))
+      .sort((a, b) => scoreForIssue(state, issue, b) - scoreForIssue(state, issue, a));
+    const active = state.outerActive
+      .slice()
+      .sort((a, b) => scoreForIssue(state, issue, a) - scoreForIssue(state, issue, b));
+    const addable = inactive.filter((id) => scoreForIssue(state, issue, id) > 0);
+    const removable = active.filter((id) => scoreForIssue(state, issue, id) <= 0);
 
-    const removable = state.outerActive.slice().sort((a, b) => scoreForIssue(state, issue, a) - scoreForIssue(state, issue, b));
-    const plan = { action, addId: '', removeId: '' };
-
-    if ((action === 'add' || action === 'replace') && inactive.length) {
-      plan.addId = inactive[0];
+    if (addable.length && removable.length) {
+      return { action: 'replace', addId: addable[0], removeId: removable[0] };
     }
-    if ((action === 'remove' || action === 'replace') && removable.length > 1) {
-      plan.removeId = removable[0];
-    }
-
-    if (action === 'add' && !plan.addId) plan.action = 'remove';
-    if (plan.action === 'remove' && !plan.removeId) plan.action = 'add';
-    if (plan.action === 'replace' && (!plan.addId || !plan.removeId)) {
-      plan.action = plan.addId ? 'add' : (plan.removeId ? 'remove' : 'none');
-    }
-    return plan;
+    return { action: 'none', addId: '', removeId: '' };
   }
 
   function applyMutation(state, issue, avatarsGroup, onBadgeClick, onAvatarClick, plan) {
     if (!plan || plan.action === 'none') return;
+    const now = performance.now();
     if (plan.removeId) {
       const idx = state.outerActive.indexOf(plan.removeId);
       if (idx >= 0) state.outerActive.splice(idx, 1);
       const av = state.avatars.get(plan.removeId);
       if (av) {
-        av.group.style.opacity = '0';
+        const tangentSign = Math.random() < 0.5 ? -1 : 1;
+        av.motion = {
+          startedAt: now,
+          duration: 860,
+          fromRadial: 0,
+          toRadial: 145,
+          fromTangent: 0,
+          toTangent: 72 * tangentSign,
+          fromOpacity: 1,
+          toOpacity: 0,
+          onDone: 'hide'
+        };
       }
     }
     if (plan.addId) {
-      ensureAvatar(state, avatarsGroup, plan.addId, onBadgeClick, onAvatarClick);
+      const av = ensureAvatar(state, avatarsGroup, plan.addId, onBadgeClick, onAvatarClick);
+      av.pendingEnter = true;
+      av.hidden = false;
+      av.group.style.display = '';
       if (!state.outerActive.includes(plan.addId)) state.outerActive.push(plan.addId);
     }
     layoutOuterAvatars(state, issue, true);
@@ -647,7 +844,7 @@
     const offsetY = svgRect.top - panelRect.top;
 
     const ids = Array.from(byCandidate.keys())
-      .filter((id) => state.avatars.has(id))
+      .filter((id) => isAvatarVisible(state, id))
       .sort((a, b) => {
         if (a === winnerId) return -1;
         if (b === winnerId) return 1;
@@ -669,6 +866,7 @@
       return {
         label: CANDIDATE_META.get(candidateId)?.name || candidateId,
         text: quote,
+        receiptId: String(pick?.dataset?.id || ''),
         anchor: {
           x: offsetX + av.center.x * scaleX,
           y: offsetY + av.center.y * scaleY
@@ -680,10 +878,12 @@
       };
     });
 
-    const speakerAnchors = Array.from(state.avatars.values()).map((av) => ({
-      x: offsetX + av.center.x * scaleX,
-      y: offsetY + av.center.y * scaleY
-    }));
+    const speakerAnchors = Array.from(state.avatars.entries())
+      .filter(([id]) => isAvatarVisible(state, id))
+      .map(([, av]) => ({
+        x: offsetX + av.center.x * scaleX,
+        y: offsetY + av.center.y * scaleY
+      }));
 
     bubbles?.render?.(items, {
       speakerAnchors,
@@ -709,6 +909,7 @@
     if (!wheelRing || !pieGroup || !avatarsGroup) return;
 
     const byIssue = collectReceiptsByIssue();
+    const affiliations = collectAffiliationByCandidate(byIssue);
     const totals = issueTotals(byIssue);
     const counts = buildCountsByCandidateIssue(byIssue);
     const allCandidates = collectAllCandidates(byIssue);
@@ -717,6 +918,7 @@
 
     const state = {
       byIssue,
+      affiliationByCandidate: affiliations,
       countsByCandidateIssue: counts,
       issue: '',
       spinning: false,
@@ -777,6 +979,7 @@
       bubbles?.render?.([{
         label: CANDIDATE_META.get(candidateId)?.name || candidateId,
         text: quote,
+        receiptId: String(receipt?.dataset?.id || ''),
         anchor: {
           x: offsetX + avatar.center.x * scaleX,
           y: offsetY + avatar.center.y * scaleY
@@ -828,6 +1031,21 @@
       renderAllAvatars(state, Boolean(animatedAvatars));
     }
 
+    function issueFromPointer(clientX, clientY) {
+      const pt = svg.createSVGPoint();
+      pt.x = clientX;
+      pt.y = clientY;
+      const local = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const dx = local.x - CX;
+      const dy = local.y - CY;
+      const dist = Math.hypot(dx, dy);
+      if (dist > 150) return '';
+      const span = 360 / ISSUE_SLICES.length;
+      const angleTop = normalizeAngle((Math.atan2(dy, dx) * 180 / Math.PI) + 90);
+      const idx = Math.floor(angleTop / span) % ISSUE_SLICES.length;
+      return ISSUE_SLICES[idx]?.id || '';
+    }
+
     function clearWinner() {
       qsa(avatarsGroup, '.spinnerAvatar').forEach((node) => node.classList.remove('is-winner'));
     }
@@ -858,7 +1076,7 @@
       window.clearTimeout(state.glowTimer);
       setSliceState(pieGroup, issue, { flashing: true, softGlow: false });
 
-      const candidates = Array.from(byCandidate.keys()).filter((id) => state.avatars.has(id));
+      const candidates = Array.from(byCandidate.keys()).filter((id) => isAvatarVisible(state, id));
       if (!candidates.length) {
         setSliceState(pieGroup, issue, { flashing: false, softGlow: true });
         return;
@@ -906,7 +1124,7 @@
           setSliceState(pieGroup, issue, { flashing: false, softGlow: false });
         }, GLOW_AFTER_MS);
 
-        const finalCandidates = Array.from((state.byIssue.get(issue) || new Map()).keys()).filter((id) => state.avatars.has(id));
+        const finalCandidates = Array.from((state.byIssue.get(issue) || new Map()).keys()).filter((id) => isAvatarVisible(state, id));
         const winner = pickWinner(state, finalCandidates) || targetId;
         const winAv = state.avatars.get(winner);
         if (winAv) winAv.group.classList.add('is-winner');
@@ -915,6 +1133,16 @@
 
       requestAnimationFrame(frame);
     }
+
+    svg.addEventListener('pointermove', (ev) => {
+      if (state.spinning) return;
+      const issueId = issueFromPointer(ev.clientX, ev.clientY);
+      setSliceHoverState(pieGroup, issueId);
+    });
+
+    svg.addEventListener('pointerleave', () => {
+      setSliceHoverState(pieGroup, '');
+    });
 
     buildPie(pieGroup, runIssue, totals);
     const initial = ISSUE_SLICES.find((slice) => {

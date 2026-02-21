@@ -122,9 +122,32 @@
         const issueTag = card.querySelector('.speechBubbleIssueTag');
         textEl.textContent = String(item?.text || '').slice(0, 180);
         const issueLabel = String(item?.issueLabel || '').trim();
-        metaEl.textContent = issueLabel
+        const baseMeta = issueLabel
           ? (String(item?.label || '') + ' \u00b7 ' + issueLabel)
           : String(item?.label || '');
+        const receiptId = String(item?.receiptId || '').trim();
+        if (receiptId) {
+          const link = document.createElement('a');
+          link.className = 'speechBubbleMetaLink';
+          link.href = '#receipt-' + encodeURIComponent(receiptId);
+          link.textContent = baseMeta;
+          link.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const el = document.getElementById('receipt-' + receiptId)
+              || document.querySelector('[data-role="receipt"][data-id="' + receiptId.replace(/"/g, '\\"') + '"]');
+            if (el && typeof el.scrollIntoView === 'function') {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+          link.addEventListener('pointerdown', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+          });
+          metaEl.appendChild(link);
+        } else {
+          metaEl.textContent = baseMeta;
+        }
         if (issueTag) {
           issueTag.style.background = String(item?.issueColor || 'rgba(42,27,20,.18)');
         }

@@ -383,7 +383,7 @@ function renderReceipts(statements) {
     const candidateDisplay = s.candidateName || s.candidate || 'Unknown';
 
     return `
-<article class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}" data-primary-source-label="${escapeHtml(primarySource?.label || '')}" data-primary-source-url="${escapeHtml(primarySource?.url || '')}">
+<article id="receipt-${escapeHtml(s.id)}" class="receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(s.sources.length))}" data-primary-source-label="${escapeHtml(primarySource?.label || '')}" data-primary-source-url="${escapeHtml(primarySource?.url || '')}">
   <div class="receiptTop">
     <div class="receiptWho">
       <span class="pill pill--id">#${escapeHtml(s.id)}</span>
