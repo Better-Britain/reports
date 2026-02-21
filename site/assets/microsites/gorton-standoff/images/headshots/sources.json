@@ -98,25 +98,25 @@
     "status":"OK"
   },
   {
-    "name":"Labour spokesperson",
-    "filename":"",
-    "source_url":"",
-    "source_page":"",
-    "status":"MISSING"
+    "slug": "labour-spokesperson",
+    "filename": "labour-spokesperson.jpg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Labour_Party_Wordmark.svg/3840px-Labour_Party_Wordmark.svg.png",
+    "pixels": "3840x890",
+    "sha256": "ba25786f006fc7bca1dd355df17ab7ed5cc62cb845fe380bd32155109fa91741"
   },
   {
-    "name":"Press Association",
-    "filename":"",
-    "source_url":"",
-    "source_page":"",
-    "status":"MISSING"
+    "slug": "press-association",
+    "filename": "press-association.jpg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Press_Association_Logo.png",
+    "pixels": "3366x3366",
+    "sha256": "0436d48a5ba2b44e4aa62d76d130007824188dc2a144502baa03b7879e198744"
   },
   {
-    "name":"Rejoin EU Party",
-    "filename":"",
-    "source_url":"",
-    "source_page":"",
-    "status":"MISSING"
+    "slug": "rejoin-eu-party",
+    "filename": "rejoin-eu-party.jpg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/The_Rejoin_EU_Party.png",
+    "pixels": "1099x1099",
+    "sha256": "21dcbea11d1fd32f67c56a4a77a824801a5cce74379f391c9129fa852bbcec78"
   },
   {
     "name":"William Clouston",

@@ -52,6 +52,34 @@
     ['hugo-wils', { name: 'Hugo Wils' }]
   ]);
 
+  function applyHeadshotManifest() {
+    const el = document.getElementById('gorton-headshots');
+    if (!el) return;
+    let parsed = null;
+    try {
+      parsed = JSON.parse(String(el.textContent || '{}'));
+    } catch (err) {
+      console.warn('[gorton-standoff] Could not parse headshot manifest JSON.', err);
+      return;
+    }
+    const resolved = parsed && typeof parsed.resolved === 'object' ? parsed.resolved : {};
+    const warnings = Array.isArray(parsed?.warnings) ? parsed.warnings : [];
+    const fallback = String(parsed?.fallback || '').trim();
+
+    for (const [id, meta] of CANDIDATE_META.entries()) {
+      const mapped = String(resolved[id] || '').trim();
+      if (mapped) {
+        meta.image = mapped;
+      } else if (!meta.image && fallback) {
+        meta.image = fallback;
+        console.warn('[gorton-standoff] Missing headshot for', id, '- using fallback', fallback);
+      }
+    }
+    warnings.forEach((w) => {
+      console.warn('[gorton-standoff]', w);
+    });
+  }
+
   function qsa(root, sel) {
     return Array.from((root || document).querySelectorAll(sel));
   }
@@ -604,6 +632,8 @@
   }
 
   function init() {
+    applyHeadshotManifest();
+
     const panel = document.querySelector('[data-role="spinner-panel"]');
     const svg = document.querySelector('[data-role="spinner-svg"]');
     const speechHost = panel?.querySelector?.('[data-role="speech-host"]');

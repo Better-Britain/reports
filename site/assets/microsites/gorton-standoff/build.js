@@ -26,6 +26,25 @@ const TOP_THREE_CANDIDATES = new Set([
   'matt-goodwin'
 ]);
 
+const CANDIDATE_IDS = [
+  'angeliki-stogia',
+  'hannah-spencer',
+  'matt-goodwin',
+  'sir-oink-a-lot',
+  'nick-buckley',
+  'charlotte-cadden',
+  'dan-clarke',
+  'sebastian-moore',
+  'joseph-omeachair',
+  'jackie-pearcey',
+  'hugo-wils'
+];
+
+const CANDIDATE_HEADSHOT_ALIASES = {
+  'charlotte-cadden': ['charlotte-anne-cadden'],
+  'nick-buckley': ['nick-buckley-mbe']
+};
+
 function escapeHtml(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -565,12 +584,51 @@ function renderFlyerGallery(flyers) {
   }).join('\n');
 }
 
-function renderContent({ title, statements, additionalSourcesMarkdown, flyers }) {
+function resolveCandidateHeadshots(headshotFiles) {
+  const files = Array.isArray(headshotFiles) ? headshotFiles : [];
+  const stemToFile = new Map();
+  for (const file of files) {
+    const ext = path.extname(String(file || '')).toLowerCase();
+    if (!['.png', '.jpg', '.jpeg', '.webp'].includes(ext)) continue;
+    const stem = path.basename(file, ext).toLowerCase();
+    if (!stemToFile.has(stem)) stemToFile.set(stem, String(file));
+  }
+
+  const fallback = stemToFile.get('angeliki-stogia')
+    ? `./images/headshots/${stemToFile.get('angeliki-stogia')}`
+    : './images/candidate-labour.png';
+
+  const resolved = {};
+  const warnings = [];
+
+  for (const id of CANDIDATE_IDS) {
+    const aliases = CANDIDATE_HEADSHOT_ALIASES[id] || [];
+    const candidates = [id, ...aliases];
+    let picked = '';
+    for (const c of candidates) {
+      const f = stemToFile.get(String(c || '').toLowerCase());
+      if (f) {
+        picked = `./images/headshots/${f}`;
+        break;
+      }
+    }
+    if (!picked) {
+      picked = fallback;
+      warnings.push(`Missing headshot for "${id}" in images/headshots; using fallback "${fallback}".`);
+    }
+    resolved[id] = picked;
+  }
+
+  return { fallback, resolved, warnings };
+}
+
+function renderContent({ title, statements, additionalSourcesMarkdown, flyers, headshotManifest }) {
   const standoff = (statements || []).filter((s) => String(s.slot || '').toLowerCase() === 'standoff');
   const further = (statements || []).filter((s) => String(s.slot || '').toLowerCase() !== 'standoff');
   const standoffHtml = renderReceipts(standoff);
   const furtherHtml = renderReceipts(further);
   const flyerGalleryHtml = renderFlyerGallery(flyers);
+  const headshotsJson = escapeHtml(JSON.stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] }));
 
   return `
 <div class="topPanels">
@@ -618,6 +676,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
       <g data-role="pie-group"></g>
       <g data-role="avatars-group"></g>
     </svg>
+    <script id="gorton-headshots" type="application/json">${headshotsJson}</script>
     <div class="speechHost" data-role="speech-host" aria-live="polite"></div>
     <p class="privacyLine">This page doesn’t send your choices anywhere. No tracking, no storage. It runs in your browser.</p>
     <noscript>
@@ -720,11 +779,20 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
     .filter((f) => f.front)
     .sort((a, b) => String(a.id).localeCompare(String(b.id)));
 
+  const headshotsDir = path.join(src, 'images', 'headshots');
+  let headshotFiles = [];
+  try {
+    headshotFiles = await fs.readdir(headshotsDir);
+  } catch {
+    headshotFiles = [];
+  }
+  const headshotManifest = resolveCandidateHeadshots(headshotFiles);
+
   const statementsRaw = await fs.readFile(statementsPath, 'utf8');
   const title = parseTitle(statementsRaw);
   const { published } = parseStatementsFromMarkdown(statementsRaw);
   const additionalSourcesMarkdown = extractH2Section(statementsRaw, 'Additional sources');
-  const content = renderContent({ title, statements: published, additionalSourcesMarkdown, flyers });
+  const content = renderContent({ title, statements: published, additionalSourcesMarkdown, flyers, headshotManifest });
 
   const template = await fs.readFile(templatePath, 'utf8');
   const html = template
