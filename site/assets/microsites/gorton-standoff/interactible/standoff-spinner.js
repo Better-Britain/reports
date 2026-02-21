@@ -20,6 +20,7 @@
   ];
 
   const ISSUE_INDEX = new Map(ISSUE_SLICES.map((s, i) => [s.id, i]));
+  const ISSUE_META = new Map(ISSUE_SLICES.map((s) => [s.id, { label: s.label, color: s.color }]));
   const TOP_THREE = ['angeliki-stogia', 'hannah-spencer', 'matt-goodwin'];
 
   // Political proximity lanes for supplemental speakers/candidates.
@@ -156,6 +157,23 @@
       Array.from(byCandidate.keys()).forEach((id) => set.add(id));
     });
     return Array.from(set);
+  }
+
+  function candidateIssues(state, candidateId) {
+    const out = [];
+    Array.from(state.byIssue.entries()).forEach(([issue, byCandidate]) => {
+      if ((byCandidate.get(candidateId) || []).length) out.push(issue);
+    });
+    return out;
+  }
+
+  function pickRandomDifferent(receipts, lastReceiptId) {
+    const list = Array.isArray(receipts) ? receipts : [];
+    if (!list.length) return null;
+    if (!lastReceiptId || list.length === 1) return list[Math.floor(Math.random() * list.length)];
+    const filtered = list.filter((r) => String(r?.dataset?.id || '') !== String(lastReceiptId));
+    const pickFrom = filtered.length ? filtered : list;
+    return pickFrom[Math.floor(Math.random() * pickFrom.length)];
   }
 
   function drawWheelRing(groupEl) {
@@ -309,6 +327,7 @@
   function setSliceState(pieGroup, issueId, opts) {
     const options = opts || {};
     const slices = qsa(pieGroup, '.spinnerSlice');
+    const labels = qsa(pieGroup, '.spinnerSliceLabel');
     slices.forEach((slice) => {
       const on = slice.dataset.issue === issueId;
       slice.classList.toggle('is-selected', on);
@@ -316,51 +335,72 @@
       slice.classList.toggle('is-flashing', Boolean(options.flashing) && on);
       slice.classList.toggle('is-soft-glow', Boolean(options.softGlow) && on);
     });
+    labels.forEach((label) => {
+      const on = label.dataset.issue === issueId;
+      label.classList.toggle('is-selected', on);
+      label.classList.toggle('is-dim', Boolean(issueId) && !on);
+    });
   }
 
   function buildPie(pieGroup, onPickIssue) {
     const span = 360 / ISSUE_SLICES.length;
+    const promptVariants = [
+      "What's on your mind?",
+      'What matters most today?',
+      'What are you weighing up?',
+      'What feels urgent right now?'
+    ];
+    const promptText = promptVariants[Math.floor(Math.random() * promptVariants.length)];
     ISSUE_SLICES.forEach((slice, idx) => {
       const start = -90 + idx * span;
       const end = start + span;
+      const sliceWrap = createSvg('g');
+      sliceWrap.classList.add('spinnerSliceWrap');
+      sliceWrap.dataset.issue = slice.id;
 
       const wedge = createSvg('path');
       wedge.classList.add('spinnerSlice');
       wedge.dataset.issue = slice.id;
       setAttrs(wedge, { d: wedgePath(150, start, end), fill: slice.color, stroke: 'rgba(40,28,20,.76)', 'stroke-width': 10 });
 
-      const bringFront = () => wedge.parentNode && wedge.parentNode.appendChild(wedge);
+      const bringFront = () => sliceWrap.parentNode && sliceWrap.parentNode.appendChild(sliceWrap);
       wedge.addEventListener('mouseenter', bringFront);
       wedge.addEventListener('focus', bringFront);
       wedge.addEventListener('pointerdown', (ev) => {
         ev.preventDefault();
+        ev.stopPropagation();
         onPickIssue(slice.id, 'slice');
       });
       wedge.addEventListener('click', () => onPickIssue(slice.id, 'slice'));
-      pieGroup.appendChild(wedge);
+      sliceWrap.appendChild(wedge);
 
       const p = polar(CX, CY, 88, start + span / 2);
       const label = createSvg('text');
+      label.classList.add('spinnerSliceLabel');
+      label.dataset.issue = slice.id;
       label.textContent = slice.label;
       setAttrs(label, {
         x: p.x.toFixed(1), y: p.y.toFixed(1),
         'text-anchor': 'middle', 'dominant-baseline': 'middle',
         'font-size': 16, 'font-weight': 900, fill: 'rgba(30,22,16,.86)', 'pointer-events': 'none'
       });
-      pieGroup.appendChild(label);
+      sliceWrap.appendChild(label);
+      pieGroup.appendChild(sliceWrap);
     });
 
     const core = createSvg('circle');
+    core.classList.add('spinnerPromptCore');
     setAttrs(core, {
       cx: CX, cy: CY, r: 66,
-      fill: 'rgba(245,235,219,.88)', stroke: 'rgba(42,27,20,.36)', 'stroke-width': 2, 'pointer-events': 'none'
+      fill: 'rgb(245,235,219)', stroke: 'rgba(42,27,20,.36)', 'stroke-width': 2, 'pointer-events': 'none'
     });
     pieGroup.appendChild(core);
 
     const text = createSvg('text');
-    text.textContent = 'Pick issue';
+    text.classList.add('spinnerPromptText');
+    text.textContent = promptText;
     setAttrs(text, {
-      x: CX, y: CY + 5, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 900,
+      x: CX, y: CY + 5, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 900,
       fill: 'rgba(42,27,20,.88)', 'pointer-events': 'none'
     });
     pieGroup.appendChild(text);
@@ -378,6 +418,7 @@
       const dist = Math.hypot(dx, dy);
       if (dist > 150) return;
       ev.preventDefault();
+      ev.stopPropagation();
       const angleTop = normalizeAngle((Math.atan2(dy, dx) * 180 / Math.PI) + 90);
       const idx = Math.floor(angleTop / span) % ISSUE_SLICES.length;
       const issue = ISSUE_SLICES[idx]?.id;
@@ -450,10 +491,16 @@
     return 'replace';
   }
 
-  function ensureAvatar(state, avatarsGroup, id, onBadgeClick) {
+  function ensureAvatar(state, avatarsGroup, id, onBadgeClick, onAvatarClick) {
     if (state.avatars.has(id)) return state.avatars.get(id);
     const av = drawAvatar(avatarsGroup, id, 38, false, state, onBadgeClick);
     av.group.style.opacity = '0';
+    if (typeof onAvatarClick === 'function') {
+      av.group.addEventListener('click', () => {
+        if (state.spinning) return;
+        onAvatarClick(id);
+      });
+    }
     state.avatars.set(id, av);
     return av;
   }
@@ -481,7 +528,7 @@
     return plan;
   }
 
-  function applyMutation(state, issue, avatarsGroup, onBadgeClick, plan) {
+  function applyMutation(state, issue, avatarsGroup, onBadgeClick, onAvatarClick, plan) {
     if (!plan || plan.action === 'none') return;
     if (plan.removeId) {
       const idx = state.outerActive.indexOf(plan.removeId);
@@ -492,7 +539,7 @@
       }
     }
     if (plan.addId) {
-      ensureAvatar(state, avatarsGroup, plan.addId, onBadgeClick);
+      ensureAvatar(state, avatarsGroup, plan.addId, onBadgeClick, onAvatarClick);
       if (!state.outerActive.includes(plan.addId)) state.outerActive.push(plan.addId);
     }
     layoutOuterAvatars(state, issue, true);
@@ -522,6 +569,11 @@
       const pick = receipts[Math.floor(Math.random() * receipts.length)];
       const quote = pick?.querySelector('.receiptQuote')?.textContent?.trim() || 'No quote available yet.';
       const anchorRadius = (Number(av?.radius || 0) + 7) * Math.min(scaleX, scaleY);
+      const meta = ISSUE_META.get(issue) || { label: issue || 'Issue', color: 'rgba(42,27,20,.18)' };
+      state.lastShownByCandidate.set(candidateId, {
+        receiptId: String(pick?.dataset?.id || ''),
+        issue
+      });
       return {
         label: CANDIDATE_META.get(candidateId)?.name || candidateId,
         text: quote,
@@ -530,7 +582,9 @@
           y: offsetY + av.center.y * scaleY
         },
         anchorRadius,
-        priority: candidateId === winnerId ? 10 : scoreForIssue(state, issue, candidateId)
+        priority: candidateId === winnerId ? 10 : scoreForIssue(state, issue, candidateId),
+        issueLabel: meta.label,
+        issueColor: meta.color
       };
     });
 
@@ -575,6 +629,9 @@
       spinOffset: 0,
       spinCount: 0,
       glowTimer: 0,
+      promptDismissed: false,
+      userPickedIssue: false,
+      lastShownByCandidate: new Map(),
       avatars: new Map(),
       outerPool: allOuter.slice(),
       outerActive: allOuter.slice(0, Math.min(6, allOuter.length))
@@ -584,6 +641,68 @@
       runIssue(issueId, { forcedWinner: candidateId, source: 'badge' });
     }
 
+    function showSingleAvatarSpeech(candidateId) {
+      const avatar = state.avatars.get(candidateId);
+      if (!avatar) return;
+      const panelRect = panel.getBoundingClientRect();
+      const svgRect = svg.getBoundingClientRect();
+      const scaleX = svgRect.width / 920;
+      const scaleY = svgRect.height / 920;
+      const offsetX = svgRect.left - panelRect.left;
+      const offsetY = svgRect.top - panelRect.top;
+      const anchorRadius = (Number(avatar.radius || 0) + 7) * Math.min(scaleX, scaleY);
+
+      const last = state.lastShownByCandidate.get(candidateId) || { receiptId: '', issue: '' };
+      let targetIssue = '';
+      let receipt = null;
+
+      if (state.userPickedIssue && state.issue) {
+        const scoped = (state.byIssue.get(state.issue) || new Map()).get(candidateId) || [];
+        receipt = pickRandomDifferent(scoped, last.receiptId);
+        targetIssue = state.issue;
+      }
+
+      if (!receipt) {
+        const issues = candidateIssues(state, candidateId);
+        if (!issues.length) return;
+        const firstIssue = issues.find((iss) => iss !== last.issue) || issues[0];
+        const scope = (state.byIssue.get(firstIssue) || new Map()).get(candidateId) || [];
+        receipt = pickRandomDifferent(scope, last.receiptId);
+        targetIssue = firstIssue;
+      }
+
+      if (!receipt) return;
+      const quote = receipt.querySelector('.receiptQuote')?.textContent?.trim() || 'No quote available yet.';
+      const issueMeta = ISSUE_META.get(targetIssue) || { label: targetIssue || 'Issue', color: 'rgba(42,27,20,.18)' };
+      state.lastShownByCandidate.set(candidateId, {
+        receiptId: String(receipt.dataset.id || ''),
+        issue: targetIssue
+      });
+
+      bubbles?.render?.([{
+        label: CANDIDATE_META.get(candidateId)?.name || candidateId,
+        text: quote,
+        anchor: {
+          x: offsetX + avatar.center.x * scaleX,
+          y: offsetY + avatar.center.y * scaleY
+        },
+        anchorRadius,
+        priority: 20,
+        issueLabel: issueMeta.label,
+        issueColor: issueMeta.color
+      }], {
+        speakerAnchors: Array.from(state.avatars.values()).map((av) => ({
+          x: offsetX + av.center.x * scaleX,
+          y: offsetY + av.center.y * scaleY
+        })),
+        noGoCircle: {
+          x: offsetX + CX * scaleX,
+          y: offsetY + CY * scaleY,
+          r: 176 * Math.min(scaleX, scaleY)
+        }
+      });
+    }
+
     drawWheelRing(wheelRing);
     TOP_THREE.forEach((id, idx) => {
       if (!allCandidates.includes(id)) return;
@@ -591,11 +710,19 @@
       const angle = -90 + idx * 120;
       setAvatarPosition(state, av, angle, false);
       state.avatars.set(id, av);
+      av.group.addEventListener('click', () => {
+        if (state.spinning) return;
+        showSingleAvatarSpeech(id);
+      });
     });
 
     state.outerActive.forEach((id) => {
       const av = drawAvatar(avatarsGroup, id, 38, false, state, onBadgeClick);
       state.avatars.set(id, av);
+      av.group.addEventListener('click', () => {
+        if (state.spinning) return;
+        showSingleAvatarSpeech(id);
+      });
     });
     layoutOuterAvatars(state, ISSUE_SLICES[0].id, false);
 
@@ -621,6 +748,11 @@
       if (!byCandidate || !byCandidate.size) return;
 
       state.issue = issue;
+      if (!state.promptDismissed) {
+        state.promptDismissed = true;
+        pieGroup.classList.add('has-picked');
+      }
+      state.userPickedIssue = true;
       bubbles?.clear?.();
       clearWinner();
       window.clearTimeout(state.glowTimer);
@@ -658,7 +790,7 @@
 
         if (!mutated && t > MID_SPIN_MUTATION_AT) {
           mutated = true;
-          applyMutation(state, issue, avatarsGroup, onBadgeClick, mutationPlan);
+          applyMutation(state, issue, avatarsGroup, onBadgeClick, showSingleAvatarSpeech, mutationPlan);
         }
 
         if (t < 1) {

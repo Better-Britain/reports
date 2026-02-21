@@ -56,6 +56,18 @@
   filter: brightness(1.16) saturate(1.22) drop-shadow(0 0 12px rgba(255, 244, 214, 0.4));
 }
 
+.spinnerSliceLabel {
+  transition: opacity 0.18s ease, fill 0.18s ease;
+}
+
+.spinnerSliceLabel.is-selected {
+  fill: rgba(24, 18, 14, 0.97);
+}
+
+.spinnerSliceLabel.is-dim {
+  opacity: 0.64;
+}
+
 @keyframes spinnerSliceFlash {
   0% { filter: brightness(1); }
   50% { filter: brightness(1.35); }
@@ -131,6 +143,17 @@
   color: #2a1b14;
 }
 
+.speechBubbleIssueTag {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border-top-right-radius: 14px;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0.72;
+}
+
 .speechBubbleText {
   font-size: 14px;
   line-height: 1.28;
@@ -153,6 +176,16 @@
   clip-path: polygon(0 50%, 100% 0, 100% 100%);
   transform-origin: 0% 50%;
   pointer-events: none;
+}
+
+.spinnerPromptCore,
+.spinnerPromptText {
+  transition: opacity 0.34s ease;
+}
+
+.has-picked .spinnerPromptCore,
+.has-picked .spinnerPromptText {
+  opacity: 0;
 }
 
 .privacyLine {

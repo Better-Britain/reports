@@ -116,11 +116,18 @@
       for (const item of sorted) {
         const card = document.createElement('div');
         card.className = 'speechBubbleCard';
-        card.innerHTML = '<div class="speechBubbleText"></div><div class="speechBubbleMeta"></div><div class="speechBubbleTail" aria-hidden="true"></div>';
+        card.innerHTML = '<div class="speechBubbleIssueTag" aria-hidden="true"></div><div class="speechBubbleText"></div><div class="speechBubbleMeta"></div><div class="speechBubbleTail" aria-hidden="true"></div>';
         const textEl = card.querySelector('.speechBubbleText');
         const metaEl = card.querySelector('.speechBubbleMeta');
+        const issueTag = card.querySelector('.speechBubbleIssueTag');
         textEl.textContent = String(item?.text || '').slice(0, 180);
-        metaEl.textContent = String(item?.label || '');
+        const issueLabel = String(item?.issueLabel || '').trim();
+        metaEl.textContent = issueLabel
+          ? (String(item?.label || '') + ' \u00b7 ' + issueLabel)
+          : String(item?.label || '');
+        if (issueTag) {
+          issueTag.style.background = String(item?.issueColor || 'rgba(42,27,20,.18)');
+        }
         hostEl.appendChild(card);
         cards.push({ item, card });
       }
