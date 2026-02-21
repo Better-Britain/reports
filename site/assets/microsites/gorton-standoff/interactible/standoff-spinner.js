@@ -10,6 +10,13 @@
   const GLOW_AFTER_MS = 2200;
   const MID_SPIN_MUTATION_AT = 0.62;
   const BADGE_ANGLES = [-54, 18, 90, 162, 234];
+  const PIE_LABEL_OFFSETS = {
+    Culture: { x: 2, y: -2, countX: 3, countY: -1 },
+    Jobs: { x: 2, y: 1, countX: 1, countY: 0 },
+    Homes: { x: -2, y: 0, countX: -1, countY: 0 },
+    Health: { x: -3, y: -1, countX: -1, countY: 0 },
+    Transit: { x: 2, y: -1, countX: 1, countY: -1 }
+  };
 
   const ISSUE_SLICES = [
     { id: 'culture-war', label: 'Culture', color: '#ff4e43' },
@@ -603,12 +610,13 @@
       sliceWrap.appendChild(wedge);
 
       const p = polar(CX, CY, 88, start + span / 2);
+      const nudge = PIE_LABEL_OFFSETS[slice.label] || { x: 0, y: 0, countX: 0, countY: 0 };
       const label = createSvg('text');
       label.classList.add('spinnerSliceLabel');
       label.dataset.issue = slice.id;
       label.textContent = slice.label;
       setAttrs(label, {
-        x: p.x.toFixed(1), y: p.y.toFixed(1),
+        x: (p.x + Number(nudge.x || 0)).toFixed(1), y: (p.y + Number(nudge.y || 0)).toFixed(1),
         'text-anchor': 'middle', 'dominant-baseline': 'middle',
         'font-size': 16, 'font-weight': 900, fill: 'rgba(30,22,16,.86)', 'pointer-events': 'none'
       });
@@ -620,8 +628,8 @@
       const mid = start + span / 2;
       const radial = polar(0, 0, 1, mid);
       const tangent = { x: -radial.y, y: radial.x };
-      const badgeX = p.x + radial.x * 24 + tangent.x * 8;
-      const badgeY = p.y + radial.y * 24 + tangent.y * 8;
+      const badgeX = p.x + radial.x * 24 + tangent.x * 8 + Number(nudge.countX || 0);
+      const badgeY = p.y + radial.y * 24 + tangent.y * 8 + Number(nudge.countY || 0);
       setAttrs(badge, {
         transform: 'translate(' + badgeX.toFixed(1) + ' ' + badgeY.toFixed(1) + ')',
         'pointer-events': 'none'
@@ -1032,14 +1040,16 @@
     }
 
     function issueFromPointer(clientX, clientY) {
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return '';
       const pt = svg.createSVGPoint();
       pt.x = clientX;
       pt.y = clientY;
-      const local = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const local = pt.matrixTransform(ctm.inverse());
       const dx = local.x - CX;
       const dy = local.y - CY;
       const dist = Math.hypot(dx, dy);
-      if (dist > 150) return '';
+      if (dist > 164) return '';
       const span = 360 / ISSUE_SLICES.length;
       const angleTop = normalizeAngle((Math.atan2(dy, dx) * 180 / Math.PI) + 90);
       const idx = Math.floor(angleTop / span) % ISSUE_SLICES.length;
@@ -1134,12 +1144,18 @@
       requestAnimationFrame(frame);
     }
 
-    svg.addEventListener('pointermove', (ev) => {
+    const onPiePointerMove = (ev) => {
       if (state.spinning) return;
       const issueId = issueFromPointer(ev.clientX, ev.clientY);
       setSliceHoverState(pieGroup, issueId);
-    });
+    };
 
+    panel.addEventListener('pointermove', onPiePointerMove);
+    svg.addEventListener('pointermove', onPiePointerMove);
+
+    panel.addEventListener('pointerleave', () => {
+      setSliceHoverState(pieGroup, '');
+    });
     svg.addEventListener('pointerleave', () => {
       setSliceHoverState(pieGroup, '');
     });

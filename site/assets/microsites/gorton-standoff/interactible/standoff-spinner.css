@@ -52,6 +52,10 @@
   opacity: 0.56;
 }
 
+.spinnerSlice.is-dim.is-hover {
+  opacity: 0.9;
+}
+
 .spinnerSlice.is-flashing {
   animation: spinnerSliceFlash 0.5s ease-in-out infinite;
 }
@@ -77,15 +81,7 @@
 }
 
 .spinnerSliceCount {
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.spinnerSliceCount.is-hover {
-  transform: scale(1.04);
-}
-
-.spinnerSliceCount.is-selected {
-  transform: scale(1.05);
+  transition: opacity 0.18s ease;
 }
 
 .spinnerSliceCount.is-dim {
