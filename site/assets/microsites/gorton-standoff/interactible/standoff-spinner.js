@@ -10,6 +10,7 @@
   const GLOW_AFTER_MS = 2200;
   const MID_SPIN_MUTATION_AT = 0.62;
   const BADGE_ANGLES = [-54, 18, 90, 162, 234];
+  const OUTER_SLOT_MIN_SEPARATION = 12;
   const PIE_LABEL_OFFSETS = {
     Culture: { x: 2, y: -2, countX: 3, countY: -1 },
     Jobs: { x: 2, y: 1, countX: 1, countY: 0 },
@@ -728,7 +729,26 @@
       const av = state.avatars.get(id);
       if (av) map[lane] = av.baseAngle;
     });
-    map.swing = normalizeAngle(((map.labour ?? 210) + (map.green ?? 330) + (map.reform ?? 90)) / 3);
+    const anchors = [map.labour, map.green, map.reform]
+      .filter((v) => Number.isFinite(v))
+      .map((v) => normalizeAngle(v))
+      .sort((a, b) => a - b);
+    if (anchors.length >= 2) {
+      let bestGap = -1;
+      let bestMid = 180;
+      for (let i = 0; i < anchors.length; i += 1) {
+        const a = anchors[i];
+        const b = i === anchors.length - 1 ? anchors[0] + 360 : anchors[i + 1];
+        const gap = b - a;
+        if (gap > bestGap) {
+          bestGap = gap;
+          bestMid = a + gap / 2;
+        }
+      }
+      map.swing = normalizeAngle(bestMid);
+    } else {
+      map.swing = 180;
+    }
     return map;
   }
 
@@ -751,10 +771,18 @@
       });
     });
 
+    const occupiedAngles = [];
     placements.forEach((p) => {
       const av = state.avatars.get(p.id);
       if (!av) return;
-      setAvatarPosition(state, av, p.angle, animated);
+      let finalAngle = normalizeAngle(p.angle);
+      let guard = 0;
+      while (occupiedAngles.some((a) => angleDistance(a, finalAngle) < OUTER_SLOT_MIN_SEPARATION) && guard < 24) {
+        finalAngle = normalizeAngle(finalAngle + OUTER_SLOT_MIN_SEPARATION);
+        guard += 1;
+      }
+      occupiedAngles.push(finalAngle);
+      setAvatarPosition(state, av, finalAngle, animated);
       if (av.pendingEnter) {
         const tangentSign = Math.random() < 0.5 ? -1 : 1;
         av.motion = {
