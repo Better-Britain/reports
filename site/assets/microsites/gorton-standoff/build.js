@@ -573,6 +573,36 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers })
   const flyerGalleryHtml = renderFlyerGallery(flyers);
 
   return `
+<div class="topPanels">
+  <section class="brandPanel" aria-label="Better Britain Bureau">
+    <a class="brandMark" href="/" aria-label="Better Britain homepage">
+      <img src="../../assets/bbb-logo.svg" alt="Better Britain logo" />
+      <span class="brandWordmark">Better Britain Bureau</span>
+    </a>
+    <p class="brandTagline">Independent, Manchester-rooted, evidence-led reporting and explainers.</p>
+    <nav class="brandLinks" aria-label="Better Britain links">
+      <a href="/">Homepage</a>
+      <a href="/year-of-labour.html">Flagship Report</a>
+      <a href="/posts/index.html">Posts</a>
+      <a href="/about.html">About BBB</a>
+    </nav>
+  </section>
+
+  <!--bbb:micro-cross-links-->
+</div>
+
+<header class="hero">
+  <div class="heroCopy">
+    <h1>${escapeHtml(title)}</h1>
+    <p class="heroLead">
+      A Mexican standoff, but it’s Gorton &amp; Denton: pick an issue, see what candidates actually said/did, then check the receipts.
+    </p>
+    <p class="heroFine">
+      Evidence icons: <span class="pill pill--kind">🎤 said</span> <span class="pill pill--kind">🧾 documented</span> <span class="pill pill--kind">🗳️ voted</span> <span class="pill pill--kind">🧩 aligned</span>
+    </p>
+  </div>
+</header>
+
 <section class="sceneWrap" aria-label="Interactive standoff scene">
   <div class="spinnerPanel" data-role="spinner-panel">
     <img class="spinnerBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
