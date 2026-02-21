@@ -6,7 +6,7 @@
   const INNER_RING_RADIUS = 196;
   const OUTER_RING_RADIUS = 316;
   const WHEEL_DURATION_MS = 4200;
-  const WHEEL_SPINS = 10;
+  const WHEEL_SPINS = 5;
   const GLOW_AFTER_MS = 2200;
   const MID_SPIN_MUTATION_AT = 0.62;
   const BADGE_ANGLES = [-54, 18, 90, 162, 234];
@@ -332,6 +332,10 @@
       const bringFront = () => wedge.parentNode && wedge.parentNode.appendChild(wedge);
       wedge.addEventListener('mouseenter', bringFront);
       wedge.addEventListener('focus', bringFront);
+      wedge.addEventListener('pointerdown', (ev) => {
+        ev.preventDefault();
+        onPickIssue(slice.id, 'slice');
+      });
       wedge.addEventListener('click', () => onPickIssue(slice.id, 'slice'));
       pieGroup.appendChild(wedge);
 
@@ -360,6 +364,25 @@
       fill: 'rgba(42,27,20,.88)', 'pointer-events': 'none'
     });
     pieGroup.appendChild(text);
+
+    // Fallback hit area: allow clicks anywhere in picker radius.
+    pieGroup.addEventListener('pointerdown', (ev) => {
+      const svg = pieGroup.ownerSVGElement;
+      if (!svg) return;
+      const pt = svg.createSVGPoint();
+      pt.x = ev.clientX;
+      pt.y = ev.clientY;
+      const local = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const dx = local.x - CX;
+      const dy = local.y - CY;
+      const dist = Math.hypot(dx, dy);
+      if (dist > 150) return;
+      ev.preventDefault();
+      const angleTop = normalizeAngle((Math.atan2(dy, dx) * 180 / Math.PI) + 90);
+      const idx = Math.floor(angleTop / span) % ISSUE_SLICES.length;
+      const issue = ISSUE_SLICES[idx]?.id;
+      if (issue) onPickIssue(issue, 'slice');
+    });
   }
 
   function pickWinner(state, candidates) {
@@ -479,8 +502,10 @@
     const byCandidate = state.byIssue.get(issue) || new Map();
     const panelRect = panel.getBoundingClientRect();
     const svgRect = svg.getBoundingClientRect();
-    const scaleX = panelRect.width / svgRect.width;
-    const scaleY = panelRect.height / svgRect.height;
+    const scaleX = svgRect.width / 920;
+    const scaleY = svgRect.height / 920;
+    const offsetX = svgRect.left - panelRect.left;
+    const offsetY = svgRect.top - panelRect.top;
 
     const ids = Array.from(byCandidate.keys())
       .filter((id) => state.avatars.has(id))
@@ -500,22 +525,25 @@
       return {
         label: CANDIDATE_META.get(candidateId)?.name || candidateId,
         text: quote,
-        anchor: { x: av.center.x * scaleX, y: av.center.y * scaleY },
+        anchor: {
+          x: offsetX + av.center.x * scaleX,
+          y: offsetY + av.center.y * scaleY
+        },
         anchorRadius,
         priority: candidateId === winnerId ? 10 : scoreForIssue(state, issue, candidateId)
       };
     });
 
     const speakerAnchors = Array.from(state.avatars.values()).map((av) => ({
-      x: av.center.x * scaleX,
-      y: av.center.y * scaleY
+      x: offsetX + av.center.x * scaleX,
+      y: offsetY + av.center.y * scaleY
     }));
 
     bubbles?.render?.(items, {
       speakerAnchors,
       noGoCircle: {
-        x: CX * scaleX,
-        y: CY * scaleY,
+        x: offsetX + CX * scaleX,
+        y: offsetY + CY * scaleY,
         r: 176 * Math.min(scaleX, scaleY)
       }
     });
