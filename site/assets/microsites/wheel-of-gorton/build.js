@@ -992,7 +992,7 @@ function renderConclusion() {
       The question for voters in Gorton, Denton, Levy and Burnage isn’t just “which party?”, but what kind of politics you want?
     </p>
     <p class="conclusionBody">
-      If you want the bigger picture, see our flagship report: <a href="/year-of-labour.html"><strong>Year of Labour</strong></a>. We’ll try to keep it up to date through this government, to try and see whether the promise of change is being delivered. So far they’re scoring just about OK on policy — which is a long way from an endorsement.
+      If you want the bigger picture, see our flagship report: <a href="/year-of-labour.html"><strong>Year of Labour</strong></a>. We’ll try to keep it up to date through this government, to see whether the promise of change is being delivered. So far they’re scoring just about OK on policy — which is a long way from an endorsement given their rough optics, bad timing, poor preparedness and high drama.
     </p>
     <p class="conclusionNote">
       Vote with your brain and your heart.
