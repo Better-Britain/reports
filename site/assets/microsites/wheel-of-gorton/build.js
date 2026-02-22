@@ -965,7 +965,7 @@ function renderMethodContext() {
   return `
 <section class="methodWrap" aria-labelledby="methodTitle">
   <div class="methodCard">
-    <h2 id="methodTitle">How to read this</h2>
+    <h2 id="methodTitle">Signal vs Noise</h2>
     <p class="methodLead">
       Campaigns are designed to persuade. Parties are not neutral narrators of what their opponents said or did, and commercial media/analysis often optimises for attention and incentives rather than “fair comparison”.
     </p>
@@ -973,22 +973,8 @@ function renderMethodContext() {
       Media coverage can drift towards the easiest/clickiest story: the outrage, the horse‑race (“who’s going to win?”), sometimes framed like betting odds, plus a handful of mini scandals — instead of the slower work of explaining what problems constituents actually face, what candidates have done, and what interests they serve.
     </p>
     <p class="methodLead">
-      For many voters, the real question isn’t “who will win?”, but: <strong>why should I vote for any of them?</strong> When politics looks like drama and results are buried behind waffle and name-calling, disengagement and low turnout become predictable outcomes.
+      For many people, the real question isn’t “who will win?”, but: <strong>why should I vote for any of them?</strong> When politics looks like drama and results are buried behind waffle and name-calling, disengagement and low turnout become predictable outcomes.
     </p>
-
-    <details class="easterEgg">
-      <summary><strong>Many voters are angry</strong></summary>
-      <div class="easterBody">
-        <p>
-          It’s easy to look at political opponents and conclude they’re “thick”. Part of that is how social media flattens complex, nuanced trade-offs into tribal “in/out” identities.
-          But most of real life is compromise, timing, and imperfect information.
-        </p>
-        <p>
-          Real people get nuance — but they can’t carry the burden of <em>every</em> big compromise forever. If it never feels like your turn for an upswing, it’s human to reach for the choice that promises:
-          “at least we’ll get poorer together”, even if the richest get to get poorer last.
-        </p>
-      </div>
-    </details>
   </div>
 </section>
   `.trim();
@@ -1264,9 +1250,6 @@ ${sourcesHtml}
 
 ${renderConclusion()}
 
-
-
-${renderDemocracyNote()}
   `.trim();
 }
 
