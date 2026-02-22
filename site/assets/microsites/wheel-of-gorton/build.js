@@ -870,22 +870,26 @@ function renderAdditionalSources(additionalSourcesMarkdown) {
 function renderFlyerGallery(flyers) {
   const items = Array.isArray(flyers) ? flyers : [];
   if (!items.length) {
-    return `<p class="flyerEmpty"><em>No flyer scans found yet.</em> Add files to <code>site/assets/microsites/wheel-of-gorton/images/flyers/</code> (e.g. <code>flyer-001-front.png</code> + <code>flyer-001-back.png</code>).</p>`;
+    return `<p class="flyerEmpty"><em>No flyer scans found yet.</em> Add image files to <code>site/assets/microsites/wheel-of-gorton/images/flyers/</code>. Optionally add matching thumbnails to <code>images/flyers/thumbnails/</code> (same filename).</p>`;
   }
   return items.map((f) => {
-    const front = String(f.front || '').trim();
-    const back = String(f.back || '').trim();
+    const src = String(f.src || '').trim();
+    const thumb = String(f.thumb || f.src || '').trim();
     const title = String(f.title || f.id || '').trim();
-    const hasBack = Boolean(back);
     const a11y = title ? `Flyer scan: ${title}` : 'Flyer scan';
+    if (!src) return '';
     return `
-<a class="flyerThumb" href="${escapeHtml(front)}" data-role="flyer-thumb" data-front="${escapeHtml(front)}" data-back="${escapeHtml(back)}" data-title="${escapeHtml(title)}" aria-label="${escapeHtml(a11y)}">
-  <img src="${escapeHtml(front)}" alt="${escapeHtml(a11y)}" loading="lazy" />
+<div class="flyerItem">
+  <a class="flyerOpen" href="${escapeHtml(src)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a11y)}">
+    <img src="${escapeHtml(thumb)}" alt="${escapeHtml(a11y)}" loading="lazy" />
+  </a>
+  <a class="flyerDownload" href="${escapeHtml(src)}" download>
+    <span aria-hidden="true">⬇</span> Download
+  </a>
   <span class="flyerCap">${escapeHtml(title || 'Flyer')}</span>
-  ${hasBack ? `<span class="flyerBackTag" aria-hidden="true">front/back</span>` : ''}
-</a>
+</div>
     `.trim();
-  }).join('\n');
+  }).filter(Boolean).join('\n');
 }
 
 function resolveCandidateHeadshots(headshotFiles) {
@@ -934,6 +938,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   const flyerGalleryHtml = renderFlyerGallery(flyers);
   const headshotsJson = escapeHtml(JSON.stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] }));
   const contactsHtml = renderCandidateContactsPanel({ candidates: candidateContacts });
+  const flyerGalleryHtml = renderFlyerGallery(flyers);
 
   return `
 <div class="topPanels">
@@ -992,6 +997,16 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
 
 ${contactsHtml}
 
+<section class="flyersWrap" aria-labelledby="flyersTitle">
+  <div class="flyersHead">
+    <h2 id="flyersTitle">Flyer scans</h2>
+    <p>Click a thumbnail to open the full scan in a new tab. The Download button uses the HTML <code>download</code> attribute (GitHub Pages-friendly).</p>
+  </div>
+  <div class="flyerGrid" data-role="flyer-gallery">
+    ${flyerGalleryHtml}
+  </div>
+</section>
+
 ${renderMethodContext()}
 
 <section class="receiptsWrap" aria-labelledby="receiptsTitle">
@@ -1015,35 +1030,6 @@ ${renderMethodContext()}
 
 ${renderConclusion()}
 
-<section class="flyersWrap" aria-labelledby="flyersTitle">
-  <div class="flyersHead">
-    <h2 id="flyersTitle">Flyer scans</h2>
-    <p>We’ll add a browseable set of scanned leaflets here (pan/zoom + flip front/back). For now: drop images in <code>images/flyers/</code>.</p>
-  </div>
-  <div class="flyerGrid" data-role="flyer-gallery">
-    ${flyerGalleryHtml}
-  </div>
-
-  <div class="flyerModal" data-role="flyer-modal" hidden>
-    <div class="flyerModalBackdrop" data-role="flyer-close" aria-hidden="true"></div>
-    <div class="flyerModalPanel" role="dialog" aria-modal="true" aria-label="Flyer viewer">
-      <div class="flyerModalBar">
-        <button type="button" class="flyerBtn" data-role="flyer-close">Close</button>
-        <div class="flyerModalControls">
-          <button type="button" class="flyerBtn" data-role="flyer-zoom-out">−</button>
-          <button type="button" class="flyerBtn" data-role="flyer-fit">Fit</button>
-          <button type="button" class="flyerBtn" data-role="flyer-zoom-in">+</button>
-          <button type="button" class="flyerBtn" data-role="flyer-flip" disabled>Flip</button>
-        </div>
-      </div>
-      <div class="flyerViewport" data-role="flyer-viewport">
-        <img class="flyerImg" data-role="flyer-img" alt="Flyer scan" />
-      </div>
-      <p class="flyerHint">Drag to pan. Use mouse wheel or +/- to zoom. Flip shows reverse side if present.</p>
-    </div>
-  </div>
-</section>
-
 ${renderAdditionalSources(additionalSourcesMarkdown)}
 
 ${renderCountsTable(statements)}
@@ -1061,31 +1047,39 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const candidateProfilesPath = path.join(src, DEFAULT_CANDIDATE_PROFILES_FILE);
 
   const flyersDir = path.join(src, 'images', 'flyers');
-  let flyerFiles = [];
+  let flyerEntries = [];
   try {
-    flyerFiles = await fs.readdir(flyersDir);
+    flyerEntries = await fs.readdir(flyersDir, { withFileTypes: true });
   } catch {
-    flyerFiles = [];
+    flyerEntries = [];
   }
-  const isImg = (f) => /\.(png|jpe?g|webp|gif)$/i.test(String(f || ''));
-  const flyersById = new Map();
-  for (const file of flyerFiles.filter(isImg)) {
-    const base = path.basename(file);
+  const isImg = (name) => /\.(png|jpe?g|webp|gif)$/i.test(String(name || ''));
+  const flyers = [];
+  for (const ent of flyerEntries) {
+    if (!ent?.isFile?.()) continue;
+    const base = String(ent.name || '').trim();
+    if (!base || !isImg(base)) continue;
     const ext = path.extname(base);
     const stem = base.slice(0, -ext.length);
-    const m = stem.match(/^(.*?)(?:[-_](front|back))?$/i);
-    const id = String(m?.[1] || stem).trim();
-    const side = String(m?.[2] || 'front').toLowerCase();
-    const pretty = id.replace(/[-_]+/g, ' ').trim();
-    const entry = flyersById.get(id) || { id, title: pretty || id, front: '', back: '' };
-    const rel = `./images/flyers/${base}`;
-    if (side === 'back') entry.back = rel;
-    else entry.front = rel;
-    flyersById.set(id, entry);
+    const pretty = stem.replace(/[-_]+/g, ' ').trim();
+
+    const srcRel = `./images/flyers/${base}`;
+    let thumbRel = '';
+    try {
+      await fs.access(path.join(flyersDir, 'thumbnails', base));
+      thumbRel = `./images/flyers/thumbnails/${base}`;
+    } catch {
+      thumbRel = srcRel;
+    }
+
+    flyers.push({
+      id: stem,
+      title: pretty || stem,
+      src: srcRel,
+      thumb: thumbRel
+    });
   }
-  const flyers = Array.from(flyersById.values())
-    .filter((f) => f.front)
-    .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  flyers.sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
 
   const headshotsDir = path.join(src, 'images', 'headshots');
   let headshotFiles = [];

@@ -10,6 +10,9 @@
   function init() {
     const grid = document.querySelector('[data-role="flyer-gallery"]');
     const modal = document.querySelector('[data-role="flyer-modal"]');
+    // New build (2026-02-22): thumbnails open the full scan in a new tab,
+    // and downloads use the HTML download attribute. If there is no modal,
+    // the viewer is intentionally disabled.
     if (!grid || !modal) return;
 
     const img = modal.querySelector('[data-role="flyer-img"]');
