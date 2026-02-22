@@ -74,6 +74,8 @@
     ['hugo-wils', { name: 'Hugo Wils', image: './images/headshots/hugo-wils.jpg' }]
   ]);
 
+  let HEADSHOT_MANIFEST = { resolved: {}, fallback: '' };
+
   function applyHeadshotManifest() {
     const el = document.getElementById('gorton-headshots');
     if (!el) return;
@@ -87,6 +89,8 @@
     const resolved = parsed && typeof parsed.resolved === 'object' ? parsed.resolved : {};
     const warnings = Array.isArray(parsed?.warnings) ? parsed.warnings : [];
     const fallback = String(parsed?.fallback || '').trim();
+
+    HEADSHOT_MANIFEST = { resolved, fallback };
 
     for (const [id, meta] of CANDIDATE_META.entries()) {
       const mapped = String(resolved[id] || '').trim();
@@ -358,7 +362,18 @@
   }
 
   function drawAvatar(groupEl, candidateId, radius, isMajor, state, onBadgeClick) {
-    const meta = CANDIDATE_META.get(candidateId) || { name: candidateId };
+    const baseMeta = CANDIDATE_META.get(candidateId) || {};
+    const displayName = String(
+      baseMeta.name
+      || state?.displayNameByCandidate?.get?.(candidateId)
+      || candidateId
+    ).trim() || String(candidateId || '').trim() || 'Unknown';
+    const meta = { name: displayName, image: baseMeta.image };
+    if (!meta.image) {
+      const mapped = String(HEADSHOT_MANIFEST?.resolved?.[candidateId] || '').trim();
+      if (mapped) meta.image = mapped;
+      else if (HEADSHOT_MANIFEST?.fallback) meta.image = String(HEADSHOT_MANIFEST.fallback || '').trim();
+    }
     const affiliation = String(
       state?.affiliationByCandidate?.get?.(candidateId)
       || AFFILIATION_FALLBACK_BY_LANE[laneFor(candidateId)]
@@ -945,6 +960,14 @@
     if (!wheelRing || !pieGroup || !avatarsGroup) return;
 
     const byIssue = collectReceiptsByIssue();
+    const displayNameByCandidate = new Map();
+    qsa(document, '[data-role="receipt"]').forEach(function (el) {
+      if (String(el.dataset.slot || '').toLowerCase() !== 'standoff') return;
+      const id = String(el.dataset.candidate || '').trim();
+      if (!id) return;
+      const nm = String(el.dataset.candidateName || '').trim();
+      if (nm && !displayNameByCandidate.has(id)) displayNameByCandidate.set(id, nm);
+    });
     const affiliations = collectAffiliationByCandidate(byIssue);
     const totals = issueTotals(byIssue);
     const counts = buildCountsByCandidateIssue(byIssue);
@@ -954,6 +977,7 @@
 
     const state = {
       byIssue,
+      displayNameByCandidate,
       affiliationByCandidate: affiliations,
       countsByCandidateIssue: counts,
       issue: '',

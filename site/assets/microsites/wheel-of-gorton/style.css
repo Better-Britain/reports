@@ -61,10 +61,44 @@ body{
 .microCrossLinks a{font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(34,24,19,.28)}
 .microCrossLinks a:hover{border-bottom-color:var(--accent)}
 
-.hero{margin:18px 0 8px}
+.hero{
+  margin:18px 0 10px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:14px 14px 12px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+}
 .heroCopy h1{margin:0 0 6px;font-size:34px;line-height:1.08}
-.heroLead{margin:0 0 8px;max-width:68ch}
-.heroFine{margin:0;color:var(--muted);font-size:13px}
+.heroLead{margin:0;max-width:78ch;color:rgba(34,24,19,.90)}
+.heroList{
+  margin:10px 0 0;
+  padding-left:18px;
+  max-width:92ch;
+}
+.heroList li{margin:4px 0;color:rgba(34,24,19,.86)}
+.heroList strong{font-weight:950}
+.heroDisclosure{
+  margin-top:12px;
+  background:rgba(244,234,214,.78);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:10px 12px;
+}
+.heroDisclosureRow{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:10px;
+  align-items:start;
+}
+.heroDisclosureRow + .heroDisclosureRow{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(34,24,19,.18)}
+.heroDisclosureLabel{font-weight:950;color:rgba(34,24,19,.90)}
+.heroDisclosureValue{color:rgba(34,24,19,.86)}
+@media (max-width: 560px){
+  .heroCopy h1{font-size:30px}
+  .heroDisclosureRow{grid-template-columns:1fr;gap:4px}
+}
 
 /* Candidate contacts panel (parsed from Candidate_Profiles.md) */
 .contactsSection{margin:14px 0 18px}

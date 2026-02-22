@@ -975,14 +975,13 @@ function renderConclusion() {
   <div class="conclusionCard">
     <h2 id="conclusionTitle">So… what kind of politics do you want?</h2>
     <p class="conclusionLead">
-      A fairly simple conclusion: most of the candidates on the ballot are <em>pretty good</em> — even where their objectives, priorities, and politics sharply diverge.
-    </p>
+      Better Britain Bureau is for competence and evidence-led policymaking. This page is built to make chasing/checking claims easier. Hopefully, modern tech helps turn noise into signal for future elections, instead of just putting us all out of work, but who really knows? Not us. 
+    </p
     <p class="conclusionBody">
-      The question for voters in Gorton, Denton, Levenshulme and Burnage isn’t just “which party?”, but what kind of politics you want in Britain:
-      competence and evidence-driven policymaking, or endless culture war incentives — scapegoating, division, and the slow replacement of hard trade-offs with easy enemies.
+      The question for voters in Gorton, Denton, Levy and Burnage isn’t just “which party?”, but what kind of politics you want?
     </p>
     <p class="conclusionNote">
-      Better Britain Bureau is for competence and evidence-led policymaking. This page is built to make checking claims easier: use the receipts, click through, and decide what you think is fair.
+      Vote with your heart and your brain, not with your worst fears.
     </p>
   </div>
 </section>
@@ -1113,7 +1112,11 @@ function resolveCandidateHeadshots(headshotFiles) {
     ? `./images/headshots/${stemToFile.get('angeliki-stogia')}`
     : './images/candidate-labour.png';
 
+  // Include all headshots by stem so the interactive can use non-candidate avatars too.
   const resolved = {};
+  for (const [stem, file] of stemToFile.entries()) {
+    resolved[String(stem)] = `./images/headshots/${file}`;
+  }
   const warnings = [];
 
   for (const id of CANDIDATE_IDS) {
@@ -1169,11 +1172,24 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   <div class="heroCopy">
     <h1>${escapeHtml(title)}</h1>
     <p class="heroLead">
-      A Mexican standoff, but it’s Gorton &amp; Denton: pick an issue, see what candidates said/did, then open the sources.
+      A quick, link-first microsite for the Gorton &amp; Denton by‑election: explore by topic, then check the original sources.
     </p>
-    <p class="heroFine">
-      Evidence icons: <span class="pill pill--kind">🎤 said</span> <span class="pill pill--kind">🧾 documented</span> <span class="pill pill--kind">🗳️ voted</span> <span class="pill pill--kind">🧩 aligned</span>
-    </p>
+    <ul class="heroList">
+      <li><strong>Interactive wheel</strong> — pick a topic, click a candidate, and jump to the relevant source cards.</li>
+      <li><strong>Candidate profiles</strong> — links you can use, plus a short verified background.</li>
+      <li><strong>Flyer scans</strong> — browse and download the campaign material.</li>
+      <li><strong>Method &amp; Sources</strong> — grouped cards with topic filters, deep‑links, and optional tags.</li>
+    </ul>
+    <div class="heroDisclosure" role="note" aria-label="About this page">
+      <div class="heroDisclosureRow">
+        <span class="heroDisclosureLabel">Paid for by</span>
+        <span class="heroDisclosureValue">Nobody — this is my own project, as part of learning to use AI tools properly and responsibly (I’ve been a professional programmer for ~30 years).</span>
+      </div>
+      <div class="heroDisclosureRow">
+        <span class="heroDisclosureLabel">Local note</span>
+        <span class="heroDisclosureValue">I live in Longsight (within Gorton &amp; Denton), and I’ve lived in Gorton, Levenshulme and Reddish for 20+ years.</span>
+      </div>
+    </div>
   </div>
 </header>
 
