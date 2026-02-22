@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spin Wheel UI (SVG)</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1621;
+      --ink:#e9eef7;
+      --muted:#94a3b8;
+      --ring:#1e2a3a;
+      --shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 900px at 50% 30%, #101a28 0%, var(--bg) 55%, #05070b 100%);
+      color:var(--ink);
+      display:grid;
+      place-items:center;
+    }
+
+    .wrap{
+      width:min(860px, 92vw);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .stage{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hud{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      align-items:center;
+      background: rgba(15,22,33,.55);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;
+      padding:10px 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hud .left{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .hud .right{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+
+    button{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--ink);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:650;
+      letter-spacing:.2px;
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover{background: rgba(255,255,255,.09)}
+    button:active{transform: translateY(1px) scale(.99)}
+    button:disabled{opacity:.55; cursor:not-allowed}
+
+    .pill{
+      border:1px solid rgba(255,255,255,.1);
+      background: rgba(0,0,0,.18);
+      padding:8px 10px;
+      border-radius:999px;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      font-size:13px;
+    }
+
+    .dot{width:8px;height:8px;border-radius:999px;background:#22c55e; box-shadow: 0 0 16px rgba(34,197,94,.55)}
+    .dot.busy{background:#f59e0b; box-shadow: 0 0 16px rgba(245,158,11,.45)}
+
+    .stage svg{width:100%; height:100%; display:block}
+
+    /* Avatar rattle while spinning (applied to the avatar group) */
+    @keyframes rattle{
+      0%{transform: translate(0,0) rotate(0deg)}
+      10%{transform: translate(0.8px,-0.4px) rotate(-0.6deg)}
+      20%{transform: translate(-0.5px,0.9px) rotate(0.8deg)}
+      30%{transform: translate(0.6px,0.2px) rotate(-0.4deg)}
+      40%{transform: translate(-0.8px,-0.3px) rotate(0.7deg)}
+      50%{transform: translate(0.4px,0.7px) rotate(-0.8deg)}
+      60%{transform: translate(-0.2px,-0.8px) rotate(0.5deg)}
+      70%{transform: translate(0.9px,0.1px) rotate(-0.7deg)}
+      80%{transform: translate(-0.6px,0.5px) rotate(0.6deg)}
+      90%{transform: translate(0.2px,-0.7px) rotate(-0.5deg)}
+      100%{transform: translate(0,0) rotate(0deg)}
+    }
+
+    .rattling{animation: rattle 220ms linear infinite}
+
+    /* Inner slice flash */
+    @keyframes sliceFlash{
+      0%{filter: brightness(1) saturate(1)}
+      50%{filter: brightness(1.6) saturate(1.35)}
+      100%{filter: brightness(1) saturate(1)}
+    }
+    .slice.flash{animation: sliceFlash 420ms ease-in-out infinite}
+
+    /* Slice hover + selection */
+    .slice{transition: filter .18s ease, opacity .18s ease}
+    .slice:hover{filter: brightness(1.25) saturate(1.35) drop-shadow(0 0 12px rgba(255,255,255,.35))}
+    .slice.selected{filter: brightness(1.18) saturate(1.35) drop-shadow(0 0 18px rgba(255,255,255,.45))}
+    .slice.dim{opacity:.55; filter: brightness(.92) saturate(.85)}
+    .slice.dim:hover{opacity:.95}
+
+    /* Avatar winner flash */
+    @keyframes winnerFlash{
+      0%{filter: drop-shadow(0 0 0 rgba(255,255,255,0))}
+      50%{filter: drop-shadow(0 0 16px rgba(255,255,255,.55))}
+      100%{filter: drop-shadow(0 0 0 rgba(255,255,255,0))}
+    }
+    .avatar.winner{animation: winnerFlash 500ms ease-in-out 5}
+
+    /* Speech bubble snap */
+    @keyframes bubbleIn{
+      0%{opacity:0; transform: translateY(8px) scale(.94)}
+      70%{opacity:1; transform: translateY(0) scale(1.02)}
+      100%{opacity:1; transform: translateY(0) scale(1)}
+    }
+    .bubble.show{opacity:1; pointer-events:auto; animation: bubbleIn 180ms ease-out}
+
+    /* Hit-testing */
+    .slice{cursor:pointer; outline:none; pointer-events:auto}
+    #inner circle, #inner text, #inner line {pointer-events:none}
+    #slices text, #slices line {pointer-events:none}
+    #pointer {pointer-events:none}
+    .slice:focus-visible{filter: drop-shadow(0 0 10px rgba(255,255,255,.45))}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stage">
+      <svg id="ui" viewBox="0 0 1000 1000" role="img" aria-label="Spinning selection wheel">
+        <defs>
+          <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".45"/>
+          </filter>
+          <filter id="ringGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#9bdcff" flood-opacity=".20"/>
+          </filter>
+          <clipPath id="wheelClip">
+            <circle cx="500" cy="500" r="450" />
+          </clipPath>
+          <clipPath id="innerClip">
+            <circle cx="500" cy="500" r="150" />
+          </clipPath>
+
+          <!-- Simple gradient for avatar frames -->
+          <radialGradient id="frameGrad" cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.45)"/>
+            <stop offset="55%" stop-color="rgba(255,255,255,.10)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,.35)"/>
+          </radialGradient>
+
+          <!-- Bubble drop shadow -->
+          <filter id="bubbleShadow" x="-40%" y="-40%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity=".40"/>
+          </filter>
+        </defs>
+
+        <!-- Outer wheel body that rotates -->
+        <g id="wheel" transform="translate(500 500) rotate(0) translate(-500 -500)" filter="url(#softShadow)">
+          <circle cx="500" cy="500" r="450" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.08)" stroke-width="2" />
+          <circle cx="500" cy="500" r="420" fill="rgba(0,0,0,.12)" stroke="rgba(255,255,255,.07)" stroke-width="2" />
+          <g clip-path="url(#wheelClip)">
+            <g id="wheelWedges"></g>
+            <g opacity=".22" stroke="rgba(255,255,255,.12)" stroke-width="2">
+              <line x1="500" y1="60" x2="500" y2="940" />
+              <line x1="60" y1="500" x2="940" y2="500" />
+              <line x1="140" y1="140" x2="860" y2="860" />
+              <line x1="860" y1="140" x2="140" y2="860" />
+            </g>
+          </g>
+
+          <!-- Rim -->
+          <circle cx="500" cy="500" r="450" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="14" />
+          <circle cx="500" cy="500" r="438" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="8" />
+        </g>
+        <!-- Arrow / pointer (fixed) -->
+        <g id="pointer" transform="translate(500 110)" filter="url(#ringGlow)">
+          <path d="M0,0 L-20,52 L0,44 L20,52 Z" fill="rgba(255,255,255,.92)" />
+          <path d="M0,44 L0,70" stroke="rgba(255,255,255,.75)" stroke-width="6" stroke-linecap="round" />
+        </g>
+
+        <!-- Avatars ring (fixed, but rattles while spinning) -->
+        <g id="avatars" transform="translate(500 500)">
+          <!-- injected by JS -->
+        </g>
+
+        <!-- Inner slices (fixed) -->
+        <g id="inner" filter="url(#softShadow)">
+          <circle cx="500" cy="500" r="160" fill="rgba(0,0,0,.25)" stroke="rgba(255,255,255,.10)" stroke-width="2" />
+          <g clip-path="url(#innerClip)">
+            <g id="slices"></g>
+          </g>
+          <circle cx="500" cy="500" r="150" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10" />
+          <circle cx="500" cy="500" r="128" fill="rgba(0,0,0,.18)" stroke="rgba(255,255,255,.10)" stroke-width="2" />
+          <text x="500" y="506" text-anchor="middle" fill="rgba(255,255,255,.85)" font-size="18" font-weight="700" letter-spacing=".3" pointer-events="none">Pick a topic</text>
+        </g>
+
+        <!-- Bubbles (fixed overlay, positioned near each avatar; hidden until reveal) -->
+        <g id="bubbles"><!-- injected by JS --></g>
+      </svg>
+    </div>
+
+    <div class="hud">
+      <div class="left">
+        <label class="pill" style="gap:10px; cursor:pointer; user-select:none;">
+          <input id="autoSpin" type="checkbox" style="width:16px;height:16px; accent-color:#22c55e;" />
+          <span>Auto-spin</span>
+        </label>
+        <div class="pill" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; color: rgba(233,238,247,.78);">
+          <span id="debugText">rot=0.0° norm=0.0°</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="pill">Winner: <span id="winnerText">—</span></div>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const svg = document.getElementById('ui');
+  const wheel = document.getElementById('wheel');
+  const wheelWedgesG = document.getElementById('wheelWedges');
+  const avatarsG = document.getElementById('avatars');
+  const slicesG = document.getElementById('slices');
+  const bubblesG = document.getElementById('bubbles');
+
+  const resetBtn = document.getElementById('resetBtn');
+  const autoSpinEl = document.getElementById('autoSpin');
+  const statusDot = document.getElementById('statusDot');
+  const statusText = document.getElementById('statusText');
+  const winnerText = document.getElementById('winnerText');
+  const debugText = document.getElementById('debugText');
+
+  const C = { x: 500, y: 500 };
+
+  const AVATAR_RING_R_OUTER = 360;
+  const AVATAR_RING_R_MID = 260;
+
+  const AVATAR_R_SMALL = 30;
+  const AVATAR_FRAME_R_SMALL = 38;
+
+  const AVATAR_R_BIG = 42;
+  const AVATAR_FRAME_R_BIG = 54;
+
+  const INNER_R = 150;
+
+  const SLICE_LABELS = [
+    { id: 'culture', label: 'Culture War', color: '#ff3b30' },
+    { id: 'homes', label: 'Homes & Family', color: '#ffcc00' },
+    { id: 'env', label: 'Environment', color: '#34c759' },
+    { id: 'biz', label: 'Business', color: '#0a84ff' },
+    { id: 'other', label: 'Other', color: '#bf5af2' },
+  ];
+
+  const AVATARS = [
+    { id:'a1', name:'Asha',  img:'https://i.pravatar.cc/128?img=11', lines:['Yeah, that tracks.', 'Let\'s unpack it.'] },
+    { id:'a2', name:'Ben',   img:'https://i.pravatar.cc/128?img=12', lines:['Nope.', 'Bold claim.'] },
+    { id:'a3', name:'Cleo',  img:'https://i.pravatar.cc/128?img=13', lines:['We\'re not doing that.', 'I\'m listening.'] },
+    { id:'a4', name:'Dima',  img:'https://i.pravatar.cc/128?img=14', lines:['Interesting…', 'Say more.'] },
+    { id:'a5', name:'Eve',   img:'https://i.pravatar.cc/128?img=15', lines:['Hard disagree.', 'Ok, fine.'] },
+    { id:'a6', name:'Fay',   img:'https://i.pravatar.cc/128?img=16', lines:['I\'ll allow it.', 'That\'s spicy.'] },
+    { id:'a7', name:'Gus',   img:'https://i.pravatar.cc/128?img=17', lines:['Context matters.', 'That\'s the point.'] },
+    { id:'a8', name:'Hana',  img:'https://i.pravatar.cc/128?img=18', lines:['Sure, but…', 'Wait, what?'] },
+    { id:'a9', name:'Ivo',   img:'https://i.pravatar.cc/128?img=19', lines:['Numbers first.', 'Receipts?'] },
+    { id:'a10', name:'Jae',  img:'https://i.pravatar.cc/128?img=20', lines:['Let\'s be real.', 'That\'s wild.'] },
+    { id:'a11', name:'Kira', img:'https://i.pravatar.cc/128?img=21', lines:['Not convinced.', 'Fine, go on.'] },
+    { id:'a12', name:'Leo',  img:'https://i.pravatar.cc/128?img=22', lines:['I\'ve seen worse.', 'Ok then.'] },
+  ];
+
+  // --- geometry helpers ---
+  const deg2rad = d => d * Math.PI / 180;
+
+  function polar(cx, cy, r, angDeg){
+    const a = deg2rad(angDeg - 90);
+    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+  }
+
+  function arcPath(cx, cy, r, startDeg, endDeg){
+    const s = polar(cx, cy, r, startDeg);
+    const e = polar(cx, cy, r, endDeg);
+    const large = (endDeg - startDeg) % 360 > 180 ? 1 : 0;
+    return `M ${cx} ${cy} L ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y} Z`;
+  }
+
+  function ringWedgePath(cx, cy, rOuter, rInner, startDeg, endDeg){
+    const p1 = polar(cx, cy, rOuter, startDeg);
+    const p2 = polar(cx, cy, rOuter, endDeg);
+    const p3 = polar(cx, cy, rInner, endDeg);
+    const p4 = polar(cx, cy, rInner, startDeg);
+    const large = (endDeg - startDeg) % 360 > 180 ? 1 : 0;
+    return `M ${p1.x} ${p1.y} A ${rOuter} ${rOuter} 0 ${large} 1 ${p2.x} ${p2.y} L ${p3.x} ${p3.y} A ${rInner} ${rInner} 0 ${large} 0 ${p4.x} ${p4.y} Z`;
+  }
+
+  function clampAngle360(a){
+    let x = a % 360;
+    if (x < 0) x += 360;
+    return x;
+  }
+
+  function angleDistance(a, b){
+    const d = Math.abs(clampAngle360(a) - clampAngle360(b));
+    return Math.min(d, 360 - d);
+  }
+
+  function el(name, attrs = {}, children = []){
+    const n = document.createElementNS('http://www.w3.org/2000/svg', name);
+    for (const [k,v] of Object.entries(attrs)){
+      if (k === 'class') n.setAttribute('class', v);
+      else if (k === 'textContent') n.textContent = v;
+      else n.setAttribute(k, v);
+    }
+    for (const c of children) n.appendChild(c);
+    return n;
+  }
+
+  // --- wheel wedges (visual rotation cue) ---
+  const WEDGE_COUNT = 24;
+  const wedgeSpan = 360 / WEDGE_COUNT;
+  const WEDGE_RO = 418;
+  const WEDGE_RI = 220;
+  const WEDGE_COLORS = ['#ff3b30','#ffcc00','#34c759','#0a84ff','#bf5af2','#ff6b00'];
+
+  if (wheelWedgesG && wheelWedgesG.childNodes.length === 0){
+    for (let i = 0; i < WEDGE_COUNT; i++){
+      const start = i * wedgeSpan;
+      const end = start + wedgeSpan;
+      const color = WEDGE_COLORS[i % WEDGE_COLORS.length];
+      wheelWedgesG.appendChild(el('path', {
+        d: ringWedgePath(C.x, C.y, WEDGE_RO, WEDGE_RI, start, end),
+        fill: color,
+        opacity: (i % 2 ? '0.18' : '0.26'),
+        stroke: 'rgba(0,0,0,.28)',
+        'stroke-width': '1'
+      }));
+    }
+
+    for (let i = 0; i < WEDGE_COUNT; i++){
+      const ang = i * wedgeSpan + wedgeSpan/2;
+      const a1 = polar(C.x, C.y, 434, ang);
+      const a2 = polar(C.x, C.y, 450, ang);
+      wheelWedgesG.appendChild(el('line', {
+        x1: a1.x, y1: a1.y, x2: a2.x, y2: a2.y,
+        stroke: 'rgba(255,255,255,.18)',
+        'stroke-width': '3',
+        'stroke-linecap': 'round'
+      }));
+    }
+  }
+
+  // --- inner slices ---
+  const SLICE_COUNT = SLICE_LABELS.length;
+  const sliceSpan = 360 / SLICE_COUNT;
+  const sliceStartOffset = -sliceSpan/2;
+
+  const sliceEls = new Map();
+
+  if (!slicesG.querySelector('.slice')){
+    SLICE_LABELS.forEach((s, i) => {
+      const start = sliceStartOffset + i * sliceSpan;
+      const end = start + sliceSpan;
+
+      const path = el('path', {
+        d: arcPath(C.x, C.y, INNER_R, start, end),
+        fill: s.color,
+        opacity: '0.95',
+        class: 'slice',
+        tabindex: '0',
+        'data-slice': s.id,
+        'aria-label': s.label,
+        role: 'button'
+      });
+
+      const mid = start + sliceSpan/2;
+      const p = polar(C.x, C.y, INNER_R * 0.62, mid);
+      const label = el('text', {
+        x: p.x,
+        y: p.y,
+        'text-anchor':'middle',
+        'dominant-baseline':'middle',
+        fill:'rgba(0,0,0,.78)',
+        'font-size':'16',
+        'font-weight':'800',
+        'pointer-events':'none',
+        textContent: s.label
+      });
+
+      const edge = polar(C.x, C.y, INNER_R, start);
+      const sep = el('line', {
+        x1: C.x, y1: C.y, x2: edge.x, y2: edge.y,
+        stroke:'rgba(255,255,255,.22)',
+        'stroke-width':'2',
+        'pointer-events':'none'
+      });
+
+      slicesG.appendChild(path);
+      slicesG.appendChild(label);
+      slicesG.appendChild(sep);
+
+      sliceEls.set(s.id, path);
+    });
+  } else {
+    slicesG.querySelectorAll('.slice').forEach(p => {
+      sliceEls.set(p.getAttribute('data-slice'), p);
+    });
+  }
+
+  // --- avatars ---
+  const AVATAR_COUNT = AVATARS.length;
+  const BIG_COUNT = Math.min(3, AVATAR_COUNT);
+  const SMALL_COUNT = Math.max(0, AVATAR_COUNT - BIG_COUNT);
+
+  const bigAngles = [0, 120, 240];
+  const smallOffset = 20;
+  const smallStep = SMALL_COUNT ? 360 / SMALL_COUNT : 360;
+
+  const avatarsInnerG = el('g', { id: 'avatarsInner' });
+  avatarsG.appendChild(avatarsInnerG);
+
+  AVATARS.forEach((av, i) => {
+    const isBig = i < BIG_COUNT;
+    const ang = isBig ? bigAngles[i % bigAngles.length] : (smallOffset + (i - BIG_COUNT) * smallStep);
+
+    av.angleDeg = clampAngle360(ang);
+
+    const ringR = isBig ? AVATAR_RING_R_MID : AVATAR_RING_R_OUTER;
+    const rImg = isBig ? AVATAR_R_BIG : AVATAR_R_SMALL;
+    const rFrame = isBig ? AVATAR_FRAME_R_BIG : AVATAR_FRAME_R_SMALL;
+
+    const p = polar(0, 0, ringR, ang);
+
+    const frame = el('circle', {
+      cx: p.x, cy: p.y, r: rFrame,
+      fill: 'url(#frameGrad)',
+      stroke: 'rgba(255,255,255,.22)',
+      'stroke-width': isBig ? '2.5' : '2'
+    });
+
+    const border = el('circle', {
+      cx: p.x, cy: p.y, r: rImg + 2,
+      fill: 'rgba(0,0,0,.25)',
+      stroke: 'rgba(0,0,0,.35)',
+      'stroke-width': '2'
+    });
+
+    const img = el('image', {
+      href: av.img,
+      x: p.x - rImg,
+      y: p.y - rImg,
+      width: rImg*2,
+      height: rImg*2,
+      preserveAspectRatio: 'xMidYMid slice'
+    });
+
+    const clipId = `clip_${av.id}`;
+    const clip = el('clipPath', { id: clipId }, [
+      el('circle', { cx: p.x, cy: p.y, r: rImg })
+    ]);
+    svg.querySelector('defs').appendChild(clip);
+    img.setAttribute('clip-path', `url(#${clipId})`);
+
+    const nameR = ringR + (isBig ? 78 : 56);
+    const nameP = polar(0, 0, nameR, ang);
+    const name = el('text', {
+      x: nameP.x,
+      y: nameP.y,
+      'text-anchor':'middle',
+      'dominant-baseline':'middle',
+      fill:'rgba(255,255,255,.78)',
+      'font-size': isBig ? '14' : '12',
+      'font-weight': isBig ? '750' : '650',
+      opacity: '.92',
+      textContent: av.name,
+      'pointer-events':'none'
+    });
+
+    const g = el('g', { class: 'avatar', 'data-avid': av.id, 'data-size': (isBig ? 'big' : 'small') });
+    g.appendChild(frame);
+    g.appendChild(border);
+    g.appendChild(img);
+
+    g.style.cursor = 'pointer';
+    g.addEventListener('click', () => { revealAvatar(av); });
+
+    avatarsInnerG.appendChild(g);
+    avatarsInnerG.appendChild(name);
+
+    av._node = g;
+    av._center = { x: p.x, y: p.y };
+  });
+
+  avatarsG.setAttribute('transform', `translate(${C.x} ${C.y})`);
+
+  // --- bubbles ---
+  function bubblePath(w, h, tailSide){
+    const r = 14;
+    if (tailSide === 'left'){
+      return `M ${r} 0 H ${w-r} Q ${w} 0 ${w} ${r} V ${h-r} Q ${w} ${h} ${w-r} ${h} H ${r} Q 0 ${h} 0 ${h-r} V ${r} Q 0 0 ${r} 0 Z M 18 ${h-10} L 2 ${h-2} L 20 ${h-2} Z`;
+    }
+    if (tailSide === 'right'){
+      return `M ${r} 0 H ${w-r} Q ${w} 0 ${w} ${r} V ${h-r} Q ${w} ${h} ${w-r} ${h} H ${r} Q 0 ${h} 0 ${h-r} V ${r} Q 0 0 ${r} 0 Z M ${w-18} ${h-10} L ${w-2} ${h-2} L ${w-20} ${h-2} Z`;
+    }
+    return `M ${r} 0 H ${w-r} Q ${w} 0 ${w} ${r} V ${h-r} Q ${w} ${h} ${w-r} ${h} H ${r} Q 0 ${h} 0 ${h-r} V ${r} Q 0 0 ${r} 0 Z`;
+  }
+
+  const BUBBLE_W = 180;
+  const BUBBLE_H = 56;
+
+  AVATARS.forEach((av) => {
+    const {x,y} = av._center;
+    const candidates = [
+      { key:0, dx: (x>0? -BUBBLE_W-22 : 22), dy: -80, tail: (x>0? 'right':'left') },
+      { key:1, dx: (x>0? -BUBBLE_W-10 : 10), dy:  18, tail: (x>0? 'right':'left') },
+    ];
+
+    av._bubbles = [];
+
+    for (const c of candidates){
+      const gx = C.x + x + c.dx;
+      const gy = C.y + y + c.dy;
+
+      const g = el('g', {
+        class: 'bubble',
+        'data-avid': av.id,
+        'data-bkey': String(c.key),
+        opacity: '0',
+        style: 'pointer-events:none;'
+      });
+
+      const bg = el('path', {
+        d: bubblePath(BUBBLE_W, BUBBLE_H, c.tail),
+        fill: 'rgba(255,255,255,.94)',
+        filter: 'url(#bubbleShadow)'
+      });
+
+      const t = el('text', {
+        x: 14,
+        y: 28,
+        fill: 'rgba(0,0,0,.84)',
+        'font-size': '14',
+        'font-weight': '750'
+      });
+      t.textContent = av.lines[c.key] ?? av.lines[0] ?? '…';
+
+      g.appendChild(bg);
+      g.appendChild(t);
+      g.setAttribute('transform', `translate(${gx} ${gy})`);
+
+      bubblesG.appendChild(g);
+      av._bubbles.push(g);
+    }
+  });
+
+  // --- state ---
+  let chosenSlice = null;
+  let spinning = false;
+  let rotation = 0;
+  let autoSpin = false;
+  let autoTimer = null;
+  let lastWinner = null;
+
+  function setStatus(text, busy){
+    if (statusText) statusText.textContent = text;
+    if (statusDot) statusDot.classList.toggle('busy', !!busy);
+  }
+
+  function clearSliceFlash(){
+    for (const p of sliceEls.values()) p.classList.remove('flash');
+  }
+
+  function flashSlice(id){
+    clearSliceFlash();
+    const p = sliceEls.get(id);
+    if (p) p.classList.add('flash');
+  }
+
+  function setSliceSelected(id){
+    for (const [sid, p] of sliceEls){
+      p.classList.toggle('selected', sid === id);
+      p.classList.toggle('dim', !!id && sid !== id);
+    }
+  }
+
+  function hideAllBubbles(){
+    for (const av of AVATARS){
+      for (const b of av._bubbles){
+        b.classList.remove('show');
+        b.setAttribute('opacity','0');
+        b.style.pointerEvents = 'none';
+      }
+    }
+  }
+
+  function revealAvatar(av){
+    hideAllBubbles();
+    for (const x of AVATARS) x._node.classList.remove('winner');
+    av._node.classList.add('winner');
+
+    const idx = Math.random() < 0.5 ? 0 : 1;
+    const b = av._bubbles[idx];
+    b.classList.add('show');
+    b.setAttribute('opacity','1');
+    b.style.pointerEvents = 'auto';
+
+    winnerText.textContent = av.name;
+    lastWinner = av;
+  }
+
+  function pickWinner(rotationDeg){
+    const target = clampAngle360(-rotationDeg);
+    let best = null;
+    let bestDist = Infinity;
+    for (const av of AVATARS){
+      const d = angleDistance(av.angleDeg, target);
+      if (d < bestDist){ bestDist = d; best = av; }
+    }
+    return best;
+  }
+
+  // --- animation ---
+  let lastDebugAt = 0;
+  function maybeUpdateDebug(force=false){
+    const now = performance.now();
+    if (!force && now - lastDebugAt < 66) return;
+    lastDebugAt = now;
+
+    const norm = clampAngle360(rotation);
+    const target = clampAngle360(-rotation);
+    const w = lastWinner ? lastWinner.name : '—';
+    debugText.textContent = `rot=${rotation.toFixed(1)}° norm=${norm.toFixed(1)}° target=${target.toFixed(1)}° slice=${chosenSlice ?? '—'} winner=${w}`;
+  }
+
+  function setWheelRotation(deg){
+    rotation = deg;
+    const t = `translate(500 500) rotate(${deg}) translate(-500 -500)`;
+    wheel.setAttribute('transform', t);
+    maybeUpdateDebug();
+  }
+
+  function easeOutCubic(t){
+    return 1 - Math.pow(1 - t, 3);
+  }
+  function easeOutQuint(t){
+    return 1 - Math.pow(1 - t, 5);
+  }
+
+  function animateSpin(toDeg, ms){
+    const from = rotation;
+    const start = performance.now();
+
+    spinning = true;
+    avatarsInnerG.classList.add('rattling');
+    setStatus('Spinning…', true);
+
+    if (chosenSlice) flashSlice(chosenSlice);
+
+    hideAllBubbles();
+    winnerText.textContent = '—';
+    lastWinner = null;
+    for (const x of AVATARS) x._node.classList.remove('winner');
+
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / ms);
+      const eased = easeOutQuint(t);
+      const cur = from + (toDeg - from) * eased;
+      setWheelRotation(cur);
+
+      if (t < 1){
+        requestAnimationFrame(tick);
+      } else {
+        spinning = false;
+        avatarsInnerG.classList.remove('rattling');
+        setStatus('Revealed', false);
+        clearSliceFlash();
+        setSliceSelected(chosenSlice);
+
+        const winner = pickWinner(rotation);
+        revealAvatar(winner);
+
+        maybeUpdateDebug(true);
+
+        if (autoSpin && chosenSlice){
+          clearTimeout(autoTimer);
+          autoTimer = setTimeout(() => spin(), 900);
+        }
+      }
+    };
+
+    requestAnimationFrame(tick);
+  }
+
+  function spin(){
+    if (!chosenSlice || spinning) return;
+    const extra = 360 * 12 + Math.floor(Math.random() * 360);
+    const to = rotation + extra;
+    animateSpin(to, 3200);
+  }
+
+  function chooseSlice(id){
+    if (spinning) return;
+    chosenSlice = id;
+    setSliceSelected(id);
+    flashSlice(id);
+    spin();
+  }
+
+  slicesG.querySelectorAll('.slice').forEach(p => {
+    const id = p.getAttribute('data-slice');
+    p.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      chooseSlice(id);
+    });
+    p.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        chooseSlice(id);
+      }
+    });
+  });
+
+  autoSpinEl.addEventListener('change', () => {
+    autoSpin = !!autoSpinEl.checked;
+    clearTimeout(autoTimer);
+    autoTimer = null;
+
+    if (!autoSpin) return;
+
+    if (!chosenSlice){
+      const ids = SLICE_LABELS.map(s => s.id);
+      chosenSlice = ids[Math.floor(Math.random() * ids.length)];
+      setSliceSelected(chosenSlice);
+      flashSlice(chosenSlice);
+    }
+
+    if (!spinning){
+      autoTimer = setTimeout(() => spin(), 300);
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearTimeout(autoTimer);
+    autoTimer = null;
+    autoSpinEl.checked = false;
+    autoSpin = false;
+
+    spinning = false;
+    chosenSlice = null;
+    lastWinner = null;
+
+    setWheelRotation(0);
+    clearSliceFlash();
+    setSliceSelected(null);
+    hideAllBubbles();
+
+    winnerText.textContent = '—';
+    for (const x of AVATARS) x._node.classList.remove('winner');
+
+    setStatus('Choose a slice', false);
+    maybeUpdateDebug(true);
+  });
+
+  // init
+  setWheelRotation(0);
+  setStatus('Choose a slice', false);
+  setSliceSelected(null);
+  hideAllBubbles();
+  maybeUpdateDebug(true);
+})();
+</script>
+</body>
+</html>

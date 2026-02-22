@@ -1,0 +1,293 @@
+.sceneWrap {
+  margin-top: 6px;
+}
+
+.spinnerPanel {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 24, 19, 0.18);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+  background:
+    radial-gradient(900px 520px at 50% 8%, rgba(255, 246, 224, 0.72), rgba(255, 246, 224, 0) 62%),
+    radial-gradient(1100px 760px at 50% 112%, rgba(255, 204, 140, 0.20), rgba(255, 204, 140, 0) 58%),
+    linear-gradient(180deg, rgba(217, 189, 138, 0.66), rgba(202, 165, 106, 0.68));
+  padding: 14px 14px 12px;
+}
+
+.spinnerPanel::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.22), rgba(255,255,255,0) 60%),
+    radial-gradient(900px 650px at 50% 50%, rgba(0,0,0,.14), rgba(0,0,0,0) 55%),
+    radial-gradient(1000px 680px at 50% 120%, rgba(0,0,0,.22), rgba(0,0,0,0) 62%);
+  opacity: .85;
+  mix-blend-mode: normal;
+  z-index:0;
+}
+.spinnerPanel::after{
+  content:"";
+  position:absolute;
+  left:-20%;
+  right:-20%;
+  bottom:-45%;
+  height:60%;
+  pointer-events:none;
+  background:
+    radial-gradient(closest-side at 50% 0%, rgba(255,255,255,.26), rgba(255,255,255,0) 72%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
+  transform: skewY(-6deg);
+  filter: blur(0.2px);
+  opacity:.65;
+  z-index:0;
+}
+
+.spinnerSvg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.spinnerSlice {
+  cursor: pointer;
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+.spinnerSlice.is-selected {
+  filter: brightness(1.4) saturate(1.6) drop-shadow(0 0 12px rgba(255, 244, 214, 0.52));
+}
+
+.spinnerSlice:hover,
+.spinnerSlice:focus,
+.spinnerSlice.is-hover,
+.spinnerSliceWrap:hover .spinnerSlice,
+.spinnerSliceWrap:focus-within .spinnerSlice {
+  filter: brightness(1.33) saturate(1.5) drop-shadow(0 0 9px rgba(255, 244, 214, 0.4));
+}
+
+.spinnerSlice.is-dim {
+  opacity: 0.56;
+}
+
+.spinnerSlice.is-dim.is-hover {
+  opacity: 0.9;
+}
+
+.spinnerSlice.is-flashing {
+  animation: spinnerSliceFlash 0.5s ease-in-out infinite;
+}
+
+.spinnerSlice.is-soft-glow {
+  filter: brightness(1.16) saturate(1.22) drop-shadow(0 0 12px rgba(255, 244, 214, 0.4));
+}
+
+.spinnerSliceLabel {
+  transition: opacity 0.18s ease, fill 0.18s ease;
+}
+
+.spinnerSliceLabel.is-hover {
+  fill: rgba(24, 18, 14, 0.95);
+}
+
+.spinnerSliceLabel.is-selected {
+  fill: rgba(24, 18, 14, 0.97);
+}
+
+.spinnerSliceLabel.is-dim {
+  opacity: 0.64;
+}
+
+.spinnerSliceCount {
+  transition: opacity 0.18s ease;
+}
+
+.spinnerSliceCount.is-dim {
+  opacity: 0.62;
+}
+
+@keyframes spinnerSliceFlash {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+  100% { filter: brightness(1); }
+}
+
+.spinnerAvatar {
+  cursor: pointer;
+}
+
+.spinnerAvatarInner.rattling {
+  animation: spinnerRattle 0.16s linear infinite;
+}
+
+@keyframes spinnerRattle {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1px, 1px) rotate(-1deg); }
+  50% { transform: translate(1px, -1px) rotate(1deg); }
+  75% { transform: translate(-1px, -1px) rotate(-0.8deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.spinnerAvatar.is-winner .spinnerAvatarFrame {
+  filter: drop-shadow(0 0 12px rgba(255, 239, 194, 0.75));
+}
+
+.spinnerBadges .spinnerBadge {
+  cursor: pointer;
+}
+
+.spinnerBadges .spinnerBadge:hover {
+  filter: brightness(1.2) saturate(1.2) drop-shadow(0 0 7px rgba(255, 245, 214, 0.45));
+}
+
+.speechBubble {
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.speechHost {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.speechConnectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.speechConnectorPath {
+  stroke: rgba(255, 250, 236, 0.86);
+  stroke-width: 2.4;
+  fill: none;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.4));
+}
+
+.speechBubbleCard {
+  position: absolute;
+  width: min(260px, calc(100% - 24px));
+  overflow: visible;
+  pointer-events: none;
+  border-radius: 14px;
+  padding: 10px 12px 9px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(42, 27, 20, 0.25);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  color: #2a1b14;
+}
+
+.speechBubbleIssueTag {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border-top-right-radius: 14px;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0.72;
+}
+
+.speechBubbleText {
+  font-size: 14px;
+  line-height: 1.28;
+  font-weight: 750;
+}
+
+.speechBubbleMeta {
+  margin-top: 7px;
+  font-size: 12px;
+  opacity: 0.7;
+  pointer-events: auto;
+}
+
+.speechBubbleMetaLink {
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.speechBubbleMetaLink:hover {
+  opacity: 1;
+}
+
+.speechBubbleTail {
+  position: absolute;
+  width: 18px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border-right: 1px solid rgba(42, 27, 20, 0.25);
+  border-bottom: 1px solid rgba(42, 27, 20, 0.25);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  transform-origin: 0% 50%;
+  pointer-events: none;
+}
+
+.spinnerPromptCore,
+.spinnerPromptText {
+  transition: opacity 0.34s ease, transform 0.34s ease;
+  animation: promptPulse 1.8s ease-in-out infinite;
+}
+
+.spinnerPromptCore {
+  opacity: 0.97;
+}
+
+.spinnerPromptText {
+  letter-spacing: 0.2px;
+}
+
+.has-picked .spinnerPromptCore,
+.has-picked .spinnerPromptText {
+  opacity: 0;
+  animation: none;
+}
+
+.spinnerSliceWrap:hover ~ .spinnerPromptCore,
+.spinnerSliceWrap:hover ~ .spinnerPromptText,
+.spinnerSliceWrap:focus-within ~ .spinnerPromptCore,
+.spinnerSliceWrap:focus-within ~ .spinnerPromptText {
+  opacity: 0.34;
+}
+
+.prompt-removing .spinnerPromptCore,
+.prompt-removing .spinnerPromptText {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+@keyframes promptPulse {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  20% { transform: translate(1.2px, -0.8px) rotate(-0.7deg) scale(1.01); }
+  40% { transform: translate(-1px, 1px) rotate(0.8deg) scale(1.015); }
+  60% { transform: translate(1px, 0.9px) rotate(-0.5deg) scale(1.01); }
+  80% { transform: translate(-0.8px, -1.1px) rotate(0.6deg) scale(1.005); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+.privacyLine {
+  position: relative;
+  z-index: 1;
+  margin-top: 10px;
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.noJsNote {
+  position: relative;
+  z-index: 1;
+}
+
+.triangle {
+  display: none !important;
+}
