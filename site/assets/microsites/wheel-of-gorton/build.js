@@ -984,7 +984,7 @@ function renderConclusion() {
   return `
 <section class="conclusionWrap" aria-labelledby="conclusionTitle">
   <div class="conclusionCard">
-    <h2 id="conclusionTitle">So… what kind of politics do you want?</h2>
+    <h2 id="conclusionTitle">What kind of politics do we want?</h2>
     <p class="conclusionLead">
       Better Britain Bureau is for competence and evidence-led policymaking. This page is built to make chasing/checking claims easier. Hopefully, modern tech helps turn noise into signal for future elections, instead of just putting us all out of work, but who really knows? Not us. 
     </p>
