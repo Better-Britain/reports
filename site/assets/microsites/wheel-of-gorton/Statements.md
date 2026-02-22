@@ -270,10 +270,10 @@ Hannah Spencer said this to Matt Goodwin at the Manchester Evening News hustings
 Sources:
 - [The Guardian — report on the MEN hustings clash](https://www.theguardian.com/uk-news/2026/feb/12/labour-reform-candidates-clash-women-feeling-threatened-far-right-rhetoric)
 
-<!--meta id="gd-170" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="homes-streets" kind="documented" date="2026-02-19" -->
+<!--meta id="gd-170" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-02-19" -->
 Denton’s “left behind” feeling has created an opening Reform is trying to exploit.
 Sources:
-- [The Guardian — Denton/Gorton by-election reporting](https://www.theguardian.com/politics/2026/feb/19/forget-beeb-were-busy-getting-through-life-denton-and-the-battle-for-uk-by-election-seat)
+- [The Guardian — Denton/Gorton by-election reporting](https://www.theguardian.com/uk-news/2026/feb/19/gorton-denton-byelection-disenchantment-reform)
 
 <!--meta id="gd-180" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-28" -->
 Labour warned that a Green vote could “risk letting Reform in” under first-past-the-post.
