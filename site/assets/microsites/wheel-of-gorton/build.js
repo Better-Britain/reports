@@ -778,12 +778,12 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
   }
   const totalCount = list.length;
   const filterBtns = [
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--culture" data-role="sources-filter" data-issue="culture-war" data-label="Culture" title="Culture">${escapeHtml(String(issueCounts['culture-war'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--jobs" data-role="sources-filter" data-issue="jobs-rights" data-label="Jobs" title="Jobs">${escapeHtml(String(issueCounts['jobs-rights'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--homes" data-role="sources-filter" data-issue="homes-streets" data-label="Homes" title="Homes">${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--health" data-role="sources-filter" data-issue="health-care" data-label="Health" title="Health">${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--transit" data-role="sources-filter" data-issue="transport-air" data-label="Transit" title="Transit">${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--all is-active" data-role="sources-filter" data-issue="" data-label="All" title="All">${escapeHtml(String(totalCount))}</button>`
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--culture" data-role="sources-filter" data-issue="culture-war" data-label="Culture war" title="Culture war"><span class="sourcesFilterIcon" aria-hidden="true">😡</span>${escapeHtml(String(issueCounts['culture-war'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--jobs" data-role="sources-filter" data-issue="jobs-rights" data-label="Jobs" title="Jobs"><span class="sourcesFilterIcon" aria-hidden="true">💼</span>${escapeHtml(String(issueCounts['jobs-rights'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--homes" data-role="sources-filter" data-issue="homes-streets" data-label="Homes" title="Homes"><span class="sourcesFilterIcon" aria-hidden="true">🏠</span>${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--health" data-role="sources-filter" data-issue="health-care" data-label="Health" title="Health"><span class="sourcesFilterIcon" aria-hidden="true">🏥</span>${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--transit" data-role="sources-filter" data-issue="transport-air" data-label="Transit" title="Transit"><span class="sourcesFilterIcon" aria-hidden="true">🚌</span>${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--all is-active" data-role="sources-filter" data-issue="" data-label="All" title="All"><span class="sourcesFilterIcon" aria-hidden="true">🗂️</span>${escapeHtml(String(totalCount))}</button>`
   ].join('');
 
   const inner = `
@@ -848,8 +848,7 @@ function renderSourcesSection(statements) {
   }
 
   const totalSourcesCount = list.length;
-
-  const renderCountsTableHtml = renderCountsTable(statements);
+  const countsInlineHtml = renderCountsTableInline(list);
 
   return `
 <section class="sourcesWrap" aria-labelledby="sourcesTitle">
@@ -862,11 +861,73 @@ function renderSourcesSection(statements) {
       <label class="sourcesToggleLabel" for="sources-tags" data-off="Show tags" data-on="Hide tags">Show tags</label>
       <label class="sourcesToggleLabel" for="sources-all" data-off="Show ALL ${escapeHtml(String(totalSourcesCount))} Sources" data-on="Showing ALL ${escapeHtml(String(totalSourcesCount))} Sources">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</label>
     </div>
+    ${countsInlineHtml ? `<div class="sourcesCounts" aria-label="Evidence activity summary">${countsInlineHtml}</div>` : ''}
   </div>
   <div class="sourcesPanels">
     ${panels.join('\n')}
   </div>
 </section>
+  `.trim();
+}
+
+function renderCountsTableInline(statements) {
+  const candidates = [
+    { id: 'angeliki-stogia', name: 'Angeliki Stogia' },
+    { id: 'hannah-spencer', name: 'Hannah Spencer' },
+    { id: 'matt-goodwin', name: 'Matt Goodwin' }
+  ];
+  const eligible = (statements || []).filter((s) =>
+    candidates.some((c) => c.id === s.candidate)
+    && PRIMARY_ISSUES.includes(String(s.issue || '').trim().toLowerCase())
+    && isEvidenceKind(s.kind)
+  );
+  if (!eligible.length) return '';
+
+  const counts = new Map(); // key: `${issue}:${candidate}`
+  for (const s of eligible) {
+    const issue = String(s.issue || '').trim().toLowerCase();
+    const candidate = String(s.candidate || '').trim().toLowerCase();
+    const key = `${issue}:${candidate}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+
+  const totals = new Map();
+  for (const c of candidates) totals.set(c.id, 0);
+  for (const issue of PRIMARY_ISSUES) {
+    for (const c of candidates) {
+      totals.set(c.id, (totals.get(c.id) || 0) + (counts.get(`${issue}:${c.id}`) || 0));
+    }
+  }
+
+  const rowsHtml = PRIMARY_ISSUES.map((issue) => {
+    const cells = candidates.map((c) => `<td data-candidate="${escapeHtml(c.id)}">${escapeHtml(String(counts.get(`${issue}:${c.id}`) || 0))}</td>`).join('');
+    return `<tr><th scope="row">${escapeHtml(issueLabel(issue))}</th>${cells}</tr>`;
+  }).join('\n');
+  const totalCells = candidates.map((c) => `<td data-candidate="${escapeHtml(c.id)}">${escapeHtml(String(totals.get(c.id) || 0))}</td>`).join('');
+
+  return `
+<div class="countsInline">
+  <div class="countsInlineTitle">Evidence activity (counts)</div>
+  <div class="countsTableWrap">
+    <table class="countsTable countsTable--inline">
+      <thead>
+        <tr>
+          <th scope="col">Issue</th>
+          ${candidates.map((c) => `<th scope="col">${escapeHtml(c.name)}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${rowsHtml}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row">Total</th>
+          ${totalCells}
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
   `.trim();
 }
 

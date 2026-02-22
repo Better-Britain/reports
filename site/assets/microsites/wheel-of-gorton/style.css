@@ -333,6 +333,11 @@ body{
   background:rgba(194,59,34,.10);
   border-color:rgba(194,59,34,.28);
 }
+
+.sourcesCounts{margin-top:12px}
+.countsInlineTitle{font-weight:950;font-size:13px;color:var(--muted);margin-bottom:8px}
+.countsTable--inline th,.countsTable--inline td{font-size:13px;padding:8px 10px}
+.countsTable--inline thead th{background:rgba(244,234,214,.72)}
 .sourcesPanels{margin-top:12px;display:grid;gap:12px}
 .sourcesPanel{
   background:rgba(255,255,255,.72);
@@ -416,6 +421,14 @@ details.sourcesPanel[data-filtered="1"] .sourcesFilterBtn:not(.is-active){opacit
 .sourcesFilterBtn--health{background:rgba(42,125,216,.12);border-color:rgba(42,125,216,.28)}
 .sourcesFilterBtn--transit{background:rgba(156,77,220,.12);border-color:rgba(156,77,220,.28)}
 .sourcesFilterBtn--all{background:rgba(18,11,7,.06)}
+
+.sourcesFilterIcon{
+  display:none;
+  margin-right:6px;
+}
+@media (min-width: 760px){
+  .sourcesFilterIcon{display:inline}
+}
 
 @media (max-width: 520px){
   .sourcesPanelSummaryTitle{padding:12px 8px 12px 12px}
