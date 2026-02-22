@@ -233,6 +233,28 @@
   pointer-events: none;
 }
 
+@media (max-width: 520px) {
+  .speechBubbleCard {
+    width: min(240px, calc(100% - 18px));
+    padding: 9px 10px 8px;
+  }
+
+  .speechBubbleText {
+    font-size: 13px;
+    line-height: 1.26;
+  }
+
+  .speechBubbleMeta {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .speechBubbleTail {
+    width: 16px;
+    height: 12px;
+  }
+}
+
 .spinnerPromptCore,
 .spinnerPromptText {
   transition: opacity 0.34s ease, transform 0.34s ease;

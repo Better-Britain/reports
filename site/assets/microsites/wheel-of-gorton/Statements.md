@@ -79,7 +79,7 @@ The by-election followed Andrew Gwynne stepping down on health grounds after an 
 Sources:
 - [BBC (via Yahoo) — confirmed candidates + background](https://www.yahoo.com/news/articles/confirmed-gorton-denton-election-candidates-153253445.html)
 
-<!--meta id="gd-020" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-27" -->
+<!--meta id="gd-020" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-01-27" -->
 Labour’s NEC blocked Andy Burnham from standing for Labour in Gorton & Denton.
 Sources:
 - [ITV News — Burnham says it’s “simply untrue” he knew he would be blocked](https://www.itv.com/news/2026-01-27/andy-burnham-says-it-is-simply-untrue-that-he-knew-he-would-be-blocked)
@@ -275,7 +275,7 @@ Denton’s “left behind” feeling has created an opening Reform is trying to 
 Sources:
 - [The Guardian — Denton/Gorton by-election reporting](https://www.theguardian.com/uk-news/2026/feb/19/gorton-denton-byelection-disenchantment-reform)
 
-<!--meta id="gd-180" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-28" -->
+<!--meta id="gd-180" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-01-28" -->
 Labour warned that a Green vote could “risk letting Reform in” under first-past-the-post.
 Sources:
 - [The Guardian — Labour attacks Green drug policy amid vote-splitting fears](https://www.theguardian.com/politics/2026/jan/28/labour-attacks-green-drugs-policy-amid-fears-of-vote-splitting-at-by-election)
@@ -544,7 +544,7 @@ Stogia’s selection event was flanked by Labour chairwoman Anna Turley and depu
 Sources:
 - [BBC — Stogia selected as Labour candidate (selection event description)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
 
-<!--meta id="gd-303" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-31" -->
+<!--meta id="gd-303" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-01-31" -->
 Labour’s NEC said allowing Burnham to run could trigger an “unnecessary election” for the Greater Manchester mayoralty.
 Sources:
 - [BBC — Stogia selected as Labour candidate (NEC justification)](https://www.bbc.co.uk/news/articles/clyn5zj8750o)
@@ -576,7 +576,7 @@ Sources:
 - [The Guardian — liveblog: Powell on Gorton & Denton shortlist](https://www.theguardian.com/politics/live/2026/jan/29/starmer-xi-jinping-meeting-uk-china-relationship-live?filterKeyEvents=false&page=with%3Ablock-697b46b38f08d7fbb1c38fc7)
 - [BBC — Lucy Powell focused on Labour unity](https://www.bbc.co.uk/news/articles/cvgxze4ngk7o)
 
-<!--meta id="gd-308" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="context" kind="documented" date="2026-01-27" -->
+<!--meta id="gd-308" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-01-27" -->
 Around 50 Labour MPs wrote to Starmer warning that blocking Burnham was a “real gift” to Reform UK.
 Sources:
 - [BBC — Fifty Labour MPs sign letter objecting to Burnham decision](https://www.bbc.co.uk/news/articles/ce3e53e34klo)
@@ -601,12 +601,12 @@ Zack Polanski said this about Hannah Spencer.
 Sources:
 - [BBC — Greens name Hannah Spencer as by-election pick (Polanski quote)](https://www.bbc.co.uk/news/articles/cvgj5gplpl9o)
 
-<!--meta id="gd-321" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="context" kind="documented" date="2026-02-16" -->
+<!--meta id="gd-321" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-02-16" -->
 Nigel Farage has been “frequently and enthusiastically visible” on the campaign trail.
 Sources:
 - [BBC — Every vote is up for grabs in Gorton and Denton](https://www.bbc.co.uk/news/articles/c62637ddnq8o)
 
-<!--meta id="gd-322" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2026-02-16" -->
+<!--meta id="gd-322" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-02-16" -->
 George Galloway’s party standing aside for the Greens could prove decisive.
 Sources:
 - [BBC — Every vote is up for grabs in Gorton and Denton](https://www.bbc.co.uk/news/articles/c62637ddnq8o)
@@ -843,7 +843,7 @@ Sources:
 - [Manchester Evening News — Hannah Spencer profile](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/the-system-designed-keep-people-33458381)
 - [Manchester Evening News — candidates’ key pledges](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/gorton-denton-byelection-candidates-pledges-33465797)
 
-<!--meta id="gd-424" candidate="hannah-spencer" candidateName="Hannah Spencer" party="Green" issue="context" kind="documented" date="2026-02-20" -->
+<!--meta id="gd-424" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-02-20" -->
 The first constituency-specific poll (Omnisis) for Gorton & Denton showed the Green Party leading on 33%, Reform UK on 29%, and Labour on 26% (undecided/not voting removed).
 Sources:
 - [Green Party — poll release](https://greenparty.org.uk/2026/02/20/green-party-leads-in-first-constituency-poll-in-gorton-and-denton/)
