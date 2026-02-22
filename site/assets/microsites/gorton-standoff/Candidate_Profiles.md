@@ -1,19 +1,19 @@
 **Gorton & Denton By-Election 2026 — Updated Candidates Socials & Verified Backgrounds Contact Sheet**  
-(As of 22 February 2026. All links are public, live, and verified from direct searches across Google, X, Instagram, Facebook, party sites, and local media. I widened searches to include campaign pages, party features, LinkedIn, older profiles, and mentions in hustings coverage. Personal accounts are listed first where identifiable; campaign/party pages are noted when the candidate has no/low personal presence. Every candidate now has **at least two** entry points.)
-
-Background claims are backed by **multiple independent sources** (BBC, MEN, party press releases, WhoCanIVoteFor, official bios). For professions (e.g. plumber), I specifically hunted business pages and reviews.
-
-**Official election documents (Manchester City Council)**  
-- Statement of persons nominated + notice of poll (lists all candidates): https://www.manchester.gov.uk/directory_record/538138/statement_of_persons_nominated_and_notice_of_poll_for_the_february_2026_gorton_and_denton_by_election?outputType=chromeless  
-- Notice of election: https://www.manchester.gov.uk/info/500329/elections/9099/notice_of_election_gorton_and_denton_by-election  
+As of 22 February 2026. All links are public, live, and verified from direct searches across Google, X, Instagram, Facebook, party sites, and local media. I widened searches to include campaign pages, party features, LinkedIn, older profiles, and some mentions. Personal accounts are listed first where identifiable; campaign/party pages are noted when the candidate has no/low personal presence.
 
 ### Top 3 Candidates
 
 #### Angeliki Stogia (Labour)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/14507/angeliki-stogia  
+- Campaign site: https://angelikistogia.co.uk/  
 - Instagram (personal/campaign, active with local + unity posts): [@angelikistg](https://www.instagram.com/angelikistg/)  
+- Facebook: https://www.facebook.com/profile.php?id=61559195116764  
+- X/Twitter: https://x.com/AngelikiStg  
+- Linktree (links hub): https://linktr.ee/thebloggingyogi  
+- Bluesky: https://bsky.app/profile/angelikistg.bsky.social  
 - LinkedIn (professional, full Arup/GMCA career): [Angeliki Stogia](https://uk.linkedin.com/in/angeliki-stogia-a6788b7)  
-- Arup official profile: [Angeliki Stogia](https://www.arup.com/our-people/angeliki-stogia/)  
+- Arup official profile: https://www.arup.com/contact-us/angeliki-stogia/  
 - Whalley Range Labour councillor page (bio + updates): [Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)  
 - Manchester City Council councillor profile (official): https://democracy.manchester.gov.uk/mgUserInfo.aspx?UID=168  
 - Manchester Labour profile: https://www.mcrlabour.org.uk/2019/01/05/angeliki-stogia/  
@@ -24,8 +24,14 @@ Sources: Whalley Range Labour site (2016–2026 updates), Arup profile, GMCA pro
 
 #### Matt Goodwin (Reform UK)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/123811/matt-goodwin  
 - X/Twitter (main/personal, highly active with campaign + policy): [@GoodwinMJ](https://x.com/GoodwinMJ)  
 - Personal website/Substack (long-form articles, events, newsletter): [mattgoodwin.org](https://www.mattgoodwin.org/)  
+- Newsletter post (“I am standing for Parliament.”): https://www.mattgoodwin.org/p/i-am-standing-for-parliament  
+- Facebook: https://www.facebook.com/ProfMattGoodwin  
+- Instagram: https://www.instagram.com/profgoodwinm/  
+- LinkedIn: https://www.linkedin.com/in/matthew-j-goodwin/  
+- YouTube: https://www.youtube.com/@drmatthewgoodwin  
 - GB News presenter profile (official): https://www.gbnews.com/presenters/matt-goodwin/  
 - Reform UK constituency page (official): https://www.reformparty.uk/gorton-and-denton  
 
@@ -35,7 +41,13 @@ Sources: BBC (27 Jan 2026 announcement), Guardian (multiple Jan–Feb 2026), Ref
 
 #### Hannah Spencer (Green)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/100456/  
+- Campaign site (local Greens): https://gorton-denton.greenparty.org.uk/  
 - Instagram (personal/campaign, very active with canvassing, plumbing life, greyhounds, direct appeals): [@hannahtheplumbermcr](https://www.instagram.com/hannahtheplumbermcr/)  
+- X/Twitter: https://x.com/GreenPartyHan  
+- X mirror (TwStalker): https://www6.twstalker.com/GreenPartyHan  
+- Bluesky: https://bsky.app/profile/greenpartyhan.bsky.social  
+- LinkedIn: https://www.linkedin.com/in/hannah-spencer-8947b7332/  
 - Green Party national socials (candidate features/boosts): [@TheGreenParty (X)](https://x.com/TheGreenParty)  
 - Business website (plumbing/heat pumps): [Hannah's Household Plumbing](https://hannahsplumbing.com/)  
 - Trafford Council councillor profile (official): https://democratic.trafford.gov.uk/mgUserInfo.aspx?UID=12357  
@@ -50,8 +62,12 @@ Multiple sources confirm plumber status: MEN profiles (2015 business launch + 20
 
 #### Nick Buckley MBE (Advance UK)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/35689/nick-buckley  
 - Campaign website (full bio, promises, contact): [nickbuckley4parliament.co.uk](https://nickbuckley4parliament.co.uk/)  
+- X/Twitter: https://x.com/NickBuckleyMBE  
 - Facebook (personal/campaign, active local posts): [Nick Buckley MBE](https://www.facebook.com/NickBuckleyMBE/)  
+- Instagram: https://www.instagram.com/nickbuckleymbe/  
+- YouTube: https://www.youtube.com/@NickBuckleyMBE  
 - Email contact (as listed on campaign site): nick@nickbuckley4parliament.co.uk  
 - Advance UK candidate page (official): https://www.advanceuk.org.uk/nick_buckley_mbe  
 - Mancunian Way charity website (official): http://mancunianway.org.uk/  
@@ -63,7 +79,9 @@ Sources: Keystone Law (2020 reinstatement), GOV.UK Honours list (2020), GM Elect
 
 #### Charlotte Anne Cadden (Conservative)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/123845/charlotte-cadden  
 - Appears to keep a low personal profile; main public presence is via party/media coverage (e.g. BBC selection article): [BBC — Conservative candidate selected](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)  
+- X/Twitter: https://x.com/Charlotty  
 - Campaign Facebook page (official, promoted by agent): [Charlotte Cadden for Gorton and Denton](https://www.facebook.com/people/Charlotte-Cadden-for-Gorton-and-Denton/61587375509935/)  
 - LinkedIn (professional/police background posts): [Charlotte Cadden](https://www.linkedin.com/in/charlotte-cadden-6ab7351b5)  
 - Sex Matters trustee bio (detailed): [Charlotte Cadden](https://sex-matters.org/about-us/board/charlotte-cadden/)  
@@ -77,7 +95,9 @@ Sources: BBC (1 Feb 2026), Sex Matters bio, Conservatives FB announcement (1 Feb
 ##### Socials & Profiles
 - X/Twitter (campaign/personal, active on liberties/taxes): [@DanClarkeLPUK](https://x.com/DanClarkeLPUK)  
 - WhoCanIVoteFor statement page: [Dan Clarke](https://whocanivotefor.co.uk/person/19433/dan-clarke)  
+- Facebook: https://www.facebook.com/Strongvoiceforyou/  
 - Libertarian Party UK team page (official): https://libertarianpartyuk.com/our-people/  
+- Local coverage: https://www.tamesidecorrespondent.co.uk/2026/02/05/denton-candidate-targets-government-costs-as-full-candidate-list-declared/  
 
 ##### Verified Background
 - Libertarian Party UK candidate; nomination address Runcorn; focuses on lowering taxes, reducing state size, civil liberties; statement emphasises “balance, accountability and less state interference”.  
@@ -85,7 +105,10 @@ Sources: WhoCanIVoteFor, Tameside Correspondent (5 Feb 2026), nomination PDF.
 
 #### Sebastian Moore (Social Democratic Party)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/114288/sebastian-moore  
 - Instagram (campaign/personal): [@sebastianmooresdp](https://www.instagram.com/sebastianmooresdp/)  
+- TikTok: https://www.tiktok.com/@sebastianmooresdp  
+- YouTube: https://www.youtube.com/@sebastianmooresdp  
 - Facebook (campaign page): [Sebastian Moore](https://www.facebook.com/349065524949137)  
 - SDP people profile (official): https://sdp.org.uk/people/sebastian-moore/  
 - SDP candidate announcement (official): https://www.sdp.org.uk/sdp_candidate_for_gorton_and_denton  
@@ -96,10 +119,13 @@ Sources: BBC (30 Jan 2026), SDP announcements, Instagram bio.
 
 #### Joseph O’Meachair (Rejoin EU Party)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/117227/joseph-omeachair  
 - BBC profile/coverage (party candidacy context): [Joseph O’Meachair (BBC)](https://www.bbc.com/news/articles/cvgxwz5epz7o)  
 - Rejoin EU Party Facebook (features him heavily): [Rejoin EU Party posts](https://www.facebook.com/RejoinEUParty/posts/vote-for-rejoin-eu-party-candidate-joseph-omeachair-in-the-gorton-denton-by-elec/1224215426558362/)  
 - Party Instagram announcements: [Rejoin EU Instagram](https://www.instagram.com/p/DUtC4OqjLkH/)  
 - Rejoin EU Party announcement (official): https://therejoineuparty.com/rejoin-eu-party-announces-candidate-for-gorton-denton-by-election/  
+- Rejoin EU Party website (official): https://therejoineuparty.com/  
+- Local profile/coverage: https://www.tamesidecorrespondent.co.uk/2026/02/01/rejoin-eu-candidate-hopes-denton-can-help-send-alternative-message-over-humiliated-britain/  
 
 ##### Verified Background
 - Rejoin EU Party executive committee member; stood Rejoin EU in Preston 2024 (216 votes); nomination address in Preston district; focuses on pro-EU alternative and international standards.  
@@ -107,6 +133,10 @@ Sources: BBC (31 Jan 2026), MEN (2 Feb 2026), party Instagram/Facebook (Jan–Fe
 
 #### Jackie Pearcey (Liberal Democrats)
 ##### Socials & Profiles
+- Website: http://www.jackiepearcey.org.uk/  
+- X/Twitter: https://x.com/jackiepearcey  
+- Facebook profile: https://www.facebook.com/jackie.pearcey  
+- Facebook page (JackieForGorton): https://www.facebook.com/JackieForGorton  
 - Lib Dems press release + campaign mentions (BBC/MEN clips feature her): [Lib Dems announcement](https://www.libdems.org.uk/press/release/local-campaigner-jackie-pearcey-announced-as-liberal-democrat-candidate-for-gorton-and-denton)  
 - WhoCanIVoteFor profile (historical): [Jackie Pearcey](https://whocanivotefor.co.uk/person/5092/jackie-pearcey)  
 - Manchester Liberal Democrats article (official local party): https://www.mcrlibdems.uk/news/article/jackie-pearcey-protecting-our-heritage  
@@ -121,7 +151,8 @@ Sources: BBC (30 Jan 2026), Lib Dems press release (30 Jan 2026), WhoCanIVoteFor
 - Facebook: [oinkalottheflyingpig](https://www.facebook.com/oinkalottheflyingpig)  
 - Party election address: [Loony Party — Sir Oink address](https://www.loonyparty.com/2026/02/15/sir-oink-a-lots-election-address-in-gorton-denton/)  
 - Loony Party profile page: https://www.loonyparty.com/2914/4895/oink-a-lot/  
-- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/8194/sir-oink-  
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/8194/sir-oink-a-lot  
+- Loony Party write-up (official site): https://www.loonyparty.com/  
 
 ##### Verified Background
 - Satirical Loony Party staple; previous runs include 57 votes Northenden (Manchester 2023), 141 votes Oldham West & Royton by-election (2015); “Think Big, Vote Pig” slogan for this contest.  
@@ -129,11 +160,13 @@ Sources: WhoCanIVoteFor, Loony Party site (2026 address), BBC/MEN (4 Feb 2026), 
 
 #### Hugo Wils (Communist League)
 ##### Socials & Profiles
+- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/42445/hugo-wils  
 - Not Really Here Media candidate interview: [Hugo Wils interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)  
+- Militant (campaign/policy write-up): https://themilitant.com/2026/02/06/cl-candidate-hugo-wils-looks-for-workers-to-take-state-power/  
+- BBC profile/coverage: https://www.bbc.co.uk/news/articles/c8x9z1kve0jo  
 - No personal accounts found; featured in Tameside Reporter/party coverage: [Tameside Reporter Instagram](https://www.instagram.com/p/DUtDp2IDXIR/)  
 - Writes for The Militant: [Muck Rack profile](https://muckrack.com/hugo-wils)  
 - The Militant author page: https://themilitant.com/author/hwils/  
-- WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/42445/hugo-wils  
 
 ##### Verified Background
 - 38-year-old aerospace factory worker and Unite the Union member; writes/promotes The Militant newspaper; launched campaign on Birmingham refuse workers’ picket line; focuses on “working-class battles” and public works.  
