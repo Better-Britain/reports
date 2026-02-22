@@ -1,6 +1,8 @@
 **Gorton & Denton By-Election 2026 — Updated Candidates Socials & Verified Backgrounds Contact Sheet**  
 As of 22 February 2026. All links are public, live, and verified from direct searches across Google, X, Instagram, Facebook, party sites, and local media. I widened searches to include campaign pages, party features, LinkedIn, older profiles, and some mentions. Personal accounts are listed first where identifiable; campaign/party pages are noted when the candidate has no/low personal presence.
 
+Also see the [wikipedia page for the byelection](https://en.wikipedia.org/wiki/2026_Gorton_and_Denton_by-election)
+
 ### Top 3 Candidates
 
 #### Angeliki Stogia (Labour)
@@ -14,6 +16,11 @@ As of 22 February 2026. All links are public, live, and verified from direct sea
 - Bluesky: https://bsky.app/profile/angelikistg.bsky.social  
 - LinkedIn (professional, full Arup/GMCA career): [Angeliki Stogia](https://uk.linkedin.com/in/angeliki-stogia-a6788b7)  
 - Arup official profile: https://www.arup.com/contact-us/angeliki-stogia/  
+- Open Council (councillor activity): https://opencouncil.network/people/angeliki-stogia  
+- Guardian Q&A bio: https://www.theguardian.com/voluntary-sector-network/2012/mar/22/charity-european-funding-advice  
+- Guardian (Labour selection): https://www.theguardian.com/politics/2026/jan/31/labour-chooses-angeliki-stogia-for-gorton-and-denton-byelection  
+- Independent (candidate roundup): https://www.the-independent.com/news/uk/politics/gorton-denton-by-election-candidates-reform-labour-greens-b2921810.html  
+- About Manchester (selection write-up): https://aboutmanchester.co.uk/labour-choices-manchester-councillor-as-by-election-candidate/  
 - Whalley Range Labour councillor page (bio + updates): [Angeliki Stogia](https://whalleyrangelabour.org.uk/councillors/angeliki-stogia/)  
 - Manchester City Council councillor profile (official): https://democracy.manchester.gov.uk/mgUserInfo.aspx?UID=168  
 - Manchester Labour profile: https://www.mcrlabour.org.uk/2019/01/05/angeliki-stogia/  
@@ -34,6 +41,10 @@ Sources: Whalley Range Labour site (2016–2026 updates), Arup profile, GMCA pro
 - YouTube: https://www.youtube.com/@drmatthewgoodwin  
 - GB News presenter profile (official): https://www.gbnews.com/presenters/matt-goodwin/  
 - Reform UK constituency page (official): https://www.reformparty.uk/gorton-and-denton  
+- Wikipedia: https://en.wikipedia.org/wiki/Matthew_Goodwin  
+- Penguin author page: https://www.penguin.co.uk/authors/26807/matthew-goodwin  
+- University of Kent news item: https://www.kent.ac.uk/news/politics-international-relations/26927/dr-matthew-goodwin-launches-new-centre-for-uk-eu-relations  
+- Google Scholar: https://scholar.google.com/citations?user=twMwwjUAAAAJ    
 
 ##### Verified Background
 - GB News presenter and former academic (University of Buckingham); lived/worked delivering fast food in Gorton & Denton area while at university; nomination address in Hitchin constituency; Tommy Robinson publicly endorsed him (Reform distanced); has written/said on Britishness, fertility policy, and “open borders”.  
@@ -49,7 +60,13 @@ Sources: BBC (27 Jan 2026 announcement), Guardian (multiple Jan–Feb 2026), Ref
 - Bluesky: https://bsky.app/profile/greenpartyhan.bsky.social  
 - LinkedIn: https://www.linkedin.com/in/hannah-spencer-8947b7332/  
 - Green Party national socials (candidate features/boosts): [@TheGreenParty (X)](https://x.com/TheGreenParty)  
+- Manchester Greens announcement: https://www.manchestergreens.org.uk/2026/02/01/hannah-spencer-selected-as-green-party-candidate-for-gorton-and-denton-by-election/  
+- Greens internal election listing: https://greens.org.uk/internal-elections/person/hannah-spencer  
 - Business website (plumbing/heat pumps): [Hannah's Household Plumbing](https://hannahsplumbing.com/)  
+- Plumbing directory entry: https://www.local-businesses.co.uk/plumbers/manchester/hannah-s-household-plumbing  
+- About Manchester profile piece: https://aboutmanchester.co.uk/hannah-spencer-our-working-class-candidate-is-a-plumber/  
+- Altrincham Today (selection): https://www.altrincham.today/2026/01/31/green-party-selects-trafford-councillor-to-stand-in-manchester-gorton-by-election/  
+- Yahoo/MEN fact-check: https://uk.news.yahoo.com/fact-check-green-party-candidate-122956516.html  
 - Trafford Council councillor profile (official): https://democratic.trafford.gov.uk/mgUserInfo.aspx?UID=12357  
 - Trafford Green Party people page (official): https://trafford.greenparty.org.uk/people/  
 
@@ -71,6 +88,11 @@ Multiple sources confirm plumber status: MEN profiles (2015 business launch + 20
 - Email contact (as listed on campaign site): nick@nickbuckley4parliament.co.uk  
 - Advance UK candidate page (official): https://www.advanceuk.org.uk/nick_buckley_mbe  
 - Mancunian Way charity website (official): http://mancunianway.org.uk/  
+- Keystone Law write-up: https://www.keystonelaw.com/keynotes/nick-buckley-is-reinstated-as-trustee-of-his-founding-charity-mancunian-way/  
+- About Manchester (MBE): https://aboutmanchester.co.uk/mbe-for-mancunian-way-founder-nick-buckley/  
+- Podcast listing (Apple Podcasts): https://podcasts.apple.com/gb/podcast/practically-mindful/id1588522916  
+- Mancunian Way “About” (mirror): https://soshall.co.uk/about/  
+- Change.org petition: https://www.change.org/p/reinstate-nick-buckley-as-trustee-of-mancunian-way    
 - Charity Commission register entry (official): https://register-of-charities.charitycommission.gov.uk/charity-details/?regId=1148085&subId=0  
 
 ##### Verified Background
@@ -81,6 +103,10 @@ Sources: Keystone Law (2020 reinstatement), GOV.UK Honours list (2020), GM Elect
 ##### Socials & Profiles
 - WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/123845/charlotte-cadden  
 - Appears to keep a low personal profile; main public presence is via party/media coverage (e.g. BBC selection article): [BBC — Conservative candidate selected](https://www.bbc.co.uk/news/articles/cn40kmrkk9xo)  
+- Manchester Conservatives candidate page: https://www.manchesterconservatives.org.uk/news/charlotte-cadden-selected-conservative-candidate-gorton-and-denton  
+- Independent (candidate roundup): https://www.the-independent.com/news/uk/politics/gorton-denton-by-election-candidates-reform-labour-greens-b2921810.html  
+- LSE / Grantham seat page: https://www.lse.ac.uk/granthaminstitute/seat/gorton-and-denton/  
+- ITV candidate list explainer: https://www.itv.com/news/granada/2026-01-30/confirmed-list-of-gorton-and-denton-by-election-candidates-so-far  
 - X/Twitter: https://x.com/Charlotty  
 - Campaign Facebook page (official, promoted by agent): [Charlotte Cadden for Gorton and Denton](https://www.facebook.com/people/Charlotte-Cadden-for-Gorton-and-Denton/61587375509935/)  
 - LinkedIn (professional/police background posts): [Charlotte Cadden](https://www.linkedin.com/in/charlotte-cadden-6ab7351b5)  
@@ -98,6 +124,8 @@ Sources: BBC (1 Feb 2026), Sex Matters bio, Conservatives FB announcement (1 Feb
 - Facebook: https://www.facebook.com/Strongvoiceforyou/  
 - Libertarian Party UK team page (official): https://libertarianpartyuk.com/our-people/  
 - Local coverage: https://www.tamesidecorrespondent.co.uk/2026/02/05/denton-candidate-targets-government-costs-as-full-candidate-list-declared/  
+- Yahoo/BBC short piece: https://www.yahoo.com/news/articles/libertarian-party-announces-election-candidate-161436575.html  
+- North West Bylines Q&A: https://northwestbylines.co.uk/region/greater-manchester/we-asked-the-candidates-the-gorton-and-denton-by-election/  
 
 ##### Verified Background
 - Libertarian Party UK candidate; nomination address Runcorn; focuses on lowering taxes, reducing state size, civil liberties; statement emphasises “balance, accountability and less state interference”.  
@@ -112,6 +140,10 @@ Sources: WhoCanIVoteFor, Tameside Correspondent (5 Feb 2026), nomination PDF.
 - Facebook (campaign page): [Sebastian Moore](https://www.facebook.com/349065524949137)  
 - SDP people profile (official): https://sdp.org.uk/people/sebastian-moore/  
 - SDP candidate announcement (official): https://www.sdp.org.uk/sdp_candidate_for_gorton_and_denton  
+- UK Parliament (Manchester Central 2024 result): https://members.parliament.uk/constituency/4167/election/422  
+- Tameside Correspondent story: https://www.tamesidecorrespondent.co.uk/2026/01/30/denton-candidate-believes-area-can-start-rebuild-of-britain/  
+- Roch Valley Radio story: https://www.rochvalleyradio.com/news/manchester/sdp-names-sebastian-moore-as-candidate-for-gorton-and-denton-by-election/  
+- North West Bylines Q&A: https://northwestbylines.co.uk/region/greater-manchester/we-asked-the-candidates-the-gorton-and-denton-by-election/  
 
 ##### Verified Background
 - SDP North West Chair; returned to UK 2022 after years working abroad, now Manchester resident; stood SDP Manchester Central 2024 (240 votes); works in education, volunteers at Burnage food bank.  
@@ -126,6 +158,9 @@ Sources: BBC (30 Jan 2026), SDP announcements, Instagram bio.
 - Rejoin EU Party announcement (official): https://therejoineuparty.com/rejoin-eu-party-announces-candidate-for-gorton-denton-by-election/  
 - Rejoin EU Party website (official): https://therejoineuparty.com/  
 - Local profile/coverage: https://www.tamesidecorrespondent.co.uk/2026/02/01/rejoin-eu-candidate-hopes-denton-can-help-send-alternative-message-over-humiliated-britain/  
+- UK Parliament (Preston 2024 result): https://members.parliament.uk/constituency/4069/election/422  
+- ITV candidate list explainer: https://www.itv.com/news/granada/2026-01-30/confirmed-list-of-gorton-and-denton-by-election-candidates-so-far  
+- North West Bylines Q&A: https://northwestbylines.co.uk/region/greater-manchester/we-asked-the-candidates-the-gorton-and-denton-by-election/  
 
 ##### Verified Background
 - Rejoin EU Party executive committee member; stood Rejoin EU in Preston 2024 (216 votes); nomination address in Preston district; focuses on pro-EU alternative and international standards.  
@@ -137,6 +172,10 @@ Sources: BBC (31 Jan 2026), MEN (2 Feb 2026), party Instagram/Facebook (Jan–Fe
 - X/Twitter: https://x.com/jackiepearcey  
 - Facebook profile: https://www.facebook.com/jackie.pearcey  
 - Facebook page (JackieForGorton): https://www.facebook.com/JackieForGorton  
+- Oasis Academy Aspinal (Hub Council list): https://www.oasisacademyaspinal.org/community/hub-council  
+- North West Lib Dems (Team 2026): https://www.northwestlibdems.org.uk/team_2026  
+- North West Lib Dems (executive): https://www.northwestlibdems.org.uk/executive  
+- North West Bylines Q&A: https://northwestbylines.co.uk/region/greater-manchester/we-asked-the-candidates-the-gorton-and-denton-by-election/  
 - Lib Dems press release + campaign mentions (BBC/MEN clips feature her): [Lib Dems announcement](https://www.libdems.org.uk/press/release/local-campaigner-jackie-pearcey-announced-as-liberal-democrat-candidate-for-gorton-and-denton)  
 - WhoCanIVoteFor profile (historical): [Jackie Pearcey](https://whocanivotefor.co.uk/person/5092/jackie-pearcey)  
 - Manchester Liberal Democrats article (official local party): https://www.mcrlibdems.uk/news/article/jackie-pearcey-protecting-our-heritage  
@@ -153,6 +192,7 @@ Sources: BBC (30 Jan 2026), Lib Dems press release (30 Jan 2026), WhoCanIVoteFor
 - Loony Party profile page: https://www.loonyparty.com/2914/4895/oink-a-lot/  
 - WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/8194/sir-oink-a-lot  
 - Loony Party write-up (official site): https://www.loonyparty.com/  
+- Rodent in Rochdale write-up: https://therodentinrochdale.co.uk/sir-oink-a-lot-rochdale-by-election-the-loony-party/  
 
 ##### Verified Background
 - Satirical Loony Party staple; previous runs include 57 votes Northenden (Manchester 2023), 141 votes Oldham West & Royton by-election (2015); “Think Big, Vote Pig” slogan for this contest.  
@@ -161,6 +201,9 @@ Sources: WhoCanIVoteFor, Loony Party site (2026 address), BBC/MEN (4 Feb 2026), 
 #### Hugo Wils (Communist League)
 ##### Socials & Profiles
 - WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/42445/hugo-wils  
+- Electoral Commission registration (PDF): https://www.electoralcommission.org.uk/sites/default/files/pdf_file/Communist%20League%20Election%20Campaign%20-%20Party%20registration%20certificate%20and%20executive%20officers.pdf  
+- Wikipedia (Communist League, UK 1988): https://en.wikipedia.org/wiki/Communist_League_%28UK,_1988%29  
+- North West Bylines Q&A: https://northwestbylines.co.uk/region/greater-manchester/we-asked-the-candidates-the-gorton-and-denton-by-election/  
 - Not Really Here Media candidate interview: [Hugo Wils interview](https://www.notreallyheremedia.com/news/all-news/communist-league-candidate-hugo-wils-calls-for-public-works-and-working-class-action-in-gorton-and-denton-by-election/)  
 - Militant (campaign/policy write-up): https://themilitant.com/2026/02/06/cl-candidate-hugo-wils-looks-for-workers-to-take-state-power/  
 - BBC profile/coverage: https://www.bbc.co.uk/news/articles/c8x9z1kve0jo  

@@ -298,6 +298,30 @@ function compactLinkLabel(rawLabel, url) {
   if (lower.includes('whocanivotefor')) return 'WhoCanIVoteFor';
   if (lower.includes('campaign site')) return 'Campaign site';
   if (lower === 'website' || lower.includes('personal website') || lower.includes('substack')) return 'Website';
+  if (lower.includes('wikipedia')) return 'Wikipedia';
+  if (lower.includes('google scholar')) return 'Scholar';
+  if (lower.includes('penguin')) return 'Penguin';
+  if (lower.includes('university of kent') || lower.includes('kent.ac.uk')) return 'Uni of Kent';
+  if (lower.includes('open council')) return 'Open Council';
+  if (lower.includes('guardian')) return 'Guardian';
+  if (lower.includes('independent')) return 'Independent';
+  if (lower.includes('about manchester')) return 'About Manchester';
+  if (lower.includes('uk parliament')) return 'UK Parliament';
+  if (lower.includes('north west bylines')) return 'NW Bylines';
+  if (lower.includes('itv')) return 'ITV';
+  if (lower.includes('lse')) return 'LSE';
+  if (lower.includes('tameside correspondent')) return 'Tameside Correspondent';
+  if (lower.includes('roch valley')) return 'Roch Valley Radio';
+  if (lower.includes('manchester greens')) return 'Manchester Greens';
+  if (lower.includes('greens internal')) return 'Greens listing';
+  if (lower.includes('altrincham today')) return 'Altrincham Today';
+  if (lower.includes('yahoo')) return 'Yahoo';
+  if (lower.includes('keystone')) return 'Keystone Law';
+  if (lower.includes('apple podcasts') || lower.includes('podcast')) return 'Podcast';
+  if (lower.includes('change.org')) return 'Petition';
+  if (lower.includes('electoral commission')) return 'Electoral Commission';
+  if (lower.includes('rodent')) return 'Rodent in Rochdale';
+  if (lower.includes('plumbing directory') || lower.includes('directory entry')) return 'Directory';
   if (lower.includes('bbc')) return 'BBC';
   if (lower.includes('arup')) return 'Arup';
   if (lower.includes('council')) return 'Council profile';
@@ -937,8 +961,6 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   </div>
 </header>
 
-${contactsHtml}
-
 <section class="sceneWrap" aria-label="Interactive standoff scene">
   <div class="spinnerPanel" data-role="spinner-panel">
     <img class="spinnerBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
@@ -962,6 +984,8 @@ ${contactsHtml}
     </noscript>
   </div>
 </section>
+
+${contactsHtml}
 
 ${renderMethodContext()}
 
