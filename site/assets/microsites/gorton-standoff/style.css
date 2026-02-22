@@ -102,16 +102,17 @@ body{
 .contactsControls{display:flex;justify-content:flex-end;margin:0 0 10px}
 .contactsExpandLabel{
   display:inline-flex;
-  gap:8px;
   align-items:center;
   cursor:pointer;
   user-select:none;
   font-weight:850;
   font-size:13px;
-  padding:8px 10px;
+  position:relative;
+  padding:8px 10px 8px 52px;
   border-radius:999px;
   background:rgba(18,11,7,.07);
   border:1px solid rgba(18,11,7,.12);
+  line-height:1;
 }
 .contactsExpandLabel::before{
   content:"";
@@ -119,7 +120,10 @@ body{
   border-radius:999px;
   background:rgba(18,11,7,.14);
   border:1px solid rgba(18,11,7,.12);
-  position:relative;
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
 }
 .contactsExpandLabel::after{
   content:"";
@@ -127,11 +131,13 @@ body{
   border-radius:999px;
   background:rgba(255,255,255,.92);
   border:1px solid rgba(34,24,19,.20);
-  position:relative;
-  margin-left:-28px;
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
   transition:transform .16s ease;
 }
-.contactsExpand:checked ~ .contactsControls .contactsExpandLabel::after{transform:translateX(14px)}
+.contactsExpand:checked ~ .contactsControls .contactsExpandLabel::after{transform:translateY(-50%) translateX(14px)}
 
 .contactsList{display:flex;flex-direction:column;gap:10px}
 
@@ -175,10 +181,20 @@ body{
 
 .contactTitleRow{
   display:flex;
-  align-items:baseline;
+  align-items:center;
   justify-content:space-between;
   gap:10px;
   flex-wrap:wrap;
+}
+.contactNameWrap{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.contactNamePlate{
+  width:10px;
+  height:16px;
+  border-radius:6px;
+  background:var(--party);
+  border:1px solid rgba(34,24,19,.14);
+  box-shadow:0 6px 14px rgba(0,0,0,.10);
+  flex:0 0 auto;
 }
 .contactName{margin:0;font-size:16px;line-height:1.2;font-weight:950}
 .contactParty{

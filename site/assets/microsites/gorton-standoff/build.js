@@ -497,7 +497,10 @@ function renderCandidateContactsPanel({ candidates } = {}) {
     </div>
     <div class="contactMain">
       <div class="contactTitleRow">
-        <h4 class="contactName">${escapeHtml(c.name)}</h4>
+        <div class="contactNameWrap">
+          <span class="contactNamePlate" aria-hidden="true"></span>
+          <h4 class="contactName">${escapeHtml(c.name)}</h4>
+        </div>
         ${partyLabel ? `<span class="contactParty">${escapeHtml(partyLabel)}</span>` : ''}
       </div>
       <div class="contactChips">
