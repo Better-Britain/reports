@@ -704,6 +704,162 @@ function renderReceipts(statements) {
   }).join('\n');
 }
 
+function speakerDisplayForStatement(s) {
+  const speakerDisplay = String(s?.speakerName || s?.speaker || '').trim();
+  if (speakerDisplay) return speakerDisplay;
+  return String(s?.candidateName || s?.candidate || 'Unknown').trim();
+}
+
+function renderSourceCard(s, { ownerCandidateId, ownerName } = {}) {
+  const candidateDisplay = String(s?.candidateName || s?.candidate || 'Unknown').trim();
+  const owner = String(ownerName || '').trim();
+  const isOwned = ownerCandidateId && String(s?.candidate || '').trim() === String(ownerCandidateId);
+  const speakerDisplay = String(s?.speakerName || s?.speaker || '').trim();
+  const speakerKey = speakerDisplay ? slugifyKey(speakerDisplay) : '';
+
+  const showSpeaker = Boolean(speakerDisplay) && (!owner || speakerDisplay !== owner) && speakerDisplay !== candidateDisplay;
+
+  const metaBits = [
+    s.issue ? `<span class="pill">${escapeHtml(issueLabel(s.issue))}</span>` : '',
+    s.kind ? `<span class="pill pill--kind" title="Evidence type">${escapeHtml(kindIcon(s.kind))} ${escapeHtml(s.kind)}</span>` : '',
+    s.date ? `<span class="pill pill--date"><time datetime="${escapeHtml(s.date)}">${escapeHtml(s.date)}</time></span>` : ''
+  ].filter(Boolean).join(' ');
+
+  const sources = Array.isArray(s?.sources) ? s.sources : [];
+  const sourcesHtml = sources.length
+    ? `<div class="sourceLinks">${sources.slice(0, 2).map((src) => `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(shortSourceLabel(src))}</a>`).join('')}</div>`
+    : '';
+
+  // Keep the same dataset contract as the spinner expects.
+  return `
+<article id="receipt-${escapeHtml(s.id)}" class="sourceCard receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(sources.length))}">
+  <div class="sourceTop">
+    <div class="sourceWho">
+      ${showSpeaker ? `<span class="sourceSpeaker">${escapeHtml(speakerDisplay)}</span>` : ''}
+      ${(!isOwned && !showSpeaker) ? `<span class="sourceSpeaker">${escapeHtml(candidateDisplay)}</span>` : ''}
+    </div>
+    <div class="sourceMeta">${metaBits}</div>
+  </div>
+  <div class="receiptQuote sourceQuote">${s.quoteHtml}</div>
+  ${s.captionHtml ? `<p class="sourceCaption">${s.captionHtml}</p>` : ''}
+  ${sourcesHtml}
+</article>
+  `.trim();
+}
+
+function renderSourcesPanel({ title, id, cards, open = true } = {}) {
+  const list = Array.isArray(cards) ? cards : [];
+  const cap = 6;
+  const top = list.slice(0, cap);
+  const rest = list.slice(cap);
+  const panelId = slugifyKey(id || title || 'panel');
+
+  const ownerName = String(title || '').trim();
+  const ownerCandidateId = String(id || '').trim();
+  const topHtml = top.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName })).join('\n');
+  const restHtml = rest.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName })).join('\n');
+
+  const moreHtml = rest.length
+    ? `<details class="sourcesMore" data-role="sources-more"><summary>Show ${escapeHtml(String(rest.length))} more</summary></details>`
+    : '';
+
+  const issueCounts = {};
+  for (const issue of PRIMARY_ISSUES) issueCounts[issue] = 0;
+  for (const s of list) {
+    const issueKey = String(s?.issue || '').trim().toLowerCase();
+    if (PRIMARY_ISSUES.includes(issueKey)) issueCounts[issueKey] += 1;
+  }
+  const totalCount = list.length;
+  const filterBtns = [
+    `<button type="button" class="sourcesFilterBtn is-active" data-role="sources-filter" data-issue="" title="All sources">${escapeHtml(String(totalCount))}</button>`,
+    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="culture-war" title="Culture">${escapeHtml(String(issueCounts['culture-war'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="jobs-rights" title="Jobs">${escapeHtml(String(issueCounts['jobs-rights'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="homes-streets" title="Homes">${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="health-care" title="Health">${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="transport-air" title="Transit">${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`
+  ].join('');
+
+  const inner = `
+  <div class="sourcesPanelHead" id="sources-${escapeHtml(panelId)}">
+    <span class="sourcesPanelTitle">${escapeHtml(title || 'Sources')}</span>
+    <div class="sourcesPanelFilters" role="group" aria-label="Filter by topic">
+      ${filterBtns}
+    </div>
+  </div>
+  ${moreHtml}
+  <div class="sourcesGrid">
+    ${topHtml}
+    ${rest.length ? `<div class="sourcesExtra">${restHtml}</div>` : ''}
+  </div>
+  `.trim();
+
+  const openAttr = open ? ' open' : '';
+  return `
+<details class="sourcesPanel" data-role="sources-panel" data-owner="${escapeHtml(ownerCandidateId || panelId)}"${openAttr} aria-labelledby="sources-${escapeHtml(panelId)}">
+  <summary class="sourcesPanelSummary">
+    <span class="sourcesPanelSummaryTitle">${escapeHtml(title || 'Sources')}</span>
+    <span class="sourcesPanelSummaryCount">${escapeHtml(String(totalCount))}</span>
+  </summary>
+  <div class="sourcesPanelBody">
+    ${inner}
+  </div>
+</details>
+  `.trim();
+}
+
+function renderSourcesSection(statements) {
+  const list = Array.isArray(statements) ? statements : [];
+  if (!list.length) return '';
+
+  const byCandidate = new Map();
+  const other = [];
+
+  for (const s of list) {
+    const candidateId = String(s?.candidate || '').trim().toLowerCase();
+    if (candidateId && CANDIDATE_IDS.includes(candidateId)) {
+      const arr = byCandidate.get(candidateId) || [];
+      arr.push(s);
+      byCandidate.set(candidateId, arr);
+    } else {
+      other.push(s);
+    }
+  }
+
+  const panels = [];
+  for (const id of CANDIDATE_IDS) {
+    const items = byCandidate.get(id) || [];
+    if (!items.length) continue;
+    const display = items[0]?.candidateName || id;
+    // Most recent first
+    items.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    const isTop = TOP_THREE_CANDIDATES.has(String(id || '').trim().toLowerCase());
+    panels.push(renderSourcesPanel({ title: display, id, cards: items, open: isTop }));
+  }
+
+  if (other.length) {
+    other.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    panels.push(renderSourcesPanel({ title: 'Other speakers / election context', id: 'other', cards: other, open: false }));
+  }
+
+  return `
+<section class="sourcesWrap" aria-labelledby="sourcesTitle">
+  <input class="sourcesTagsToggle" type="checkbox" id="sources-tags" />
+  <input class="sourcesAllToggle" type="checkbox" id="sources-all" />
+  <div class="sourcesHead">
+    <h2 id="sourcesTitle">Sources</h2>
+    <p class="sourcesLead">Grouped, link-first cards so you can skim what’s been said, check the original material, and decide what’s fair.</p>
+    <div class="sourcesControls" role="group" aria-label="Sources display options">
+      <label class="sourcesToggleLabel" for="sources-tags">Show tags</label>
+      <label class="sourcesToggleLabel" for="sources-all">Show all sources</label>
+    </div>
+  </div>
+  <div class="sourcesPanels">
+    ${panels.join('\n')}
+  </div>
+</section>
+  `.trim();
+}
+
 function renderMethodContext() {
   return `
 <section class="methodWrap" aria-labelledby="methodTitle">
@@ -933,9 +1089,8 @@ function resolveCandidateHeadshots(headshotFiles) {
 function renderContent({ title, statements, additionalSourcesMarkdown, flyers, headshotManifest, candidateContacts }) {
   const standoff = (statements || []).filter((s) => String(s.slot || '').toLowerCase() === 'standoff');
   const further = (statements || []).filter((s) => String(s.slot || '').toLowerCase() !== 'standoff');
-  const standoffHtml = renderReceipts(standoff);
-  const furtherHtml = renderReceipts(further);
-  const flyerGalleryHtml = renderFlyerGallery(flyers);
+  // Keep these lists in the HTML for the interactive to scan, but render them via the new Sources UI.
+  const sourcesHtml = renderSourcesSection([...(standoff || []), ...(further || [])]);
   const headshotsJson = escapeHtml(JSON.stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] }));
   const contactsHtml = renderCandidateContactsPanel({ candidates: candidateContacts });
   const flyerGalleryHtml = renderFlyerGallery(flyers);
@@ -963,7 +1118,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   <div class="heroCopy">
     <h1>${escapeHtml(title)}</h1>
     <p class="heroLead">
-      A Mexican standoff, but it’s Gorton &amp; Denton: pick an issue, see what candidates actually said/did, then check the receipts.
+      A Mexican standoff, but it’s Gorton &amp; Denton: pick an issue, see what candidates said/did, then open the sources.
     </p>
     <p class="heroFine">
       Evidence icons: <span class="pill pill--kind">🎤 said</span> <span class="pill pill--kind">🧾 documented</span> <span class="pill pill--kind">🗳️ voted</span> <span class="pill pill--kind">🧩 aligned</span>
@@ -1009,24 +1164,7 @@ ${contactsHtml}
 
 ${renderMethodContext()}
 
-<section class="receiptsWrap" aria-labelledby="receiptsTitle">
-  <div class="receiptsHead">
-    <h2 id="receiptsTitle">Receipts (boring version)</h2>
-    <p>Everything the “game” shows is built from the blocks in <code>Statements.md</code>. If JS is off, just read this list.</p>
-  </div>
-  <section class="receiptsGroup" aria-labelledby="standoffReceiptsTitle">
-    <h3 id="standoffReceiptsTitle">Standoff receipts (power the interactive)</h3>
-    <div class="receiptsList" data-role="receipts-list" data-slot="standoff">
-      ${standoffHtml}
-    </div>
-  </section>
-  <section class="receiptsGroup" aria-labelledby="furtherReceiptsTitle">
-    <h3 id="furtherReceiptsTitle">Further claims &amp; evidence</h3>
-    <div class="receiptsList" data-slot="further">
-      ${furtherHtml}
-    </div>
-  </section>
-</section>
+${sourcesHtml}
 
 ${renderConclusion()}
 
