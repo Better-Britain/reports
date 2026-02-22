@@ -328,6 +328,11 @@ body{
   line-height:1;
 }
 .sourcesToggleLabel:hover{border-color:rgba(194,59,34,.35)}
+.sourcesTagsToggle:checked ~ .sourcesHead .sourcesToggleLabel[for="sources-tags"],
+.sourcesAllToggle:checked ~ .sourcesHead .sourcesToggleLabel[for="sources-all"]{
+  background:rgba(194,59,34,.10);
+  border-color:rgba(194,59,34,.28);
+}
 .sourcesPanels{margin-top:12px;display:grid;gap:12px}
 .sourcesPanel{
   background:rgba(255,255,255,.72);

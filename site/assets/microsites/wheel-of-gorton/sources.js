@@ -28,10 +28,23 @@
     revealByHash();
     window.addEventListener('hashchange', revealByHash);
 
+    const tagsToggle = document.getElementById('sources-tags');
+    if (tagsToggle && tagsToggle instanceof HTMLInputElement) {
+      const label = document.querySelector('label.sourcesToggleLabel[for="sources-tags"]');
+      const apply = () => {
+        const on = Boolean(tagsToggle.checked);
+        if (label) label.textContent = label.getAttribute(on ? 'data-on' : 'data-off') || label.textContent;
+      };
+      tagsToggle.addEventListener('change', apply);
+      apply();
+    }
+
     const allToggle = document.getElementById('sources-all');
     if (allToggle && allToggle instanceof HTMLInputElement) {
+      const label = document.querySelector('label.sourcesToggleLabel[for="sources-all"]');
       const apply = () => {
         const on = Boolean(allToggle.checked);
+        if (label) label.textContent = label.getAttribute(on ? 'data-on' : 'data-off') || label.textContent;
         const panels = Array.from(document.querySelectorAll('[data-role="sources-panel"]'));
         for (const p of panels) {
           if (p instanceof HTMLDetailsElement) {
@@ -62,6 +75,18 @@
       if (exp && exp instanceof HTMLButtonElement) {
         const panel = exp.closest('[data-role="sources-panel"]');
         if (!panel) return;
+
+        // Show more/fewer always resets topic filter to All.
+        panel.dataset.filtered = '0';
+        delete panel.dataset.prevExpanded;
+        const valueEl = panel.querySelector('[data-role="topics-value"]');
+        if (valueEl) valueEl.textContent = 'All';
+        const allBtn = panel.querySelector('button.sourcesFilterBtn[data-role="sources-filter"][data-issue=""]');
+        const allBtns = Array.from(panel.querySelectorAll('button.sourcesFilterBtn[data-role="sources-filter"]'));
+        for (const b of allBtns) b.classList.toggle('is-active', b === allBtn);
+        const cards = Array.from(panel.querySelectorAll('article[data-role="receipt"]'));
+        for (const c of cards) c.classList.remove('isFilteredOut');
+
         const isOn = panel.dataset.expanded === '1';
         panel.dataset.expanded = isOn ? '0' : '1';
         exp.setAttribute('data-expanded', isOn ? '0' : '1');

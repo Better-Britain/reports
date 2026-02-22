@@ -769,7 +769,6 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
   const ownerPartyKey = partyUi(String(list?.[0]?.party || '')).key;
   const cardsHtml = list.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName, ownerPartyKey })).join('\n');
   const hasOverflow = list.length > 6;
-  const overflowCount = Math.max(0, list.length - 6);
 
   const issueCounts = {};
   for (const issue of PRIMARY_ISSUES) issueCounts[issue] = 0;
@@ -793,7 +792,7 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
       ${cardsHtml}
     </div>
   </div>
-  ${hasOverflow ? `<div class="sourcesExpandRow"><button type="button" class="sourcesExpandBtn" data-role="sources-expand" data-expanded="0" data-more-label="Show ${escapeHtml(String(overflowCount))} more" data-less-label="Show less">Show ${escapeHtml(String(overflowCount))} more</button></div>` : ''}
+  ${hasOverflow ? `<div class="sourcesExpandRow"><button type="button" class="sourcesExpandBtn" data-role="sources-expand" data-expanded="0" data-more-label="Show all" data-less-label="Show fewer">Show all</button></div>` : ''}
   `.trim();
 
   const openAttr = open ? ' open' : '';
@@ -850,6 +849,8 @@ function renderSourcesSection(statements) {
 
   const totalSourcesCount = list.length;
 
+  const renderCountsTableHtml = renderCountsTable(statements);
+
   return `
 <section class="sourcesWrap" aria-labelledby="sourcesTitle">
   <input class="sourcesTagsToggle" type="checkbox" id="sources-tags" />
@@ -858,8 +859,8 @@ function renderSourcesSection(statements) {
     <h2 id="sourcesTitle">Sources</h2>
     <p class="sourcesLead">Grouped, link-first cards so you can skim what’s been said, check the original material, and decide what’s fair.</p>
     <div class="sourcesControls" role="group" aria-label="Sources display options">
-      <label class="sourcesToggleLabel" for="sources-tags">Show tags</label>
-      <label class="sourcesToggleLabel" for="sources-all">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</label>
+      <label class="sourcesToggleLabel" for="sources-tags" data-off="Show tags" data-on="Hide tags">Show tags</label>
+      <label class="sourcesToggleLabel" for="sources-all" data-off="Show ALL ${escapeHtml(String(totalSourcesCount))} Sources" data-on="Showing ALL ${escapeHtml(String(totalSourcesCount))} Sources">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</label>
     </div>
   </div>
   <div class="sourcesPanels">
@@ -1014,23 +1015,6 @@ function renderDemocracyNote() {
   `.trim();
 }
 
-function renderAdditionalSources(additionalSourcesMarkdown) {
-  const mdText = String(additionalSourcesMarkdown || '').trim();
-  if (!mdText) {
-    return `
-<section class="additionalWrap" aria-labelledby="additionalTitle">
-  <h2 id="additionalTitle">Additional sources (not yet tagged to a claim)</h2>
-  <p class="additionalNote">Add a <code>## Additional sources</code> section to <code>Statements.md</code> to populate this list.</p>
-</section>
-    `.trim();
-  }
-  return `
-<section class="additionalWrap" aria-labelledby="additionalTitle">
-  <h2 id="additionalTitle">Additional sources (not yet tagged to a claim)</h2>
-  <div class="additionalBody">${md.render(mdText)}</div>
-</section>
-  `.trim();
-}
 
 function renderFlyerGallery(flyers) {
   const items = Array.isArray(flyers) ? flyers : [];
@@ -1177,9 +1161,7 @@ ${sourcesHtml}
 
 ${renderConclusion()}
 
-${renderAdditionalSources(additionalSourcesMarkdown)}
 
-${renderCountsTable(statements)}
 
 ${renderDemocracyNote()}
   `.trim();

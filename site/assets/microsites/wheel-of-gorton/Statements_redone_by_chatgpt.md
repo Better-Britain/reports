@@ -772,9 +772,3 @@ Sources:
 BBC reported Spencer would reinstate the Serious Sexual Offences Unit and put in place an independent commissioner.
 Sources:
 - [BBC — Greater Manchester mayor: Hannah Spencer (Green candidate profile)](https://www.bbc.co.uk/news/articles/c84zwzdz0qno)
-
-## Additional sources
-
-This section is for sources we looked at (or want to acknowledge) that are **not yet attached to a specific statement block** above.
-
-- (Add links here.)
