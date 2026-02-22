@@ -258,6 +258,17 @@ function slugifyKey(s) {
     .slice(0, 64);
 }
 
+function stableHash32(input) {
+  // Deterministic 32-bit hash for stable ordering (no randomness at build time).
+  const s = String(input || '');
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i += 1) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
 function stripTrailingUtms(rawUrl) {
   try {
     const u = new URL(String(rawUrl || '').trim());
@@ -676,6 +687,7 @@ function issueLabel(issue) {
   if (i === 'homes-streets') return 'Homes / rents / streets';
   if (i === 'health-care') return 'Health / care / harm';
   if (i === 'transport-air') return 'Transport / air / infrastructure';
+  if (i === 'context') return 'Context / background';
   return issue || 'Other';
 }
 
@@ -796,10 +808,10 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
   const hasOverflow = list.length > 6;
 
   const issueCounts = {};
-  for (const issue of PRIMARY_ISSUES) issueCounts[issue] = 0;
+  for (const issue of [...PRIMARY_ISSUES, 'context']) issueCounts[issue] = 0;
   for (const s of list) {
     const issueKey = String(s?.issue || '').trim().toLowerCase();
-    if (PRIMARY_ISSUES.includes(issueKey)) issueCounts[issueKey] += 1;
+    if (issueKey in issueCounts) issueCounts[issueKey] += 1;
   }
   const totalCount = list.length;
   const filterBtns = [
@@ -808,6 +820,7 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
     `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--homes" data-role="sources-filter" data-issue="homes-streets" data-label="Homes" title="Homes"><span class="sourcesFilterIcon" aria-hidden="true">🏠</span>${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
     `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--health" data-role="sources-filter" data-issue="health-care" data-label="Health" title="Health"><span class="sourcesFilterIcon" aria-hidden="true">🏥</span>${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
     `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--transit" data-role="sources-filter" data-issue="transport-air" data-label="Transit" title="Transit"><span class="sourcesFilterIcon" aria-hidden="true">🚌</span>${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--context" data-role="sources-filter" data-issue="context" data-label="Context" title="Context"><span class="sourcesFilterIcon" aria-hidden="true">📎</span>${escapeHtml(String(issueCounts['context'] || 0))}</button>`,
     `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--all is-active" data-role="sources-filter" data-issue="" data-label="All" title="All"><span class="sourcesFilterIcon" aria-hidden="true">🗂️</span>${escapeHtml(String(totalCount))}</button>`
   ].join('');
 
@@ -885,7 +898,7 @@ function renderSourcesSection(statements) {
   <input class="sourcesAllToggle" type="checkbox" id="sources-all" />
   <div class="sourcesHead">
     <h2 id="sourcesTitle">Sources</h2>
-    <p class="sourcesLead">Grouped, link-first cards so you can skim what’s been said, check the original material, and decide what’s fair.</p>
+    <p class="sourcesLead">Grouped cards so you can skim what’s been said, and check the original material.</p>
     ${countsInlineHtml ? `<div class="sourcesCounts" aria-label="Evidence activity summary">${countsInlineHtml}</div>` : ''}
     <p class="sourcesNote">Most of these sources are gathered by AI, reviewed, and open for editing. See <a href="${escapeHtml(statementsViewUrl)}" target="_blank" rel="noopener noreferrer"><code>Statements.md</code></a> or <a href="${escapeHtml(statementsEditUrl)}" target="_blank" rel="noopener noreferrer">edit it on GitHub</a>.</p>
     <div class="sourcesControls" role="group" aria-label="Sources display options">
@@ -906,9 +919,10 @@ function renderCountsTableInline(statements) {
     { id: 'hannah-spencer', name: 'Hannah Spencer' },
     { id: 'matt-goodwin', name: 'Matt Goodwin' }
   ];
+  const countIssues = [...PRIMARY_ISSUES, 'context'];
   const eligible = (statements || []).filter((s) =>
     candidates.some((c) => c.id === s.candidate)
-    && PRIMARY_ISSUES.includes(String(s.issue || '').trim().toLowerCase())
+    && countIssues.includes(String(s.issue || '').trim().toLowerCase())
     && isEvidenceKind(s.kind)
   );
   if (!eligible.length) return '';
@@ -923,13 +937,13 @@ function renderCountsTableInline(statements) {
 
   const totals = new Map();
   for (const c of candidates) totals.set(c.id, 0);
-  for (const issue of PRIMARY_ISSUES) {
+  for (const issue of countIssues) {
     for (const c of candidates) {
       totals.set(c.id, (totals.get(c.id) || 0) + (counts.get(`${issue}:${c.id}`) || 0));
     }
   }
 
-  const rowsHtml = PRIMARY_ISSUES.map((issue) => {
+  const rowsHtml = countIssues.map((issue) => {
     const cells = candidates.map((c) => `<td data-candidate="${escapeHtml(c.id)}">${escapeHtml(String(counts.get(`${issue}:${c.id}`) || 0))}</td>`).join('');
     return `<tr><th scope="row">${escapeHtml(issueLabel(issue))}</th>${cells}</tr>`;
   }).join('\n');
@@ -937,7 +951,6 @@ function renderCountsTableInline(statements) {
 
   return `
 <div class="countsInline">
-  <div class="countsInlineTitle">Evidence activity (counts)</div>
   <div class="countsTableWrap">
     <table class="countsTable countsTable--inline">
       <thead>
@@ -1008,9 +1021,10 @@ function renderCountsTable(statements) {
     { id: 'hannah-spencer', name: 'Hannah Spencer' },
     { id: 'matt-goodwin', name: 'Matt Goodwin' }
   ];
+  const countIssues = [...PRIMARY_ISSUES, 'context'];
   const eligible = (statements || []).filter((s) =>
     candidates.some((c) => c.id === s.candidate)
-    && PRIMARY_ISSUES.includes(String(s.issue || '').trim().toLowerCase())
+    && countIssues.includes(String(s.issue || '').trim().toLowerCase())
     && isEvidenceKind(s.kind)
   );
 
@@ -1024,13 +1038,13 @@ function renderCountsTable(statements) {
 
   const totals = new Map();
   for (const c of candidates) totals.set(c.id, 0);
-  for (const issue of PRIMARY_ISSUES) {
+  for (const issue of countIssues) {
     for (const c of candidates) {
       totals.set(c.id, (totals.get(c.id) || 0) + (counts.get(`${issue}:${c.id}`) || 0));
     }
   }
 
-  const rowsHtml = PRIMARY_ISSUES.map((issue) => {
+  const rowsHtml = countIssues.map((issue) => {
     const cells = candidates.map((c) => `<td data-candidate="${escapeHtml(c.id)}">${escapeHtml(String(counts.get(`${issue}:${c.id}`) || 0))}</td>`).join('');
     return `<tr><th scope="row">${escapeHtml(issueLabel(issue))}</th>${cells}</tr>`;
   }).join('\n');
@@ -1102,9 +1116,6 @@ function renderFlyerGallery(flyers) {
 <div class="flyerItem">
   <a class="flyerOpen" href="${escapeHtml(src)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(a11y)}">
     <img src="${escapeHtml(thumb)}" alt="${escapeHtml(a11y)}" loading="lazy" />
-  </a>
-  <a class="flyerDownload" href="${escapeHtml(src)}" download>
-    <span aria-hidden="true">⬇</span> Download
   </a>
   <span class="flyerCap">${escapeHtml(title || 'Flyer')}</span>
 </div>
@@ -1240,7 +1251,7 @@ ${contactsHtml}
 <section class="flyersWrap" aria-labelledby="flyersTitle">
   <div class="flyersHead">
     <h2 id="flyersTitle">Flyer scans</h2>
-    <p>Click a thumbnail to open the full scan in a new tab. The Download button uses the HTML <code>download</code> attribute (GitHub Pages-friendly).</p>
+    <p>Click a thumbnail to open the full scan in a new tab. We also received an additional Green flyer, but it included local residents’ photos and personal details, so we didn’t want to republish it online.</p>
   </div>
   <div class="flyerGrid" data-role="flyer-gallery">
     ${flyerGalleryHtml}
@@ -1287,7 +1298,19 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
       await fs.access(path.join(flyersDir, 'thumbnails', base));
       thumbRel = `./images/flyers/thumbnails/${base}`;
     } catch {
-      thumbRel = srcRel;
+      // Allow thumbnails to be a different format (e.g. source is PNG, thumb is JPG).
+      const fallbacks = [`${stem}.jpg`, `${stem}.jpeg`, `${stem}.png`, `${stem}.webp`];
+      let picked = '';
+      for (const f of fallbacks) {
+        try {
+          await fs.access(path.join(flyersDir, 'thumbnails', f));
+          picked = f;
+          break;
+        } catch {
+          // continue
+        }
+      }
+      thumbRel = picked ? `./images/flyers/thumbnails/${picked}` : srcRel;
     }
 
     flyers.push({
@@ -1297,7 +1320,8 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
       thumb: thumbRel
     });
   }
-  flyers.sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
+  // Intentionally mixed ordering (stable across builds).
+  flyers.sort((a, b) => stableHash32(a.id) - stableHash32(b.id));
 
   const headshotsDir = path.join(src, 'images', 'headshots');
   let headshotFiles = [];
