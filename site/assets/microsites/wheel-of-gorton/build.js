@@ -121,7 +121,29 @@ function extractH2Section(markdownText, heading) {
 }
 
 function extractStatementsSection(markdownText) {
-  return extractH2Section(markdownText, 'Statements');
+  const extracted = extractH2Section(markdownText, 'Statements');
+  if (extracted) return extracted;
+
+  // Fallback: if the file contains meta blocks but is missing the heading,
+  // treat everything from the first meta block as statements until the next H2.
+  const lines = String(markdownText || '').split(/\r?\n/);
+  let start = -1;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (/<!--\s*meta\s+/i.test(lines[i])) {
+      start = i;
+      break;
+    }
+  }
+  if (start < 0) return '';
+
+  let end = lines.length;
+  for (let i = start; i < lines.length; i += 1) {
+    if (/^##\s+/.test(lines[i])) {
+      end = i;
+      break;
+    }
+  }
+  return lines.slice(start, end).join('\n').trim();
 }
 
 function parseTitle(markdownText) {
@@ -976,7 +998,7 @@ function renderConclusion() {
     <h2 id="conclusionTitle">So… what kind of politics do you want?</h2>
     <p class="conclusionLead">
       Better Britain Bureau is for competence and evidence-led policymaking. This page is built to make chasing/checking claims easier. Hopefully, modern tech helps turn noise into signal for future elections, instead of just putting us all out of work, but who really knows? Not us. 
-    </p
+    </p>
     <p class="conclusionBody">
       The question for voters in Gorton, Denton, Levy and Burnage isn’t just “which party?”, but what kind of politics you want?
     </p>
@@ -1145,7 +1167,11 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   const further = (statements || []).filter((s) => String(s.slot || '').toLowerCase() !== 'standoff');
   // Keep these lists in the HTML for the interactive to scan, but render them via the new Sources UI.
   const sourcesHtml = renderSourcesSection([...(standoff || []), ...(further || [])]);
-  const headshotsJson = escapeHtml(JSON.stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] }));
+  // `script` tags are raw-text; HTML-escaping would break JSON.parse().
+  // Escape "<" to avoid accidentally closing the script tag.
+  const headshotsJson = JSON
+    .stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] })
+    .replace(/</g, '\\u003c');
   const contactsHtml = renderCandidateContactsPanel({ candidates: candidateContacts });
   const flyerGalleryHtml = renderFlyerGallery(flyers);
 

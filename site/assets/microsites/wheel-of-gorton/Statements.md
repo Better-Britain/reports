@@ -3,7 +3,9 @@
 This Markdown file is the **source of truth** for the microsite.
 
 - Each statement/claim is a **single block** under `## Statements`.
-- Each block **must** start with a `
+- Each block **must** start with a `<!--meta ... -->` line.
+
+## Statements
 
 
 <!--meta id="gd-001" candidate="context" candidateName="Context" issue="context" kind="documented" date="2026-02-03" -->

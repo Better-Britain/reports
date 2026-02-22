@@ -75,8 +75,6 @@ Sources: BBC (27 Jan 2026 announcement), Guardian (multiple Jan–Feb 2026), Ref
 Multiple sources confirm plumber status: MEN profiles (2015 business launch + 2026 “remarkable rise” feature), Green Party press release (30 Jan 2026), BBC (30 Jan 2026), Yahoo/MEN fact-check (10 Feb 2026).  
 **Reviews note**: No public Google/Trustpilot/Facebook business reviews surfaced in wide searches (small/local operation; heat-pump work often via larger firms). Her plumber identity is corroborated across 10+ independent articles with photos from 2015–2026; no contradictions or negative reports found.
 
-### Other Candidates (alphabetical)
-
 #### Nick Buckley MBE (Advance UK)
 ##### Socials & Profiles
 - WhoCanIVoteFor profile: https://whocanivotefor.co.uk/person/35689/nick-buckley  

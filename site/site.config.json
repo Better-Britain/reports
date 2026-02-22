@@ -139,17 +139,9 @@
       "slug": "wheel-of-gorton",
       "publicPath": "/wheel-of-gorton/",
       "sourceDir": "site/assets/microsites/wheel-of-gorton",
-      "aliases": [
-        {
-          "slug": "gorton-standoff",
-          "publicPath": "/gorton-standoff/",
-          "title": "Wheel of Gorton",
-          "description": "A Desperados-style interactive standoff: pick an issue, see what candidates said/did, then open the receipts."
-        }
-      ],
-      "navTitle": "Wheel of Gorton",
-      "title": "Wheel of Gorton",
-      "description": "A Desperados-style interactive standoff: pick an issue, see what candidates said/did, then open the receipts.",
+      "navTitle": "Wheel of Gorton (and Denton)",
+      "title": "Wheel of Gorton (and Denton)",
+      "description": "It's Wheeeeel of Gorton! (and Denton): pick an issue, see what the byelection candidates said or did.",
       "pubDate": "2026-02-20T20:30:00Z",
       "image": "/wheel-of-gorton/images/promo/wheel-of-gorton.jpg"
     }

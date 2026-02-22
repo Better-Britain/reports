@@ -372,7 +372,6 @@
     if (!meta.image) {
       const mapped = String(HEADSHOT_MANIFEST?.resolved?.[candidateId] || '').trim();
       if (mapped) meta.image = mapped;
-      else if (HEADSHOT_MANIFEST?.fallback) meta.image = String(HEADSHOT_MANIFEST.fallback || '').trim();
     }
     const affiliation = String(
       state?.affiliationByCandidate?.get?.(candidateId)
@@ -915,7 +914,7 @@
         issue
       });
       return {
-        label: CANDIDATE_META.get(candidateId)?.name || candidateId,
+        label: CANDIDATE_META.get(candidateId)?.name || state?.displayNameByCandidate?.get?.(candidateId) || candidateId,
         text: quote,
         receiptId: String(pick?.dataset?.id || ''),
         anchor: {
@@ -994,10 +993,6 @@
       outerActive: allOuter.slice(0, Math.min(6, allOuter.length))
     };
 
-    function onBadgeClick(candidateId, issueId) {
-      runIssue(issueId, { forcedWinner: candidateId, source: 'badge' });
-    }
-
     function showSingleAvatarSpeech(candidateId) {
       const avatar = state.avatars.get(candidateId);
       if (!avatar) return;
@@ -1037,7 +1032,7 @@
       });
 
       bubbles?.render?.([{
-        label: CANDIDATE_META.get(candidateId)?.name || candidateId,
+        label: CANDIDATE_META.get(candidateId)?.name || state?.displayNameByCandidate?.get?.(candidateId) || candidateId,
         text: quote,
         receiptId: String(receipt?.dataset?.id || ''),
         anchor: {
@@ -1059,6 +1054,65 @@
           r: 176 * Math.min(scaleX, scaleY)
         }
       });
+    }
+
+    function showSingleAvatarSpeechForIssue(candidateId, issueId) {
+      if (state.spinning) return;
+      const avatar = state.avatars.get(candidateId);
+      if (!avatar) return;
+
+      const issue = String(issueId || '').trim();
+      if (!issue) return;
+
+      const scoped = (state.byIssue.get(issue) || new Map()).get(candidateId) || [];
+      if (!scoped.length) return;
+
+      const panelRect = panel.getBoundingClientRect();
+      const svgRect = svg.getBoundingClientRect();
+      const scaleX = svgRect.width / 920;
+      const scaleY = svgRect.height / 920;
+      const offsetX = svgRect.left - panelRect.left;
+      const offsetY = svgRect.top - panelRect.top;
+      const anchorRadius = (Number(avatar.radius || 0) + 7) * Math.min(scaleX, scaleY);
+
+      const last = state.lastShownByCandidate.get(candidateId) || { receiptId: '', issue: '' };
+      const receipt = pickRandomDifferent(scoped, last.receiptId);
+      if (!receipt) return;
+
+      const quote = receipt.querySelector('.receiptQuote')?.textContent?.trim() || 'No quote available yet.';
+      const issueMeta = ISSUE_META.get(issue) || { label: issue || 'Issue', color: 'rgba(42,27,20,.18)' };
+      state.lastShownByCandidate.set(candidateId, {
+        receiptId: String(receipt.dataset.id || ''),
+        issue
+      });
+
+      bubbles?.render?.([{
+        label: CANDIDATE_META.get(candidateId)?.name || state?.displayNameByCandidate?.get?.(candidateId) || candidateId,
+        text: quote,
+        receiptId: String(receipt?.dataset?.id || ''),
+        anchor: {
+          x: offsetX + avatar.center.x * scaleX,
+          y: offsetY + avatar.center.y * scaleY
+        },
+        anchorRadius,
+        priority: 22,
+        issueLabel: issueMeta.label,
+        issueColor: issueMeta.color
+      }], {
+        speakerAnchors: Array.from(state.avatars.values()).map((av) => ({
+          x: offsetX + av.center.x * scaleX,
+          y: offsetY + av.center.y * scaleY
+        })),
+        noGoCircle: {
+          x: offsetX + CX * scaleX,
+          y: offsetY + CY * scaleY,
+          r: 176 * Math.min(scaleX, scaleY)
+        }
+      });
+    }
+
+    function onBadgeClick(candidateId, issueId) {
+      showSingleAvatarSpeechForIssue(candidateId, issueId);
     }
 
     drawWheelRing(wheelRing);

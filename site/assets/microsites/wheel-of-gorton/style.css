@@ -1148,7 +1148,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
   .piePicker{position:sticky;top:10px;z-index:4}
 }
 
-/* JS-enhanced ring layout (absolute, Desperados-ish rooftop circle) */
+/* JS-enhanced ring layout */
 body.js .ring{
   position:absolute;
   inset:0;
