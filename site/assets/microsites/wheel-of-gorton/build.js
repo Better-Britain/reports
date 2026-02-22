@@ -991,8 +991,11 @@ function renderConclusion() {
     <p class="conclusionBody">
       The question for voters in Gorton, Denton, Levy and Burnage isn’t just “which party?”, but what kind of politics you want?
     </p>
+    <p class="conclusionBody">
+      If you want the bigger picture, see our flagship report: <a href="/year-of-labour.html"><strong>Year of Labour</strong></a>. We’ll try to keep it up to date through this government, to try and see whether the promise of change is being delivered. So far they’re scoring just about OK on policy — which is a long way from an endorsement.
+    </p>
     <p class="conclusionNote">
-      Vote with your heart and your brain, not with your worst fears.
+      Vote with your brain and your heart.
     </p>
   </div>
 </section>
