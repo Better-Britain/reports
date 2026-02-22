@@ -304,6 +304,14 @@ body{
 }
 .sourcesHead h2{margin:0 0 6px;font-size:20px}
 .sourcesLead{margin:0;color:var(--muted);max-width:90ch}
+.sourcesNote{
+  margin:10px 0 0;
+  color:rgba(34,24,19,.82);
+  max-width:95ch;
+  font-size:13px;
+}
+.sourcesNote a{color:var(--ink)}
+.sourcesNote code{font-size:12px}
 .sourcesControls{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .sourcesTagsToggle,.sourcesAllToggle{
   position:absolute;
@@ -317,6 +325,7 @@ body{
 .sourcesToggleLabel{
   display:inline-flex;
   align-items:center;
+  gap:8px;
   cursor:pointer;
   user-select:none;
   font-weight:850;
@@ -327,6 +336,8 @@ body{
   border:1px solid rgba(18,11,7,.12);
   line-height:1;
 }
+.sourcesToggleIcon{opacity:.82}
+.sourcesToggleText{display:inline}
 .sourcesToggleLabel:hover{border-color:rgba(194,59,34,.35)}
 .sourcesTagsToggle:checked ~ .sourcesHead .sourcesToggleLabel[for="sources-tags"],
 .sourcesAllToggle:checked ~ .sourcesHead .sourcesToggleLabel[for="sources-all"]{
@@ -394,12 +405,12 @@ body{
   border:1px solid rgba(34,24,19,.18);
   background:rgba(255,255,255,.62);
   color:var(--ink);
-  padding:10px 12px;
+  padding:11px 14px;
   border-radius:0;
   font-weight:950;
-  font-size:13px;
+  font-size:14px;
   cursor:pointer;
-  min-width:44px;
+  min-width:48px;
   text-align:center;
 }
 .sourcesPanelFilters .sourcesFilterBtn{border-left-width:0}
@@ -425,9 +436,12 @@ details.sourcesPanel[data-filtered="1"] .sourcesFilterBtn:not(.is-active){opacit
 .sourcesFilterIcon{
   display:none;
   margin-right:6px;
+  font-size:16px;
+  line-height:1;
 }
 @media (min-width: 760px){
   .sourcesFilterIcon{display:inline}
+  .sourcesFilterBtn{font-size:15px}
 }
 
 @media (max-width: 520px){

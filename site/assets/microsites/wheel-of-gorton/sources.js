@@ -31,9 +31,13 @@
     const tagsToggle = document.getElementById('sources-tags');
     if (tagsToggle && tagsToggle instanceof HTMLInputElement) {
       const label = document.querySelector('label.sourcesToggleLabel[for="sources-tags"]');
+      const textEl = label?.querySelector?.('[data-role="sources-toggle-text"]') || null;
       const apply = () => {
         const on = Boolean(tagsToggle.checked);
-        if (label) label.textContent = label.getAttribute(on ? 'data-on' : 'data-off') || label.textContent;
+        const next = (label?.getAttribute(on ? 'data-on' : 'data-off') || '').trim();
+        if (!next) return;
+        if (textEl) textEl.textContent = next;
+        else if (label) label.textContent = next;
       };
       tagsToggle.addEventListener('change', apply);
       apply();
@@ -42,9 +46,14 @@
     const allToggle = document.getElementById('sources-all');
     if (allToggle && allToggle instanceof HTMLInputElement) {
       const label = document.querySelector('label.sourcesToggleLabel[for="sources-all"]');
+      const textEl = label?.querySelector?.('[data-role="sources-toggle-text"]') || null;
       const apply = () => {
         const on = Boolean(allToggle.checked);
-        if (label) label.textContent = label.getAttribute(on ? 'data-on' : 'data-off') || label.textContent;
+        const next = (label?.getAttribute(on ? 'data-on' : 'data-off') || '').trim();
+        if (next) {
+          if (textEl) textEl.textContent = next;
+          else if (label) label.textContent = next;
+        }
         const panels = Array.from(document.querySelectorAll('[data-role="sources-panel"]'));
         for (const p of panels) {
           if (p instanceof HTMLDetailsElement) {

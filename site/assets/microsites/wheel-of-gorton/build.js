@@ -850,6 +850,10 @@ function renderSourcesSection(statements) {
   const totalSourcesCount = list.length;
   const countsInlineHtml = renderCountsTableInline(list);
 
+  const statementsPath = 'site/assets/microsites/wheel-of-gorton/Statements.md';
+  const statementsViewUrl = `https://github.com/Better-Britain/reports/blob/main/${statementsPath}`;
+  const statementsEditUrl = `https://github.com/Better-Britain/reports/edit/main/${statementsPath}`;
+
   return `
 <section class="sourcesWrap" aria-labelledby="sourcesTitle">
   <input class="sourcesTagsToggle" type="checkbox" id="sources-tags" />
@@ -857,11 +861,12 @@ function renderSourcesSection(statements) {
   <div class="sourcesHead">
     <h2 id="sourcesTitle">Sources</h2>
     <p class="sourcesLead">Grouped, link-first cards so you can skim what’s been said, check the original material, and decide what’s fair.</p>
-    <div class="sourcesControls" role="group" aria-label="Sources display options">
-      <label class="sourcesToggleLabel" for="sources-tags" data-off="Show tags" data-on="Hide tags">Show tags</label>
-      <label class="sourcesToggleLabel" for="sources-all" data-off="Show ALL ${escapeHtml(String(totalSourcesCount))} Sources" data-on="Showing ALL ${escapeHtml(String(totalSourcesCount))} Sources">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</label>
-    </div>
     ${countsInlineHtml ? `<div class="sourcesCounts" aria-label="Evidence activity summary">${countsInlineHtml}</div>` : ''}
+    <p class="sourcesNote">Most of these sources are gathered by AI, reviewed, and open for editing. See <a href="${escapeHtml(statementsViewUrl)}" target="_blank" rel="noopener noreferrer"><code>Statements.md</code></a> or <a href="${escapeHtml(statementsEditUrl)}" target="_blank" rel="noopener noreferrer">edit it on GitHub</a>.</p>
+    <div class="sourcesControls" role="group" aria-label="Sources display options">
+      <label class="sourcesToggleLabel" for="sources-tags" data-off="Show tags" data-on="Hide tags"><span class="sourcesToggleIcon" aria-hidden="true">⚙️</span><span class="sourcesToggleText" data-role="sources-toggle-text">Show tags</span></label>
+      <label class="sourcesToggleLabel" for="sources-all" data-off="Show ALL ${escapeHtml(String(totalSourcesCount))} Sources" data-on="Showing ALL ${escapeHtml(String(totalSourcesCount))} Sources"><span class="sourcesToggleIcon" aria-hidden="true">⚙️</span><span class="sourcesToggleText" data-role="sources-toggle-text">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</span></label>
+    </div>
   </div>
   <div class="sourcesPanels">
     ${panels.join('\n')}
@@ -940,30 +945,22 @@ function renderMethodContext() {
       Campaigns are designed to persuade. Parties are not neutral narrators of what their opponents said or did, and commercial media/analysis often optimises for attention and incentives rather than “fair comparison”.
     </p>
     <p class="methodLead">
-      And media coverage can drift towards the easiest story: the horse‑race (“who’s going to win?”), sometimes framed like betting odds, plus a handful of screenshot‑driven mini scandals — instead of the slower work of explaining what problems constituents actually face, what candidates have done, and what interests they serve.
+      Media coverage can drift towards the easiest/clickiest story: the outrage, the horse‑race (“who’s going to win?”), sometimes framed like betting odds, plus a handful of mini scandals — instead of the slower work of explaining what problems constituents actually face, what candidates have done, and what interests they serve.
     </p>
     <p class="methodLead">
-      For many voters, the real question isn’t “who will win?”, but: <strong>why should I vote for any of them?</strong> When politics looks like drama-without-results, disengagement and low turnout become predictable outcomes.
+      For many voters, the real question isn’t “who will win?”, but: <strong>why should I vote for any of them?</strong> When politics looks like drama and results are buried behind waffle and name-calling, disengagement and low turnout become predictable outcomes.
     </p>
-    <ul class="methodList">
-      <li><strong>We link primary sources</strong> wherever possible, so you can check the original words and context.</li>
-      <li><strong>We separate “said” from “documented”.</strong> If we can’t find the exact quote, it shouldn’t be in a speech bubble.</li>
-      <li><strong>No-JS still works.</strong> Scroll the receipts: everything the interactive shows is already on the page.</li>
-    </ul>
 
     <details class="easterEgg">
-      <summary><strong>Voters are angry</strong> (a compassionate lens)</summary>
+      <summary><strong>Many voters are angry</strong></summary>
       <div class="easterBody">
         <p>
           It’s easy to look at political opponents and conclude they’re “thick”. Part of that is how social media flattens complex, nuanced trade-offs into tribal “in/out” identities.
           But most of real life is compromise, timing, and imperfect information.
         </p>
         <p>
-          Real people often understand nuance — they just can’t carry the burden of <em>every</em> compromise forever. If it never feels like your turn for an upswing, it’s human to reach for the choice that promises:
-          “at least we’ll get poorer together”, even if (too often) the richest get to get poorer last.
-        </p>
-        <p class="easterNote">
-          This isn’t “excusing everything”. It’s a de-escalation tool: start with the assumption that most people are trying to protect themselves and their families, then argue about facts.
+          Real people get nuance — but they can’t carry the burden of <em>every</em> big compromise forever. If it never feels like your turn for an upswing, it’s human to reach for the choice that promises:
+          “at least we’ll get poorer together”, even if the richest get to get poorer last.
         </p>
       </div>
     </details>
