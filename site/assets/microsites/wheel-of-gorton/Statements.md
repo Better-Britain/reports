@@ -617,18 +617,18 @@ Nigel Farage said this at a Denton campaign launch.
 Sources:
 - [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
 
-<!--meta id="gd-331" candidate="context" candidateName="Context" issue="context" kind="said" date="2026-02-05" speaker="nigel-farage" speakerName="Nigel Farage" -->
+<!--meta id="gd-331" candidate="context" candidateName="Context" party="Reform UK" issue="context" kind="said" date="2026-02-05" speaker="nigel-farage" speakerName="Nigel Farage" -->
 > “could be the end of Starmer”
 Nigel Farage said this to journalists at the Denton event.
 Sources:
 - [Manchester Evening News — Farage + Goodwin launch campaign (transcript)](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/every-word-said-nigel-farage-33373013)
 
-<!--meta id="gd-340" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="culture-war" kind="documented" speakerName="Press Association" date="2026-02-19" -->
+<!--meta id="gd-340" candidate="nick-buckley" candidateName="Nick Buckley MBE" party="Advance UK" issue="culture-war" kind="documented" date="2026-02-19" -->
 Nick Buckley reposted a claim alleging Reform candidate Matt Goodwin said he “hated” living in Manchester.
 Sources:
 - [Yahoo (Press Association) — fact check on edited Goodwin quote image](https://malaysia.news.yahoo.com/fact-check-image-reform-election-141653837.html)
 
-<!--meta id="gd-341" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="documented" speakerName="Press Association" date="2026-02-19" -->
+<!--meta id="gd-341" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="documented" date="2026-02-19" -->
 The “I hated it… locals are all chavs” quote was not in the underlying newspaper interview and appears to be a falsified edit.
 Sources:
 - [Yahoo (Press Association) — fact check on edited Goodwin quote image](https://malaysia.news.yahoo.com/fact-check-image-reform-election-141653837.html)
@@ -668,13 +668,13 @@ Matt Goodwin said this on Political Thinking with Nick Robinson.
 Sources:
 - [BBC — Matt Goodwin unveiled as Reform UK’s by-election candidate](https://www.bbc.co.uk/news/articles/c4gr06y3n9zo)
 
-<!--meta id="gd-348" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Keir Starmer" date="2026-01-28" -->
+<!--meta id="gd-348" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Labour" issue="culture-war" kind="said" speaker="keir-starmer" speakerName="Keir Starmer" date="2026-01-28" -->
 > “the politics of division, of toxic division, of tearing people apart,”
 Keir Starmer said this while criticising Reform’s politics in Gorton & Denton.
 Sources:
 - [BBC — Starmer speaks to Burnham after by-election row](https://www.bbc.co.uk/news/articles/cp3zp2p8qwzo)
 
-<!--meta id="gd-349" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Reform UK" issue="culture-war" kind="said" speakerName="Labour spokesperson" date="2026-02-13" -->
+<!--meta id="gd-349" candidate="matt-goodwin" candidateName="Matt Goodwin" party="Labour" issue="culture-war" kind="said" speaker="labour-spokesperson" speakerName="Labour spokesperson" date="2026-02-13" -->
 > “Because it's full of the same old failed Tories that did it all before. You simply can't trust them.”
 A Labour spokesperson said this about Reform.
 Sources:
@@ -871,12 +871,6 @@ Sources:
 Jackie Pearcey said this during the BBC hustings debate on housing.
 Sources:
 - [BBC — What we learned from BBC Gorton and Denton debate](https://www.bbc.com/news/articles/c98q4e59rj9o)
-
-# Gorton & Denton Showdown — Supplemental Statements #2
-
-New public-record blocks (19–22 Feb 2026) for merging. Focused on fresh quotes, pledges, and exchanges from the final campaign week. Unique IDs start at gd-450.
-
-## Supplemental Statements
 
 <!--meta id="gd-450" candidate="angeliki-stogia" candidateName="Angeliki Stogia" party="Labour" issue="culture-war" kind="said" date="2026-02-21" -->
 > “This is about shouting from the sidelines and divisive politics or it’s about unity and keeping our city united.”

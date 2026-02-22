@@ -121,8 +121,11 @@ function extractH2Section(markdownText, heading) {
 }
 
 function extractStatementsSection(markdownText) {
-  const extracted = extractH2Section(markdownText, 'Statements');
-  if (extracted) return extracted;
+  const sections = [
+    extractH2Section(markdownText, 'Statements'),
+    extractH2Section(markdownText, 'Supplemental Statements')
+  ].filter(Boolean);
+  if (sections.length) return sections.join('\n\n').trim();
 
   // Fallback: if the file contains meta blocks but is missing the heading,
   // treat everything from the first meta block as statements until the next H2.

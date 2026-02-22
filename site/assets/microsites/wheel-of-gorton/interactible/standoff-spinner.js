@@ -42,7 +42,8 @@
     swing: 'Independent'
   };
   const EXPLICIT_NO_TOP_TAG = new Set([
-    'labour-party-spokesperson'
+    'labour-party-spokesperson',
+    'labour-spokesperson'
   ]);
 
   // Political proximity lanes for supplemental speakers/candidates.
@@ -50,6 +51,16 @@
     'angeliki-stogia': 'labour',
     'hannah-spencer': 'green',
     'matt-goodwin': 'reform',
+    'andy-burnham': 'labour',
+    'lucy-powell': 'labour',
+    'keir-starmer': 'labour',
+    'nadia-whittome': 'labour',
+    'labour-spokesperson': 'labour',
+    'nigel-farage': 'reform',
+    'zack-polanski': 'green',
+    'william-clouston': 'swing',
+    'kevin-hollinrake': 'reform',
+    'rejoin-eu-party': 'green',
     'jackie-pearcey': 'labour',
     'hugo-wils': 'labour',
     'joseph-omeachair': 'green',
@@ -108,6 +119,25 @@
 
   function qsa(root, sel) {
     return Array.from((root || document).querySelectorAll(sel));
+  }
+
+  function spinnerOwnerForReceipt(receiptEl) {
+    const el = receiptEl;
+    const candidateId = String(el?.dataset?.candidate || '').trim();
+    if (!candidateId) return '';
+
+    const kind = String(el?.dataset?.kind || '').trim().toLowerCase();
+    if (kind !== 'said' && kind !== 'quote') return candidateId;
+
+    const speakerName = String(el?.dataset?.speakerName || '').trim();
+    const speakerKey = String(el?.dataset?.speakerKey || '').trim();
+    if (!speakerName || !speakerKey) return candidateId;
+
+    const candidateName = String(el?.dataset?.candidateName || '').trim();
+    if (candidateName && speakerName.toLowerCase() === candidateName.toLowerCase()) return candidateId;
+    if (speakerKey === candidateId) return candidateId;
+
+    return speakerKey;
   }
 
   function createSvg(tag) {
@@ -182,12 +212,13 @@
     qsa(document, '[data-role="receipt"]').forEach(function (el) {
       if (String(el.dataset.slot || '').toLowerCase() !== 'standoff') return;
       const issue = String(el.dataset.issue || '').trim();
-      const candidate = String(el.dataset.candidate || '').trim();
-      if (!issue || !candidate) return;
+      const owner = spinnerOwnerForReceipt(el);
+      if (!issue || !owner) return;
+      el.dataset.spinnerOwner = owner;
       const byCandidate = byIssue.get(issue) || new Map();
-      const list = byCandidate.get(candidate) || [];
+      const list = byCandidate.get(owner) || [];
       list.push(el);
-      byCandidate.set(candidate, list);
+      byCandidate.set(owner, list);
       byIssue.set(issue, byCandidate);
     });
     return byIssue;
@@ -962,9 +993,10 @@
     const displayNameByCandidate = new Map();
     qsa(document, '[data-role="receipt"]').forEach(function (el) {
       if (String(el.dataset.slot || '').toLowerCase() !== 'standoff') return;
-      const id = String(el.dataset.candidate || '').trim();
+      const id = String(el.dataset.spinnerOwner || spinnerOwnerForReceipt(el) || el.dataset.candidate || '').trim();
       if (!id) return;
-      const nm = String(el.dataset.candidateName || '').trim();
+      const isSpeakerOwner = id === String(el.dataset.speakerKey || '').trim();
+      const nm = String(isSpeakerOwner ? (el.dataset.speakerName || '') : (el.dataset.candidateName || '')).trim();
       if (nm && !displayNameByCandidate.has(id)) displayNameByCandidate.set(id, nm);
     });
     const affiliations = collectAffiliationByCandidate(byIssue);
