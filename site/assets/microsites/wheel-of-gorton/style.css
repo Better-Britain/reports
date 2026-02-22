@@ -184,9 +184,15 @@ body{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
 }
-.contactNameWrap{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.contactNameWrap{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+  flex:1 1 auto;
+}
 .contactNamePlate{
   width:10px;
   height:16px;
@@ -196,10 +202,20 @@ body{
   box-shadow:0 6px 14px rgba(0,0,0,.10);
   flex:0 0 auto;
 }
-.contactName{margin:0;font-size:16px;line-height:1.2;font-weight:950}
+.contactName{
+  margin:0;
+  font-size:16px;
+  line-height:1.2;
+  font-weight:950;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
 .contactParty{
   display:inline-flex;
   align-items:center;
+  margin-left:auto;
   border-radius:999px;
   padding:4px 10px;
   font-size:12px;
@@ -242,10 +258,23 @@ body{
   font-size:13px;
   color:var(--muted);
 }
-.contactBackgroundPreview{margin:8px 0 0;color:rgba(34,24,19,.86)}
-.contactMore{margin-top:8px}
-.contactMore summary{cursor:pointer;font-weight:900;color:var(--muted)}
+.contactBackgroundLine{
+  margin-top:8px;
+  color:rgba(34,24,19,.86);
+  max-width:90ch;
+}
+.contactBackgroundPreview{display:inline}
+.contactBackgroundLine.is-open .contactBackgroundPreview{display:none}
+.contactMore{display:inline}
+.contactMore summary{
+  display:inline;
+  cursor:pointer;
+  font-weight:900;
+  color:var(--muted);
+  margin-left:8px;
+}
 .contactMoreBody{margin-top:8px}
+.contactMoreBody :is(p,ul,ol){margin:8px 0 0}
 .contactBackground :is(p,ul,ol){margin:8px 0 0}
 .contactBackground ul{padding-left:18px}
 .contactBackground li{margin:3px 0;color:rgba(34,24,19,.86)}
@@ -257,7 +286,11 @@ body{
 .contactsExpand:checked ~ .contactsList .contactAvatar{width:72px;height:72px}
 .contactsExpand:checked ~ .contactsList .contactCard--avatar-right .contactTop{grid-template-columns:1fr 72px}
 .contactsExpand:checked ~ .contactsList .contactChip{padding:8px 10px;font-size:13px;border-radius:12px}
-.contactsExpand:checked ~ .contactsList .contactMore[open] .contactBackgroundPreview{display:none}
+
+@media (max-width: 520px){
+  .contactTitleRow{flex-wrap:wrap}
+  .contactName{white-space:normal}
+}
 
 .methodWrap{margin:14px 0 18px}
 .methodCard{

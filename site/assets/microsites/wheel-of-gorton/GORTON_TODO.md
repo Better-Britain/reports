@@ -1,4 +1,4 @@
-# Gorton & Denton Showdown — TODO
+# Wheel of Gorton — TODO
 
 ## Evidence model / authoring
 
@@ -54,5 +54,5 @@
 
 ## Assets
 
-- [x] Add placeholder flyer images in `site/assets/microsites/gorton-standoff/images/flyers/` (front/back pairs).
+- [x] Add placeholder flyer images in `site/assets/microsites/wheel-of-gorton/images/flyers/` (front/back pairs).
 - [ ] Replace placeholders with real scanned flyers later (keep naming convention for pairing).

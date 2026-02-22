@@ -81,7 +81,7 @@
     try {
       parsed = JSON.parse(String(el.textContent || '{}'));
     } catch (err) {
-      console.warn('[gorton-standoff] Could not parse headshot manifest JSON.', err);
+      console.warn('[wheel-of-gorton] Could not parse headshot manifest JSON.', err);
       return;
     }
     const resolved = parsed && typeof parsed.resolved === 'object' ? parsed.resolved : {};
@@ -94,11 +94,11 @@
         meta.image = mapped;
       } else if (!meta.image && fallback) {
         meta.image = fallback;
-        console.warn('[gorton-standoff] Missing headshot for', id, '- using fallback', fallback);
+        console.warn('[wheel-of-gorton] Missing headshot for', id, '- using fallback', fallback);
       }
     }
     warnings.forEach((w) => {
-      console.warn('[gorton-standoff]', w);
+      console.warn('[wheel-of-gorton]', w);
     });
   }
 

@@ -19,7 +19,7 @@ Mexican showdown might be a good format for this, like Labour Greens reform. We 
 #### ChatGPT:
 Mexican-showdown screen: three big portraits facing inwards, each with a tiny “tell” strip under them. No manifestos, no spreadsheets. You click around and the tells light up.
 
-### **Microsite: “Gorton & Denton Showdown”**
+### **Microsite: “Wheel of Gorton”**
 
 One page, three widgets.
 

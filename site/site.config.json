@@ -135,15 +135,23 @@
       "image": "/what-brexit-costs/brexit-bus-real-nhs-cost.jpg"
     },
     {
-      "id": "gorton-standoff",
-      "slug": "gorton-standoff",
-      "publicPath": "/gorton-standoff/",
-      "sourceDir": "site/assets/microsites/gorton-standoff",
-      "navTitle": "Gorton standoff",
-      "title": "Gorton & Denton Showdown",
+      "id": "wheel-of-gorton",
+      "slug": "wheel-of-gorton",
+      "publicPath": "/wheel-of-gorton/",
+      "sourceDir": "site/assets/microsites/wheel-of-gorton",
+      "aliases": [
+        {
+          "slug": "gorton-standoff",
+          "publicPath": "/gorton-standoff/",
+          "title": "Wheel of Gorton",
+          "description": "A Desperados-style interactive standoff: pick an issue, see what candidates said/did, then open the receipts."
+        }
+      ],
+      "navTitle": "Wheel of Gorton",
+      "title": "Wheel of Gorton",
       "description": "A Desperados-style interactive standoff: pick an issue, see what candidates said/did, then open the receipts.",
       "pubDate": "2026-02-20T20:30:00Z",
-      "image": "/gorton-standoff/images/town-square-placeholder.png"
+      "image": "/wheel-of-gorton/images/promo/wheel-of-gorton.jpg"
     }
   ]
 }

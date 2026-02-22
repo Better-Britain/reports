@@ -130,7 +130,7 @@ function parseTitle(markdownText) {
     const m = l.match(/^#\s+(.*)$/);
     if (m) return m[1].trim();
   }
-  return 'Gorton & Denton Showdown';
+  return 'Wheel of Gorton';
 }
 
 function splitQuoteCaptionDetails(markdownBlock) {
@@ -480,11 +480,13 @@ function renderCandidateContactsPanel({ candidates } = {}) {
       ? `
 <div class="contactBackground">
   <div class="contactBackgroundTitle">Verified background</div>
-  ${excerpt ? `<p class="contactBackgroundPreview">${escapeHtml(excerpt)}${truncated ? '…' : ''}</p>` : ''}
-  <details class="contactMore">
-    <summary>More…</summary>
-    <div class="contactMoreBody">${md.render(c.backgroundMarkdown)}</div>
-  </details>
+  <div class="contactBackgroundLine">
+    ${excerpt ? `<span class="contactBackgroundPreview">${escapeHtml(excerpt)}${truncated ? '…' : ''}</span>` : ''}
+    <details class="contactMore">
+      <summary>More…</summary>
+      <div class="contactMoreBody">${md.render(c.backgroundMarkdown)}</div>
+    </details>
+  </div>
 </div>
       `.trim()
       : '';
@@ -868,7 +870,7 @@ function renderAdditionalSources(additionalSourcesMarkdown) {
 function renderFlyerGallery(flyers) {
   const items = Array.isArray(flyers) ? flyers : [];
   if (!items.length) {
-    return `<p class="flyerEmpty"><em>No flyer scans found yet.</em> Add files to <code>site/assets/microsites/gorton-standoff/images/flyers/</code> (e.g. <code>flyer-001-front.png</code> + <code>flyer-001-back.png</code>).</p>`;
+    return `<p class="flyerEmpty"><em>No flyer scans found yet.</em> Add files to <code>site/assets/microsites/wheel-of-gorton/images/flyers/</code> (e.g. <code>flyer-001-front.png</code> + <code>flyer-001-back.png</code>).</p>`;
   }
   return items.map((f) => {
     const front = String(f.front || '').trim();
@@ -1052,7 +1054,7 @@ ${renderDemocracyNote()}
 
 export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const src = sourceDir ? path.resolve(sourceDir) : path.resolve(path.dirname(fileURLToPath(import.meta.url)));
-  const out = outDir ? path.resolve(outDir) : path.resolve('docs/gorton-standoff');
+  const out = outDir ? path.resolve(outDir) : path.resolve('docs/wheel-of-gorton');
 
   const statementsPath = path.join(src, DEFAULT_STATEMENTS_FILE);
   const templatePath = path.join(src, DEFAULT_TEMPLATE_FILE);
@@ -1112,7 +1114,7 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const template = await fs.readFile(templatePath, 'utf8');
   const html = template
     .replace('{{title}}', escapeHtml(title))
-    .replace('{{bodyClass}}', 'bbb-microsite gorton-standoff')
+    .replace('{{bodyClass}}', 'bbb-microsite wheel-of-gorton')
     .replace('{{content}}', content);
 
   await fs.mkdir(out, { recursive: true });

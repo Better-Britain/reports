@@ -14,6 +14,17 @@
       expandToggle.addEventListener('change', apply);
       apply();
     }
+
+    for (const d of Array.from(document.querySelectorAll('details.contactMore'))) {
+      const details = d;
+      const line = details.closest('.contactBackgroundLine');
+      if (!line) continue;
+      const sync = () => {
+        line.classList.toggle('is-open', details.open === true);
+      };
+      details.addEventListener('toggle', sync);
+      sync();
+    }
   }
 
   if (document.readyState === 'loading') {
