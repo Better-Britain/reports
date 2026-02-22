@@ -66,6 +66,183 @@ body{
 .heroLead{margin:0 0 8px;max-width:68ch}
 .heroFine{margin:0;color:var(--muted);font-size:13px}
 
+/* Candidate contacts panel (parsed from Candidate_Profiles.md) */
+.contactsSection{margin:14px 0 18px}
+.contactsDetails{
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  box-shadow:0 14px 34px var(--shadow);
+  backdrop-filter: blur(6px);
+  overflow:hidden;
+}
+.contactsSummary{
+  cursor:pointer;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  list-style:none;
+}
+.contactsSummary::-webkit-details-marker{display:none}
+.contactsSummaryTitle{font-weight:950}
+.contactsSummaryMeta{font-size:13px;color:var(--muted)}
+
+.contactsBody{padding:0 12px 12px}
+.contactsExpand{
+  position:absolute;
+  inline-size:1px;
+  block-size:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space:nowrap;
+}
+.contactsControls{display:flex;justify-content:flex-end;margin:0 0 10px}
+.contactsExpandLabel{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  cursor:pointer;
+  user-select:none;
+  font-weight:850;
+  font-size:13px;
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(18,11,7,.07);
+  border:1px solid rgba(18,11,7,.12);
+}
+.contactsExpandLabel::before{
+  content:"";
+  width:32px;height:18px;
+  border-radius:999px;
+  background:rgba(18,11,7,.14);
+  border:1px solid rgba(18,11,7,.12);
+  position:relative;
+}
+.contactsExpandLabel::after{
+  content:"";
+  width:14px;height:14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(34,24,19,.20);
+  position:relative;
+  margin-left:-28px;
+  transition:transform .16s ease;
+}
+.contactsExpand:checked ~ .contactsControls .contactsExpandLabel::after{transform:translateX(14px)}
+
+.contactsList{display:flex;flex-direction:column;gap:10px}
+
+.contactCard{
+  --party: rgba(18,11,7,.14);
+  --party2: rgba(18,11,7,.06);
+  background:linear-gradient(90deg, var(--party) 0%, rgba(255,255,255,.82) 18%, rgba(255,255,255,.76) 100%);
+  border:1px solid rgba(34,24,19,.14);
+  border-radius:14px;
+  padding:12px;
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+  overflow:hidden;
+}
+.contactCard--labour{--party: rgba(194,59,34,.26);--party2: rgba(194,59,34,.12)}
+.contactCard--green{--party: rgba(47,125,75,.24);--party2: rgba(47,125,75,.12)}
+.contactCard--reform{--party: rgba(43,94,168,.22);--party2: rgba(43,94,168,.11)}
+.contactCard--conservative{--party: rgba(17,63,161,.20);--party2: rgba(17,63,161,.10)}
+.contactCard--libdem{--party: rgba(245,132,31,.22);--party2: rgba(245,132,31,.10)}
+.contactCard--sdp{--party: rgba(117,61,150,.18);--party2: rgba(117,61,150,.09)}
+.contactCard--rejoin{--party: rgba(0,126,167,.18);--party2: rgba(0,126,167,.09)}
+.contactCard--libertarian{--party: rgba(239,208,42,.24);--party2: rgba(239,208,42,.10)}
+.contactCard--advance{--party: rgba(34,24,19,.18);--party2: rgba(34,24,19,.09)}
+.contactCard--loony{--party: rgba(229,67,160,.18);--party2: rgba(229,67,160,.09)}
+.contactCard--communist{--party: rgba(160,25,35,.22);--party2: rgba(160,25,35,.10)}
+
+/* Compact-by-default layout */
+.contactTop{display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:center}
+.contactAvatar{
+  width:46px;height:46px;
+  border-radius:999px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,.78);
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  background:rgba(255,255,255,.35);
+}
+.contactAvatar img{width:100%;height:100%;object-fit:cover}
+
+.contactCard--avatar-right .contactTop{grid-template-columns:1fr 46px}
+.contactCard--avatar-right .contactAvatar{order:2}
+.contactCard--avatar-right .contactMain{order:1}
+
+.contactTitleRow{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.contactName{margin:0;font-size:16px;line-height:1.2;font-weight:950}
+.contactParty{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:12px;
+  font-weight:850;
+  background:var(--party2);
+  border:1px solid rgba(34,24,19,.14);
+  color:rgba(34,24,19,.88);
+}
+
+.contactChips{
+  margin-top:8px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.contactChip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 8px;
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:850;
+  font-size:12px;
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(34,24,19,.18);
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+.contactChip:hover{border-color:rgba(194,59,34,.35)}
+.contactEmpty{color:var(--muted);font-size:13px}
+
+.contactBackground{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(34,24,19,.12);
+}
+.contactBackgroundTitle{
+  font-weight:950;
+  font-size:13px;
+  color:var(--muted);
+}
+.contactBackgroundPreview{margin:8px 0 0;color:rgba(34,24,19,.86)}
+.contactMore{margin-top:8px}
+.contactMore summary{cursor:pointer;font-weight:900;color:var(--muted)}
+.contactMoreBody{margin-top:8px}
+.contactBackground :is(p,ul,ol){margin:8px 0 0}
+.contactBackground ul{padding-left:18px}
+.contactBackground li{margin:3px 0;color:rgba(34,24,19,.86)}
+.contactBackground a{color:var(--ink)}
+
+/* Expanded mode: show full profile blocks (still via details/summary) */
+.contactsExpand:checked ~ .contactsList .contactCard{padding:12px;box-shadow:0 12px 28px rgba(0,0,0,.10)}
+.contactsExpand:checked ~ .contactsList .contactTop{grid-template-columns:72px 1fr;gap:12px}
+.contactsExpand:checked ~ .contactsList .contactAvatar{width:72px;height:72px}
+.contactsExpand:checked ~ .contactsList .contactCard--avatar-right .contactTop{grid-template-columns:1fr 72px}
+.contactsExpand:checked ~ .contactsList .contactChip{padding:8px 10px;font-size:13px;border-radius:12px}
+.contactsExpand:checked ~ .contactsList .contactMore[open] .contactBackgroundPreview{display:none}
+
 .methodWrap{margin:14px 0 18px}
 .methodCard{
   background:rgba(255,255,255,.72);

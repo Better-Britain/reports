@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 
 const DEFAULT_STATEMENTS_FILE = 'Statements.md';
 const DEFAULT_TEMPLATE_FILE = 'template.html';
+const DEFAULT_CANDIDATE_PROFILES_FILE = 'Candidate_Profiles.md';
 
 const md = new MarkdownIt({ html: true, linkify: true, breaks: false });
 
@@ -230,6 +231,280 @@ function slugifyKey(s) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 64);
+}
+
+function stripTrailingUtms(rawUrl) {
+  try {
+    const u = new URL(String(rawUrl || '').trim());
+    const params = u.searchParams;
+    const toDelete = [];
+    for (const [k] of params) {
+      if (/^utm_/i.test(k)) toDelete.push(k);
+    }
+    toDelete.forEach((k) => params.delete(k));
+    u.search = params.toString() ? `?${params.toString()}` : '';
+    return u.toString();
+  } catch {
+    return String(rawUrl || '').trim();
+  }
+}
+
+function parseLinkLineToLink(line) {
+  const raw = String(line || '').trim();
+  if (!raw) return null;
+  if (!raw.startsWith('-')) return null;
+
+  // Support: "- Label: https://example.com" and "- Label: [Text](https://example.com)"
+  const m = raw.replace(/^\-\s*/, '').match(/^(.+?)\s*:\s*(.+)$/);
+  if (!m) return null;
+  const rawLabel = String(m[1] || '').trim();
+  const rhs = String(m[2] || '').trim();
+
+  // Prefer markdown link, else first https:// URL, else email.
+  const mdLink = rhs.match(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/i);
+  let url = mdLink ? String(mdLink[2] || '').trim() : '';
+  if (!url) {
+    const bare = rhs.match(/https?:\/\/\S+/i);
+    url = bare ? String(bare[0] || '').trim() : '';
+  }
+  url = stripTrailingUtms(url);
+
+  let email = '';
+  if (!url) {
+    const em = rhs.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+    email = em ? String(em[0] || '').trim() : '';
+    if (email) url = `mailto:${email}`;
+  }
+
+  if (!url) return null;
+
+  const label = rawLabel || (mdLink ? String(mdLink[1] || '').trim() : '') || url;
+  return { label, url };
+}
+
+function compactLinkLabel(rawLabel, url) {
+  const label = String(rawLabel || '').trim();
+  const base = label.split('(')[0].trim();
+  const lower = base.toLowerCase();
+
+  if (lower.includes('instagram')) return 'Instagram';
+  if (lower === 'x/twitter' || lower.includes('x/twitter') || lower === 'x' || lower.includes('twitter')) return 'X';
+  if (lower.includes('bluesky')) return 'Bluesky';
+  if (lower.includes('facebook')) return 'Facebook';
+  if (lower.includes('linkedin')) return 'LinkedIn';
+  if (lower.includes('youtube')) return 'YouTube';
+  if (lower.includes('tiktok')) return 'TikTok';
+  if (lower.includes('linktree')) return 'Linktree';
+  if (lower.includes('whocanivotefor')) return 'WhoCanIVoteFor';
+  if (lower.includes('campaign site')) return 'Campaign site';
+  if (lower === 'website' || lower.includes('personal website') || lower.includes('substack')) return 'Website';
+  if (lower.includes('bbc')) return 'BBC';
+  if (lower.includes('arup')) return 'Arup';
+  if (lower.includes('council')) return 'Council profile';
+
+  if (/^mailto:/i.test(String(url || ''))) return 'Email';
+
+  return base || label || String(url || '').trim();
+}
+
+function stripMarkdownToText(markdown) {
+  let s = String(markdown || '');
+  // Links: [text](url) -> text
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+  // Autolinks: <url> -> url
+  s = s.replace(/<([^>\s]+)>/g, '$1');
+  // Headings, emphasis, blockquotes, list markers
+  s = s.replace(/^#{1,6}\s+/gm, '');
+  s = s.replace(/^[>\-\*\+]\s+/gm, '');
+  s = s.replace(/[*_`]/g, '');
+  // Drop bare URLs (keep words around them)
+  s = s.replace(/https?:\/\/\S+/g, '');
+  // Collapse whitespace
+  s = s.replace(/\s+/g, ' ').trim();
+  return s;
+}
+
+function excerptWords(text, maxWords = 100) {
+  const words = String(text || '').trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return { excerpt: '', truncated: false };
+  if (words.length <= maxWords) return { excerpt: words.join(' '), truncated: false };
+  return { excerpt: words.slice(0, maxWords).join(' '), truncated: true };
+}
+
+function parseCandidateProfilesFromMarkdown(markdownText, headshotManifest) {
+  const lines = String(markdownText || '').split(/\r?\n/);
+  const aliasToId = new Map();
+  for (const id of CANDIDATE_IDS) {
+    aliasToId.set(id, id);
+    for (const a of (CANDIDATE_HEADSHOT_ALIASES[id] || [])) aliasToId.set(a, id);
+  }
+
+  function resolveCandidateId(candidateName) {
+    const slug = slugifyKey(candidateName);
+    if (aliasToId.has(slug)) return aliasToId.get(slug);
+    // common suffixes
+    if (slug.endsWith('-mbe') && aliasToId.has(slug.slice(0, -4))) return aliasToId.get(slug.slice(0, -4));
+    return slug;
+  }
+
+  const candidates = [];
+  let i = 0;
+  while (i < lines.length) {
+    const m = lines[i].match(/^####\s+(.*)$/);
+    if (!m) { i += 1; continue; }
+    const heading = String(m[1] || '').trim();
+    const pm = heading.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+    const name = (pm ? pm[1] : heading).trim();
+    const party = (pm ? pm[2] : '').trim();
+    const id = resolveCandidateId(name);
+
+    const section = { id, name, party, links: [], backgroundMarkdown: '' };
+    i += 1;
+
+    // collect blocks until next #### or end
+    let mode = '';
+    const socialsLines = [];
+    const backgroundLines = [];
+    for (; i < lines.length; i += 1) {
+      const l = String(lines[i] || '');
+      if (/^####\s+/.test(l)) break;
+      const h = l.match(/^#####\s+(.*)$/);
+      if (h) {
+        const key = String(h[1] || '').trim().toLowerCase();
+        if (key.startsWith('socials')) mode = 'socials';
+        else if (key.startsWith('verified')) mode = 'background';
+        else mode = '';
+        continue;
+      }
+      if (mode === 'socials') socialsLines.push(l);
+      if (mode === 'background') backgroundLines.push(l);
+    }
+
+    const links = [];
+    for (const l of socialsLines) {
+      const parsed = parseLinkLineToLink(l);
+      if (!parsed) continue;
+      links.push(parsed);
+    }
+    section.links = uniqLinks(links).map((l) => ({
+      label: compactLinkLabel(l.label, l.url),
+      rawLabel: l.label,
+      url: l.url
+    }));
+
+    section.backgroundMarkdown = backgroundLines.join('\n').trim();
+
+    // Provide a sensible avatar; headshot manifest is already validated/fallbacked.
+    const partyKey = slugifyKey(party || '');
+    section.partyKey = partyKey;
+    section.avatar = headshotManifest?.resolved?.[id] || headshotManifest?.fallback || './images/candidate-labour.png';
+
+    candidates.push(section);
+  }
+
+  return { candidates };
+}
+
+function partyUi(party) {
+  const p = String(party || '').trim().toLowerCase();
+  if (p.includes('labour')) return { key: 'labour', label: 'Labour', avatarSide: 'left' };
+  if (p.includes('green')) return { key: 'green', label: 'Green', avatarSide: 'left' };
+  if (p.includes('reform')) return { key: 'reform', label: 'Reform UK', avatarSide: 'right' };
+  if (p.includes('conservative')) return { key: 'conservative', label: 'Conservative', avatarSide: 'right' };
+  if (p.includes('liberal')) return { key: 'libdem', label: 'Liberal Democrats', avatarSide: 'left' };
+  if (p.includes('social democratic')) return { key: 'sdp', label: 'SDP', avatarSide: 'left' };
+  if (p.includes('rejoin')) return { key: 'rejoin', label: 'Rejoin EU', avatarSide: 'left' };
+  if (p.includes('libertarian')) return { key: 'libertarian', label: 'Libertarian', avatarSide: 'right' };
+  if (p.includes('advance')) return { key: 'advance', label: 'Advance UK', avatarSide: 'right' };
+  if (p.includes('loony')) return { key: 'loony', label: 'Loony Party', avatarSide: 'right' };
+  if (p.includes('communist')) return { key: 'communist', label: 'Communist League', avatarSide: 'left' };
+  return { key: slugifyKey(p), label: party || 'Independent', avatarSide: 'right' };
+}
+
+function renderCandidateContactsPanel({ candidates } = {}) {
+  const items = Array.isArray(candidates) ? candidates : [];
+  if (!items.length) return '';
+
+  const controlsId = 'contacts-expand';
+
+  const cardsHtml = items.map((c) => {
+    const ui = partyUi(c.party);
+    const side = ui.avatarSide === 'left' ? 'left' : 'right';
+    const safeId = escapeHtml(String(c.id || ''));
+
+    const linksHtml = (c.links || []).map((l) => {
+      const url = String(l.url || '').trim();
+      const rawLabel = String(l.rawLabel || l.label || url).trim();
+      const label = String(l.label || url).trim();
+
+      let host = '';
+      try {
+        if (/^mailto:/i.test(url)) host = 'email';
+        else host = new URL(url).hostname.replace(/^www\./i, '');
+      } catch {
+        host = '';
+      }
+
+      return `<a class="contactChip" href="${escapeHtml(url)}" target="${/^mailto:/i.test(url) ? '_self' : '_blank'}" rel="noopener noreferrer" title="${escapeHtml(rawLabel)}" data-host="${escapeHtml(host)}">${escapeHtml(label)}</a>`;
+    }).join('');
+
+    const partyLabel = ui.label || c.party || '';
+
+    const bgText = stripMarkdownToText(c.backgroundMarkdown || '');
+    const { excerpt, truncated } = excerptWords(bgText, 100);
+    const bgHtml = c.backgroundMarkdown
+      ? `
+<div class="contactBackground">
+  <div class="contactBackgroundTitle">Verified background</div>
+  ${excerpt ? `<p class="contactBackgroundPreview">${escapeHtml(excerpt)}${truncated ? '…' : ''}</p>` : ''}
+  <details class="contactMore">
+    <summary>More…</summary>
+    <div class="contactMoreBody">${md.render(c.backgroundMarkdown)}</div>
+  </details>
+</div>
+      `.trim()
+      : '';
+
+    return `
+<article class="contactCard contactCard--${escapeHtml(ui.key)} contactCard--avatar-${escapeHtml(side)}" data-candidate="${safeId}">
+  <div class="contactTop">
+    <div class="contactAvatar">
+      <img src="${escapeHtml(c.avatar)}" alt="${escapeHtml(c.name)}" loading="lazy" />
+    </div>
+    <div class="contactMain">
+      <div class="contactTitleRow">
+        <h4 class="contactName">${escapeHtml(c.name)}</h4>
+        ${partyLabel ? `<span class="contactParty">${escapeHtml(partyLabel)}</span>` : ''}
+      </div>
+      <div class="contactChips">
+        ${linksHtml || '<span class="contactEmpty">No links found.</span>'}
+      </div>
+    </div>
+  </div>
+  ${bgHtml}
+</article>
+    `.trim();
+  }).join('\n');
+
+  return `
+<section class="contactsSection" aria-labelledby="contactsTitle">
+  <details class="contactsDetails" open>
+    <summary class="contactsSummary">
+      <span class="contactsSummaryTitle" id="contactsTitle">Candidate contacts</span>
+      <span class="contactsSummaryMeta">${escapeHtml(String(items.length))} candidates</span>
+    </summary>
+    <div class="contactsBody">
+      <input class="contactsExpand" type="checkbox" id="${escapeHtml(controlsId)}" />
+      <div class="contactsControls" role="group" aria-label="Contacts display options">
+        <label class="contactsExpandLabel" for="${escapeHtml(controlsId)}">Expand profiles</label>
+      </div>
+      <div class="contactsList">
+        ${cardsHtml}
+      </div>
+    </div>
+  </details>
+</section>
+  `.trim();
 }
 
 function parseStatementsFromMarkdown(markdownText) {
@@ -622,13 +897,14 @@ function resolveCandidateHeadshots(headshotFiles) {
   return { fallback, resolved, warnings };
 }
 
-function renderContent({ title, statements, additionalSourcesMarkdown, flyers, headshotManifest }) {
+function renderContent({ title, statements, additionalSourcesMarkdown, flyers, headshotManifest, candidateContacts }) {
   const standoff = (statements || []).filter((s) => String(s.slot || '').toLowerCase() === 'standoff');
   const further = (statements || []).filter((s) => String(s.slot || '').toLowerCase() !== 'standoff');
   const standoffHtml = renderReceipts(standoff);
   const furtherHtml = renderReceipts(further);
   const flyerGalleryHtml = renderFlyerGallery(flyers);
   const headshotsJson = escapeHtml(JSON.stringify(headshotManifest || { fallback: '', resolved: {}, warnings: [] }));
+  const contactsHtml = renderCandidateContactsPanel({ candidates: candidateContacts });
 
   return `
 <div class="topPanels">
@@ -660,6 +936,8 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
     </p>
   </div>
 </header>
+
+${contactsHtml}
 
 <section class="sceneWrap" aria-label="Interactive standoff scene">
   <div class="spinnerPanel" data-role="spinner-panel">
@@ -751,6 +1029,7 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
 
   const statementsPath = path.join(src, DEFAULT_STATEMENTS_FILE);
   const templatePath = path.join(src, DEFAULT_TEMPLATE_FILE);
+  const candidateProfilesPath = path.join(src, DEFAULT_CANDIDATE_PROFILES_FILE);
 
   const flyersDir = path.join(src, 'images', 'flyers');
   let flyerFiles = [];
@@ -792,7 +1071,16 @@ export async function buildMicrosite({ sourceDir, outDir } = {}) {
   const title = parseTitle(statementsRaw);
   const { published } = parseStatementsFromMarkdown(statementsRaw);
   const additionalSourcesMarkdown = extractH2Section(statementsRaw, 'Additional sources');
-  const content = renderContent({ title, statements: published, additionalSourcesMarkdown, flyers, headshotManifest });
+  let candidateContacts = [];
+  try {
+    const candidateProfilesRaw = await fs.readFile(candidateProfilesPath, 'utf8');
+    const parsed = parseCandidateProfilesFromMarkdown(candidateProfilesRaw, headshotManifest);
+    candidateContacts = parsed.candidates || [];
+  } catch {
+    candidateContacts = [];
+  }
+
+  const content = renderContent({ title, statements: published, additionalSourcesMarkdown, flyers, headshotManifest, candidateContacts });
 
   const template = await fs.readFile(templatePath, 'utf8');
   const html = template
