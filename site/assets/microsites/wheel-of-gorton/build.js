@@ -43,7 +43,9 @@ const CANDIDATE_IDS = [
 
 const CANDIDATE_HEADSHOT_ALIASES = {
   'charlotte-cadden': ['charlotte-anne-cadden'],
-  'nick-buckley': ['nick-buckley-mbe']
+  'nick-buckley': ['nick-buckley-mbe'],
+  // O’Meachair slugifies to joseph-o-meachair in some sources.
+  'joseph-omeachair': ['joseph-o-meachair']
 };
 
 function escapeHtml(s) {
