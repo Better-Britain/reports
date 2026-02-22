@@ -710,7 +710,7 @@ function speakerDisplayForStatement(s) {
   return String(s?.candidateName || s?.candidate || 'Unknown').trim();
 }
 
-function renderSourceCard(s, { ownerCandidateId, ownerName } = {}) {
+function renderSourceCard(s, { ownerCandidateId, ownerName, ownerPartyKey } = {}) {
   const candidateDisplay = String(s?.candidateName || s?.candidate || 'Unknown').trim();
   const owner = String(ownerName || '').trim();
   const isOwned = ownerCandidateId && String(s?.candidate || '').trim() === String(ownerCandidateId);
@@ -718,6 +718,16 @@ function renderSourceCard(s, { ownerCandidateId, ownerName } = {}) {
   const speakerKey = speakerDisplay ? slugifyKey(speakerDisplay) : '';
 
   const showSpeaker = Boolean(speakerDisplay) && (!owner || speakerDisplay !== owner) && speakerDisplay !== candidateDisplay;
+
+  const issueKey = String(s?.issue || '').trim().toLowerCase();
+  const ISSUE_CORNER = {
+    'culture-war': '#ff4e43',
+    'jobs-rights': '#f4be2d',
+    'homes-streets': '#45b26b',
+    'health-care': '#2a7dd8',
+    'transport-air': '#9c4ddc'
+  };
+  const issueColor = ISSUE_CORNER[issueKey] || '';
 
   const metaBits = [
     s.issue ? `<span class="pill">${escapeHtml(issueLabel(s.issue))}</span>` : '',
@@ -730,14 +740,17 @@ function renderSourceCard(s, { ownerCandidateId, ownerName } = {}) {
     ? `<div class="sourceLinks">${sources.slice(0, 2).map((src) => `<a href="${escapeHtml(src.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(shortSourceLabel(src))}</a>`).join('')}</div>`
     : '';
 
+  const whoHtml = showSpeaker
+    ? `<span class="sourceSpeaker">${escapeHtml(speakerDisplay)}</span>`
+    : (!isOwned ? `<span class="sourceSpeaker">${escapeHtml(candidateDisplay)}</span>` : '');
+
   // Keep the same dataset contract as the spinner expects.
+  const ownedKey = slugifyKey(ownerPartyKey || 'owned');
+
   return `
-<article id="receipt-${escapeHtml(s.id)}" class="sourceCard receipt" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(sources.length))}">
+<article id="receipt-${escapeHtml(s.id)}" class="sourceCard receipt${isOwned ? ` sourceCard--owned sourceCard--${ownedKey}` : ''}" data-role="receipt" data-id="${escapeHtml(s.id)}" data-candidate="${escapeHtml(s.candidate)}" data-candidate-name="${escapeHtml(candidateDisplay)}" data-party="${escapeHtml(s.party)}" data-speaker="${escapeHtml(s.speaker || '')}" data-speaker-name="${escapeHtml(s.speakerName || '')}" data-speaker-key="${escapeHtml(speakerKey)}" data-issue="${escapeHtml(s.issue)}" data-kind="${escapeHtml(s.kind)}" data-slot="${escapeHtml(s.slot || '')}" data-date="${escapeHtml(s.date)}" data-sources="${escapeHtml(String(sources.length))}"${issueColor ? ` style="--issue:${escapeHtml(issueColor)};"` : ''}>
   <div class="sourceTop">
-    <div class="sourceWho">
-      ${showSpeaker ? `<span class="sourceSpeaker">${escapeHtml(speakerDisplay)}</span>` : ''}
-      ${(!isOwned && !showSpeaker) ? `<span class="sourceSpeaker">${escapeHtml(candidateDisplay)}</span>` : ''}
-    </div>
+    ${whoHtml ? `<div class="sourceWho">${whoHtml}</div>` : ''}
     <div class="sourceMeta">${metaBits}</div>
   </div>
   <div class="receiptQuote sourceQuote">${s.quoteHtml}</div>
@@ -749,19 +762,14 @@ function renderSourceCard(s, { ownerCandidateId, ownerName } = {}) {
 
 function renderSourcesPanel({ title, id, cards, open = true } = {}) {
   const list = Array.isArray(cards) ? cards : [];
-  const cap = 6;
-  const top = list.slice(0, cap);
-  const rest = list.slice(cap);
   const panelId = slugifyKey(id || title || 'panel');
 
   const ownerName = String(title || '').trim();
   const ownerCandidateId = String(id || '').trim();
-  const topHtml = top.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName })).join('\n');
-  const restHtml = rest.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName })).join('\n');
-
-  const moreHtml = rest.length
-    ? `<details class="sourcesMore" data-role="sources-more"><summary>Show ${escapeHtml(String(rest.length))} more</summary></details>`
-    : '';
+  const ownerPartyKey = partyUi(String(list?.[0]?.party || '')).key;
+  const cardsHtml = list.map((s) => renderSourceCard(s, { ownerCandidateId, ownerName, ownerPartyKey })).join('\n');
+  const hasOverflow = list.length > 6;
+  const overflowCount = Math.max(0, list.length - 6);
 
   const issueCounts = {};
   for (const issue of PRIMARY_ISSUES) issueCounts[issue] = 0;
@@ -771,34 +779,33 @@ function renderSourcesPanel({ title, id, cards, open = true } = {}) {
   }
   const totalCount = list.length;
   const filterBtns = [
-    `<button type="button" class="sourcesFilterBtn is-active" data-role="sources-filter" data-issue="" title="All sources">${escapeHtml(String(totalCount))}</button>`,
-    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="culture-war" title="Culture">${escapeHtml(String(issueCounts['culture-war'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="jobs-rights" title="Jobs">${escapeHtml(String(issueCounts['jobs-rights'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="homes-streets" title="Homes">${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="health-care" title="Health">${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
-    `<button type="button" class="sourcesFilterBtn" data-role="sources-filter" data-issue="transport-air" title="Transit">${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--culture" data-role="sources-filter" data-issue="culture-war" data-label="Culture" title="Culture">${escapeHtml(String(issueCounts['culture-war'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--jobs" data-role="sources-filter" data-issue="jobs-rights" data-label="Jobs" title="Jobs">${escapeHtml(String(issueCounts['jobs-rights'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--homes" data-role="sources-filter" data-issue="homes-streets" data-label="Homes" title="Homes">${escapeHtml(String(issueCounts['homes-streets'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--health" data-role="sources-filter" data-issue="health-care" data-label="Health" title="Health">${escapeHtml(String(issueCounts['health-care'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--transit" data-role="sources-filter" data-issue="transport-air" data-label="Transit" title="Transit">${escapeHtml(String(issueCounts['transport-air'] || 0))}</button>`,
+    `<button type="button" class="sourcesFilterBtn sourcesFilterBtn--all is-active" data-role="sources-filter" data-issue="" data-label="All" title="All">${escapeHtml(String(totalCount))}</button>`
   ].join('');
 
   const inner = `
-  <div class="sourcesPanelHead" id="sources-${escapeHtml(panelId)}">
-    <span class="sourcesPanelTitle">${escapeHtml(title || 'Sources')}</span>
-    <div class="sourcesPanelFilters" role="group" aria-label="Filter by topic">
-      ${filterBtns}
+  <div class="sourcesGridWrap" data-role="sources-grid-wrap">
+    <div class="sourcesGrid">
+      ${cardsHtml}
     </div>
   </div>
-  ${moreHtml}
-  <div class="sourcesGrid">
-    ${topHtml}
-    ${rest.length ? `<div class="sourcesExtra">${restHtml}</div>` : ''}
-  </div>
+  ${hasOverflow ? `<div class="sourcesExpandRow"><button type="button" class="sourcesExpandBtn" data-role="sources-expand" data-expanded="0" data-more-label="Show ${escapeHtml(String(overflowCount))} more" data-less-label="Show less">Show ${escapeHtml(String(overflowCount))} more</button></div>` : ''}
   `.trim();
 
   const openAttr = open ? ' open' : '';
   return `
-<details class="sourcesPanel" data-role="sources-panel" data-owner="${escapeHtml(ownerCandidateId || panelId)}"${openAttr} aria-labelledby="sources-${escapeHtml(panelId)}">
+<details class="sourcesPanel" data-role="sources-panel" data-owner="${escapeHtml(ownerCandidateId || panelId)}" data-owner-party="${escapeHtml(ownerPartyKey || '')}" data-has-overflow="${hasOverflow ? '1' : '0'}" data-expanded="0" data-default-open="${open ? '1' : '0'}"${openAttr} aria-labelledby="sources-${escapeHtml(panelId)}">
   <summary class="sourcesPanelSummary">
-    <span class="sourcesPanelSummaryTitle">${escapeHtml(title || 'Sources')}</span>
-    <span class="sourcesPanelSummaryCount">${escapeHtml(String(totalCount))}</span>
+    <span class="sourcesPanelSummaryTitle" id="sources-${escapeHtml(panelId)}">${escapeHtml(title || 'Sources')}</span>
+    <div class="sourcesPanelFilters" role="group" aria-label="Filter by topic">
+      <span class="sourcesPanelFiltersHint" aria-hidden="true">Topics:</span>
+      <span class="sourcesPanelFiltersValue" data-role="topics-value" aria-hidden="true">All</span>
+      ${filterBtns}
+    </div>
   </summary>
   <div class="sourcesPanelBody">
     ${inner}
@@ -841,6 +848,8 @@ function renderSourcesSection(statements) {
     panels.push(renderSourcesPanel({ title: 'Other speakers / election context', id: 'other', cards: other, open: false }));
   }
 
+  const totalSourcesCount = list.length;
+
   return `
 <section class="sourcesWrap" aria-labelledby="sourcesTitle">
   <input class="sourcesTagsToggle" type="checkbox" id="sources-tags" />
@@ -850,7 +859,7 @@ function renderSourcesSection(statements) {
     <p class="sourcesLead">Grouped, link-first cards so you can skim what’s been said, check the original material, and decide what’s fair.</p>
     <div class="sourcesControls" role="group" aria-label="Sources display options">
       <label class="sourcesToggleLabel" for="sources-tags">Show tags</label>
-      <label class="sourcesToggleLabel" for="sources-all">Show all sources</label>
+      <label class="sourcesToggleLabel" for="sources-all">Show ALL ${escapeHtml(String(totalSourcesCount))} Sources</label>
     </div>
   </div>
   <div class="sourcesPanels">

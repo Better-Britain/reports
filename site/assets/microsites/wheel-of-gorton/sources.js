@@ -20,13 +20,8 @@
     const target = document.getElementById(id);
     if (!target) return;
     openParentDetails(target);
-    // If the receipt sits behind a "Show x more", open it.
-    const panel = target.closest('.sourcesPanelBody') || target.closest('.sourcesPanel');
-    if (panel) {
-      const more = panel.querySelector('details.sourcesMore[data-role="sources-more"]');
-      const extraWrap = panel.querySelector('.sourcesExtra');
-      if (more && extraWrap && extraWrap.contains(target)) more.open = true;
-    }
+    const panel = target.closest('[data-role="sources-panel"]');
+    if (panel) panel.dataset.expanded = '1';
   }
 
   function main() {
@@ -37,14 +32,45 @@
     if (allToggle && allToggle instanceof HTMLInputElement) {
       const apply = () => {
         const on = Boolean(allToggle.checked);
-        const details = Array.from(document.querySelectorAll('details.sourcesMore[data-role="sources-more"]'));
-        for (const d of details) d.open = on;
+        const panels = Array.from(document.querySelectorAll('[data-role="sources-panel"]'));
+        for (const p of panels) {
+          if (p instanceof HTMLDetailsElement) {
+            p.open = on ? true : (p.dataset.defaultOpen === '1');
+          }
+          if (p.getAttribute('data-has-overflow') === '1') {
+            p.dataset.expanded = on ? '1' : '0';
+          } else {
+            p.dataset.expanded = '0';
+          }
+        }
+        const btns = Array.from(document.querySelectorAll('button.sourcesExpandBtn[data-role="sources-expand"]'));
+        for (const b of btns) {
+          const panel = b.closest('[data-role="sources-panel"]');
+          const expanded = on ? '1' : (panel?.dataset?.expanded === '1' ? '1' : '0');
+          b.setAttribute('data-expanded', expanded);
+          const more = b.getAttribute('data-more-label') || 'Show more';
+          const less = b.getAttribute('data-less-label') || 'Show less';
+          b.textContent = expanded === '1' ? less : more;
+        }
       };
       allToggle.addEventListener('change', apply);
       apply();
     }
 
     document.addEventListener('click', (e) => {
+      const exp = e.target?.closest?.('[data-role="sources-expand"]');
+      if (exp && exp instanceof HTMLButtonElement) {
+        const panel = exp.closest('[data-role="sources-panel"]');
+        if (!panel) return;
+        const isOn = panel.dataset.expanded === '1';
+        panel.dataset.expanded = isOn ? '0' : '1';
+        exp.setAttribute('data-expanded', isOn ? '0' : '1');
+        const more = exp.getAttribute('data-more-label') || 'Show more';
+        const less = exp.getAttribute('data-less-label') || 'Show less';
+        exp.textContent = isOn ? more : less;
+        return;
+      }
+
       const btn = e.target?.closest?.('[data-role="sources-filter"]');
       if (!btn) return;
       if (!(btn instanceof HTMLButtonElement)) return;
@@ -53,22 +79,23 @@
       e.stopPropagation();
 
       const issue = String(btn.getAttribute('data-issue') || '').trim();
+      const label = String(btn.getAttribute('data-label') || btn.getAttribute('title') || '').trim() || (issue ? issue : 'All');
       const panel = btn.closest('[data-role="sources-panel"]');
       if (!panel) return;
       if (panel instanceof HTMLDetailsElement) panel.open = true;
+      panel.dataset.filtered = issue ? '1' : '0';
+      if (issue) {
+        if (panel.dataset.prevExpanded == null) panel.dataset.prevExpanded = panel.dataset.expanded === '1' ? '1' : '0';
+        panel.dataset.expanded = '1';
+      } else if (panel.dataset.prevExpanded != null) {
+        panel.dataset.expanded = panel.dataset.prevExpanded;
+        delete panel.dataset.prevExpanded;
+      }
 
-      const more = panel.querySelector('details.sourcesMore[data-role="sources-more"]');
+      const valueEl = panel.querySelector('[data-role="topics-value"]');
+      if (valueEl) valueEl.textContent = label || (issue ? issue : 'All');
+
       const cards = Array.from(panel.querySelectorAll('article[data-role="receipt"]'));
-
-      // Track previous open-state so clearing the filter restores "Show more" as it was.
-      if (issue && more) {
-        if (!more.dataset.prevOpen) more.dataset.prevOpen = more.open ? '1' : '0';
-        more.open = true;
-      }
-      if (!issue && more && more.dataset.prevOpen) {
-        more.open = more.dataset.prevOpen === '1';
-        delete more.dataset.prevOpen;
-      }
 
       // Apply filter to cards by issue.
       for (const c of cards) {
