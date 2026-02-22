@@ -1,5 +1,5 @@
 .bbbSupportPanel {
-  width: min(1360px, calc(100% - 2rem));
+  width: min(1100px, calc(100% - 2rem));
   margin: 1.5rem auto 0.75rem;
   border: 1px solid #dde1e7;
   border-radius: 12px;
@@ -42,6 +42,31 @@
   text-decoration: none;
 }
 
+.bbbSupportLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.bbbSupportStore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.62rem;
+  border-radius: 9px;
+  border: 1px solid #e6d3cf;
+  background: #fff7f6;
+  color: #7a1f16;
+  font-weight: 650;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.bbbSupportStore:hover {
+  background: #fff0ee;
+}
+
 .bbbSupportKofi:hover {
   background: #edf2fb;
 }
@@ -65,6 +90,13 @@
   overflow: hidden;
   background: #f8fafc;
   text-decoration: none;
+  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease;
+}
+
+.bbbSupportMerchCard.is-swapping {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  filter: saturate(1.03) contrast(1.02);
 }
 
 .bbbSupportMerchCard img,

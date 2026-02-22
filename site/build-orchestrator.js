@@ -20,10 +20,12 @@ const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
 const MICROSITE_CROSSLINKS_MARKER_RE = /<!--\s*bbb:micro-cross-links\s*-->/gi;
 const FAVICONS_MARKER_RE = /<!--\s*bbb:favicons\s*-->/gi;
 const SUPPORT_PANEL_CSS_HREF = '/assets/merch/support-panel.css';
+const SUPPORT_PANEL_JS_HREF = '/assets/merch/support-panel.js';
 const MERCH_DIR = path.resolve('site/assets/merch');
 const MERCH_DATA_FILE = path.join(MERCH_DIR, 'items.md');
 const MERCH_IMAGES_DIR = path.join(MERCH_DIR, 'images');
 const KO_FI_URL = 'https://ko-fi.com/betterbritain';
+const TEEPUBLIC_STORE_URL = 'https://www.teepublic.com/user/better-britain';
 
 async function copyDirRecursive(srcDir, destDir, options = {}, depth = 0, rootDir = srcDir) {
 	await fs.mkdir(destDir, { recursive: true });
@@ -271,7 +273,7 @@ async function loadSupportPanelData() {
 		return { merchItems: [] };
 	}
 
-	const parsed = parseMerchItemsMarkdown(raw).slice(0, 4);
+	const parsed = parseMerchItemsMarkdown(raw);
 	const merchItems = [];
 	for (const item of parsed) {
 		const imgPath = path.join(MERCH_IMAGES_DIR, item.image);
@@ -291,21 +293,16 @@ async function loadSupportPanelData() {
 }
 
 function renderSupportPanel({ merchItems } = {}) {
-	const items = Array.isArray(merchItems) ? merchItems.slice(0, 4) : [];
-	const cards = items.map((item) => {
+	const all = Array.isArray(merchItems) ? merchItems : [];
+	const visible = all.slice(0, 4);
+	const cards = visible.map((item, idx) => {
 		const title = escapeHtml(item.title);
 		const href = escapeHtml(item.href);
-		if (!item.imageSrc) {
-			return `
-        <a class="bbbSupportMerchCard" href="${href}" target="_blank" rel="noopener">
-          <span class="bbbSupportMerchMissing" aria-hidden="true">Preview soon</span>
-          <span class="bbbSupportMerchTitle">${title}</span>
-        </a>`;
-		}
+		const img = item.imageSrc ? `<img data-role="merch-img" src="${escapeHtml(item.imageSrc)}" alt="${title} preview" loading="lazy" decoding="async">` : `<span class="bbbSupportMerchMissing" aria-hidden="true">Preview soon</span>`;
 		return `
-        <a class="bbbSupportMerchCard" href="${href}" target="_blank" rel="noopener">
-          <img src="${escapeHtml(item.imageSrc)}" alt="${title} preview" loading="lazy" decoding="async">
-          <span class="bbbSupportMerchTitle">${title}</span>
+        <a class="bbbSupportMerchCard" data-role="merch-slot" data-slot="${escapeHtml(String(idx))}" href="${href}" target="_blank" rel="noopener">
+          ${img}
+          <span class="bbbSupportMerchTitle" data-role="merch-title">${title}</span>
         </a>`;
 	});
 
@@ -316,15 +313,27 @@ function renderSupportPanel({ merchItems } = {}) {
         </div>`);
 	}
 
+	const allJson = JSON
+		.stringify(all.map((i) => ({
+			title: i.title,
+			href: i.href,
+			imageSrc: i.imageSrc
+		})))
+		.replace(/</g, '\\u003c');
+
 	return `
 <section class="bbbSupportPanel" aria-label="Support Better Britain">
   <div class="bbbSupportPanelInner">
     <div class="bbbSupportTip">
       <h3>Support Better Britain</h3>
       <p>Two low-key ways to back our work:</p>
-      <a class="bbbSupportKofi" href="${KO_FI_URL}" target="_blank" rel="noopener">Drop a tip on Ko-fi</a>
+      <div class="bbbSupportLinks" role="group" aria-label="Support links">
+        <a class="bbbSupportKofi" href="${KO_FI_URL}" target="_blank" rel="noopener">Drop a tip on Ko-fi</a>
+        <a class="bbbSupportStore" href="${TEEPUBLIC_STORE_URL}" target="_blank" rel="noopener">Browse our TeePublic store</a>
+      </div>
     </div>
     <div class="bbbSupportMerch" aria-label="Merch previews">
+      <script type="application/json" id="bbb-merch-items">${allJson}</script>
       <div class="bbbSupportMerchGrid">${cards.join('')}
       </div>
     </div>
@@ -339,6 +348,14 @@ function ensureSupportPanelStylesheet(html) {
 	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${linkTag}\n</head>`);
 	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${linkTag}`);
 	return s;
+}
+
+function ensureSupportPanelScript(html) {
+	const s = String(html || '');
+	if (/\/assets\/merch\/support-panel\.js/i.test(s)) return s;
+	const tag = `<script src="${SUPPORT_PANEL_JS_HREF}" defer></script>`;
+	if (/<\/body>/i.test(s)) return s.replace(/<\/body>/i, `${tag}\n</body>`);
+	return s + tag;
 }
 
 function injectSupportPanelAtBodyEnd(html, supportPanelHtml) {
@@ -495,6 +512,7 @@ async function buildMicrosites(config, includeDrafts, supportData) {
 						html = injectMicrositeCrossLinks(html, { microsites, microsite, publicPath: targetPublicPath });
 						html = injectSupportPanelAtBodyEnd(html, supportPanelHtml);
 						html = ensureSupportPanelStylesheet(html);
+						html = ensureSupportPanelScript(html);
 						html = ensureFavicons(html);
 						html = ensureRssAlternateLink(html, config);
 					const canonicalPath = targetPublicPath;
@@ -672,6 +690,7 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', content).replace('{{bodyClass}}', 'page-home'), meta);
 	html = ensureSupportPanelStylesheet(html);
+	html = ensureSupportPanelScript(html);
 	html = applyBasePath(html, config.basePath);
 	await fs.mkdir(OUTPUT_DIR, { recursive: true });
 	await fs.writeFile(path.join(OUTPUT_DIR, 'index.html'), html, 'utf8');
