@@ -1211,7 +1211,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   <div class="heroCopy">
     <h1>${escapeHtml(title)}</h1>
     <p class="heroLead">
-      Spin the wheel, pick a topic, and jump straight to the receipts. This is a link-first microsite for the Gorton &amp; Denton by‑election: skim what was said, then check the original sources.
+      Pick a topic. Spin the wheel. This is a link-first microsite for the Gorton &amp; Denton by‑election: skim what was said, then check the original sources.
     </p>
     <ul class="heroList">
       <li><strong>Interactive wheel</strong> — pick a topic, click a candidate, and jump to the relevant source cards.</li>
