@@ -8,19 +8,41 @@
   overflow: hidden;
   border: 1px solid rgba(34, 24, 19, 0.18);
   box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
-  background: linear-gradient(180deg, rgba(217, 189, 138, 0.65), rgba(202, 165, 106, 0.65));
+  background:
+    radial-gradient(900px 520px at 50% 8%, rgba(255, 246, 224, 0.72), rgba(255, 246, 224, 0) 62%),
+    radial-gradient(1100px 760px at 50% 112%, rgba(255, 204, 140, 0.20), rgba(255, 204, 140, 0) 58%),
+    linear-gradient(180deg, rgba(217, 189, 138, 0.66), rgba(202, 165, 106, 0.68));
   padding: 14px 14px 12px;
 }
 
-.spinnerBg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.95) contrast(0.98) brightness(1.02);
-  opacity: 0.78;
-  pointer-events: none;
+.spinnerPanel::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.22), rgba(255,255,255,0) 60%),
+    radial-gradient(900px 650px at 50% 50%, rgba(0,0,0,.14), rgba(0,0,0,0) 55%),
+    radial-gradient(1000px 680px at 50% 120%, rgba(0,0,0,.22), rgba(0,0,0,0) 62%);
+  opacity: .85;
+  mix-blend-mode: normal;
+  z-index:0;
+}
+.spinnerPanel::after{
+  content:"";
+  position:absolute;
+  left:-20%;
+  right:-20%;
+  bottom:-45%;
+  height:60%;
+  pointer-events:none;
+  background:
+    radial-gradient(closest-side at 50% 0%, rgba(255,255,255,.26), rgba(255,255,255,0) 72%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
+  transform: skewY(-6deg);
+  filter: blur(0.2px);
+  opacity:.65;
+  z-index:0;
 }
 
 .spinnerSvg {
@@ -257,6 +279,8 @@
   position: relative;
   z-index: 1;
   margin-top: 10px;
+  font-size: 0.8em;
+  opacity: 0.7;
 }
 
 .noJsNote {

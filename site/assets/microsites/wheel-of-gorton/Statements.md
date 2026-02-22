@@ -1,4 +1,4 @@
-# Gorton & Denton Showdown
+# Wheel of Gorton (and Denton)
 
 This Markdown file is the **source of truth** for the microsite.
 

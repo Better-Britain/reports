@@ -1010,6 +1010,16 @@ function renderConclusion() {
     <p class="conclusionNote">
       Vote with your brain and your heart.
     </p>
+    <div class="heroDisclosure" role="note" aria-label="About this page">
+      <div class="heroDisclosureRow">
+        <span class="heroDisclosureLabel">Paid for by</span>
+        <span class="heroDisclosureValue">Nobody — this is my own project, as part of learning to use AI tools properly and responsibly (I’ve been a professional programmer for ~25 years).</span>
+      </div>
+      <div class="heroDisclosureRow">
+        <span class="heroDisclosureLabel">Local note</span>
+        <span class="heroDisclosureValue">I live in Longsight (within Gorton &amp; Denton), and I’ve lived in Gorton, Levy and Reddish for 20+ years.</span>
+      </div>
+    </div>
   </div>
 </section>
   `.trim();
@@ -1201,30 +1211,19 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   <div class="heroCopy">
     <h1>${escapeHtml(title)}</h1>
     <p class="heroLead">
-      A quick, link-first microsite for the Gorton &amp; Denton by‑election: explore by topic, then check the original sources.
+      Spin the wheel, pick a topic, and jump straight to the receipts. This is a link-first microsite for the Gorton &amp; Denton by‑election: skim what was said, then check the original sources.
     </p>
     <ul class="heroList">
       <li><strong>Interactive wheel</strong> — pick a topic, click a candidate, and jump to the relevant source cards.</li>
       <li><strong>Candidate profiles</strong> — links you can use, plus a short verified background.</li>
-      <li><strong>Flyer scans</strong> — browse and download the campaign material.</li>
+      <li><strong>Flyer scans</strong> — browse the campaign material (no tracking, no nonsense).</li>
       <li><strong>Method &amp; Sources</strong> — grouped cards with topic filters, deep‑links, and optional tags.</li>
     </ul>
-    <div class="heroDisclosure" role="note" aria-label="About this page">
-      <div class="heroDisclosureRow">
-        <span class="heroDisclosureLabel">Paid for by</span>
-        <span class="heroDisclosureValue">Nobody — this is my own project, as part of learning to use AI tools properly and responsibly (I’ve been a professional programmer for ~30 years).</span>
-      </div>
-      <div class="heroDisclosureRow">
-        <span class="heroDisclosureLabel">Local note</span>
-        <span class="heroDisclosureValue">I live in Longsight (within Gorton &amp; Denton), and I’ve lived in Gorton, Levenshulme and Reddish for 20+ years.</span>
-      </div>
-    </div>
   </div>
 </header>
 
 <section class="sceneWrap" aria-label="Interactive standoff scene">
   <div class="spinnerPanel" data-role="spinner-panel">
-    <img class="spinnerBg" src="./images/town-square-placeholder.png" alt="" aria-hidden="true" />
     <svg class="spinnerSvg" data-role="spinner-svg" viewBox="0 0 920 920" aria-label="${escapeHtml(title)} spinner interactive">
       <defs>
         <clipPath id="spinnerAvatarClip">
@@ -1239,7 +1238,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
     </svg>
     <script id="gorton-headshots" type="application/json">${headshotsJson}</script>
     <div class="speechHost" data-role="speech-host" aria-live="polite"></div>
-    <p class="privacyLine">This page doesn’t send your choices anywhere. No tracking, no storage. It runs in your browser.</p>
+    <p class="privacyLine">This page doesn’t track your choices. It runs only in your browser.</p>
     <noscript>
       <p class="noJsNote"><strong>JavaScript is off.</strong> The interactive bit won’t run, but the receipts below still load.</p>
     </noscript>
