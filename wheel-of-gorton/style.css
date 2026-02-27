@@ -93,6 +93,18 @@ body::before{
 }
 .heroList li{margin:4px 0;color:rgba(34,24,19,.86)}
 .heroList strong{font-weight:950}
+
+.congratulationsBlock{
+  margin:14px 0 18px;
+  background:#008066;
+  border:1px solid #008066;
+  border-radius:14px;
+  padding:12px 14px;
+  box-shadow:0 14px 34px var(--shadow);
+}
+.congratulationsBlock p{margin:0;font-size:17px;color:#fff}
+.congratulationsBlock strong{font-weight:950;color:#fff}
+
 .heroDisclosure{
   margin-top:12px;
   background:rgba(244,234,214,.78);
