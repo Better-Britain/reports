@@ -1224,6 +1224,10 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
   </div>
 </header>
 
+<section class="congratulationsBlock" aria-label="Election result">
+  <p><strong>Congratulations to Hannah Spencer of the Greens</strong> on a <strong>decisive victory</strong> — a result many will welcome, and a candidate who showed up and made the case.</p>
+</section>
+
 <section class="sceneWrap" aria-label="Interactive standoff scene">
   <div class="spinnerPanel" data-role="spinner-panel">
     <svg class="spinnerSvg" data-role="spinner-svg" viewBox="0 0 920 920" aria-label="${escapeHtml(title)} spinner interactive">
