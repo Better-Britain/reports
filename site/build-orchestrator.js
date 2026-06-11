@@ -17,6 +17,16 @@ const OUTPUT_DIR = path.resolve('docs');
 const TEMPLATE_FILE = path.resolve('site/template.html');
 const SITE_CONFIG = path.resolve('site/site.config.json');
 const DEFAULT_OG_IMAGE = '/assets/better-britain-bureau-promo.jpg';
+const GOOGLE_TAG_ID = 'G-YPYF2NQ414';
+const GOOGLE_TAG_SNIPPET = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${GOOGLE_TAG_ID}');
+</script>`;
 const MICROSITE_CROSSLINKS_MARKER_RE = /<!--\s*bbb:micro-cross-links\s*-->/gi;
 const FAVICONS_MARKER_RE = /<!--\s*bbb:favicons\s*-->/gi;
 const SUPPORT_PANEL_CSS_HREF = '/assets/merch/support-panel.css';
@@ -85,7 +95,7 @@ async function ensureTemplate() {
 		await fs.access(TEMPLATE_FILE);
 	} catch {
 		await fs.mkdir(path.dirname(TEMPLATE_FILE), { recursive: true });
-		const minimal = `<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Site</title>\n<link rel="stylesheet" href="assets/styles.css">\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built with markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
+		const minimal = `<!doctype html>\n<html lang="en">\n<head>\n${GOOGLE_TAG_SNIPPET}\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Site</title>\n<link rel="stylesheet" href="assets/styles.css">\n</head>\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built with markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
 		await fs.writeFile(TEMPLATE_FILE, minimal, 'utf8');
 	}
 }
@@ -238,6 +248,14 @@ function ensureRssAlternateLink(html, config) {
 	if (/<\/title>/i.test(s)) return s.replace(/<\/title>/i, `</title>\n${linkTag}`);
 	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${linkTag}`);
 	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${linkTag}\n</head>`);
+	return s;
+}
+
+function ensureGoogleTag(html) {
+	const s = String(html || '');
+	if (s.includes(GOOGLE_TAG_ID) || /googletagmanager\.com\/gtag\/js/i.test(s)) return s;
+	if (/<head[^>]*>/i.test(s)) return s.replace(/<head[^>]*>/i, (m) => `${m}\n${GOOGLE_TAG_SNIPPET}`);
+	if (/<\/head>/i.test(s)) return s.replace(/<\/head>/i, `${GOOGLE_TAG_SNIPPET}\n</head>`);
 	return s;
 }
 
@@ -418,6 +436,7 @@ async function compilePages(dir, outDir, config) {
 			type: 'article'
 		});
 		let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-generic'), meta);
+		html = ensureGoogleTag(html);
 		html = applyBasePath(html, config.basePath);
 		await fs.writeFile(outPath, html, 'utf8');
 	}
@@ -456,6 +475,7 @@ async function writePostsIndex(config, outDir) {
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', htmlBody).replace('{{bodyClass}}', 'page-posts-index'), meta);
+	html = ensureGoogleTag(html);
 	html = applyBasePath(html, config.basePath);
 	await fs.writeFile(path.join(outDir, 'index.html'), html, 'utf8');
 }
@@ -515,6 +535,7 @@ async function buildMicrosites(config, includeDrafts, supportData) {
 						html = ensureSupportPanelScript(html);
 						html = ensureFavicons(html);
 						html = ensureRssAlternateLink(html, config);
+						html = ensureGoogleTag(html);
 					const canonicalPath = targetPublicPath;
 					const meta = buildMetaTags({
 						title: microsite.title || effectiveSlug || canonicalSlug,
@@ -526,6 +547,7 @@ async function buildMicrosites(config, includeDrafts, supportData) {
 					type: 'website'
 				});
 				html = injectHeadMeta(html, meta);
+				html = ensureGoogleTag(html);
 				html = applyBasePath(html, config.basePath);
 				await fs.writeFile(indexPath, html, 'utf8');
 			} catch {}
@@ -588,6 +610,11 @@ async function buildHomepage(config, supportData) {
 		try {
 			const assetDir = path.dirname(comingSoonSrc);
 			await fs.copyFile(path.join(assetDir, 'better-britain-flag.png'), path.join(OUTPUT_DIR, 'better-britain-flag.png'));
+		} catch {}
+		try {
+			const indexPath = path.join(OUTPUT_DIR, 'index.html');
+			const html = await fs.readFile(indexPath, 'utf8');
+			await fs.writeFile(indexPath, ensureGoogleTag(html), 'utf8');
 		} catch {}
 		return;
 	}
@@ -689,6 +716,7 @@ ${logoExists ? `  <div class=\"home-hero-media\"><img src=\"${logoRel}\" alt=\"B
 		type: 'website'
 	});
 	let html = injectHeadMeta(template.replace('{{content}}', content).replace('{{bodyClass}}', 'page-home'), meta);
+	html = ensureGoogleTag(html);
 	html = ensureSupportPanelStylesheet(html);
 	html = ensureSupportPanelScript(html);
 	html = applyBasePath(html, config.basePath);

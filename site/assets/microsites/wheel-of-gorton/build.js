@@ -1218,7 +1218,7 @@ function renderContent({ title, statements, additionalSourcesMarkdown, flyers, h
     <ul class="heroList">
       <li><strong>Interactive wheel</strong> — pick a topic, click a candidate, and jump to the relevant source cards.</li>
       <li><strong>Candidate profiles</strong> — links you can use, plus a short verified background.</li>
-      <li><strong>Flyer scans</strong> — browse the campaign material (no tracking, no nonsense).</li>
+      <li><strong>Flyer scans</strong> — browse the campaign material.</li>
       <li><strong>Method &amp; Sources</strong> — grouped cards with topic filters, deep‑links, and optional tags.</li>
     </ul>
   </div>

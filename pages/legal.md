@@ -12,5 +12,8 @@ References to political parties, media organisations, or other entities are for 
 **Content Disclaimer**
 The content published by Better Britain Bureau is produced in good faith for informational and discussion purposes. While we aim to use accurate data and sources, we cannot guarantee that all information is complete or up to date. Readers should not interpret our publications as legal, financial, or professional advice.
 
+**Analytics & Interactions**
+We use Google Analytics for basic page visit and page view tracking only, and we do not use advanced mode. We do not track or store state changes, choices, or other interactions on our microsites or UI, except in your local client for readable font and accessibility options.
+
 **Feedback & Corrections**
 We welcome feedback. If you believe any of our content misrepresents information or your organisation, please [contact us](mailto:admin@betterbritain.org.uk) so we can review and, if necessary, make corrections.

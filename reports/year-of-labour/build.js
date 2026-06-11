@@ -385,7 +385,7 @@ async function ensureTemplate() {
 		await fs.access(TEMPLATE_FILE);
 	} catch {
 		await fs.mkdir(path.dirname(TEMPLATE_FILE), { recursive: true });
-		const minimal = `<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Report</title>\n<link rel="stylesheet" href="assets/styles.css">\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built with markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
+		const minimal = `<!doctype html>\n<html lang="en">\n<head>\n<!-- Google tag (gtag.js) -->\n<script async src="https://www.googletagmanager.com/gtag/js?id=G-YPYF2NQ414"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-YPYF2NQ414');\n</script>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>Better Britain — Report</title>\n<link rel="stylesheet" href="assets/styles.css">\n</head>\n<body>\n<header class="site-header">\n  <nav class="nav">\n    <a href="#" class="brand">Better Britain</a>\n  </nav>\n</header>\n<main id="content">\n{{content}}\n</main>\n<footer class="site-footer">\n  <p>Built with markdown.</p>\n</footer>\n<script src="assets/app.js" defer></script>\n</body>\n</html>`;
 		await fs.writeFile(TEMPLATE_FILE, minimal, 'utf8');
 	}
 }
