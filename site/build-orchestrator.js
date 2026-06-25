@@ -11,6 +11,7 @@ import { pathToFileURL } from 'url';
 import MarkdownIt from 'markdown-it';
 import mdAnchor from 'markdown-it-anchor';
 import { generateRss } from './build-rss.js';
+import { generateSitemap } from './build-sitemap.js';
 import { absoluteUrl, buildMetaTags, injectHeadMeta } from './build-seo.js';
 
 const OUTPUT_DIR = path.resolve('docs');
@@ -764,6 +765,7 @@ async function build() {
 	await buildHomepage(config, supportData);
 	await buildMicrosites(config, includeDrafts, supportData);
 	await generateRss(config);
+	await generateSitemap(config);
 }
 
 build().catch((err) => {
