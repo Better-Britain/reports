@@ -41,7 +41,11 @@ export default {
     open: true,
     port: 5173,
     strictPort: true,
-    host: true
+    host: true,
+    watch: {
+      usePolling: true,
+      ignored: ["**/node_modules/**"],
+    },
   },
   preview: {
     port: 5173,
