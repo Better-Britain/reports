@@ -1,0 +1,78 @@
+# Billionaire database — normalized data tables
+
+JSONL tables (one JSON object per line), rebuilt from the raw research pile in
+`/home/bobbigmac/projects/toys/open-source-research/billionaires/` by
+`scripts/ingest.py`. Think of each file as a table; join keys are stable ids.
+
+Rebuild: `scripts/.venv/bin/python scripts/ingest.py`
+Query:   `scripts/.venv/bin/python scripts/query.py "select ..."` (DuckDB over JSONL)
+
+## Tables
+
+| File | Rows | Grain |
+|---|---|---|
+| `people.jsonl` | 3,394 | one row per person: 3,378 roster + 16 API-only persons (`in_roster=false`) |
+| `entities.jsonl` | 1,279 | non-person graph nodes (wealth-source labels, industry labels, company assets, orgs) |
+| `memberships.jsonl` | 7,952 | person → entity edges (affiliations 7,191, asset holdings, entity memberships) |
+| `relationships.jsonl` | 1,134 | person ↔ person records, all evidence tiers, deduped by (pair, origin, class) |
+| `api_observations.jsonl` | 1,321 | raw directed `/related` feed observations |
+| `asset_records.jsonl` | 252 | raw `/assets` feed rows |
+| `sources.jsonl` | 283 | unified source registry (`S##`, `SRC###`, `ASSET_SRC_*`, `API_PROFILE_FEED`) |
+| `evidence_links.jsonl` | 8,345 | edge → source join |
+| `caveats.jsonl` | 117 | distinct caveat strings, referenced via `caveat_id`; `boilerplate=true` marks generated disclaimers |
+| `manifest.json` | 1 | snapshot date/source + feed URL templates |
+
+## Key fields
+
+`people`: `id` (profile-uri slug, join key), `name`, `rank`, `gender`, `age`,
+`net_worth_usd_millions`, `citizenship`, `industry`, `source_of_wealth[]`,
+`at_least_1bn`, `in_roster`,
+`tie_count`, `sourced_tie_count` (denormalized rollup over relationships).
+Snapshot date/source live once in `manifest.json`.
+
+`relationships`: `id`, `a`/`b` (person ids — join `people` for names), `type`,
+`label`, `origin` (`curated_research` | `api_related` | `derived_shared_asset` |
+`derived_shared_holding` | `api_shared_entity`),
+`class` (assertion class: `curated:<type>` or `api_labeled` / `unspecified` /
+`shared_asset` / `shared_education` / `shared_employment` / `shared_wealth_origin`),
+`confidence`, `evidence_status`, `status`, `time_start/end`,
+`evidence_summary` (only real researched summaries kept; generated restatements
+dropped), `caveat_id` → `caveats`, `source_ids[]` → `sources`,
+`source_urls[]` (article URLs only; derivable feed URLs stripped), `batch`.
+
+`memberships`: `id` (edge id), `kind` (edge_class), `source` (person slug or
+org/entity node id — the 6 `OO000#` org↔org edges), `entity` (target node id),
+`label`, `confidence`, `caveat_id`, `source_ids[]`.
+
+`api_observations`: `id`, `source_uri`/`target_uri` (person ids), `raw_label`,
+`interpreted_class`, `interpreted_value`, `confidence`, `evidence_status`,
+`caveat_id`, `batch`. Feed URL = `manifest.related_feed_url_template` +
+`source_uri`.
+
+`evidence_links`: `edge_id`, `source_id` (→ `sources` for title/url/publisher),
+`note` (only hand-written notes kept; generated "raw label"/"asset feed lists"
+notes dropped).
+
+`asset_records`: `person`, `company`, `ticker`, `exchange`, `number_of_shares`,
+`share_price`, `currency`, `current_price`, `record_status`, `as_of_date`.
+Feed URL = `manifest.assets_feed_url_template` + `person`.
+
+## Evidence tiers (display discipline)
+
+- `curated_research` — hand-sourced ties; safe to present as relationships (77 people have one).
+- `api_related` — Forbes `/related` feed; explicit labels kept verbatim, still needs verification.
+- `derived_shared_asset` / `derived_shared_holding` — exposure overlap only, not contact.
+- `memberships` affiliations — cohorts for discovery; never render as "knows".
+- `caveats.boilerplate=true` — generated "not evidence of contact" disclaimers; collapse or omit in display. `boilerplate=false` rows carry record-specific info — show them.
+
+## Enrichment workflow
+
+Roster-only people get depth in batches. Convention: a batch lands as CSV/JSON
+somewhere reviewable, then a merge pass upserts `people` rows by `id` (add
+`profile`, `description`, `vibes`, `bucket`, `tags` fields) or appends rows to
+`relationships`/`sources`. Keep `id` = `Profile URI` slug so joins never break.
+
+## Publish boundary
+
+`build-orchestrator.js` excludes `data/` and `scripts/` from the published
+`docs/` output — these files are build-time reference, not shipped assets.

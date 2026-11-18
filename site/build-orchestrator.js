@@ -514,12 +514,16 @@ async function buildMicrosites(config, includeDrafts, supportData) {
 				// Copy supporting static assets, but exclude source-only files.
 				await copyDirRecursive(sourceDir, destDir, {
 					filter: ({ entry }) => {
-						if (!entry.isFile()) return true;
 						const name = entry.name.toLowerCase();
+						if (!entry.isFile()) {
+							// Source-only dirs: data tables, build scripts, tool/dot dirs.
+							return !(name === 'data' || name === 'scripts' || name.startsWith('.'));
+						}
 						if (name === 'build.js') return false;
 						if (name === 'template.html') return false;
 						if (name === 'index.html') return false;
 						if (name.endsWith('.md')) return false;
+						if (name.endsWith('.jsonl')) return false;
 						return true;
 					}
 				});
