@@ -107,21 +107,13 @@
     {
       "id": "billionaire-database",
       "slug": "billionaire-database",
-      "aliases": [
-        {
-          "slug": "elon-musk-our-least-problematic-billionaire",
-          "title": "Elon Musk is our least problematic billionaire",
-          "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
-          "image": "/elon-musk-our-least-problematic-billionaire/images/least-problematic-funny-ish-promo1.jpg"
-        }
-      ],
       "publicPath": "/billionaire-database/",
       "sourceDir": "site/assets/microsites/billionaire-database",
-      "navTitle": "Billionaire database",
-      "title": "Billionaire database",
-      "description": "A filterable sticker-book database: how billionaires get rich, how they keep control, and what we can actually say about them with sources.",
-      "pubDate": "2026-02-17T19:40:00Z",
-      "image": "/billionaire-database/images/billionaires-database-promo2.jpg"
+      "navTitle": "Billionaire Database",
+      "title": "The Billionaire Database",
+      "description": "Who the billionaires actually run with — the dynasties, founding partnerships and brokers, explorable person by person.",
+      "pubDate": "2026-11-18T19:40:00Z",
+      "image": "/billionaire-database/images/the-billionaire-network-map-1200x630.jpg"
     },
     {
       "id": "what-brexit-costs",

@@ -444,13 +444,14 @@ const CO_ALIAS = {
 const CO_DISPLAY = {
   meta: "Meta", bytedance: "ByteDance / TikTok", bet: "BET",
   "koch industries": "Koch Industries", "virgin group": "Virgin Group",
+  ebay: "eBay", "marvel comics": "Marvel Comics", aol: "AOL", ikea: "IKEA",
 };
 
 const normCo = (s) => (s || "")
   .normalize("NFD").replace(/\p{M}/gu, "")
   .toLowerCase().replace(/['’]/g, "")
   .replace(/[^a-z0-9]+/g, " ").trim();
-const CORP_TAIL = /\s+(?:incorporated|inc|corp|corporation|co|ltd|llc|lp|plc|s\.?a\.?|a\.?g\.?|se|nv|bv|gmbh|pty|pcl|sponsored|adr|ads)\.?\s*$/i;
+const CORP_TAIL = /\s+(?:incorporated|inc|corp|corporation|co|ltd|llc|lp|plc|s\.?a\.?b?\.?\s+de\s+c\.?v\.?|s\.?a\.?|a\.?g\.?|se|nv|bv|gmbh|pty|pcl|sponsored|adr|ads|class\s+[abc](?:\s+common\s+stock)?|common\s+stock)\.?\s*$/i;
 const cleanCoName = (s) => {
   let n = (s || "").replace(/\s*\((?:cl|class)\s*[abc]?\)\s*$/i, "");
   let prev;
@@ -717,11 +718,11 @@ ${table}
 `;
 }
 
-function evidenceCell(rel, sourcesById, caveatsById, fn) {
+function evidenceCell(rel, sourcesById, caveatsById, fn, linkify = esc) {
   const summary = rel.evidence_summary && !/endpoint observation|source profiles:/i.test(rel.evidence_summary)
     ? rel.evidence_summary : null;
   const text = summary
-    ? `<span class="evText">${esc(humanSummary(summary))}</span>`
+    ? `<span class="evText">${linkify(humanSummary(summary))}</span>`
     : `<span class="evNone">—</span>`;
   const sups = [];
   const linkBits = [];
@@ -759,6 +760,11 @@ export async function buildMicrosite({ sourceDir, outDir }) {
     readJsonl(sourceDir, "caveats.jsonl"),
   ]);
   const manifest = JSON.parse(await fs.readFile(path.join(dataDir, "manifest.json"), "utf8"));
+  // real-world company vocabulary (Fortune 500, Forbes 2000, S&P 500) — used
+  // to recognise which wealth_source labels name a company rather than a sector
+  const knownCos = (await fs.readFile(path.join(dataDir, "known_companies.txt"), "utf8"))
+    .split("\n").map((s) => s.trim()).filter(Boolean);
+  const coLineage = await readJsonl(sourceDir, "company_lineage.jsonl").catch(() => []);
 
   const peopleById = new Map(people.map((p) => [p.id, p]));
   const sourcesById = new Map(sources.map((s) => [s.id, s]));
@@ -862,7 +868,7 @@ export async function buildMicrosite({ sourceDir, outDir }) {
 
   const nonContext = relationships.filter((r) =>
     tierOf(r) !== "context" && peopleById.has(r.a) && peopleById.has(r.b));
-  const wsCompanySet = new Set(WS_COMPANY_LABELS.map(normCo));
+  const wsCompanySet = new Set([...WS_COMPANY_LABELS, ...knownCos].map(normCo));
   const companies = [];
   {
     const byKey = new Map(); // co key -> {names by priority, ticker, entityIds, memberVia}
@@ -938,6 +944,22 @@ export async function buildMicrosite({ sourceDir, outDir }) {
   // source-of-wealth labels and industries become links where they resolve to
   // a real company node — exact key match only, no fuzzy lookup
   const coByKey = new Map(companies.map((c) => [c.key, c]));
+  // name history — renames, takeovers, absorptions. A rename that changes
+  // owner or direction (Twitter→X) keeps both identities in the data; the
+  // lineage row is what links them.
+  for (const c of companies) c.lineage = [];
+  for (const l of coLineage) {
+    const fCo = coByKey.get(coKey(l.from)), tCo = coByKey.get(coKey(l.to));
+    if (fCo && fCo === tCo) {
+      const side = l.kind === "renamed"
+        ? { dir: "to", other: null, otherName: l.from_name || titleCase(l.from) }
+        : { dir: "from", other: null, otherName: l.to_name || titleCase(l.to) };
+      fCo.lineage.push({ ...l, ...side });
+      continue;
+    }
+    if (fCo) fCo.lineage.push({ ...l, dir: "from", other: tCo || null, otherName: l.to_name || titleCase(l.to) });
+    if (tCo) tCo.lineage.push({ ...l, dir: "to", other: fCo || null, otherName: l.from_name || titleCase(l.from) });
+  }
   const coLinkForSource = (label, prefix) => {
     const c = coByKey.get(coKey(label));
     return c ? `<a href="${prefix}companies/${c.slug}.html">${esc(label)}</a>` : null;
@@ -945,6 +967,47 @@ export async function buildMicrosite({ sourceDir, outDir }) {
   const sourceLinks = (p, prefix) => (p.source_of_wealth || []).slice(0, 3)
     .map((s) => coLinkForSource(s, prefix) || esc(s)).join(", ");
   const indHref = (ind, prefix) => `${prefix}companies/index.html#ind-${slugify(ind)}`;
+
+  // prose linkifier — any company name (or alias, like "Facebook" → Meta)
+  // inside generated copy links to its company page. One alternation pass
+  // so inserted anchors never re-match.
+  const coTerms = new Map(); // norm -> {co, term}
+  for (const c of companies) coTerms.set(normCo(c.name), { co: c, term: c.name });
+  for (const [alias, key] of Object.entries(CO_ALIAS)) {
+    const co = coByKey.get(key);
+    if (co && !coTerms.has(normCo(alias))) coTerms.set(normCo(alias), { co, term: alias });
+  }
+  const coRx = coTerms.size ? new RegExp(
+    `\\b(${[...coTerms.values()].sort((a, b) => b.term.length - a.term.length)
+      .map((t) => t.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "gi") : null;
+  const coLinkify = (text, prefix) => {
+    if (!coRx) return esc(text);
+    return esc(text).replace(coRx, (m) => {
+      const hit = coTerms.get(normCo(m));
+      return hit ? `<a href="${prefix}companies/${hit.co.slug}.html">${esc(m)}</a>` : m;
+    });
+  };
+
+  // a sub-part's label ("the Winklevosses", "Ellison–Ragon") isn't a node of
+  // its own — link it to the people it names
+  const subwebLink = (part, prefix) => {
+    const ranked = [...part].sort((a, b) => (peopleById.get(a)?.rank ?? 9e9) - (peopleById.get(b)?.rank ?? 9e9));
+    const counts = new Map();
+    for (const m of ranked) {
+      const sn = surnameOf(peopleById.get(m)?.name);
+      if (sn) counts.set(sn, (counts.get(sn) || 0) + 1);
+    }
+    const top = [...counts.entries()].sort((a, b) => b[1] - a[1])[0];
+    if (top && top[1] >= 2) {
+      const named = ranked.find((m) => surnameOf(peopleById.get(m)?.name) === top[0]) || ranked[0];
+      return `<a href="${personHref(named, prefix)}">${esc(subwebName(ranked, peopleById))}</a>`;
+    }
+    return ranked.slice(0, 2).map((m) => {
+      const p = peopleById.get(m) || { id: m, name: m };
+      const nm = surnameOf(p.name) || (p.name || m).replace(/&\s*family$/i, "");
+      return `<a href="${personHref(m, prefix)}">${esc(nm[0].toUpperCase() + nm.slice(1))}</a>`;
+    }).join("–");
+  };
 
   // every company a person sits in, ordered by how central they are to it —
   // degree = ties they hold inside that company, worth breaks the tie
@@ -971,7 +1034,7 @@ export async function buildMicrosite({ sourceDir, outDir }) {
     const otherId = r.a === self ? r.b : r.a;
     const other = peopleById.get(otherId) || { id: otherId, name: otherId };
     const when = r.time_start ? ` · ${String(r.time_start).slice(0, 4)}` : "";
-    return `<li>${personLink(other, prefix)} <span class="muted">— ${esc(cleanSummary(r))}${esc(when)}</span>${tierMark(r)}</li>`;
+    return `<li>${personLink(other, prefix)} <span class="muted">— ${coLinkify(cleanSummary(r), prefix)}${esc(when)}</span>${tierMark(r)}</li>`;
   };
 
   for (const p of people) {
@@ -983,7 +1046,7 @@ export async function buildMicrosite({ sourceDir, outDir }) {
     const runGroups = view.groups.map((g) => {
       const entries = g.members.map((m) => {
         const detail = !m.unverified && g.kind !== "Family" && m.summary
-          ? ` <span class="muted">— ${esc(m.summary)}${m.year ? ` · ${esc(m.year)}` : ""}</span>` : "";
+          ? ` <span class="muted">— ${coLinkify(m.summary, "../")}${m.year ? ` · ${esc(m.year)}` : ""}</span>` : "";
         return `${personLink(m.person, "../")}${detail}${m.unverified ? dagger : ""}`;
       }).join(" · ");
       return `<p class="runGroup"><span class="runKind">${esc(g.kind)}</span> ${entries}</p>`;
@@ -1025,7 +1088,7 @@ export async function buildMicrosite({ sourceDir, outDir }) {
       <div class="cd-scroll-x"><table class="ties"><colgroup><col style="width:24%"><col style="width:24%"><col style="width:52%"></colgroup><thead><tr><th>Who</th><th>Relationship</th><th>Evidence</th></tr></thead><tbody>${ties.map((r) => {
         const otherId = r.a === p.id ? r.b : r.a;
         const other = peopleById.get(otherId) || { id: otherId, name: otherId };
-        return `<tr><td>${personLink(other, "../")}</td><td>${esc(tieText(r))}${tierMark(r)}</td><td class="evidence">${evidenceCell(r, sourcesById, caveatsById, fn)}</td></tr>`;
+        return `<tr><td>${personLink(other, "../")}</td><td>${coLinkify(tieText(r), "../")}${tierMark(r)}</td><td class="evidence">${evidenceCell(r, sourcesById, caveatsById, fn, (s) => coLinkify(s, "../"))}</td></tr>`;
       }).join("\n")}</tbody></table></div>
       ${fn.render()}</details>` : "";
     await fs.writeFile(path.join(peopleDir, `${p.id}.html`), pageShell({
@@ -1088,6 +1151,7 @@ ${receipts}
 <thead><tr><th>Rank</th><th>Name</th><th>Worth</th><th>Country</th><th>Ties</th><th>Group</th></tr></thead>
 <tbody>${peopleRows}</tbody>
 </table></div>
+<p class="note">One flag per person — the citizenship on record; many hold more than one.</p>
 </section>`,
   }));
 
@@ -1102,8 +1166,8 @@ ${receipts}
   <td>${personLink(a, "../")}</td>
   <td class="relArrow">↔</td>
   <td>${personLink(b, "../")}</td>
-  <td>${esc(tieText(r))}${tierMark(r)}</td>
-  <td class="evidence">${evidenceCell(r, sourcesById, caveatsById, fn)}</td>
+  <td>${coLinkify(tieText(r), "../")}${tierMark(r)}</td>
+  <td class="evidence">${evidenceCell(r, sourcesById, caveatsById, fn, (s) => coLinkify(s, "../"))}</td>
 </tr>`;
   };
 
@@ -1116,7 +1180,7 @@ ${receipts}
     const toward = other
       ? `shared across this circle and <a href="${webHref(other, prefix)}">${esc(other.name)}</a>`
       : `shared across <a href="${webHref(ca, prefix)}">${esc(ca.name)}</a> and <a href="${webHref(cb, prefix)}">${esc(cb.name)}</a>`;
-    return `<span class="factWho">${personLink(peopleById.get(r.a) || { id: r.a, name: r.a }, prefix)} ↔ ${personLink(peopleById.get(r.b) || { id: r.b, name: r.b }, prefix)}</span><span class="factWhat">${esc(why)}${why ? " — " : ""}${toward}</span>`;
+    return `<span class="factWho">${personLink(peopleById.get(r.a) || { id: r.a, name: r.a }, prefix)} ↔ ${personLink(peopleById.get(r.b) || { id: r.b, name: r.b }, prefix)}</span><span class="factWhat">${coLinkify(why, prefix)}${why ? " — " : ""}${toward}</span>`;
   };
 
   for (const [ci, c] of webPages.entries()) {
@@ -1140,7 +1204,7 @@ ${receipts}
     const shownFacts = wv.facts.slice(0, 12);
     const tieLines = shownFacts.map((f) => {
       const names = f.people.map((id) => personLink(peopleById.get(id) || { id, name: id }, "../")).join(" · ");
-      return `<li><span class="factWho">${names}</span><span class="factWhat">${esc(f.summary)}${f.year ? ` · ${esc(f.year)}` : ""}</span></li>`;
+      return `<li><span class="factWho">${names}</span><span class="factWhat">${coLinkify(f.summary, "../")}${f.year ? ` · ${esc(f.year)}` : ""}</span></li>`;
     }).join("\n");
     const reaches = wv.touches.map((r) => `<li>${tendrilLine(r, "../", c)}</li>`).join("\n");
     const prev = webPages[ci - 1], next = webPages[ci + 1];
@@ -1151,7 +1215,7 @@ ${receipts}
       content: `
 <header class="hero">
   <h1>${esc(c.name)}${c.isFamily ? ' <span class="tag tag-family">dynasty</span>' : ""}</h1>
-  <p class="lead">${esc(meaningOf(c))}</p>
+  <p class="lead">${coLinkify(meaningOf(c), "../")}</p>
   <p class="spec"><a href="index.html">All groups</a> · ${c.members.length} people · ${money(c.worth)} combined</p>
 </header>
 <div class="webFig webFig--full">${svg}</div>
@@ -1181,6 +1245,7 @@ ${reaches ? `<section class="cd-section"><h2>Where it touches</h2><ul class="ten
   }
 
   const companiesDir = path.join(outDir, "companies");
+  await fs.rm(companiesDir, { recursive: true, force: true });
   await fs.mkdir(companiesDir, { recursive: true });
   for (const [gi, g] of companies.entries()) {
     const fn = makeFootnotes(`company-${g.slug}`);
@@ -1205,16 +1270,23 @@ ${reaches ? `<section class="cd-section"><h2>Where it touches</h2><ul class="ten
     const facts = factsOf(g.edges);
     const tieLines = facts.map((f) => {
       const names = f.people.map((id) => personLink(peopleById.get(id) || { id, name: id }, "../")).join(" · ");
-      return `<li><span class="factWho">${names}</span><span class="factWhat">${esc(f.summary)}${f.year ? ` · ${esc(f.year)}` : ""}</span></li>`;
+      return `<li><span class="factWho">${names}</span><span class="factWhat">${coLinkify(f.summary, "../")}${f.year ? ` · ${esc(f.year)}` : ""}</span></li>`;
     });
     for (const r of g.edges.filter((e) => tierOf(e) === "feed")) {
       const a = peopleById.get(r.a) || { id: r.a, name: r.a };
       const b = peopleById.get(r.b) || { id: r.b, name: r.b };
       const what = r.label && r.label !== "(blank)" ? r.label : cleanSummary(r);
-      tieLines.push(`<li class="is-claimed"><span class="factWho">${personLink(a, "../")} ↔ ${personLink(b, "../")}</span><span class="factWhat">${esc(what)}${tierMark(r)}</span></li>`);
+      tieLines.push(`<li class="is-claimed"><span class="factWho">${personLink(a, "../")} ↔ ${personLink(b, "../")}</span><span class="factWhat">${coLinkify(what, "../")}${tierMark(r)}</span></li>`);
     }
     const claimed = g.edges.filter((r) => tierOf(r) === "feed").length;
     const parents = g.parentWebs.map((c) => `<a href="../webs/${c.slug}.html">${esc(c.name)}</a>`).join(" · ");
+    const historyBits = [...(g.lineage || [])].sort((a, b) => (a.year ?? 9e9) - (b.year ?? 9e9)).map((l) => {
+      const other = l.other ? `<a href="${l.other.slug}.html">${esc(l.other.name)}</a>` : esc(l.otherName || "");
+      const verb = l.dir === "from"
+        ? ({ acquired: "acquired by", renamed: "became", merged: "merged into", spun_off: "spun out of", restructured: "restructured under" })[l.kind] || l.kind
+        : ({ acquired: "absorbed", renamed: "formerly", merged: "merged with", spun_off: "spun off", restructured: "restructured over" })[l.kind] || l.kind;
+      return `${verb} ${other}${l.year ? ` (${l.year})` : ""}${l.note ? ` — ${esc(l.note)}` : ""}`;
+    });
     const ticker = g.ticker ? ` <span class="tag">${esc(g.ticker.split("-")[0])}</span>` : "";
     const prev = companies[gi - 1], next = companies[gi + 1];
     await fs.writeFile(path.join(companiesDir, `${g.slug}.html`), pageShell({
@@ -1225,6 +1297,7 @@ ${reaches ? `<section class="cd-section"><h2>Where it touches</h2><ul class="ten
 <header class="hero">
   <h1>${esc(g.name)}${ticker}</h1>
   <p class="spec"><a href="index.html">All companies</a> · ${g.members.length} people · ${money(g.worth)} combined${parents ? ` · in ${parents}` : ""}</p>
+  ${historyBits.length ? `<p class="spec">${historyBits.join(" · ")}</p>` : ""}
 </header>
 ${svg ? `<div class="webFig webFig--full">${svg}</div>` : ""}
 <section class="cd-section">
@@ -1240,7 +1313,7 @@ ${tieLines.length ? `<section class="cd-section">
     ${fn.render()}
   </details>
 </section>` : ""}
-${g.parentWebs.length >= 2 ? `<section class="cd-section"><h2>Spans ${g.parentWebs.length} groups</h2><p class="castLine">Its people sit in different groups — ${parents} — and ${esc(g.name)} is the link between them.</p></section>` : ""}
+${g.parentWebs.length >= 2 ? `<section class="cd-section"><h2>Spans ${g.parentWebs.length} groups</h2><p class="castLine">Its people sit in different groups — ${parents} — and <a href="${g.slug}.html">${esc(g.name)}</a> is the link between them.</p></section>` : ""}
 <nav class="pager" aria-label="Company pages">
   ${prev ? `<a href="${prev.slug}.html">← ${esc(prev.name)}</a>` : ""}
   <span class="pagerNums"><a href="index.html">All companies</a></span>
@@ -1255,8 +1328,8 @@ ${g.parentWebs.length >= 2 ? `<section class="cd-section"><h2>Spans ${g.parentWe
       const tops = c.members.slice(0, 4)
         .map((m) => personLink(peopleById.get(m) || { id: m, name: m }, "../")).join(" · ");
       const span = c.parentWebs.length >= 2
-        ? ` — in ${c.parentWebs.map((w) => esc(w.name)).join(" and ")}`
-        : c.parentWebs.length === 1 ? ` — in ${esc(c.parentWebs[0].name)}` : "";
+        ? ` — in ${c.parentWebs.map((w) => `<a href="../webs/${w.slug}.html">${esc(w.name)}</a>`).join(" and ")}`
+        : c.parentWebs.length === 1 ? ` — in the <a href="../webs/${c.parentWebs[0].slug}.html">${esc(c.parentWebs[0].name)}</a>` : "";
       return `<div class="webDirRow">
     <strong><a href="${c.slug}.html">${esc(c.name)}</a>${c.ticker ? ` <span class="tag">${esc(c.ticker.split("-")[0])}</span>` : ""}</strong>
     <span class="webDirWhat">${tops}${c.members.length > 4 ? ` +${c.members.length - 4}` : ""}${span}</span>
@@ -1283,7 +1356,7 @@ ${g.parentWebs.length >= 2 ? `<section class="cd-section"><h2>Spans ${g.parentWe
       content: `
 <header class="hero">
   <h1>Companies</h1>
-  <p class="lead">The companies the fortunes are tied to — owned outright, founded, held, or run from a board seat. Where a company's people sit in different groups, the company is the link between them. Members listed only where a record ties them to the company — the gaps brief tracks what we haven't sourced yet.</p>
+  <p class="lead">The companies the fortunes are tied to — owned outright, founded, held, or run from a board seat.</p>
 </header>
 ${bridgeCos.length ? `<section class="cd-section">
   <h2>The bridges</h2>
@@ -1326,19 +1399,14 @@ ${indSections}
   });
 
   const hingeLead = hinges.slice(0, 3).map((h) => {
-    const parts = h.parts.slice(0, 3).map((part) => subwebName(
-      [...part].sort((a, b) => (peopleById.get(a)?.rank ?? 9e9) - (peopleById.get(b)?.rank ?? 9e9)),
-      peopleById));
+    const parts = h.parts.slice(0, 3).map((part) => subwebLink(part, "../"));
     const list = parts.length > 1 ? `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}` : parts[0];
     return `${personLink(peopleById.get(h.id) || { id: h.id, name: h.id }, "../")} connects ${list}`;
   }).join(" · ");
 
   const hingeCards = hinges.slice(0, 8).map((h) => {
     const p = peopleById.get(h.id) || { id: h.id, name: h.id };
-    const partNames = h.parts.slice(0, 3).map((part) => {
-      const ranked = [...part].sort((a, b) => (peopleById.get(a)?.rank ?? 9e9) - (peopleById.get(b)?.rank ?? 9e9));
-      return subwebName(ranked, peopleById);
-    });
+    const partNames = h.parts.slice(0, 3).map((part) => subwebLink(part, "../"));
     const bridgeLines = h.parts.slice(0, 3).map((part) => {
       const members = new Set(part);
       const e = (tiesByPerson.get(h.id) || [])
@@ -1346,7 +1414,7 @@ ${indSections}
       if (!e) return "";
       const other = peopleById.get(e.a === h.id ? e.b : e.a) || { id: e.a === h.id ? e.b : e.a, name: e.a === h.id ? e.b : e.a };
       const s = cleanSummary(e);
-      return `<li>↔ ${personLink(other, "../")} <span class="muted">— ${esc(s.length > 90 ? `${s.slice(0, 87).trimEnd()}…` : s)}</span></li>`;
+      return `<li>↔ ${personLink(other, "../")} <span class="muted">— ${coLinkify(s.length > 90 ? `${s.slice(0, 87).trimEnd()}…` : s, "../")}</span></li>`;
     }).filter(Boolean).join("\n");
     const splitList = partNames.length > 1
       ? `${partNames.slice(0, -1).join(", ")} and ${partNames[partNames.length - 1]}` : partNames[0];
@@ -1358,11 +1426,11 @@ ${indSections}
     </div>`;
   }).join("\n");
 
-  const webDir = webPages.map((c) => `<a class="webDirRow" href="${c.slug}.html">
-    <strong>${esc(c.name)}${c.isFamily ? ' <span class="tag tag-family">dynasty</span>' : ""}</strong>
-    <span class="webDirWhat">${esc(meaningOf(c))}</span>
+  const webDir = webPages.map((c) => `<div class="webDirRow">
+    <strong><a href="${c.slug}.html">${esc(c.name)}</a>${c.isFamily ? ' <span class="tag tag-family">dynasty</span>' : ""}</strong>
+    <span class="webDirWhat">${coLinkify(meaningOf(c), "../")}</span>
     <span class="webDirMeta">${c.members.length} people · ${money(c.worth)}</span>
-  </a>`).join("\n");
+  </div>`).join("\n");
 
   const bridgeCoNames = companies.filter((c) => c.parentWebs.length >= 2).slice(0, 4)
     .map((c) => `<a href="../companies/${c.slug}.html">${esc(c.name)}</a>`).join(" · ");
@@ -1371,7 +1439,7 @@ ${indSections}
     const names = c.members.map((m) => personLink(peopleById.get(m) || { id: m, name: m }, "../"));
     const edge = c.edges[0];
     const kind = edge ? cleanSummary(edge) : "";
-    return `<li>${names.join(c.members.length === 2 ? " ↔ " : " · ")} <span class="muted">— ${esc(kind)} · ${money(c.worth)}</span></li>`;
+    return `<li>${names.join(c.members.length === 2 ? " ↔ " : " · ")} <span class="muted">— ${coLinkify(kind, "../")} · ${money(c.worth)}</span></li>`;
   }).join("\n");
 
   const tendrilList = tendrils.slice(0, 15).map((r) => `<li>${tendrilLine(r, "../")}</li>`).join("\n");
@@ -1455,6 +1523,7 @@ ${pager}
 ${ROSTER_HEAD}
 <tbody>${shard.map((p) => rosterRow(p, "../")).join("")}</tbody>
 </table></div>
+<p class="note">One flag per person — the citizenship on record; many hold more than one.</p>
 ${pager}
 </section>`,
     }));
@@ -1519,11 +1588,11 @@ ${pager}
     .map(([ind, v]) => `<a class="marketRow" href="people/index.html?industry=${encodeURIComponent(ind)}"><strong>${esc(titleCase(ind))}</strong><span class="muted">${v.n.toLocaleString()} people</span><span class="marketWorth">${money(v.worth)}</span></a>`)
     .join("\n");
 
-  const territoryRows = webPages.slice(0, 6).map((c) => `<a class="webDirRow" href="webs/${c.slug}.html">
-    <strong>${esc(c.name)}${c.isFamily ? ' <span class="tag tag-family">dynasty</span>' : ""}</strong>
-    <span class="webDirWhat">${esc(meaningOf(c))}</span>
+  const territoryRows = webPages.slice(0, 6).map((c) => `<div class="webDirRow">
+    <strong><a href="webs/${c.slug}.html">${esc(c.name)}</a>${c.isFamily ? ' <span class="tag tag-family">dynasty</span>' : ""}</strong>
+    <span class="webDirWhat">${coLinkify(meaningOf(c), "")}</span>
     <span class="webDirMeta">${c.members.length} people · ${money(c.worth)}</span>
-  </a>`).join("\n");
+  </div>`).join("\n");
 
   await fs.writeFile(path.join(outDir, "index.html"), pageShell({
     title: "Overview",
@@ -1595,7 +1664,7 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
   const pairCols = ["person_a", "person_b", "current signal"];
   const briefs = [];
 
-  const untiedTop = roster.filter((p) => !p.sourced_tie_count).slice(0, 200);
+  const untiedTop = roster.filter((p) => !p.sourced_tie_count);
   briefs.push({
     file: "brief-top-roster-ties.md",
     title: "Top roster people with no sourced ties",
@@ -1657,14 +1726,14 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
   briefs.push({
     file: "brief-family-surname-candidates.md",
     title: "Same-surname, same-country pairs (possible undetected family)",
-    count: Math.min(surnameCandidates.length, 150),
+    count: surnameCandidates.length,
     intro: "Computed gap: pairs of roster people who share a surname and citizenship but have no recorded relationship of any tier. Billionaire wealth is heavily dynastic — many of these will be spouses, siblings or cousins the feeds never connected.",
     task: "For each pair, determine whether they are actually related (spouse, sibling, parent–child, cousin, unrelated same-name coincidence). Return sourced rows for real ties only.",
     columns: pairCols,
-    rows: surnameCandidates.slice(0, 150).map(([, a, b]) => [`${a.id} (${a.name})`, `${b.id} (${b.name})`, "same surname + citizenship — unresearched"]),
+    rows: surnameCandidates.map(([, a, b]) => [`${a.id} (${a.name})`, `${b.id} (${b.name})`, "same surname + citizenship — unresearched"]),
   });
 
-  const briefCos = companies.slice(0, 150);
+  const briefCos = companies;
   briefs.push({
     file: "brief-company-ties.md",
     title: "Company memberships — verify and complete",
@@ -1677,7 +1746,18 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
       Math.round(c.worth)]),
   });
 
-  const missingFields = roster.filter((p) => p.age == null || p.gender == null).slice(0, 150);
+  briefs.push({
+    file: "brief-company-lineage.md",
+    title: "Company name histories — renames, takeovers, absorptions",
+    count: companies.length,
+    intro: "Company names are not stable: takeovers and renames change who the money belongs to and what the name stands for (Twitter→X under Musk, Square→Block under Dorsey). 'Known history' shows what the lineage table holds — empty means unresearched.",
+    task: "For each company, list predecessor names, acquirers and renames with years. Flag any rename that marked a change of owner or direction, and any acquisition that moved billionaire wealth between companies.",
+    columns: ["company", "company_uri", "known history"],
+    rows: companies.map((c) => [c.name, c.slug,
+      (c.lineage || []).map((l) => `${l.dir === "from" ? "→" : "←"} ${l.other?.name || l.otherName || "?"} (${l.kind}${l.year ? ` ${l.year}` : ""})`).join("; ")]),
+  });
+
+  const missingFields = roster.filter((p) => p.age == null || p.gender == null);
   briefs.push({
     file: "brief-missing-fields.md",
     title: "Roster rows missing basic fields",
@@ -1703,14 +1783,16 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
     }),
   });
 
+  const donorCandidates = roster
+    .filter((p) => (p.rank ?? 9e9) <= 100 || /murdoch|thiel|musk|adelson|koch|soros|mercer|moskovitz|singer|griffin/i.test(p.name));
   briefs.push({
     file: "brief-political-and-donor-webs.md",
     title: "Political funding and donor webs — the dark part of the map",
-    count: 40,
+    count: donorCandidates.length,
     intro: "Party donations, political appointments, lobby channels, media patronage — the ties that matter most for power barely appear in wealth data. This brief targets the highest-profile names for politically relevant ties.",
     task: "For each person, research: significant political donations (party + amount + year), formal or informal roles in campaigns or administrations, PACs or dark-money vehicles they fund, and person-to-person ties with other billionaires formed around politics. Cite FEC records, OpenSecrets, national electoral registers or reputable reporting.",
     columns: ["rank", "name", "person_uri", "country", "known political profile"],
-    rows: roster.filter((p) => (p.rank ?? 9e9) <= 100 || /murdoch|thiel|musk|adelson|koch|soros|mercer|moskovitz|singer|griffin/i.test(p.name)).slice(0, 40)
+    rows: donorCandidates
       .map((p) => [p.rank ?? "—", p.name, p.id, (p.citizenship || "").toUpperCase(), ""]),
   });
 
@@ -1729,13 +1811,13 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
 
   await fs.writeFile(path.join(gapsDir, "index.html"), pageShell({
     title: "Research gaps",
-    description: "The questions this snapshot can't answer, packaged as downloadable research briefs.",
+    description: "The questions this snapshot can't answer, packaged as downloadable researchable sheet.",
     prefix: "../", active: "Gaps", bodyClass: "page-gaps",
     content: `
 <header class="hero">
-  <h1>Research briefs</h1>
-  <p class="lead">The questions wealth feeds can't answer — donor webs, unverified feed claims, missing family ties — each packaged as a self-contained markdown brief. Download one, run it through a research model, and the CSV it returns merges straight back into the dataset.</p>
-  <p class="spec">Gaps · ${briefs.reduce((n, b) => n + b.rows.length, 0).toLocaleString()} open questions</p>
+  <h1>Things <em>we</em> don't know — yet</h1>
+  <p class="lead">Donor webs, unverified claims, missing family ties, undocumented company roles — each gap below is a downloadable research brief about the people.</p>
+  <p class="spec">Our billionaire database lists ${roster.length.toLocaleString()} billionaires, but we only have detailed links between ${tiedCount.toLocaleString()} of them and need more data about the other ${(roster.length - tiedCount).toLocaleString()} billionaires.</p>
 </header>
 <section class="cd-section">
   <div class="briefList">
@@ -1745,6 +1827,10 @@ ${topWeb ? `<div class="webFig webFig--full">${topSvg}</div>
       <p class="muted">${b.rows.length.toLocaleString()} rows · <a href="${b.file}">${b.file}</a></p>
     </section>`).join("\n")}
   </div>
+</section>
+<section class="cd-section">
+  <h2>Help fill the gaps</h2>
+  <p class="lead">Corrections, missing people, answers to a brief — PRs welcome at the <a href="https://github.com/Better-Britain/reports/tree/main/site/assets/microsites/billionaire-database">billionaire-database source</a>.</p>
 </section>`,
   }));
 

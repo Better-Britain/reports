@@ -24,6 +24,8 @@ see `tasks/data-ingestion.task.json`.
 | `evidence_links.jsonl` | 8,345 | edge → source join (unfiltered — includes links for derivable/dropped edges; join on `edge_id` against the kept tables) |
 | `caveats.jsonl` | 135 | distinct caveat strings, referenced via `caveat_id`; `boilerplate=true` marks generated disclaimers |
 | `manifest.json` | 1 | snapshot date/source + feed URL templates |
+| `known_companies.txt` | ~2,400 | real company names (Fortune Global 500, Forbes Global 2000, S&P 500) — recognition vocabulary for company-name labels |
+| `company_lineage.jsonl` | 21 | curated name histories: `from`, `to`, `kind` (renamed/acquired/merged/restructured), `year`, `note` — era-distinct identities stay separate nodes |
 
 ## Key fields
 
