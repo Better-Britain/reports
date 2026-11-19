@@ -4,8 +4,11 @@ JSONL tables (one JSON object per line), rebuilt from the raw research pile in
 `/home/bobbigmac/projects/toys/open-source-research/billionaires/` by
 `scripts/ingest.py`. Think of each file as a table; join keys are stable ids.
 
-Rebuild: `scripts/.venv/bin/python scripts/ingest.py`
-Query:   `scripts/.venv/bin/python scripts/query.py "select ..."` (DuckDB over JSONL)
+Rebuild: `python3 scripts/ingest.py` (stdlib only)
+Query:   `python3 scripts/query.py "select ..."` (DuckDB over JSONL)
+
+New-drop intake (Downloads → pile → tables) is an operator job, not a script:
+see `tasks/data-ingestion.task.json`.
 
 ## Tables
 
@@ -13,13 +16,13 @@ Query:   `scripts/.venv/bin/python scripts/query.py "select ..."` (DuckDB over J
 |---|---|---|
 | `people.jsonl` | 3,394 | one row per person: 3,378 roster + 16 API-only persons (`in_roster=false`) |
 | `entities.jsonl` | 1,279 | non-person graph nodes (wealth-source labels, industry labels, company assets, orgs) |
-| `memberships.jsonl` | 7,952 | person → entity edges (affiliations 7,191, asset holdings, entity memberships) |
-| `relationships.jsonl` | 1,134 | person ↔ person records, all evidence tiers, deduped by (pair, origin, class) |
+| `memberships.jsonl` | 7,952 | person → entity edges (asset holdings, feed-reported entity links, curated org roles) — now ALSO includes roster `snapshot_contextual_affiliation` cohort edges (industry / source-of-wealth groupings); those are derivable from `people.industry`/`people.source_of_wealth` + `entities`, treat as discovery context, never "knows" |
+| `relationships.jsonl` | 1,203 | person ↔ person records, all evidence tiers, deduped by (pair, origin, class) |
 | `api_observations.jsonl` | 1,321 | raw directed `/related` feed observations |
 | `asset_records.jsonl` | 252 | raw `/assets` feed rows |
-| `sources.jsonl` | 283 | unified source registry (`S##`, `SRC###`, `ASSET_SRC_*`, `API_PROFILE_FEED`) |
-| `evidence_links.jsonl` | 8,345 | edge → source join |
-| `caveats.jsonl` | 117 | distinct caveat strings, referenced via `caveat_id`; `boilerplate=true` marks generated disclaimers |
+| `sources.jsonl` | 305 | unified source registry (`S##`, `SRC###`, `WEB-##`, `ISO###`, `ASSET_SRC_*`, `API_PROFILE_FEED`) |
+| `evidence_links.jsonl` | 8,345 | edge → source join (unfiltered — includes links for derivable/dropped edges; join on `edge_id` against the kept tables) |
+| `caveats.jsonl` | 135 | distinct caveat strings, referenced via `caveat_id`; `boilerplate=true` marks generated disclaimers |
 | `manifest.json` | 1 | snapshot date/source + feed URL templates |
 
 ## Key fields
@@ -40,9 +43,10 @@ Snapshot date/source live once in `manifest.json`.
 dropped), `caveat_id` → `caveats`, `source_ids[]` → `sources`,
 `source_urls[]` (article URLs only; derivable feed URLs stripped), `batch`.
 
-`memberships`: `id` (edge id), `kind` (edge_class), `source` (person slug or
-org/entity node id — the 6 `OO000#` org↔org edges), `entity` (target node id),
-`label`, `confidence`, `caveat_id`, `source_ids[]`.
+`memberships`: `id` (edge id), `kind` (edge_class verbatim — including
+`snapshot_contextual_affiliation` and `*_derived` variants), `source` (person
+slug or org/entity node id), `entity` (target node id), `label`, `confidence`,
+`caveat_id`, `source_ids[]`.
 
 `api_observations`: `id`, `source_uri`/`target_uri` (person ids), `raw_label`,
 `interpreted_class`, `interpreted_value`, `confidence`, `evidence_status`,
@@ -59,7 +63,7 @@ Feed URL = `manifest.assets_feed_url_template` + `person`.
 
 ## Evidence tiers (display discipline)
 
-- `curated_research` — hand-sourced ties; safe to present as relationships (77 people have one).
+- `curated_research` — hand-sourced ties; safe to present as relationships (143 people have one).
 - `api_related` — Forbes `/related` feed; explicit labels kept verbatim, still needs verification.
 - `derived_shared_asset` / `derived_shared_holding` — exposure overlap only, not contact.
 - `memberships` affiliations — cohorts for discovery; never render as "knows".

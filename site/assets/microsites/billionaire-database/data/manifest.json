@@ -7,12 +7,12 @@
   "tables": {
     "api_observations": 1321,
     "asset_records": 252,
-    "caveats": 117,
+    "caveats": 135,
     "entities": 1279,
     "evidence_links": 8345,
     "memberships": 7952,
     "people": 3394,
-    "relationships": 1134,
-    "sources": 283
+    "relationships": 1203,
+    "sources": 305
   }
 }
