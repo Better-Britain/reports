@@ -6,6 +6,13 @@
     <atom:link href="https://betterbritain.org.uk/feed.xml" rel="self" type="application/rss+xml" />
     <description>Broken Britain Briefing</description>
     <item>
+      <title>The Billionaire Database, rebuilt</title>
+      <link>https://betterbritain.org.uk/posts/2026-11-19-billionaire-database-rebuilt.html</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-11-19-billionaire-database-rebuilt.html</guid>
+      <pubDate>Thu, 19 Nov 2026 09:00:00 GMT</pubDate>
+
+    </item>
+    <item>
       <title>The Billionaire Database</title>
       <link>https://betterbritain.org.uk/billionaire-database/</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/billionaire-database/</guid>
