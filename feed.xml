@@ -6,6 +6,13 @@
     <atom:link href="https://betterbritain.org.uk/feed.xml" rel="self" type="application/rss+xml" />
     <description>Broken Britain Briefing</description>
     <item>
+      <title>The Billionaire Database</title>
+      <link>https://betterbritain.org.uk/billionaire-database/</link>
+      <guid isPermaLink="true">https://betterbritain.org.uk/billionaire-database/</guid>
+      <pubDate>Wed, 18 Nov 2026 19:40:00 GMT</pubDate>
+      <enclosure url="https://betterbritain.org.uk/billionaire-database/images/the-billionaire-network-map-1200x630.jpg" type="image/jpeg"/>
+    </item>
+    <item>
       <title>Wheel of Gorton (and Denton)</title>
       <link>https://betterbritain.org.uk/wheel-of-gorton/</link>
       <guid isPermaLink="true">https://betterbritain.org.uk/wheel-of-gorton/</guid>
@@ -18,13 +25,6 @@
       <guid isPermaLink="true">https://betterbritain.org.uk/posts/2026-02-17-billionaire-database.html</guid>
       <pubDate>Tue, 17 Feb 2026 19:40:00 GMT</pubDate>
 
-    </item>
-    <item>
-      <title>Billionaire database</title>
-      <link>https://betterbritain.org.uk/billionaire-database/</link>
-      <guid isPermaLink="true">https://betterbritain.org.uk/billionaire-database/</guid>
-      <pubDate>Tue, 17 Feb 2026 19:40:00 GMT</pubDate>
-      <enclosure url="https://betterbritain.org.uk/billionaire-database/images/billionaires-database-promo2.jpg" type="image/jpeg"/>
     </item>
     <item>
       <title>New microsite: What Brexit costs</title>

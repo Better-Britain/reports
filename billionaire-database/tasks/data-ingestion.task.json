@@ -1,0 +1,206 @@
+{
+  "id": "data-ingestion",
+  "title": "Billionaire dataset — data ingestion + review operator spec",
+  "purpose": "Raw research files land in the collection from external model runs, mining batches and user downloads, in WHATEVER shape the producer felt like. This job turns each drop into normalized dataset rows without corrupting what already exists. The importer is deliberately dumb: scripts/ingest.py reads a fixed list of expected files. The OPERATOR (you, the LLM) is the adaptive layer — you inspect each drop, conform it to a schema the pipeline already understands, record the classification judgment explicitly, and prove nothing was lost.",
+
+  "vars": {
+    "PILE": "/home/bobbigmac/projects/toys/open-source-research/billionaires — the raw collection; everything derives from here",
+    "MASTER": "{PILE}/pair_mining_master_2026-11-18/ — the master pack: current cumulative ledger + batch increments + registries + landed drops",
+    "INGEST": "scripts/ingest.py — rebuilds data/*.jsonl wholesale from {PILE}; BB_SRC env var overrides the pile root",
+    "LEDGER": "billionaire_pair_links_append_only_vN.csv — the cumulative pair-edge ledger; N increments on each new master",
+    "OUT": "data/*.jsonl — the normalized tables the microsite renders"
+  },
+
+  "invariants": [
+    "NEVER edit or delete rows inside a cumulative ledger or an append-only file — new truth arrives as new rows/files; superseded versions stay on disk",
+    "NEVER mutate a downloaded drop — conform into a NEW file next to it; the original stays as-received",
+    "The join key is the person slug (Profile URI). Every a/b on an imported edge must resolve in people.jsonl — a typo or non-roster person is found BEFORE rebuild, not after",
+    "Every source_id referenced by an edge must resolve in sources.jsonl — a batch that mints its own id namespace (OLDREPORT/WEB-*, ISO*) ships or gets a registry CSV in the registry schema (source_id,title,url,source_type,coverage_note,accessed_date)",
+    "Classification is a per-batch JUDGMENT recorded in CURATED_LEDGER_BATCHES, never a heuristic — read the batch's actual rows (evidence_status, real URLs, caveats, what the relationship claims) before deciding curated_research vs api_related",
+    "The tier model is the product: curated_research renders 'Sourced', api_related renders 'Feed-labeled (Forbes /related feed, unverified)'. Misclassifying hand-sourced edges as api_related publishes a false provenance claim — the worst failure this job has",
+    "Rebuild is wholesale — a bad change corrupts ALL tables, not just the new rows. Diff row counts AND spot-check old records, not only new ones",
+    "Count-in == count-out, accounted: every incoming row ends as imported / merged-into-existing / rejected-with-reason. Report the arithmetic",
+    "No commits — the user commits"
+  ],
+
+  "contract": {
+    "objective": "Each pass: new files land in {MASTER}, ingest.py is pointed at them deliberately, data/*.jsonl is rebuilt, and the result is verified — with a written record of what each file was and what was done to it",
+    "shape": "Input shape is NEVER guaranteed. Ledger rows, reduced merge-contract CSVs (person_a_uri,person_b_uri,type,label,confidence,summary,urls), zips, READMEs, briefs. Assume nothing; inspect everything",
+    "done": "Done means: files landed in {MASTER} (raw + conformed), ingest.py wired, rebuild ran clean, verification checks all pass, docs/counts updated, and a report of what was imported/merged/rejected is given to the user"
+  },
+
+  "phases": {
+    "survey": {
+      "about": "find what arrived that isn't in the collection yet — usually ~/Downloads but ask if unsure",
+      "steps": [
+        {
+          "name": "list-candidates",
+          "cmd": "ls -lat ~/Downloads | head -40 — take anything plausibly dataset-related from the recent window; unrelated topics (other projects' ChatGPT dumps) stay out",
+          "why": "the user drops files continuously; filename patterns (billionaire_*, verified_*, brief-*, *.zip) are a hint, not a rule"
+        },
+        {
+          "name": "identify",
+          "cmd": "for zips: unzip -l into /tmp and extract there first; for CSVs: head -3 + wc -l; for md: head -40",
+          "why": "you cannot decide anything about a file you haven't opened"
+        },
+        {
+          "name": "dup-check",
+          "cmd": "md5sum candidates vs same-named files already in {PILE} — browser re-downloads (' (1).csv') are common",
+          "why": "identical bytes = already landed; different bytes = a new version to diff"
+        }
+      ]
+    },
+    "inspect": {
+      "about": "figure out what each file actually IS before touching the pipeline — this is the step that can never be skipped or automated",
+      "steps": [
+        {
+          "name": "shape",
+          "cmd": "csv.DictReader: column list, row count, distinct batch_id/scope/status/evidence_status values, edge_id namespaces",
+          "why": "the same conceptual file arrives with different columns every time (full ledger schema vs 7-column merge contract vs something new)"
+        },
+        {
+          "name": "diff-vs-existing",
+          "cmd": "new ledger? diff its edge_ids against the currently-wired ledger — the delta IS the batch. pair rows? check which (a,b) pairs already exist in relationships.jsonl",
+          "why": "a vN+1 ledger is expected to be a superset — if rows are missing vs vN, say so loudly rather than assuming"
+        },
+        {
+          "name": "resolve-references",
+          "cmd": "every person slug -> people.jsonl; every source_id namespace -> sources.jsonl; every novel namespace needs a registry plan",
+          "why": "ghost people and dangling source ids are silent corruption — they only surface as missing labels in the UI"
+        },
+        {
+          "name": "quality-scan",
+          "cmd": "look for: BOM, ';' vs ' ; ' separators, float-formatted years ('1981.0'), blank required fields, edge_ids duplicated INSIDE the drop, ids with whitespace, urls that are feed URLs vs real articles",
+          "why": "poor quality is expected — these defects are normal, catch them here not in the output"
+        }
+      ]
+    },
+    "decide": {
+      "about": "the per-batch classification judgment — the decision the pipeline refuses to make for you",
+      "steps": [
+        {
+          "name": "classify-batch",
+          "cmd": "read the batch's rows: hand-sourced edges with named external sources + evidence summaries + interpretation caveats => curated_research (add batch_id to CURATED_LEDGER_BATCHES in ingest.py). Feed/discovery signals (profile /related labels, cohort projections, unverified assertions) => api_related default. Shared-asset/holding projections => derived_*",
+          "why": "this is a provenance decision that publishes as the Sourced/Feed-labeled tier — when unsure, read more rows; if still unsure, ask the user rather than guessing"
+        }
+      ]
+    },
+    "conform": {
+      "about": "transform the drop into a schema an existing reader understands — YOU adapt the data, the parser does not adapt to the data",
+      "steps": [
+        {
+          "name": "conform-to-contract",
+          "cmd": "write a NEW csv in {MASTER} with the full ledger column set (edge_id,batch_id,person_a_uri,person_a_name,person_b_uri,person_b_name,relationship_type,relationship_label,scope,confidence,evidence_status,status,time_start,time_end,evidence_summary,interpretation_caveat,source_ids,source_urls,appended_on). Mint edge_ids in a batch-namespaced pattern (VRT-0001…). Resolve person names from people.jsonl. Fill provenance fields (batch_id, evidence_status, appended_on) honestly; leave genuinely unknown fields empty rather than fabricating",
+          "why": "worked example: verified_roster_ties.csv (7 cols) -> billionaire_verified_ties_2026-11-19_append_edges.csv (19 cols). The raw drop stays beside it for audit"
+        },
+        {
+          "name": "register-sources",
+          "cmd": "if the drop references source ids with no registry entries, write {MASTER}/billionaire_<batch>_sources_<date>.csv in registry schema; where id->url mapping is ambiguous (N ids vs M urls), map by best positional judgment and note that edges carry verbatim source_urls anyway",
+          "why": "worked examples: billionaire_old_report_mining_sources_2026-11-18.csv (OLDREPORT/WEB-01..11), billionaire_isolation_audit_sources_2026-11-19.csv (ISO001..010)"
+        }
+      ]
+    },
+    "wire": {
+      "about": "point the dumb importer at the conformed files — every change is explicit and reviewable",
+      "steps": [
+        {
+          "name": "ledger-list",
+          "cmd": "update the ledger list in build_relationships() to the NEWEST cumulative ledger filename; add conformed edge files to the same loop",
+          "why": "versioned filenames never auto-pick — the newest is whichever actually landed (v6 -> v7 -> v8 so far)"
+        },
+        {
+          "name": "batch-registry",
+          "cmd": "add curated batch_ids to CURATED_LEDGER_BATCHES; add new source-registry files to the list in build_sources()",
+          "why": "these two lists ARE the recorded per-batch judgment"
+        }
+      ]
+    },
+    "rebuild": {
+      "about": "regenerate the tables and prove the result",
+      "steps": [
+        {
+          "name": "run-ingest",
+          "cmd": "scripts/.venv/bin/python scripts/ingest.py",
+          "why": "wholesale rebuild — every table is rewritten from the pile"
+        },
+        {
+          "name": "verify",
+          "cmd": "checks below — all must pass before reporting done",
+          "why": "'it ran' is not done"
+        }
+      ]
+    },
+    "document": {
+      "about": "leave the trail a future pass needs",
+      "steps": [
+        {
+          "name": "update-counts",
+          "cmd": "data/README.md table row counts + the 'people have a curated tie' figure; {MASTER}/billionaire_pair_mining_master_README.md file list",
+          "why": "docs rot the moment a batch lands"
+        },
+        {
+          "name": "report",
+          "cmd": "tell the user: files landed, what each was, imported/merged/rejected arithmetic, classification calls made, anything skipped and why",
+          "why": "the review half of the job — the user sanity-checks your judgment calls"
+        }
+      ]
+    }
+  },
+
+  "checks": {
+    "row-arithmetic": "new relationships == incoming rows - merges - explained rejections; print it, don't estimate it",
+    "dangling-source-ids": "every source_id on relationships+memberships resolves in sources.jsonl — must be zero",
+    "ghost-people": "every a/b resolves in people.jsonl — must be zero (checked pre-rebuild at inspect, re-checked after)",
+    "new-edge-spot-check": "read 2-3 new records in relationships.jsonl: expected origin, class, real source_urls, caveat_id present where the batch had caveats",
+    "old-data-intact": "counts of pre-existing batches/origins unchanged vs the pre-rebuild manifest; spot-check an old curated edge survives untouched",
+    "render-check": "node build.js --out /tmp/bb_preview — new edges appear at the expected tier; no console errors"
+  },
+
+  "failure-modes": [
+    {
+      "mode": "assuming last drop's schema — columns, separators and id conventions change every single time",
+      "check": "inspect phase exists precisely because of this; never wire a file you haven't DictReader'd"
+    },
+    {
+      "mode": "ledger version drift — vN+1 lands but ingest still reads vN, new edges silently absent",
+      "check": "the ledger list always names the newest landed version; diff edge_ids old-vs-new first"
+    },
+    {
+      "mode": "hand-sourced batch defaults to api_related -> published as 'Forbes feed, unverified' — false provenance at the Sourced/Feed tier boundary",
+      "check": "CURATED_LEDGER_BATCHES review each pass; new-edge spot-check reads the origin field"
+    },
+    {
+      "mode": "edge_id collision across drops — first-writer-wins dedupe silently discards the later rows",
+      "check": "mint batch-namespaced ids when conforming; check incoming ids against existing ones at inspect"
+    },
+    {
+      "mode": "same pair at a stronger tier treated as a duplicate and dropped — dedupe key is (pair|origin|class), so a curated upgrade is a NEW record and MUST land",
+      "check": "18 of the first VRT drop's pairs already existed at weaker tiers; all 51 still imported"
+    },
+    {
+      "mode": "dangling source ids when a batch mints its own namespace",
+      "check": "dangling-source-ids check == zero; registry CSV written per new namespace"
+    },
+    {
+      "mode": "non-pair data (external context leads, entity files, briefs) force-fit into the pair pipeline — they belong to different tables or are research queue, not edges",
+      "check": "classify the ARTIFACT, not just the batch: leads/briefs land in {MASTER} for provenance without necessarily becoming rows"
+    },
+    {
+      "mode": "wholesale rebuild corrupts pre-existing tables via an unrelated ingest edit",
+      "check": "old-data-intact check: pre-existing batch counts identical pre/post rebuild"
+    }
+  ],
+
+  "state": {
+    "note": "what is currently wired — update at the end of each pass",
+    "current_ledger": "billionaire_pair_links_append_only_v8.csv (1,216 rows; ISOLATION_AUDIT_MINING_2026-11-19 appended)",
+    "curated_batches": ["OLD_REPORT_MINING_2026-11-18", "ISOLATION_AUDIT_MINING_2026-11-19", "VERIFIED_ROSTER_TIES_2026-11-19"],
+    "landed_drops": [
+      "billionaire_old_report_pair_patch_2026-11-18.csv + leads + README (zip, 2026-11-18) — 9 curated edges ingested; external_context_leads parked as research queue",
+      "billionaire_verified_ties_2026-11-19_append_edges.csv (conformed from Downloads verified_roster_ties.csv + brief-top-roster-ties.md) — 51 curated edges",
+      "billionaire_old_report_mining_sources_2026-11-18.csv — OLDREPORT/WEB-* registry",
+      "billionaire_isolation_audit_sources_2026-11-19.csv — ISO* registry"
+    ],
+    "parked": "billionaire_old_report_external_context_leads_2026-11-18.csv — 8 person->external-node leads; NOT pair edges (non-roster anchors, group targets, follow_up status); revisit if a memberships/external-links model is wanted"
+  }
+}

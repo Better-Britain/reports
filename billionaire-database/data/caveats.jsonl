@@ -1,0 +1,135 @@
+{"boilerplate": false, "id": "c0001", "text": "This is a historical executive relationship, not founder status."}
+{"boilerplate": false, "id": "c0002", "text": "His relationship with the company changed early; current equity/control is not implied."}
+{"boilerplate": false, "id": "c0003", "text": "Not a current board role."}
+{"boilerplate": true, "id": "c0004", "text": "This is a business competition link, not proof of personal hostility."}
+{"boilerplate": false, "id": "c0005", "text": "This is a terminated transaction, not an ongoing partnership."}
+{"boilerplate": false, "id": "c0006", "text": "This is a corporate investment link; it should not be confused with a personal investment by Jerry Yang."}
+{"boilerplate": true, "id": "c0007", "text": "API places both profiles in a relationship via this financial asset; this does not establish a personal relationship or joint control."}
+{"boilerplate": false, "id": "c0008", "text": "Same employer reference does not prove direct collaboration or contemporaneous employment."}
+{"boilerplate": true, "id": "c0009", "text": "A wealth-origin category is a similarity/classification, not evidence of a business or personal relationship."}
+{"boilerplate": false, "id": "c0010", "text": "Same institution reference does not prove they attended at the same time or knew one another."}
+{"boilerplate": true, "id": "c0011", "text": "A source-of-wealth label is not proof of current ownership, direct partnership, shared control or personal relationship. It may describe inherited, family or legacy wealth."}
+{"boilerplate": true, "id": "c0012", "text": "Industry membership is broad context, not proof of personal or commercial ties or direct competition."}
+{"boilerplate": true, "id": "c0013", "text": "Endpoint supplies no as-of date. A zero share count may be a placeholder/option row and is not treated as a positive holding. This is not a complete balance sheet or proof of control."}
+{"boilerplate": false, "id": "c0014", "text": "This documents a founder and working relationship, not the full private nature of their friendship."}
+{"boilerplate": false, "id": "c0015", "text": "Court filings contain party characterisations as well as procedural facts; do not treat allegations as judicial findings."}
+{"boilerplate": false, "id": "c0016", "text": "Records the existence and settlement of the dispute, not the truth of disputed allegations."}
+{"boilerplate": false, "id": "c0017", "text": "Family relationship is included because it is widely public and directly relevant to their shared ventures."}
+{"boilerplate": true, "id": "c0018", "text": "Shared venture role does not imply that every investment or decision was jointly made."}
+{"boilerplate": true, "id": "c0019", "text": "This is a business rivalry between companies led by the two billionaires, not proof of a private personal feud."}
+{"boilerplate": true, "id": "c0020", "text": "The proposed fight did not take place; this is a documented public exchange, not evidence of sustained personal hostility."}
+{"boilerplate": true, "id": "c0021", "text": "The dispute concerns product competition and public criticism, not necessarily a personal feud between the founders."}
+{"boilerplate": false, "id": "c0022", "text": "This is an inferred founder-to-founder competitive link based on company positions; no personal dispute is alleged."}
+{"boilerplate": false, "id": "c0023", "text": "The philanthropic arrangements have changed over time; friendship should not be conflated with current donation flows."}
+{"boilerplate": false, "id": "c0024", "text": "A joint philanthropic initiative, distinct from their personal friendship."}
+{"boilerplate": false, "id": "c0025", "text": "This describes their documented professional relationship, not an inferred mentor relationship."}
+{"boilerplate": false, "id": "c0026", "text": "MacKenzie Scott's early employment at Amazon should not be overstated as co-founder status."}
+{"boilerplate": false, "id": "c0027", "text": "Family connection; business ties are separately recorded."}
+{"boilerplate": true, "id": "c0028", "text": "Zip2 was an early joint venture and does not imply shared ownership of later Musk companies."}
+{"boilerplate": true, "id": "c0029", "text": "This is based on a public statement and business context, not independent access to private communications."}
+{"boilerplate": false, "id": "c0030", "text": "Ellison's Tesla board service ended in 2022; don't treat the board tie as current."}
+{"boilerplate": false, "id": "c0031", "text": "Exact ownership shares are estimates and may change; this edge records sibling/ownership links, not control rights."}
+{"boilerplate": false, "id": "c0032", "text": "Their roles changed over time; the source describes current and historical roles separately."}
+{"boilerplate": false, "id": "c0033", "text": "The source lists three co-founders; this edge means shared founding venture, not a claim about private closeness."}
+{"boilerplate": false, "id": "c0034", "text": "This edge records the founding relationship, not their later governance or ownership status."}
+{"boilerplate": false, "id": "c0035", "text": "Shared founding and voting-control relationship; not a claim about personal friendship."}
+{"boilerplate": false, "id": "c0036", "text": "Founder relationship is historical; later governance roles differed."}
+{"boilerplate": true, "id": "c0037", "text": "Their board relationship ended in 2020; ongoing private contact after the latest cited report is not independently established."}
+{"boilerplate": true, "id": "c0038", "text": "The investment was made by Yahoo, not necessarily by Yang personally; 2014 is the latest report used for this friendship claim."}
+{"boilerplate": false, "id": "c0039", "text": "This is a commercial counterparty link, not a personal rivalry."}
+{"boilerplate": false, "id": "c0040", "text": "Competition is between the Adani and Reliance groups; don't infer a personal feud or identical exposure across all sectors."}
+{"boilerplate": true, "id": "c0041", "text": "This records board overlap, not evidence that board decisions are jointly controlled."}
+{"boilerplate": false, "id": "c0042", "text": "The investment was made by SoftBank, not by Son personally; the business board tie ended in 2020."}
+{"boilerplate": true, "id": "c0043", "text": "Endpoint supplies no relationship label; do not infer a friendship, partnership or dispute."}
+{"boilerplate": false, "id": "c0044", "text": "The API explicitly labels this relationship; verify against independent reporting before interpreting its nature or chronology."}
+{"boilerplate": true, "id": "c0045", "text": "The API feed associates both profiles through this named financial asset. This is not evidence of friendship, joint control, or contemporaneous co-ownership; validate asset and dates independently."}
+{"boilerplate": false, "id": "c0046", "text": "Both profile asset feeds contain positive share-count records for this company. No contemporaneous as-of dates, voting rights, beneficial ownership details or relationship beyond recorded exposure are supplied."}
+{"boilerplate": true, "id": "c0047", "text": "Does not establish a personal friendship."}
+{"boilerplate": true, "id": "c0048", "text": "Company-level investor link; not necessarily direct personal relationship."}
+{"boilerplate": false, "id": "c0049", "text": "Investor / company formation link."}
+{"boilerplate": true, "id": "c0050", "text": "Investor and institutional proximity, not proof of private friendship."}
+{"boilerplate": false, "id": "c0051", "text": "Company and governance relationship."}
+{"boilerplate": false, "id": "c0052", "text": "Need independent confirmation of exact board period; investor connection is the stronger fact."}
+{"boilerplate": false, "id": "c0053", "text": "Shared company timeline is evidenced; specific direct working proximity to Page is not detailed in this source."}
+{"boilerplate": false, "id": "c0054", "text": "Shared company timeline is evidenced; specific direct working proximity to Brin is not detailed in this source."}
+{"boilerplate": true, "id": "c0055", "text": "Shared company timeline, not proof of a personal relationship."}
+{"boilerplate": false, "id": "c0056", "text": "Founder / working relationship."}
+{"boilerplate": false, "id": "c0057", "text": "Investor, director and company relationship; not a personal friendship claim."}
+{"boilerplate": false, "id": "c0058", "text": "Business partnership; later role changed."}
+{"boilerplate": false, "id": "c0059", "text": "Secondary reporting; use as early-company link, not friendship proof."}
+{"boilerplate": false, "id": "c0060", "text": "Board overlap only."}
+{"boilerplate": false, "id": "c0061", "text": "Direct senior working relationship."}
+{"boilerplate": false, "id": "c0062", "text": "Executive succession and shared company leadership."}
+{"boilerplate": false, "id": "c0063", "text": "The SEC filing supports the current board link; the co-founder descriptor is additional context and should be independently verified before treating it as a founder-date fact."}
+{"boilerplate": false, "id": "c0064", "text": "Governance relationship only."}
+{"boilerplate": false, "id": "c0065", "text": "Multiple founder partnerships across separate companies; very strong business connection."}
+{"boilerplate": false, "id": "c0066", "text": "Company founding link; this row uses Forbes family/biographical reporting as source."}
+{"boilerplate": false, "id": "c0067", "text": "A documented business introduction and investor-network link, not a friendship inference."}
+{"boilerplate": true, "id": "c0068", "text": "A short-lived co-residence within the startup team; not evidence of an ongoing personal relationship."}
+{"boilerplate": false, "id": "c0069", "text": "Hiring and long-running senior working relationship."}
+{"boilerplate": false, "id": "c0070", "text": "Exact sibling tie stated in SEC filing."}
+{"boilerplate": false, "id": "c0071", "text": "Direct sibling relationship."}
+{"boilerplate": false, "id": "c0072", "text": "The edge is a first-cousin relationship between Bud’s daughters and Sam’s children."}
+{"boilerplate": false, "id": "c0073", "text": "Direct family and business relationship."}
+{"boilerplate": false, "id": "c0074", "text": "Founder relationship; personal friendship not inferred."}
+{"boilerplate": false, "id": "c0075", "text": "Use as a shared early leadership/business relationship; not a claim about personal friendship or a legally precise founding date."}
+{"boilerplate": false, "id": "c0076", "text": "Shared early leadership/business relationship; avoid implying personal friendship."}
+{"boilerplate": false, "id": "c0077", "text": "Direct sustained professional partnership."}
+{"boilerplate": false, "id": "c0078", "text": "Direct founder relationship."}
+{"boilerplate": true, "id": "c0079", "text": "Same-company senior leadership, not necessarily personal relationship."}
+{"boilerplate": false, "id": "c0080", "text": "Direct executive succession relationship."}
+{"boilerplate": false, "id": "c0081", "text": "Not exactly symmetric cofounder roles: McCaleb was a co-founder/CTO; Larsen joined the founding company group as CEO. Their later split should be captured separately if verified."}
+{"boilerplate": false, "id": "c0082", "text": "Family tree article notes it is reconstructed to the publication’s best knowledge; historical report, not a civil registry."}
+{"boilerplate": false, "id": "c0083", "text": "Family tree article notes it is reconstructed to the publication’s best knowledge."}
+{"boilerplate": false, "id": "c0084", "text": "Historical family-tree report; this establishes sibling relation, not business closeness."}
+{"boilerplate": false, "id": "c0085", "text": "Exact sibling relationship."}
+{"boilerplate": false, "id": "c0086", "text": "The familial bridge is explicit at sibling/parent level; exact niece name matched to Forbes/Forbes-style profile roster."}
+{"boilerplate": false, "id": "c0087", "text": "The familial bridge is explicit at sibling/parent level."}
+{"boilerplate": false, "id": "c0088", "text": "The profiles identify the four daughters by name; this edge represents their sibling group."}
+{"boilerplate": false, "id": "c0089", "text": "Aggregated unordered view. Use raw API observations for direction and individual labels. An API relation label does not always mean personal contact."}
+{"boilerplate": true, "id": "c0090", "text": "Company-source evidence establishes membership in the same founding team; not necessarily a one-to-one personal friendship or equal role."}
+{"boilerplate": false, "id": "c0091", "text": "Documents a long-running co-founder and business partnership."}
+{"boilerplate": false, "id": "c0092", "text": "This is a documented business partnership; not a claim about personal friendship."}
+{"boilerplate": false, "id": "c0093", "text": "Family relationship and business partnership are separate dimensions on this edge."}
+{"boilerplate": false, "id": "c0094", "text": "The source also identifies Steven Chang as a third founder, who is not part of this billionaire roster."}
+{"boilerplate": false, "id": "c0095", "text": "Investor/founder relationship; not a claim that the investor personally founded the company."}
+{"boilerplate": false, "id": "c0096", "text": "The pair are also identified as siblings in the Forbes-derived relationship feed; this edge records the business dimension."}
+{"boilerplate": false, "id": "c0097", "text": "Family tie and company succession are distinct but mutually reinforcing links."}
+{"boilerplate": false, "id": "c0098", "text": "Family tie; no additional business role is inferred here."}
+{"boilerplate": false, "id": "c0099", "text": "Family link; Lottie Tham is represented in the Forbes roster as a family-associated fortune."}
+{"boilerplate": true, "id": "c0100", "text": "Documents a formal business/family relationship; does not imply private friendship."}
+{"boilerplate": false, "id": "c0101", "text": "Family tie within the Moreira Salles banking shareholder group."}
+{"boilerplate": false, "id": "c0102", "text": "Parent-child link; separate from their shared family ownership role."}
+{"boilerplate": false, "id": "c0103", "text": "Family relationship plus documented roles in the same family-controlled company."}
+{"boilerplate": true, "id": "c0104", "text": "Family relationship; not necessarily equivalent seniority in the company."}
+{"boilerplate": false, "id": "c0105", "text": "Family relationship; company role described separately."}
+{"boilerplate": true, "id": "c0106", "text": "Formal shared directorship in the same club company; not evidence of a personal relationship or of identical ownership stakes."}
+{"boilerplate": false, "id": "c0107", "text": "Historical shared sports-team ownership, ended in 2022; not a claim that Rubin remains a team owner."}
+{"boilerplate": true, "id": "c0108", "text": "Retained as a discovery edge. API labels may represent family, business association, shared financial asset, origin of wealth, education, employment or an unspecified association; do not infer close personal ties from asset/industry labels."}
+{"boilerplate": false, "id": "c0109", "text": "A separate earlier venture between the same founders; the source does not specify the founding year."}
+{"boilerplate": false, "id": "c0110", "text": "Company-published account; friendship is explicitly stated by the company."}
+{"boilerplate": false, "id": "c0111", "text": "Sibling relationship and joint founding of Reyes Holdings."}
+{"boilerplate": false, "id": "c0112", "text": "Family connection and leadership succession, not just shared company exposure."}
+{"boilerplate": true, "id": "c0113", "text": "Discovery edge; raw labels can indicate family, co-founder/business partner/competitor, shared financial asset, education, employment, wealth origin, or unspecified association. Do not infer close personal ties from asset/industry labels."}
+{"boilerplate": true, "id": "c0114", "text": "Shared founder-team membership; does not imply friendship or agreement on all matters."}
+{"boilerplate": true, "id": "c0115", "text": "Shared founder-team membership; not evidence of private friendship."}
+{"boilerplate": true, "id": "c0116", "text": "Shared founder-team membership; not evidence of friendship."}
+{"boilerplate": true, "id": "c0117", "text": "This is an institutional investment connection, not evidence that Buffett personally negotiated with or was close to Wang Chuanfu. Keep Charlie Munger as a contextual non-roster actor if modelling the investment decision."}
+{"boilerplate": false, "id": "c0118", "text": "The businesses evolved over time; distinguish common family ownership from each brother’s operational role."}
+{"boilerplate": true, "id": "c0119", "text": "The official source documents government allegations/designations and contracts; it does not establish that every contract was improper."}
+{"boilerplate": false, "id": "c0120", "text": "The transfer is documented; claims that it was solely to evade sanctions are attributed to investigators and should remain allegations unless adjudicated."}
+{"boilerplate": false, "id": "c0121", "text": "The uncle-nephew relationship follows from the sourced father-son and brother relationships; the company ownership percentages are reported at the time of the Treasury designation."}
+{"boilerplate": false, "id": "c0122", "text": "This is an allegation reported in litigation materials, not a finding that Glasenberg personally had a corrupt relationship with Gertler. Preserve attribution, procedural posture and any subsequent case outcome."}
+{"boilerplate": true, "id": "c0123", "text": "Documented board relationship and public working dynamic; not evidence that the men were private friends or that Yanai participated in SoftBank investments personally."}
+{"boilerplate": false, "id": "c0124", "text": "The shareholding is attributed to Inbursa, not to Carlos Slim personally. The cited report is historical; do not assume the exact 17% remains unchanged without a current ownership filing."}
+{"boilerplate": true, "id": "c0125", "text": "This is a foundation-level partnership and joint public-policy effort, not evidence of a personal investment, business partnership or private friendship."}
+{"boilerplate": true, "id": "c0126", "text": "Co-membership documents access to the same formal advisory body; it does not establish agreement, joint lobbying, or personal closeness. The announced term was time-limited."}
+{"boilerplate": false, "id": "c0127", "text": "This is a company rivalry and documented public dispute, not a finding that either man committed wrongdoing. The 2026 reconciliation account includes an anonymous source and should be attributed, not treated as independently verified friendship."}
+{"boilerplate": true, "id": "c0128", "text": "The direct mentor/friend/competitor statement concerned the late Zong Qinghou, not his daughter. This edge records competition between businesses in which Zhong and Zong Fuli held leadership/ownership positions; it is not proof of a personal relationship. Zong Fuli stepped down from Wahaha’s top roles in November 2025 but retained her reported stake."}
+{"boilerplate": true, "id": "c0129", "text": "This is a market-competition link inferred through the controlled or inherited retail groups, not evidence of personal contact, coordination or hostility. The Commission report groups Aldi at the corporate level and does not analyse each family member individually."}
+{"boilerplate": true, "id": "c0130", "text": "This is a market-competition link inferred through the associated retail groups, not evidence of personal contact, coordination or hostility. The Commission report groups Aldi at the corporate level and does not map each family member to Aldi Nord or Aldi Süd."}
+{"boilerplate": false, "id": "c0131", "text": "Imported from gap-brief answers (verified_roster_ties.csv, brief-top-roster-ties.md); the stated relationship rests on the cited source."}
+{"boilerplate": true, "id": "c0132", "text": "A profile-level related entry; label may reflect asset, employment, education, wealth origin, or an unspecified association. Not automatically an interpersonal relationship."}
+{"boilerplate": true, "id": "c0133", "text": "Raw /related feed item retained verbatim. It is a discovery signal, not independently verified; financial-asset and origin-of-wealth labels are not personal ties."}
+{"boilerplate": true, "id": "c0134", "text": "Raw /related feed item retained verbatim. It is a discovery signal, not independently verified; financial-asset, education and source-of-wealth labels do not assert personal ties."}
+{"boilerplate": true, "id": "c0135", "text": "Raw /related feed item retained verbatim. Discovery signal only; shared company/asset, education and wealth-origin links do not assert friendship or direct contact."}

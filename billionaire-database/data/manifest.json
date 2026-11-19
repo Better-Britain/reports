@@ -1,0 +1,18 @@
+{
+  "assets_feed_url_template": "https://raw.githubusercontent.com/komed3/rtb-api/main/api/profile/{person}/assets",
+  "dataset": "global billionaires",
+  "related_feed_url_template": "https://raw.githubusercontent.com/komed3/rtb-api/main/api/profile/{person}/related",
+  "snapshot_date": "2026-11-17",
+  "snapshot_source": "https://raw.githubusercontent.com/komed3/rtb-api/main/api/list/rtb/2026-11-17",
+  "tables": {
+    "api_observations": 1321,
+    "asset_records": 252,
+    "caveats": 135,
+    "entities": 1279,
+    "evidence_links": 8345,
+    "memberships": 7952,
+    "people": 3394,
+    "relationships": 1203,
+    "sources": 305
+  }
+}

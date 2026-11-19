@@ -1,0 +1,21 @@
+{"from": "Twitter", "to": "X", "to_name": "X", "kind": "renamed", "year": 2023, "note": "Musk's $44bn takeover renamed it X — a change of owner and direction, not just a name"}
+{"from": "Square", "to": "Block", "kind": "renamed", "year": 2021, "note": "renamed Block as Dorsey pivoted the company to crypto"}
+{"from": "Facebook", "to": "Meta", "kind": "renamed", "year": 2021, "note": "rebrand around the metaverse — same company, new name"}
+{"from": "Snapchat", "to": "Snap", "kind": "renamed", "year": 2016, "note": "camera-company rebrand"}
+{"from": "Google", "to": "Alphabet", "to_name": "Alphabet", "kind": "restructured", "year": 2015, "note": "Alphabet created as the holding company above Google"}
+{"from": "PayPal", "to": "eBay", "kind": "acquired", "year": 2002, "note": "$1.5bn — eBay owned it until the 2015 spin-off"}
+{"from": "Netscape", "to": "AOL", "kind": "acquired", "year": 1999, "note": "$4.2bn stock deal at the peak of the bubble"}
+{"from": "AOL", "to": "Time Warner", "to_name": "Time Warner", "kind": "merged", "year": 2001, "note": "the dot-com merger that destroyed ~$200bn of value"}
+{"from": "AOL", "to": "Verizon", "to_name": "Verizon", "kind": "acquired", "year": 2015, "note": "Verizon bought what was left for $4.4bn"}
+{"from": "Yahoo", "to": "Verizon", "to_name": "Verizon", "kind": "acquired", "year": 2017, "note": "$4.48bn for the operating business; the remainder became Altaba"}
+{"from": "Sun Microsystems", "to": "Oracle", "kind": "acquired", "year": 2010, "note": "$7.4bn — Ellison bought Sun's whole stack"}
+{"from": "Genentech", "to": "Roche", "to_name": "Roche", "kind": "acquired", "year": 2009, "note": "$46.8bn full buyout; Levinson stayed as CEO"}
+{"from": "Marvel comics", "to": "Walt Disney", "kind": "acquired", "year": 2009, "note": "$4.24bn — Perlmutter became a Disney shareholder"}
+{"from": "Lucasfilm", "from_name": "Lucasfilm", "to": "Walt Disney", "kind": "acquired", "year": 2012, "note": "$4.05bn — the Star Wars sale made Lucas a Disney holder"}
+{"from": "Pixar", "from_name": "Pixar", "to": "Walt Disney", "kind": "acquired", "year": 2006, "note": "$7.4bn in stock — made Steve Jobs Disney's biggest shareholder"}
+{"from": "21st Century Fox", "from_name": "21st Century Fox", "to": "Walt Disney", "kind": "acquired", "year": 2019, "note": "$71.3bn for the entertainment assets — why Murdoch money sits in Disney stock"}
+{"from": "WhatsApp", "to": "Meta", "kind": "acquired", "year": 2014, "note": "$19bn — Acton and Koum's exit"}
+{"from": "Instagram", "to": "Meta", "kind": "acquired", "year": 2012, "note": "$1bn — Systrom's exit"}
+{"from": "LinkedIn", "to": "Microsoft", "kind": "acquired", "year": 2016, "note": "$26.2bn — Hoffman's exit; he kept a board seat"}
+{"from": "GitHub", "from_name": "GitHub", "to": "Microsoft", "kind": "acquired", "year": 2018, "note": "$7.5bn"}
+{"from": "EMC", "from_name": "EMC", "to": "Dell Technologies", "kind": "merged", "year": 2016, "note": "$67bn — the biggest tech acquisition in history at the time"}

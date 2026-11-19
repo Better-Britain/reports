@@ -1,240 +1,68 @@
-(() => {
-  const container = document.querySelector('[data-role="cards"]');
-  if (!container) return;
-
-  const showingCount = document.querySelector('[data-role="showing-count"]');
-  const aboutDetails = document.querySelector('details.about');
-  const sortSelect = document.querySelector('[data-role="sort"]');
-  const toggleReceiptsBtn = document.querySelector('[data-role="toggle-receipts"]');
-
-  if (aboutDetails) {
-    const key = 'bbb_problematic_billionaires_about_open';
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored === '0') aboutDetails.open = false;
-      else if (stored === '1') aboutDetails.open = true;
-      else aboutDetails.open = false;
-      aboutDetails.addEventListener('toggle', () => {
-        try { localStorage.setItem(key, aboutDetails.open ? '1' : '0'); } catch {}
-      });
-    } catch {
-      aboutDetails.open = false;
+/* billionaire-database — progressive enhancement only.
+   Everything works without JS; this just filters the people index. */
+(function () {
+  "use strict";
+  const input = document.getElementById("nameSearch");
+  if (!input) return;
+  const rows = document.querySelectorAll("#peopleTable tbody tr");
+  const apply = () => {
+    const q = input.value.trim().toLowerCase();
+    const ind = (new URLSearchParams(location.search).get("industry") || "").toLowerCase();
+    for (const tr of rows) {
+      tr.hidden = (q !== "" && !tr.dataset.name.includes(q))
+        || (ind !== "" && (tr.dataset.industry || "") !== ind);
     }
-  }
-
-  function getFilterButtons() {
-    return Array.from(document.querySelectorAll('[data-role="filter"]'));
-  }
-
-  const cards = Array.from(container.querySelectorAll('[data-role="card"]'));
-  const receiptDetails = Array.from(document.querySelectorAll('details.cardDetails'));
-
-  const filters = {
-    bucket: new Set(),
-    country: new Set(),
-    tag: new Set(),
+    const note = document.getElementById("filterNote");
+    if (note) {
+      note.textContent = ind ? `Filtered to ${ind} — ` : "";
+      note.hidden = ind === "";
+    }
   };
+  const q0 = new URLSearchParams(location.search).get("q");
+  if (q0) input.value = q0;
+  input.addEventListener("input", apply);
+  apply();
+})();
 
-  function anyFilterActive() {
-    return filters.bucket.size || filters.country.size || filters.tag.size;
-  }
+/* graph captions — hover shows the person's name + worth under the chart;
+   on touch screens the first tap arms a node (shows its label), the second
+   tap follows the link. The browser <title> tooltip is desktop-only. */
+(function () {
+  "use strict";
+  const coarse = matchMedia("(hover: none)").matches;
+  document.querySelectorAll("svg.webGraph").forEach((svg) => {
+    const cap = document.createElement("p");
+    cap.className = "graphCap";
+    cap.setAttribute("aria-live", "polite");
+    (svg.closest(".webFig") || svg).insertAdjacentElement("afterend", cap);
 
-  function matchesFilters(card) {
-    if (filters.bucket.size && !filters.bucket.has(String(card.dataset.bucket || ''))) return false;
-    if (filters.country.size && !filters.country.has(String(card.dataset.country || ''))) return false;
-    if (filters.tag.size) {
-      const raw = String(card.dataset.tags || '');
-      const tags = raw ? raw.split('|').map((s) => s.trim()).filter(Boolean) : [];
-      let ok = false;
-      for (const t of tags) {
-        if (filters.tag.has(t)) { ok = true; break; }
-      }
-      if (!ok) return false;
-    }
-    return true;
-  }
+    const show = (a) => {
+      svg.querySelectorAll("a.armed").forEach((x) => x.classList.remove("armed"));
+      a.classList.add("armed");
+      const name = a.getAttribute("data-name") || "";
+      const meta = a.getAttribute("data-meta") || "";
+      const strong = document.createElement("strong");
+      strong.textContent = name;
+      cap.replaceChildren(strong, document.createTextNode(meta ? " · " + meta : ""));
+    };
 
-  function parseMaybeNumber(v) {
-    const s = String(v ?? '').trim();
-    if (!s) return NaN;
-    const n = Number(s);
-    return Number.isFinite(n) ? n : NaN;
-  }
-
-  function compareMaybeNumber(a, b, dir = 'desc') {
-    const aOk = Number.isFinite(a);
-    const bOk = Number.isFinite(b);
-    if (aOk && bOk) return dir === 'asc' ? (a - b) : (b - a);
-    if (aOk && !bOk) return -1;
-    if (!aOk && bOk) return 1;
-    return 0;
-  }
-
-  function compareText(a, b, dir = 'asc') {
-    const aa = String(a ?? '').toLowerCase();
-    const bb = String(b ?? '').toLowerCase();
-    return dir === 'asc' ? aa.localeCompare(bb) : bb.localeCompare(aa);
-  }
-
-  function applySort() {
-    const mode = sortSelect ? String(sortSelect.value || 'name_asc') : 'name_asc';
-    const sorted = [...cards];
-    sorted.sort((ca, cb) => {
-      if (mode === 'worth_desc' || mode === 'worth_asc') {
-        const dir = mode.endsWith('_asc') ? 'asc' : 'desc';
-        const a = parseMaybeNumber(ca.dataset.worth);
-        const b = parseMaybeNumber(cb.dataset.worth);
-        const cmp = compareMaybeNumber(a, b, dir);
-        if (cmp) return cmp;
-        return compareText(ca.dataset.name, cb.dataset.name, 'asc');
-      }
-      if (mode === 'age_desc' || mode === 'age_asc') {
-        const dir = mode.endsWith('_asc') ? 'asc' : 'desc';
-        const a = parseMaybeNumber(ca.dataset.age);
-        const b = parseMaybeNumber(cb.dataset.age);
-        const cmp = compareMaybeNumber(a, b, dir);
-        if (cmp) return cmp;
-        return compareText(ca.dataset.name, cb.dataset.name, 'asc');
-      }
-      if (mode === 'sources_desc' || mode === 'sources_asc') {
-        const dir = mode.endsWith('_asc') ? 'asc' : 'desc';
-        const a = parseMaybeNumber(ca.dataset.sources);
-        const b = parseMaybeNumber(cb.dataset.sources);
-        const cmp = compareMaybeNumber(a, b, dir);
-        if (cmp) return cmp;
-        return compareText(ca.dataset.name, cb.dataset.name, 'asc');
-      }
-      return compareText(ca.dataset.name, cb.dataset.name, 'asc');
+    svg.addEventListener("pointerover", (e) => {
+      const a = e.target.closest("a");
+      if (a) show(a);
     });
-    container.replaceChildren(...sorted);
-  }
-
-  function applyFilters() {
-    let shown = 0;
-    for (const card of cards) {
-      const ok = matchesFilters(card);
-      card.hidden = !ok;
-      if (ok) shown += 1;
-    }
-    if (showingCount) showingCount.textContent = String(shown);
-  }
-
-  function setButtonPressed(btn, pressed) {
-    btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-  }
-
-  function syncFilterButtons() {
-    for (const btn of getFilterButtons()) {
-      const raw = String(btn.dataset.filter || '');
-      if (raw === 'all') {
-        setButtonPressed(btn, !anyFilterActive());
-        continue;
+    svg.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (!a || !coarse) return;
+      if (!a.classList.contains("armed")) {
+        e.preventDefault();
+        show(a);
       }
-      const idx = raw.indexOf(':');
-      const key = idx >= 0 ? raw.slice(0, idx) : raw;
-      const value = idx >= 0 ? raw.slice(idx + 1) : '';
-      if (key === 'bucket') setButtonPressed(btn, filters.bucket.has(value));
-      else if (key === 'country') setButtonPressed(btn, filters.country.has(value));
-      else if (key === 'tag') setButtonPressed(btn, filters.tag.has(value));
-    }
-  }
-
-  function resetFilters() {
-    filters.bucket.clear();
-    filters.country.clear();
-    filters.tag.clear();
-    syncFilterButtons();
-    applyFilters();
-  }
-
-  function toggleFilter(raw) {
-    if (raw === 'all') { resetFilters(); return; }
-    const idx = raw.indexOf(':');
-    const key = idx >= 0 ? raw.slice(0, idx) : raw;
-    const value = idx >= 0 ? raw.slice(idx + 1) : '';
-    const set = (key === 'bucket') ? filters.bucket : (key === 'country' ? filters.country : filters.tag);
-    if (set.has(value)) set.delete(value);
-    else set.add(value);
-    syncFilterButtons();
-    applyFilters();
-  }
-
-  if (sortSelect) {
-    const key = 'bbb_problematic_billionaires_sort';
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored) sortSelect.value = stored;
-    } catch {}
-    sortSelect.addEventListener('change', () => {
-      try { localStorage.setItem(key, String(sortSelect.value || '')); } catch {}
-      applySort();
-      applyFilters();
     });
-  }
-
-  function setAllReceiptsOpen(open) {
-    for (const d of receiptDetails) d.open = Boolean(open);
-  }
-
-  function anyReceiptClosed() {
-    for (const d of receiptDetails) {
-      if (!d.open) return true;
-    }
-    return false;
-  }
-
-  function syncReceiptsButton() {
-    if (!toggleReceiptsBtn) return;
-    const shouldOpen = anyReceiptClosed();
-    toggleReceiptsBtn.textContent = shouldOpen ? 'Open receipts' : 'Close receipts';
-    toggleReceiptsBtn.setAttribute('aria-pressed', shouldOpen ? 'false' : 'true');
-  }
-
-  if (toggleReceiptsBtn) {
-    const key = 'bbb_problematic_billionaires_receipts_open';
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored === '1') setAllReceiptsOpen(true);
-      else if (stored === '0') setAllReceiptsOpen(false);
-    } catch {}
-
-    toggleReceiptsBtn.addEventListener('click', (ev) => {
-      ev.preventDefault();
-      const open = anyReceiptClosed();
-      setAllReceiptsOpen(open);
-      try { localStorage.setItem(key, open ? '1' : '0'); } catch {}
-      syncReceiptsButton();
+    document.addEventListener("pointerdown", (e) => {
+      if (!svg.contains(e.target)) {
+        svg.querySelectorAll("a.armed").forEach((x) => x.classList.remove("armed"));
+        cap.replaceChildren();
+      }
     });
-  }
-
-  document.addEventListener('click', (ev) => {
-    const btn = ev.target?.closest?.('[data-role="filter"]');
-    if (!btn) return;
-    ev.preventDefault();
-    toggleFilter(String(btn.dataset.filter || ''));
   });
-
-  document.addEventListener('click', (ev) => {
-    const btn = ev.target?.closest?.('[data-role="overflow-toggle"]');
-    if (!btn) return;
-    ev.preventDefault();
-    const key = String(btn.dataset.overflow || '').trim();
-    if (!key) return;
-    const panel = document.querySelector(`[data-role="overflow-panel"][data-overflow="${CSS.escape(key)}"]`);
-    if (!panel) return;
-    const nextHidden = !panel.hidden ? true : false;
-    panel.hidden = nextHidden;
-    btn.setAttribute('aria-expanded', nextHidden ? 'false' : 'true');
-    const label = btn.querySelector('[data-role="overflow-label"]');
-    if (label) {
-      const more = String(btn.dataset.labelMore || 'More…');
-      const less = String(btn.dataset.labelLess || 'Fewer…');
-      label.textContent = nextHidden ? more : less;
-    }
-  });
-
-  syncReceiptsButton();
-  applySort();
-  syncFilterButtons();
-  applyFilters();
 })();
