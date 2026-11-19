@@ -2,6 +2,7 @@
 title: The Billionaire Database, rebuilt
 date: 2026-11-19T09:00:00Z
 description: The billionaire-database microsite, rebuilt around people, groups and companies.
+image: /billionaire-database/images/the-billionaire-network-map-1200x630.jpg
 ---
 
 We rebuilt the <a href="/billionaire-database/">Billionaire database</a>.
