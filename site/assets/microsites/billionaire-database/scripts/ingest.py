@@ -9,7 +9,8 @@ Sources:
     ├─ billionaire_relationship_network_v2_*            (full graph + raw feeds)
     ├─ billionaire_pair_links_append_only_v3.csv        (old cumulative ledger)
     ├─ billionaire_pair_mining_batch_001_*              (batch increment)
-    └─ pair_mining_master_2026-11-18/                   (master pack, v6 ledger + batch_004/)
+    └─ pair_mining_master_2026-11-18/                   (master pack, v8 ledger + batch_004/
+                                                         + landed drops; see tasks/data-ingestion.task.json)
 
 Output tables (one JSON object per line, sorted deterministically):
   people.jsonl          person records (roster + non-roster API persons)
@@ -306,6 +307,18 @@ def norm_origin(v):
     return ORIGIN_MAP.get(s(v), s(v) or "api_related")
 
 
+# Intake decision per ledger batch_id — recorded by the operator at import
+# time (see tasks/data-ingestion.task.json). Batches listed here are
+# hand-sourced research edges with named external sources: they land as
+# curated_research regardless of the row's free-text scope. Everything else
+# keeps the ledger default (api_related discovery signal).
+CURATED_LEDGER_BATCHES = {
+    "OLD_REPORT_MINING_2026-11-18",
+    "ISOLATION_AUDIT_MINING_2026-11-19",
+    "VERIFIED_ROSTER_TIES_2026-11-19",
+}
+
+
 def label_class(label, interpreted=None):
     """Assertion class used for dedupe + UI semantics.
 
@@ -406,8 +419,10 @@ def build_relationships():
         rels[rid] = rec
         canon[ck] = rid
 
-    # 1. cumulative ledgers (v6 master, then legacy v3 + batch-004 append file)
-    for ledger in [MASTER / "billionaire_pair_links_append_only_v6.csv",
+    # 1. cumulative ledgers (v8 master, then landed drops + legacy v3 +
+    #    batch-004 append file)
+    for ledger in [MASTER / "billionaire_pair_links_append_only_v8.csv",
+                   MASTER / "billionaire_verified_ties_2026-11-19_append_edges.csv",
                    SRC_ROOT / "billionaire_pair_links_append_only_v3.csv",
                    BATCH004 / "billionaire_pair_mining_batch_004_append_edges.csv"]:
         for r in read_csv(ledger):
@@ -418,7 +433,7 @@ def build_relationships():
                 cls = (f"curated:{s(r['relationship_type'])}" if origin == "curated_research"
                        else (norm_origin(origin) if norm_origin(origin) != "api_related"
                              else None))
-            elif s(r["scope"]) == "direct":
+            elif batch in CURATED_LEDGER_BATCHES or s(r["scope"]) == "direct":
                 origin = "curated_research"
                 cls = f"curated:{s(r['relationship_type'])}"
             else:
@@ -610,6 +625,8 @@ def build_sources(referenced_ids):
         put(s(r["source_id"]), s(r["title"]), s(r["url"]), s(r["source_type"]),
             s(r["publisher"]), s(r["published_date"]), s(r["notes"]))
     for f in [MASTER / "billionaire_pair_source_registry_append_only.csv",
+              MASTER / "billionaire_old_report_mining_sources_2026-11-18.csv",
+              MASTER / "billionaire_isolation_audit_sources_2026-11-19.csv",
               SRC_ROOT / "billionaire_pair_mining_batch_001_sources.csv",
               BATCH004 / "billionaire_pair_mining_batch_004_sources.csv"]:
         for r in read_csv(f):
